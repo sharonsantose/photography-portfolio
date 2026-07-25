@@ -1,0 +1,218 @@
+/* ==========================================================================
+   SHARON SANTOS — STARK MINIMAL MONOCHROME (GARAMOND + STRAVA MAP)
+   ========================================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'EB Garamond', 'Garamond', 'Georgia', serif;
+    background-color: #000000;
+    color: #ffffff;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+.name {
+    font-size: clamp(38px, 6vw, 56px);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+
+.discipline {
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-style: italic;
+    color: #a3a3a3;
+    margin-bottom: 28px;
+    font-weight: 400;
+}
+
+.email {
+    font-size: clamp(16px, 2vw, 19px);
+    margin-bottom: 14px;
+}
+
+.email a, .links a {
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 2px;
+    transition: border-color 0.3s ease;
+}
+
+.email a:hover, .links a:hover {
+    border-color: #ffffff;
+}
+
+.links {
+    font-size: clamp(16px, 2vw, 19px);
+    margin-bottom: 40px;
+}
+
+.sep {
+    color: #525252;
+    margin: 0 12px;
+}
+
+/* Section Labels */
+.section-label {
+    display: block;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #737373;
+    margin-bottom: 18px;
+    font-weight: 400;
+}
+
+.film-section, .strava-section {
+    margin-bottom: 40px;
+}
+
+/* Film Grid (Letterboxd Posters) */
+.film-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.film-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+}
+
+.film-card:hover {
+    transform: translateY(-4px);
+}
+
+.film-poster {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    border-radius: 4px;
+    filter: grayscale(100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: filter 0.3s ease, border-color 0.3s ease;
+}
+
+.film-card:hover .film-poster {
+    filter: grayscale(0%);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.film-info {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.film-name {
+    font-size: 13px;
+    color: #d4d4d4;
+    line-height: 1.25;
+    text-align: center;
+}
+
+.film-rating {
+    font-size: 11px;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+/* Strava Card & SVG Route Map */
+.strava-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 20px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.strava-card:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.strava-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.strava-title {
+    font-size: 18px;
+    font-style: italic;
+    color: #ffffff;
+}
+
+.strava-location {
+    font-size: 13px;
+    color: #a3a3a3;
+    letter-spacing: 0.5px;
+}
+
+.strava-metrics {
+    font-size: 13px;
+    color: #737373;
+}
+
+.strava-map-container {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    padding: 14px 10px 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+}
+
+.route-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.location {
+    font-size: 15px;
+    color: #737373;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin-top: 20px;
+}
+
+@media (max-width: 500px) {
+    .film-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

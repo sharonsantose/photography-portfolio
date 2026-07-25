@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Space — Sharon Santos</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Google Fonts: EB Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-family: 'EB Garamond', 'Garamond', 'Georgia', serif;
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-size: clamp(34px, 5vw, 46px);
+            font-weight: 400;
+            margin-bottom: 6px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-style: italic;
+            color: #a3a3a3;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        /* Password Auth Screen */
+        .auth-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 18px;
+            text-align: center;
+            letter-spacing: 4px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .password-input:focus {
+            border-color: #ffffff;
+        }
+
+        .unlock-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 16px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .unlock-btn:hover {
+            opacity: 0.9;
+        }
+
+        .error-msg {
+            color: #f87171;
+            font-size: 14px;
+            display: none;
+            margin-top: 8px;
+        }
+
+        /* Decrypted Content */
+        .private-content {
+            display: none;
+            text-align: left;
+        }
+
+        .hub-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .section-heading {
+            font-size: 22px;
+            font-style: italic;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 6px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-tag {
+            font-size: 12px;
+            font-style: normal;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #737373;
+        }
+
+        /* Obsidian Shortcuts Grid */
+        .obsidian-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .obsidian-card {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 4px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .obsidian-card:hover {
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .obsidian-title {
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        .obsidian-sub {
+            font-size: 12px;
+            color: #737373;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        /* Interactive Checklist Items */
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .check-item:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .check-item.completed {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .custom-check {
+            width: 18px;
+            height: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .check-item.completed .custom-check {
+            background: #ffffff;
+            border-color: #ffffff;
+        }
+
+        .check-item.completed .custom-check::after {
+            content: '✓';
+            color: #000000;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .item-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .item-title {
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        .item-desc {
+            font-size: 13.5px;
+            color: #a3a3a3;
+        }
+
+        /* Persistent Private Notes Scratchpad */
+        .notes-textarea {
+            width: 100%;
+            height: 140px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 15px;
+            padding: 16px;
+            line-height: 1.6;
+            outline: none;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .notes-textarea:focus {
+            border-color: #ffffff;
+        }
+
+        .save-indicator {
+            font-size: 12px;
+            color: #737373;
+            text-align: right;
+            margin-top: 6px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        /* Access Session Log Table */
+        .session-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .session-card {
+            font-size: 13px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            color: #a3a3a3;
+        }
+
+        .session-time {
+            color: #ffffff;
+        }
+
+        .nav-home {
+            display: inline-block;
+            margin-top: 48px;
+            color: #737373;
+            text-decoration: none;
+            font-size: 14px;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .nav-home:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        
+        <!-- Auth Lock Screen -->
+        <div id="authScreen">
+            <h1 class="title">Private Space</h1>
+            <p class="subtitle">Enter passcode to unlock Personal Life Space</p>
+
+            <form class="auth-box" id="authForm">
+                <input type="password" id="passwordInput" class="password-input" placeholder="••••" maxlength="8" required autofocus autocomplete="off">
+                <button type="submit" class="unlock-btn">Unlock Space</button>
+                <div class="error-msg" id="errorMsg">Incorrect passcode. Try again.</div>
+            </form>
+
+            <a href="/" class="nav-home">← Back to sharonsantos.me</a>
+        </div>
+
+        <!-- Decrypted Life Command Center (NO FINANCIAL DATA EVER) -->
+        <div id="privateContent" class="private-content">
+            
+            <div class="hub-header">
+                <h1 class="title">Personal Space</h1>
+                <p class="subtitle">Sharon Santos — Daily Life Hub & Workout Plan</p>
+            </div>
+
+            <!-- Obsidian App Deep Links -->
+            <div class="section-heading">
+                <span>Obsidian Vault Links</span>
+                <span class="section-tag">Direct App Shortcuts</span>
+            </div>
+
+            <div class="obsidian-grid">
+                <a href="obsidian://open?vault=Sharon&file=Workout%20Plan" class="obsidian-card">
+                    <span class="obsidian-title">Workout Plan.md</span>
+                    <span class="obsidian-sub">Open Training Log ↗</span>
+                </a>
+                <a href="obsidian://open?vault=Sharon&file=Columbia%20University" class="obsidian-card">
+                    <span class="obsidian-title">Columbia Notes</span>
+                    <span class="obsidian-sub">Open Course Vault ↗</span>
+                </a>
+            </div>
+
+            <!-- Weekly Training & Workout Plan -->
+            <div class="section-heading">
+                <span>Weekly Training Split</span>
+                <span class="section-tag">Runna & Lifts</span>
+            </div>
+
+            <div class="checklist" id="workoutChecklist">
+                <div class="check-item" data-id="chk-mon">
+                    <div class="custom-check"></div>
+                    <div class="item-text">
+                        <span class="item-title">Monday — Swim & Upper Body Strength</span>
+                        <span class="item-desc">🏊 40m Swim + 🏋️ Upper Body Lift (40–50 min) | Easy Run 4.5km</span>
+                    </div>
+                </div>
+
+                <div class="check-item" data-id="chk-tue">
+                    <div class="custom-check"></div>
+                    <div class="item-text">
+                        <span class="item-title">Tuesday — Tempo Run & Pickleball</span>
+                        <span class="item-desc">🏃 3.5 mi Tempo Repeats (Pace: 9:45–10:15 /mi) • 🏓 5:00 PM Pickleball</span>
+                    </div>
+                </div>
+
+                <div class="check-item" data-id="chk-wed">
+                    <div class="custom-check"></div>
+                    <div class="item-text">
+                        <span class="item-title">Wednesday — Easy Run & Cycling + Loading Up Strength</span>
+                        <span class="item-desc">🏃 3.0 mi Easy Run (Pace: 11:45–12:15 /mi) + 🚴 Bike • 🏋️ Loading Up Lift</span>
+                    </div>
+                </div>
+
+                <div class="check-item" data-id="chk-thu">
+                    <div class="custom-check"></div>
+                    <div class="item-text">
+                        <span class="item-title">Thursday — Aerobic Sustained Run</span>
+                        <span class="item-desc">🏃 3.5–4.0 mi Aerobic Run (Pace: 11:15–11:45 /mi)</span>
+                    </div>
+                </div>
+
+                <div class="check-item" data-id="chk-fri">
+                    <div class="custom-check"></div>
+                    <div class="item-text">
+                        <span class="item-title">Friday — Glute & Lower Body Strength</span>
+                        <span class="item-desc">💪 Glute Activation & Lower Body Lift (35 min)</span>
+                    </div>
+                </div>
+
+                <div class="check-item" data-id="chk-sat">
+                    <div class="custom-check"></div>
+                    <div class="item-text">
+                        <span class="item-title">Saturday — Long Run & Soccer Clinic</span>
+                        <span class="item-desc">🏃 5.0–6.5 mi Progressive Long Run (Pace: 11:45–12:00 /mi) • ⚽ Seattle RATS Clinic</span>
+                    </div>
+                </div>
+
+                <div class="check-item" data-id="chk-sun">
+                    <div class="custom-check"></div>
+                    <div class="item-text">
+                        <span class="item-title">Sunday — Trail Hike & Party Pace Run</span>
+                        <span class="item-desc">🌲 Discovery Park / Rattlesnake Ledge 4–5 mi • 👟 REI Run Club Party Pace</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Persistent Private Notes & Scratchpad -->
+            <div class="section-heading">
+                <span>Private Notes & Scratchpad</span>
+                <span class="section-tag">Auto-Saved</span>
+            </div>
+
+            <textarea id="privateNotes" class="notes-textarea" placeholder="Type personal notes, reminders, or ideas here... (automatically saved to your phone/device)"></textarea>
+            <div class="save-indicator" id="saveIndicator">Auto-saved to device</div>
+
+            <!-- Access Sessions Log -->
+            <div class="section-heading">
+                <span>Access Sessions Log</span>
+                <span class="section-tag">Audit History</span>
+            </div>
+
+            <div class="session-list" id="sessionList">
+                <!-- Logged access timestamps dynamically populated -->
+            </div>
+
+            <a href="/" class="nav-home">← Back to sharonsantos.me</a>
+        </div>
+
+    </main>
+
+    <script>
+        // SHA-256 hash for passcode: 0427
+        const PASS_HASH = "e4782cfc2b471cd4e24686f692188416d8a313cccb62679dc08c348447c2507b";
+
+        const authForm = document.getElementById('authForm');
+        const passwordInput = document.getElementById('passwordInput');
+        const authScreen = document.getElementById('authScreen');
+        const privateContent = document.getElementById('privateContent');
+        const errorMsg = document.getElementById('errorMsg');
+        const privateNotes = document.getElementById('privateNotes');
+        const saveIndicator = document.getElementById('saveIndicator');
+        const sessionList = document.getElementById('sessionList');
+
+        async function sha256(str) {
+            const buffer = new TextEncoder().encode(str);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const inputVal = passwordInput.value.trim();
+            const inputHash = await sha256(inputVal);
+
+            if (inputHash === PASS_HASH) {
+                authScreen.style.display = 'none';
+                privateContent.style.display = 'block';
+                errorMsg.style.display = 'none';
+                
+                logAccessSession();
+                initInteractiveHub();
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        });
+
+        // Log access session timestamp and device info
+        function logAccessSession() {
+            const sessions = JSON.parse(localStorage.getItem('sharon_sessions') || '[]');
+            const now = new Date();
+            const timeStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' @ ' + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            
+            const ua = navigator.userAgent;
+            let deviceType = 'Desktop / Mac';
+            if (/iPhone|iPad|iPod/.test(ua)) deviceType = 'iOS / iPhone';
+            else if (/Android/.test(ua)) deviceType = 'Android';
+
+            sessions.unshift({ time: timeStr, device: deviceType });
+            
+            // Keep last 5 sessions
+            const trimmed = sessions.slice(0, 5);
+            localStorage.setItem('sharon_sessions', JSON.stringify(trimmed));
+            renderSessions(trimmed);
+        }
+
+        function renderSessions(sessions) {
+            if (!sessionList) return;
+            sessionList.innerHTML = '';
+            sessions.forEach(sess => {
+                const item = document.createElement('div');
+                item.className = 'session-card';
+                item.innerHTML = `<span class="session-time">Unlocked ${sess.time}</span><span>${sess.device}</span>`;
+                sessionList.appendChild(item);
+            });
+        }
+
+        // Initialize Interactive Checklists and LocalStorage persistence
+        function initInteractiveHub() {
+            // Load saved checklist states
+            const savedChecks = JSON.parse(localStorage.getItem('sharon_checks') || '{}');
+            document.querySelectorAll('.check-item').forEach(item => {
+                const id = item.dataset.id;
+                if (savedChecks[id]) {
+                    item.classList.add('completed');
+                }
+
+                item.addEventListener('click', () => {
+                    item.classList.toggle('completed');
+                    savedChecks[id] = item.classList.contains('completed');
+                    localStorage.setItem('sharon_checks', JSON.stringify(savedChecks));
+                });
+            });
+
+            // Load saved private notes
+            const savedNotes = localStorage.getItem('sharon_private_notes') || '';
+            privateNotes.value = savedNotes;
+
+            privateNotes.addEventListener('input', () => {
+                localStorage.setItem('sharon_private_notes', privateNotes.value);
+                saveIndicator.textContent = 'Saving...';
+                setTimeout(() => {
+                    saveIndicator.textContent = 'Auto-saved to device';
+                }, 600);
+            });
+        }
+    </script>
+
+</body>
+</html>
