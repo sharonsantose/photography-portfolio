@@ -303,6 +303,226 @@
             color: #ffffff;
         }
 
+        /* ── To-Do List ─────────────────────────────── */
+        .todo-input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .todo-input {
+            flex: 1;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 4px;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.25s ease;
+        }
+
+        .todo-input:focus { border-color: #ffffff; }
+        .todo-input::placeholder { color: #525252; }
+
+        .todo-add-btn {
+            padding: 10px 18px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 15px;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .todo-add-btn:hover { opacity: 0.85; }
+
+        .todo-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .todo-item:hover { border-color: rgba(255,255,255,0.25); }
+
+        .todo-check {
+            width: 18px;
+            height: 18px;
+            border: 1px solid rgba(255,255,255,0.45);
+            border-radius: 3px;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .todo-item.done .todo-check {
+            background: #ffffff;
+            border-color: #ffffff;
+        }
+
+        .todo-item.done .todo-check::after {
+            content: '✓';
+            color: #000;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .todo-text {
+            flex: 1;
+            font-size: 16px;
+            color: #ffffff;
+            transition: opacity 0.2s ease;
+        }
+
+        .todo-item.done .todo-text {
+            opacity: 0.4;
+            text-decoration: line-through;
+        }
+
+        .todo-delete {
+            color: #525252;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            padding: 2px 4px;
+            transition: color 0.2s ease;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+
+        .todo-delete:hover { color: #f87171; }
+
+        .todo-empty {
+            font-size: 15px;
+            font-style: italic;
+            color: #525252;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* ── Weekly Schedule (horizontal) ───────────── */
+        .week-scroll-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 4px;
+        }
+
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(118px, 1fr));
+            gap: 10px;
+            min-width: 840px;
+        }
+
+        .day-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .day-header {
+            font-size: 11px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #737373;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .day-header.today {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+
+        .day-block {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px;
+            min-height: 54px;
+            padding: 6px 8px;
+            font-size: 13px;
+            color: #d4d4d4;
+            line-height: 1.45;
+            cursor: text;
+            transition: border-color 0.2s ease;
+            position: relative;
+        }
+
+        .day-block:focus-within {
+            border-color: rgba(255,255,255,0.35);
+        }
+
+        .block-time {
+            font-size: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #525252;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .block-textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #d4d4d4;
+            font-family: inherit;
+            font-size: 13px;
+            line-height: 1.5;
+            resize: none;
+            min-height: 36px;
+            padding: 0;
+        }
+
+        .block-textarea::placeholder { color: #3a3a3a; }
+
+        .add-block-btn {
+            width: 100%;
+            padding: 7px;
+            background: transparent;
+            border: 1px dashed rgba(255,255,255,0.1);
+            border-radius: 4px;
+            color: #525252;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .add-block-btn:hover {
+            border-color: rgba(255,255,255,0.3);
+            color: #ffffff;
+        }
+
+        .schedule-hint {
+            font-size: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #525252;
+            text-align: right;
+            margin-top: 6px;
+        }
+
         .nav-home {
             display: inline-block;
             margin-top: 48px;
@@ -428,8 +648,33 @@
                 </div>
             </div>
 
-            <!-- Persistent Private Notes & Scratchpad -->
+            <!-- To-Do List -->
             <div class="section-heading">
+                <span>To-Do List</span>
+                <span class="section-tag">Persistent</span>
+            </div>
+
+            <div class="todo-input-row">
+                <input type="text" id="todoInput" class="todo-input" placeholder="Add a task..." maxlength="120">
+                <button class="todo-add-btn" onclick="addTodo()">Add</button>
+            </div>
+            <div class="todo-list" id="todoList"></div>
+
+            <!-- Weekly Schedule -->
+            <div class="section-heading" style="margin-top: 48px;">
+                <span>Weekly Schedule</span>
+                <span class="section-tag">Auto-Saved</span>
+            </div>
+
+            <div class="week-scroll-wrap">
+                <div class="week-grid" id="weekGrid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+            <div class="schedule-hint">Scroll → to see full week &nbsp;|&nbsp; Click any block to edit &nbsp;|&nbsp; + adds a new block</div>
+
+            <!-- Persistent Private Notes & Scratchpad -->
+            <div class="section-heading" style="margin-top: 48px;">
                 <span>Private Notes & Scratchpad</span>
                 <span class="section-tag">Auto-Saved</span>
             </div>
@@ -525,10 +770,7 @@
             const savedChecks = JSON.parse(localStorage.getItem('sharon_checks') || '{}');
             document.querySelectorAll('.check-item').forEach(item => {
                 const id = item.dataset.id;
-                if (savedChecks[id]) {
-                    item.classList.add('completed');
-                }
-
+                if (savedChecks[id]) item.classList.add('completed');
                 item.addEventListener('click', () => {
                     item.classList.toggle('completed');
                     savedChecks[id] = item.classList.contains('completed');
@@ -536,17 +778,153 @@
                 });
             });
 
-            // Load saved private notes
+            // Private notes
             const savedNotes = localStorage.getItem('sharon_private_notes') || '';
             privateNotes.value = savedNotes;
-
             privateNotes.addEventListener('input', () => {
                 localStorage.setItem('sharon_private_notes', privateNotes.value);
                 saveIndicator.textContent = 'Saving...';
-                setTimeout(() => {
-                    saveIndicator.textContent = 'Auto-saved to device';
-                }, 600);
+                setTimeout(() => { saveIndicator.textContent = 'Auto-saved to device'; }, 600);
             });
+
+            initTodo();
+            initWeekSchedule();
+        }
+
+        // ── TO-DO LIST ────────────────────────────────────────────────────
+        function initTodo() {
+            renderTodos();
+            document.getElementById('todoInput').addEventListener('keydown', e => {
+                if (e.key === 'Enter') { e.preventDefault(); addTodo(); }
+            });
+        }
+
+        function getTodos() {
+            return JSON.parse(localStorage.getItem('sharon_todos') || '[]');
+        }
+
+        function saveTodos(todos) {
+            localStorage.setItem('sharon_todos', JSON.stringify(todos));
+        }
+
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const text = input.value.trim();
+            if (!text) return;
+            const todos = getTodos();
+            todos.unshift({ id: Date.now(), text, done: false });
+            saveTodos(todos);
+            input.value = '';
+            renderTodos();
+        }
+
+        function toggleTodo(id) {
+            const todos = getTodos().map(t => t.id === id ? { ...t, done: !t.done } : t);
+            saveTodos(todos);
+            renderTodos();
+        }
+
+        function deleteTodo(id) {
+            saveTodos(getTodos().filter(t => t.id !== id));
+            renderTodos();
+        }
+
+        function renderTodos() {
+            const list = document.getElementById('todoList');
+            const todos = getTodos();
+            if (!todos.length) {
+                list.innerHTML = '<div class="todo-empty">Nothing here yet — add a task above.</div>';
+                return;
+            }
+            list.innerHTML = todos.map(t => `
+                <div class="todo-item${t.done ? ' done' : ''}" id="todo-${t.id}">
+                    <div class="todo-check" onclick="toggleTodo(${t.id})"></div>
+                    <span class="todo-text">${escapeHtml(t.text)}</span>
+                    <button class="todo-delete" onclick="deleteTodo(${t.id})" title="Delete">×</button>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        // ── WEEKLY SCHEDULE ───────────────────────────────────────────────
+        const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+        const DAY_FULL = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+
+        function getTodayDayIndex() {
+            // JS: 0=Sun,1=Mon...6=Sat; we want Mon=0..Sun=6
+            const d = new Date().getDay();
+            return d === 0 ? 6 : d - 1;
+        }
+
+        function getSchedule() {
+            return JSON.parse(localStorage.getItem('sharon_schedule') || 'null') || DAYS.map(() => [
+                { time: 'Morning', text: '' },
+                { time: 'Afternoon', text: '' },
+                { time: 'Evening', text: '' }
+            ]);
+        }
+
+        function saveSchedule(schedule) {
+            localStorage.setItem('sharon_schedule', JSON.stringify(schedule));
+        }
+
+        function initWeekSchedule() {
+            renderWeek();
+        }
+
+        function renderWeek() {
+            const grid = document.getElementById('weekGrid');
+            const schedule = getSchedule();
+            const todayIdx = getTodayDayIndex();
+
+            grid.innerHTML = DAYS.map((day, di) => {
+                const blocks = schedule[di];
+                const isToday = di === todayIdx;
+                const blocksHtml = blocks.map((b, bi) => `
+                    <div class="day-block">
+                        <div class="block-time">${escapeHtml(b.time)}</div>
+                        <textarea
+                            class="block-textarea"
+                            data-day="${di}"
+                            data-block="${bi}"
+                            placeholder="—"
+                            rows="2"
+                            oninput="onBlockInput(this)"
+                        >${escapeHtml(b.text)}</textarea>
+                    </div>
+                `).join('');
+
+                return `
+                    <div class="day-col">
+                        <div class="day-header${isToday ? ' today' : ''}">${day}${isToday ? ' ·' : ''}</div>
+                        ${blocksHtml}
+                        <button class="add-block-btn" onclick="addBlock(${di})" title="Add block">+</button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function onBlockInput(el) {
+            const schedule = getSchedule();
+            const di = parseInt(el.dataset.day);
+            const bi = parseInt(el.dataset.block);
+            schedule[di][bi].text = el.value;
+            saveSchedule(schedule);
+            // auto-resize
+            el.style.height = 'auto';
+            el.style.height = el.scrollHeight + 'px';
+        }
+
+        function addBlock(dayIndex) {
+            const schedule = getSchedule();
+            const labels = ['Morning','Midday','Afternoon','Late Afternoon','Evening','Night'];
+            const nextLabel = labels[schedule[dayIndex].length] || 'Block ' + (schedule[dayIndex].length + 1);
+            schedule[dayIndex].push({ time: nextLabel, text: '' });
+            saveSchedule(schedule);
+            renderWeek();
         }
     </script>
 
