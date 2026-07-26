@@ -733,7 +733,186 @@
             line-height: 1.3;
         }
 
+
+        /* Android & PWA Mobile Enhancements */
+        meta[name="theme-color"] { content: #000000; }
+
+        /* Feature Cards Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+            margin-bottom: 28px;
+        }
+
+        .card-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 18px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 1. Countdown & Split Calculator */
+        .countdown-digits {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 12px 0;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .digit-unit { display: flex; flex-direction: column; }
+        .digit-num { font-size: 22px; font-weight: 800; color: #60a5fa; }
+        .digit-lbl { font-size: 10px; color: #737373; text-transform: uppercase; }
+
+        .pace-input-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .pace-field {
+            width: 80px;
+            padding: 6px 8px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 13px;
+            text-align: center;
+        }
+        .splits-table {
+            width: 100%;
+            font-size: 11.5px;
+            color: #a3a3a3;
+            margin-top: 8px;
+        }
+        .splits-table td { padding: 3px 0; }
+        .splits-table td:last-child { text-align: right; color: #ffffff; font-weight: 600; }
+
+        /* 2. Fueling Simulator */
+        .fuel-step {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 4px;
+            margin-bottom: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .fuel-step.taken {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: #10b981;
+            color: #a7f3d0;
+        }
+
+        /* 3. Gym Cheat-Sheet Tabs */
+        .gym-tab-btns {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+        .gym-tab-btn {
+            flex: 1;
+            padding: 6px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            color: #a3a3a3;
+            font-size: 11px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .gym-tab-btn.active {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #2563eb;
+            font-weight: 700;
+        }
+        .gym-content { font-size: 12px; line-height: 1.5; color: #d4d4d4; }
+        .arm-highlight { color: #fb923c; font-weight: 700; }
+
+        /* 4. PCOS Recovery Logger */
+        .logger-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        .stars-select { cursor: pointer; color: #facc15; }
+
+        /* 5. Trophy Cabinet */
+        .trophy-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+        .trophy-item {
+            padding: 8px 4px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px;
+            font-size: 10px;
+            color: #737373;
+            transition: all 0.2s ease;
+        }
+        .trophy-item.unlocked {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.15);
+            color: #fef08a;
+        }
+        .trophy-icon { font-size: 20px; display: block; margin-bottom: 4px; }
+
+        /* PWA Install Banner */
+        .pwa-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(168, 85, 247, 0.2));
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 12.5px;
+            color: #e0f2fe;
+        }
+
 </style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
@@ -780,6 +959,174 @@
             </div>
 
             <!-- Orca Legend -->
+            
+            <!-- PWA Android Installation Prompt Banner -->
+            <div class="pwa-banner">
+                <span>📱 <strong>Android App:</strong> Tap Chrome menu <code>⋮</code> → <strong>"Add to Home screen"</strong> for 1-tap app launch!</span>
+            </div>
+
+            <!-- Feature Cards Grid (7 Integrated Tools) -->
+            <div class="feature-grid">
+                
+                <!-- 1. Countdown & Split Calculator -->
+                <div class="card-box">
+                    <div class="card-header">
+                        <span class="card-title">⏱️ Race Countdown</span>
+                        <span style="font-size:10px; color:#737373;">Sep 20, 2026</span>
+                    </div>
+                    <div class="countdown-digits" id="countdownBox">
+                        <div class="digit-unit"><span class="digit-num" id="cdDays">00</span><span class="digit-lbl">Days</span></div>
+                        <div class="digit-unit"><span class="digit-num" id="cdHours">00</span><span class="digit-lbl">Hrs</span></div>
+                        <div class="digit-unit"><span class="digit-num" id="cdMins">00</span><span class="digit-lbl">Min</span></div>
+                        <div class="digit-unit"><span class="digit-num" id="cdSecs">00</span><span class="digit-lbl">Sec</span></div>
+                    </div>
+                    <div class="pace-input-row">
+                        <span style="font-size:11px; color:#a3a3a3;">Target Pace:</span>
+                        <input type="text" id="targetPaceInput" class="pace-field" value="10:18" oninput="calculateSplits()">
+                        <span style="font-size:11px; color:#a3a3a3;">/mi</span>
+                    </div>
+                    <table class="splits-table">
+                        <tr><td>5K Split:</td><td id="split5k">31m 58s</td></tr>
+                        <tr><td>10K Split:</td><td id="split10k">1h 03m 57s</td></tr>
+                        <tr><td>10 Mile Split:</td><td id="split10m">1h 43m 00s</td></tr>
+                        <tr><td>13.1 Mi Finish:</td><td id="splitFinish" style="color:#38bdf8;">2h 14m 55s</td></tr>
+                    </table>
+                </div>
+
+                <!-- 2. Maurten Fueling Simulator -->
+                <div class="card-box">
+                    <div class="card-header">
+                        <span class="card-title">⛽ Maurten Gel Simulator</span>
+                        <span style="font-size:10px; color:#737373;">Long Runs</span>
+                    </div>
+                    <div style="font-size:11px; color:#a3a3a3; margin-bottom:8px;">Tap to check off fuel intake during long runs:</div>
+                    <div class="fuel-step" onclick="toggleFuel(this)">
+                        <span>💧 Pre-Run: 500ml Electrolytes</span>
+                        <strong>Min 0</strong>
+                    </div>
+                    <div class="fuel-step" onclick="toggleFuel(this)">
+                        <span>⛽ Maurten Gel 100 #1</span>
+                        <strong>Min 45 (Mi 4)</strong>
+                    </div>
+                    <div class="fuel-step" onclick="toggleFuel(this)">
+                        <span>⛽ Maurten Gel 100 #2</span>
+                        <strong>Min 90 (Mi 8)</strong>
+                    </div>
+                    <div class="fuel-step" onclick="toggleFuel(this)">
+                        <span>⛽ Emergency Gel #3</span>
+                        <strong>Min 120 (Mi 11)</strong>
+                    </div>
+                </div>
+
+                <!-- 3. Gym Cheat-Sheet & Arm Toning -->
+                <div class="card-box">
+                    <div class="card-header">
+                        <span class="card-title">💪 45m Gym Cheat-Sheet</span>
+                        <span style="font-size:10px; color:#fb923c;">Arm Focus</span>
+                    </div>
+                    <div class="gym-tab-btns">
+                        <button class="gym-tab-btn active" onclick="showGymTab(1)">Mon #1</button>
+                        <button class="gym-tab-btn" onclick="showGymTab(2)">Wed #2</button>
+                        <button class="gym-tab-btn" onclick="showGymTab(3)">Fri #3</button>
+                    </div>
+                    <div id="gymTab1" class="gym-content">
+                        • Smith Squats 3x10 (45lbs)<br>
+                        • Lat Pulldowns 3x12 (50lbs)<br>
+                        • DB Bench Press 3x10 (20lbs DBs)<br>
+                        <span class="arm-highlight">• 💪 Cable Tricep Pushdowns 3x12 (25lbs)</span><br>
+                        <span class="arm-highlight">• 💪 DB Hammer Curls 3x12 (15lbs DBs)</span><br>
+                        • Hanging Leg Raises 3x12
+                    </div>
+                    <div id="gymTab2" class="gym-content" style="display:none;">
+                        • Smith RDLs 3x10 (55lbs)<br>
+                        • Seated Cable Rows 3x12 (45lbs)<br>
+                        • DB Shoulder Press 3x10 (15lbs DBs)<br>
+                        <span class="arm-highlight">• 💪 Overhead Tricep Ext 3x12 (20lbs)</span><br>
+                        <span class="arm-highlight">• 💪 Cable Bicep Curls 3x12 (20lbs)</span><br>
+                        • KB Woodchoppers 3x12 (15lbs)
+                    </div>
+                    <div id="gymTab3" class="gym-content" style="display:none;">
+                        • Smith Hip Thrusts 3x12 (50lbs)<br>
+                        • KB Goblet Squats 3x10 (30lbs KB)<br>
+                        • Cable Chest Flyes 3x12 (15lbs)<br>
+                        <span class="arm-highlight">• 💪 Incline DB Curls 3x12 (12.5lbs DBs)</span><br>
+                        <span class="arm-highlight">• 💪 Cable Tricep Kickbacks 3x12 (20lbs)</span><br>
+                        • Pull-Up Station / Tucks 3x10
+                    </div>
+                </div>
+
+                <!-- 4. PCOS Recovery Check-In Logger -->
+                <div class="card-box">
+                    <div class="card-header">
+                        <span class="card-title">🥑 PCOS Recovery Log</span>
+                        <span style="font-size:10px; color:#10b981;" id="readinessScore">Readiness: 95%</span>
+                    </div>
+                    <div class="logger-row">
+                        <span>😴 Sleep Quality:</span>
+                        <select id="pcosSleep" style="background:#1e293b; color:#fff; border:1px solid #475569; border-radius:4px; padding:2px 4px;" onchange="savePcosLog()">
+                            <option value="5">⭐⭐⭐⭐⭐ (Great)</option>
+                            <option value="4">⭐⭐⭐⭐ (Good)</option>
+                            <option value="3">⭐⭐⭐ (Fair)</option>
+                            <option value="2">⭐⭐ (Poor)</option>
+                        </select>
+                    </div>
+                    <div class="logger-row">
+                        <span>🧠 Cortisol / Stress:</span>
+                        <select id="pcosStress" style="background:#1e293b; color:#fff; border:1px solid #475569; border-radius:4px; padding:2px 4px;" onchange="savePcosLog()">
+                            <option value="low">Low (Fat Loss Window)</option>
+                            <option value="med">Moderate</option>
+                            <option value="high">High (Elevated)</option>
+                        </select>
+                    </div>
+                    <div class="logger-row">
+                        <span>💧 Hydration (Liters):</span>
+                        <input type="number" id="pcosWater" value="3.0" step="0.5" style="width:50px; background:#1e293b; color:#fff; border:1px solid #475569; border-radius:4px; text-align:center;" onchange="savePcosLog()"> L
+                    </div>
+                </div>
+
+                <!-- 5. Milestone Trophy Cabinet -->
+                <div class="card-box">
+                    <div class="card-header">
+                        <span class="card-title">🏆 Milestone Cabinet</span>
+                        <span style="font-size:10px; color:#737373;">4 Badges</span>
+                    </div>
+                    <div class="trophy-grid">
+                        <div class="trophy-item unlocked">
+                            <span class="trophy-icon">🥉</span>
+                            <strong>5.0 Mi Long Run</strong><br>Jul 26
+                        </div>
+                        <div class="trophy-item">
+                            <span class="trophy-icon">🥈</span>
+                            <strong>10 Mi Double Digit</strong><br>Aug 22
+                        </div>
+                        <div class="trophy-item">
+                            <span class="trophy-icon">🥇</span>
+                            <strong>13.1 Mi Practice</strong><br>Sep 5
+                        </div>
+                        <div class="trophy-item">
+                            <span class="trophy-icon">🏆</span>
+                            <strong>Orca Finisher</strong><br>Sep 20
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Zone 2 Cadence & Spotify Sync -->
+                <div class="card-box">
+                    <div class="card-header">
+                        <span class="card-title">🎧 Zone 2 Cadence Sync</span>
+                        <span style="font-size:10px; color:#10b981;">165-170 BPM</span>
+                    </div>
+                    <div style="font-size:11.5px; color:#a3a3a3; line-height:1.5; margin-bottom:10px;">
+                        Keep cadence at 165–170 strides/min to maintain strict Zone 2 HR (&lt;145 bpm) for optimal fat oxidation.
+                    </div>
+                    <a href="https://open.spotify.com/search/168%20bpm%20running" target="_blank" rel="noopener" style="display:inline-block; width:100%; padding:8px; background:#1db954; color:#000; text-align:center; font-weight:700; border-radius:4px; text-decoration:none; font-size:12px;">
+                        🎵 Open Spotify 168 BPM Running Playlist
+                    </a>
+                </div>
+
+            </div>
+
+
             <div class="orca-legend">
                 <div class="orca-legend-item"><span class="orca-dot" style="background:#2563eb"></span> Long Run</div>
                 <div class="orca-legend-item"><span class="orca-dot" style="background:#7e22ce"></span> Speed / Intervals</div>
@@ -1121,6 +1468,97 @@
             });
             restoreCompletedWorkouts();
         });
+
+
+        // 1. Race Countdown Ticker
+        function updateRaceCountdown() {
+            const raceDate = new Date("September 20, 2026 07:00:00").getTime();
+            const now = new Date().getTime();
+            const diff = raceDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdownBox').innerHTML = "<strong style='color:#10b981;'>RACE DAY IS HERE! 🏁</strong>";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('cdDays').textContent = days < 10 ? '0' + days : days;
+            document.getElementById('cdHours').textContent = hours < 10 ? '0' + hours : hours;
+            document.getElementById('cdMins').textContent = mins < 10 ? '0' + mins : mins;
+            document.getElementById('cdSecs').textContent = secs < 10 ? '0' + secs : secs;
+        }
+
+        setInterval(updateRaceCountdown, 1000);
+        updateRaceCountdown();
+
+        // Target Pace Split Calculator
+        function calculateSplits() {
+            const paceVal = document.getElementById('targetPaceInput').value.trim();
+            const parts = paceVal.split(':');
+            if (parts.length !== 2) return;
+            const pMin = parseInt(parts[0]) || 0;
+            const pSec = parseInt(parts[1]) || 0;
+            const totalSecPerMile = pMin * 60 + pSec;
+
+            function fmtTime(secTotal) {
+                const h = Math.floor(secTotal / 3600);
+                const m = Math.floor((secTotal % 3600) / 60);
+                const s = Math.round(secTotal % 60);
+                if (h > 0) return `${h}h ${m < 10 ? '0'+m : m}m ${s < 10 ? '0'+s : s}s`;
+                return `${m}m ${s < 10 ? '0'+s : s}s`;
+            }
+
+            document.getElementById('split5k').textContent = fmtTime(totalSecPerMile * 3.10686);
+            document.getElementById('split10k').textContent = fmtTime(totalSecPerMile * 6.21371);
+            document.getElementById('split10m').textContent = fmtTime(totalSecPerMile * 10.0);
+            document.getElementById('splitFinish').textContent = fmtTime(totalSecPerMile * 13.1094);
+        }
+
+        // 2. Maurten Fueling Simulator
+        function toggleFuel(el) {
+            el.classList.toggle('taken');
+        }
+
+        // 3. Gym Cheat-Sheet Tabs
+        function showGymTab(idx) {
+            document.querySelectorAll('.gym-tab-btn').forEach((b, i) => {
+                b.classList.toggle('active', i === idx - 1);
+            });
+            document.getElementById('gymTab1').style.display = idx === 1 ? 'block' : 'none';
+            document.getElementById('gymTab2').style.display = idx === 2 ? 'block' : 'none';
+            document.getElementById('gymTab3').style.display = idx === 3 ? 'block' : 'none';
+        }
+
+        // 4. PCOS Recovery Logger
+        function savePcosLog() {
+            const sleep = document.getElementById('pcosSleep').value;
+            const stress = document.getElementById('pcosStress').value;
+            const water = document.getElementById('pcosWater').value;
+
+            localStorage.setItem('orca_pcos_log', JSON.stringify({ sleep, stress, water }));
+            
+            let score = 100;
+            if (stress === 'high') score -= 20;
+            if (stress === 'med') score -= 10;
+            if (parseInt(sleep) < 4) score -= 15;
+            if (parseFloat(water) < 2.5) score -= 10;
+
+            document.getElementById('readinessScore').textContent = `Readiness: ${score}%`;
+        }
+
+        function restorePcosLog() {
+            const saved = JSON.parse(localStorage.getItem('orca_pcos_log') || '{}');
+            if (saved.sleep) document.getElementById('pcosSleep').value = saved.sleep;
+            if (saved.stress) document.getElementById('pcosStress').value = saved.stress;
+            if (saved.water) document.getElementById('pcosWater').value = saved.water;
+            savePcosLog();
+        }
+
+        document.addEventListener('DOMContentLoaded', restorePcosLog);
 
 </script>
 
