@@ -34,8 +34,13 @@
             padding: 60px 20px;
         }
 
-        .container {
+                .container {
             width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .narrow-content {
             max-width: 640px;
             margin: 0 auto;
         }
@@ -540,40 +545,40 @@
             border-color: #ffffff;
         }
 
-        /* ── Orca Training Plan 7-Day Calendar Grid ───────────── */
+        /* ── Large Full-Width Orca Training Plan Calendar ───────────── */
         .orca-calendar-wrap {
+            width: 100%;
+            margin-top: 18px;
+            margin-bottom: 24px;
             overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin-top: 14px;
-            margin-bottom: 20px;
         }
 
         .orca-legend {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px 16px;
-            font-size: 11px;
+            justify-content: center;
+            gap: 12px 20px;
+            font-size: 12px;
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             color: #a3a3a3;
-            margin-bottom: 14px;
+            margin-bottom: 18px;
         }
 
         .orca-legend-item {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
         }
 
         .orca-dot {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             display: inline-block;
         }
 
         .orca-table {
             width: 100%;
-            min-width: 840px;
             border-collapse: collapse;
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             table-layout: fixed;
@@ -581,97 +586,104 @@
 
         .orca-table th {
             background: rgba(255,255,255,0.06);
-            color: #a3a3a3;
-            font-size: 11px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 8px 6px;
+            letter-spacing: 2px;
+            padding: 10px 8px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.12);
         }
 
         .orca-month-banner {
-            background: rgba(255,255,255,0.08) !important;
+            background: rgba(255,255,255,0.1) !important;
             color: #ffffff !important;
-            font-size: 13px !important;
+            font-size: 15px !important;
             font-weight: 600 !important;
-            letter-spacing: 1px !important;
+            letter-spacing: 2px !important;
+            text-transform: uppercase;
             text-align: center !important;
-            padding: 8px !important;
+            padding: 12px !important;
+            border: 1px solid rgba(255,255,255,0.15) !important;
         }
 
         .orca-cell {
             vertical-align: top;
-            height: 76px;
-            padding: 5px 6px;
+            height: 96px;
+            padding: 8px 10px;
             border: 1px solid rgba(255,255,255,0.08);
             background: rgba(255,255,255,0.02);
-            transition: background 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .orca-cell:hover {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.2);
         }
 
         .orca-cell.empty {
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.3);
             border-color: rgba(255,255,255,0.04);
         }
 
         .orca-date {
-            font-size: 11px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 700;
             color: #737373;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
         }
 
         .orca-badge {
             display: inline-block;
-            font-size: 9.5px;
+            font-size: 10px;
             font-weight: 700;
             letter-spacing: 0.5px;
-            padding: 2px 4px;
-            border-radius: 3px;
-            margin-bottom: 2px;
+            padding: 3px 6px;
+            border-radius: 4px;
+            margin-bottom: 4px;
             text-transform: uppercase;
         }
 
         .orca-detail {
-            font-size: 10px;
+            font-size: 11px;
             color: #a3a3a3;
-            line-height: 1.25;
+            line-height: 1.35;
         }
 
         /* Color Themes */
-        .type-long { background: rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.3) !important; }
+        .type-long { background: rgba(59, 130, 246, 0.14); border-color: rgba(59, 130, 246, 0.35) !important; }
         .type-long .orca-badge { background: #2563eb; color: #ffffff; }
         .type-long .orca-date { color: #60a5fa; }
 
         .type-easy { background: rgba(255, 255, 255, 0.03); }
         .type-easy .orca-badge { background: rgba(255, 255, 255, 0.12); color: #e5e5e5; }
 
-        .type-speed { background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.25) !important; }
+        .type-speed { background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.3) !important; }
         .type-speed .orca-badge { background: #7e22ce; color: #ffffff; }
         .type-speed .orca-date { color: #c084fc; }
 
-        .type-strength { background: rgba(249, 115, 22, 0.1); border-color: rgba(249, 115, 22, 0.25) !important; }
+        .type-strength { background: rgba(249, 115, 22, 0.12); border-color: rgba(249, 115, 22, 0.3) !important; }
         .type-strength .orca-badge { background: #c2410c; color: #ffffff; }
         .type-strength .orca-date { color: #fb923c; }
 
-        .type-recovery { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.25) !important; }
+        .type-recovery { background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.3) !important; }
         .type-recovery .orca-badge { background: #047857; color: #ffffff; }
         .type-recovery .orca-date { color: #34d399; }
 
-        .type-raceweek { background: rgba(234, 179, 8, 0.12); border-color: rgba(234, 179, 8, 0.3) !important; }
+        .type-raceweek { background: rgba(234, 179, 8, 0.15); border-color: rgba(234, 179, 8, 0.35) !important; }
         .type-raceweek .orca-badge { background: #a16207; color: #ffffff; }
         .type-raceweek .orca-date { color: #fde047; }
 
-        .type-raceday { background: rgba(239, 68, 68, 0.25); border-color: #ef4444 !important; }
-        .type-raceday .orca-badge { background: #dc2626; color: #ffffff; font-size: 10px; }
-        .type-raceday .orca-date { color: #fca5a5; font-size: 12px; }
+        .type-raceday { background: rgba(239, 68, 68, 0.28); border-color: #ef4444 !important; }
+        .type-raceday .orca-badge { background: #dc2626; color: #ffffff; font-size: 11px; }
+        .type-raceday .orca-date { color: #fca5a5; font-size: 14px; }
         .type-raceday .orca-detail { color: #ffffff; font-weight: bold; }
 
-    </style>
+        @media (max-width: 768px) {
+            .orca-table { min-width: 700px; }
+        }
+</style>
 </head>
 <body>
 
@@ -725,6 +737,7 @@
             <div class="todo-list" id="todoList"></div>
 
 
+            
             <!-- Orca Half Marathon Training Plan 7-Day Grid -->
             <div class="section-heading" style="margin-top: 48px;">
                 <span>Orca Half Marathon Training Calendar</span>
@@ -768,7 +781,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="schedule-hint">Scroll → to view full 7-day grid &nbsp;|&nbsp; July 27 – September 20, 2026</div>
 
             <!-- Weekly Schedule -->
             <div class="section-heading" style="margin-top: 48px;">
