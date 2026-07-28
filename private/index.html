@@ -908,6 +908,28 @@
             color: #e0f2fe;
         }
 
+
+        /* Actual Workout Reporting Section */
+        .actual-workout-sec {
+            margin-top: 6px;
+            padding-top: 4px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.15);
+        }
+        .actual-note-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 3px;
+            color: #38bdf8;
+            font-size: 10px;
+            font-family: inherit;
+            padding: 3px 5px;
+            margin-top: 4px;
+            outline: none;
+        }
+        .actual-note-input::placeholder { color: #525252; font-style: italic; }
+        .actual-note-input:focus { border-color: #38bdf8; }
+
 </style>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
@@ -1143,14 +1165,182 @@
 <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
 </thead>
 <tbody>
-<tr><td data-date="2026-07-27" class="orca-cell type-long"><div class="orca-date">Jul 27</div><div class="orca-badge">LONG RUN #1</div><div class="orca-detail">🏃 5.0 mi Progressive Long Run<br>Pace @ 10:40-11:30/mi (Zone 2/3)<br>🧘 30m PCOS Mobility Stretch</div></td><td data-date="2026-07-28" class="orca-cell type-strength"><div class="orca-date">28</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div></td><td data-date="2026-07-29" class="orca-cell type-speed"><div class="orca-date">29</div><div class="orca-badge">RUN #2</div><div class="orca-detail">🏃 4.0 mi Tempo @ 9:45/mi<br>🏓 Pickleball 5pm<br>🦵 Tibialis & Shin Curls 3x15</div></td><td data-date="2026-07-30" class="orca-cell type-strength"><div class="orca-date">30</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div></td><td data-date="2026-07-31" class="orca-cell type-easy"><div class="orca-date">31</div><div class="orca-badge">RUN #3</div><div class="orca-detail">🌲 3.7 mi Zone 2 Trail @ 10:45<br>🧘 Hip Mobility Stretch</div></td><td data-date="2026-08-01" class="orca-cell type-strength"><div class="orca-date">Aug 1</div><div class="orca-badge">SWIM / LIFT #3</div><div class="orca-detail">🏊 Swim #3 (45m: 600yd continuous)<br>🏋 45m Full Body #3 (Arms Focus)<br>• Smith Hip Thrusts 3x12 (50lbs)<br>• KB Goblet Squats 3x10 (30lbs)<br>• Cable Chest Flyes 3x12 (15lbs)<br>• 💪 Incline DB Curls 3x12<br>• 💪 Cable Tricep Kickback 3x12<br>• Pull-Up Station / Tucks 3x10<br>🚴 Spin 8mi</div></td><td data-date="2026-08-02" class="orca-cell type-raceweek"><div class="orca-date">2</div><div class="orca-badge">BIKE / SWIM #4</div><div class="orca-detail">🚴 18 mi Zone 2 Bike Ride<br>🏊 Swim #4 (30m: 4x100yd recovery)<br>⚽ Soccer Clinic</div></td></tr>
-<tr><td data-date="2026-08-03" class="orca-cell type-strength"><div class="orca-date">3</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div></td><td data-date="2026-08-04" class="orca-cell type-speed"><div class="orca-date">4</div><div class="orca-badge">RUN #5</div><div class="orca-detail">🏃 4.0 mi Broken Miles @ 9:45<br>🧗 Stairclimber 10m Warmup</div></td><td data-date="2026-08-05" class="orca-cell type-strength"><div class="orca-date">5</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div></td><td data-date="2026-08-06" class="orca-cell type-easy"><div class="orca-date">6</div><div class="orca-badge">RUN #6</div><div class="orca-detail">🏃 3.1 mi Zone 2 Easy @ 11:15<br>🧘 Mobility Stretch</div></td><td data-date="2026-08-07" class="orca-cell type-strength"><div class="orca-date">7</div><div class="orca-badge">SWIM / LIFT #3</div><div class="orca-detail">🏊 Swim #3 (45m: 600yd continuous)<br>🏋 45m Full Body #3 (Arms Focus)<br>• Smith Hip Thrusts 3x12 (50lbs)<br>• KB Goblet Squats 3x10 (30lbs)<br>• Cable Chest Flyes 3x12 (15lbs)<br>• 💪 Incline DB Curls 3x12<br>• 💪 Cable Tricep Kickback 3x12<br>• Pull-Up Station / Tucks 3x10<br>🚴 Spin 8mi</div></td><td data-date="2026-08-08" class="orca-cell type-long"><div class="orca-date">8</div><div class="orca-badge">LONG RUN #2</div><div class="orca-detail">🏃 6.5 mi Long Run<br>Pace @ 10:40-11:30/mi<br>⛽ Hydration & Gels</div></td><td data-date="2026-08-09" class="orca-cell type-raceweek"><div class="orca-date">9</div><div class="orca-badge">BIKE / SWIM #4</div><div class="orca-detail">🚴 20 mi Zone 2 Bike Ride<br>🏊 Swim #4 (30m: 500yd continuous)<br>🧘 30m Full Body Yoga</div></td></tr>
-<tr><td data-date="2026-08-10" class="orca-cell type-strength"><div class="orca-date">10</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div></td><td data-date="2026-08-11" class="orca-cell type-recovery"><div class="orca-date">11</div><div class="orca-badge">RECOVERY / SWIM</div><div class="orca-detail">🚴 Bike 10mi Zone 2 spin<br>🏊 Swim #4 (30m float)<br>🧗 Stairclimber 15m</div></td><td data-date="2026-08-12" class="orca-cell type-speed"><div class="orca-date">12</div><div class="orca-badge">RUN / SWIM #2</div><div class="orca-detail">🏃 2.5 mi Rolling 400s @ 9:30<br>🏊 Swim #2 (45m: 6x100yd @1:50)</div></td><td data-date="2026-08-13" class="orca-cell type-strength"><div class="orca-date">13</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div></td><td data-date="2026-08-14" class="orca-cell type-easy"><div class="orca-date">14</div><div class="orca-badge">RUN / SWIM #3</div><div class="orca-detail">🏃 3.1 mi Zone 2 @ 11:45/mi<br>🏊 Swim #3 (45m continuous)</div></td><td data-date="2026-08-15" class="orca-cell type-raceweek"><div class="orca-date">15</div><div class="orca-badge">LONG BIKE</div><div class="orca-detail">🚴 20 mi Zone 2 Bike Ride<br>🧘 Core & Mobility</div></td><td data-date="2026-08-16" class="orca-cell type-long"><div class="orca-date">16</div><div class="orca-badge">LONG RUN #3</div><div class="orca-detail">🏃 8.0 mi Long Run<br>Pace @ 10:45-11:30/mi<br>🎂 Charlie's Bday!</div></td></tr>
-<tr><td data-date="2026-08-17" class="orca-cell type-strength"><div class="orca-date">17</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div></td><td data-date="2026-08-18" class="orca-cell type-speed"><div class="orca-date">18</div><div class="orca-badge">RUN #12</div><div class="orca-detail">🏃 4.6 mi On Off Ks @ 9:45/mi<br>🧗 Stairclimber 10m</div></td><td data-date="2026-08-19" class="orca-cell type-strength"><div class="orca-date">19</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div></td><td data-date="2026-08-20" class="orca-cell type-speed"><div class="orca-date">20</div><div class="orca-badge">RUN #13</div><div class="orca-detail">🏃 3.1 mi Pyramid Intervals @ 9:30<br>🎂 Mami's Bday!</div></td><td data-date="2026-08-21" class="orca-cell type-strength"><div class="orca-date">21</div><div class="orca-badge">SWIM / LIFT #3</div><div class="orca-detail">🏊 Swim #3 (45m: 600yd continuous)<br>🏋 45m Full Body #3 (Arms Focus)<br>• Smith Hip Thrusts 3x12 (50lbs)<br>• KB Goblet Squats 3x10 (30lbs)<br>• Cable Chest Flyes 3x12 (15lbs)<br>• 💪 Incline DB Curls 3x12<br>• 💪 Cable Tricep Kickback 3x12<br>• Pull-Up Station / Tucks 3x10<br>🚴 Spin 8mi</div></td><td data-date="2026-08-22" class="orca-cell type-long"><div class="orca-date">22</div><div class="orca-badge">LONG RUN #4</div><div class="orca-detail">🏃 10.0 mi Long Run<br>Pace @ 10:40-11:30/mi<br>⛽ Hydration & Gels</div></td><td data-date="2026-08-23" class="orca-cell type-raceweek"><div class="orca-date">23</div><div class="orca-badge">BIKE / SWIM #4</div><div class="orca-detail">🚴 22 mi Zone 2 Bike Ride<br>🏊 Swim #4 (30m recovery float)<br>🧘 30m Active Stretch</div></td></tr>
-<tr><td data-date="2026-08-24" class="orca-cell type-strength"><div class="orca-date">24</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div></td><td data-date="2026-08-25" class="orca-cell type-recovery"><div class="orca-date">25</div><div class="orca-badge">RECOVERY / SWIM</div><div class="orca-detail">🚴 Bike 10mi spin<br>🏊 Swim #4 (30m float)<br>🧘 30m Foam Rolling</div></td><td data-date="2026-08-26" class="orca-cell type-speed"><div class="orca-date">26</div><div class="orca-badge">RUN / SWIM #2</div><div class="orca-detail">🏃 4.1 mi Rolling 300s @ 9:30<br>🏊 Swim #2 (45m: 6x100yd)<br>🎂 Katelyn's Bday!</div></td><td data-date="2026-08-27" class="orca-cell type-strength"><div class="orca-date">27</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div></td><td data-date="2026-08-28" class="orca-cell type-easy"><div class="orca-date">28</div><div class="orca-badge">RUN / SWIM #3</div><div class="orca-detail">🏃 4.0 mi Zone 2 @ 11:45/mi<br>🏊 Swim #3 (45m continuous)</div></td><td data-date="2026-08-29" class="orca-cell type-raceweek"><div class="orca-date">29</div><div class="orca-badge">LONG BIKE</div><div class="orca-detail">🚴 25 mi Peak Bike Ride<br>⛽ Hydration & Electrolytes</div></td><td data-date="2026-08-30" class="orca-cell type-long"><div class="orca-date">30</div><div class="orca-badge">LONG RUN #5</div><div class="orca-detail">🏃 11.5 mi Practice Long Run<br>Pace @ 10:40-11:15/mi<br>⛽ Maurten Gels x2</div></td></tr>
-<tr><td data-date="2026-08-31" class="orca-cell type-strength"><div class="orca-date">31</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div></td><td data-date="2026-09-01" class="orca-cell type-speed"><div class="orca-date">Sep 1</div><div class="orca-badge">RUN #19</div><div class="orca-detail">🏃 4.3 mi Tempo 2-1-1 @ 9:45<br>🧗 Stairclimber 10m</div></td><td data-date="2026-09-02" class="orca-cell type-strength"><div class="orca-date">2</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div></td><td data-date="2026-09-03" class="orca-cell type-speed"><div class="orca-date">3</div><div class="orca-badge">RUN #20</div><div class="orca-detail">🏃 4.0 mi 400s into 200s @ 9:30<br>🧘 Stretching</div></td><td data-date="2026-09-04" class="orca-cell type-strength"><div class="orca-date">4</div><div class="orca-badge">SWIM / LIFT #3</div><div class="orca-detail">🏊 Swim #3 (45m: 600yd continuous)<br>🏋 45m Full Body #3 (Arms Focus)<br>• Smith Hip Thrusts 3x12 (50lbs)<br>• KB Goblet Squats 3x10 (30lbs)<br>• Cable Chest Flyes 3x12 (15lbs)<br>• 💪 Incline DB Curls 3x12<br>• 💪 Cable Tricep Kickback 3x12<br>• Pull-Up Station / Tucks 3x10<br>🚴 Spin 8mi</div></td><td data-date="2026-09-05" class="orca-cell type-long"><div class="orca-date">5</div><div class="orca-badge">13.1 MI PRACTICE</div><div class="orca-detail">🏃 13.1 mi FULL HALF PRACTICE<br>Party Pace @ 11:30-12:00/mi<br>⛽ Maurten Gels x3 & Electrolytes</div></td><td data-date="2026-09-06" class="orca-cell type-raceweek"><div class="orca-date">6</div><div class="orca-badge">BIKE / SWIM #4</div><div class="orca-detail">🚴 20 mi Recovery Bike Ride<br>🏊 Swim #4 (30m recovery)<br>🧘 Yoga<br>🎂 Ashley's Bday!</div></td></tr>
-<tr><td data-date="2026-09-07" class="orca-cell type-easy"><div class="orca-date">7</div><div class="orca-badge">RUN / SWIM #1</div><div class="orca-detail">🏃 3.7 mi Zone 2 @ 11:45/mi<br>🏊 Swim #1 (30m easy)<br>🇺🇸 Labor Day</div></td><td data-date="2026-09-08" class="orca-cell type-strength"><div class="orca-date">8</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div></td><td data-date="2026-09-09" class="orca-cell type-speed"><div class="orca-date">9</div><div class="orca-badge">RUN / SWIM #2</div><div class="orca-detail">🏃 3.1 mi Half Easy/Tempo @ 10:00<br>🏊 Swim #2 (30m)</div></td><td data-date="2026-09-10" class="orca-cell type-strength"><div class="orca-date">10</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div></td><td data-date="2026-09-11" class="orca-cell type-easy"><div class="orca-date">11</div><div class="orca-badge">RUN / SWIM #3</div><div class="orca-detail">🏃 3.1 mi Zone 2 @ 11:45/mi<br>🏊 Swim #3 (30m technique)<br>🧘 Core & Mobility</div></td><td data-date="2026-09-12" class="orca-cell type-raceweek"><div class="orca-date">12</div><div class="orca-badge">BIKE / SWIM #4</div><div class="orca-detail">🚴 15 mi Taper Bike Ride<br>🏊 Swim #4 (25m float)<br>🧘 Core & Mobility</div></td><td data-date="2026-09-13" class="orca-cell type-long"><div class="orca-date">13</div><div class="orca-badge">TAPER LONG</div><div class="orca-detail">🏃 6.0 mi Taper Long Run @ 10:45<br>🧘 Full Body Stretch</div></td></tr>
-<tr><td data-date="2026-09-14" class="orca-cell type-strength"><div class="orca-date">14</div><div class="orca-badge">FULL BODY / SWIM</div><div class="orca-detail">🏋 Light Core & Mobility<br>🏊 Swim #1 (20m float)</div></td><td data-date="2026-09-15" class="orca-cell type-easy"><div class="orca-date">15</div><div class="orca-badge">RUN #26</div><div class="orca-detail">🏃 3.4 mi Taper Run @ 11:45/mi</div></td><td data-date="2026-09-16" class="orca-cell type-easy"><div class="orca-date">16</div><div class="orca-badge">SWIM / SPIN</div><div class="orca-detail">🚴 Easy Bike 8mi<br>🏊 Swim #2 (20m float)</div></td><td data-date="2026-09-17" class="orca-cell type-easy"><div class="orca-date">17</div><div class="orca-badge">RUN #27</div><div class="orca-detail">🏃 3.1 mi Shakeout Run @ 11:45/mi<br>🎂 Sarahy's Bday!</div></td><td data-date="2026-09-18" class="orca-cell type-raceweek"><div class="orca-date">18</div><div class="orca-badge">CARB LOAD / SWIM</div><div class="orca-detail">🍝 Pasta Dinner Carb Load<br>🏊 Swim #3 (15m easy float)<br>💧 3L Hydration</div></td><td data-date="2026-09-19" class="orca-cell type-raceweek"><div class="orca-date">19</div><div class="orca-badge">GEAR CHECK</div><div class="orca-detail">🎒 Bib, Shoes & Gels Ready<br>😴 Bed by 9:30 PM</div></td><td data-date="2026-09-20" class="orca-cell type-raceday"><div class="orca-date">20</div><div class="orca-badge">🏁 RACE DAY</div><div class="orca-detail">ORCA HALF MARATHON<br>📏 13.1 mi<br>⏱ Target Pace: 10:18/mi</div></td></tr>
+<tr><td data-date="2026-07-27" class="orca-cell type-long"><div class="orca-date">Jul 27</div><div class="orca-badge">LONG RUN #1</div><div class="orca-detail">🏃 5.0 mi Progressive Long Run<br>Pace @ 10:40-11:30/mi (Zone 2/3)<br>🧘 30m PCOS Mobility Stretch</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-07-27" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-07-28" class="orca-cell type-strength"><div class="orca-date">28</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-07-28" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-07-29" class="orca-cell type-speed"><div class="orca-date">29</div><div class="orca-badge">RUN #2</div><div class="orca-detail">🏃 4.0 mi Tempo @ 9:45/mi<br>🏓 Pickleball 5pm<br>🦵 Tibialis & Shin Curls 3x15</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-07-29" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-07-30" class="orca-cell type-strength"><div class="orca-date">30</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-07-30" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-07-31" class="orca-cell type-easy"><div class="orca-date">31</div><div class="orca-badge">RUN #3</div><div class="orca-detail">🌲 3.7 mi Zone 2 Trail @ 10:45<br>🧘 Hip Mobility Stretch</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-07-31" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-01" class="orca-cell type-strength"><div class="orca-date">Aug 1</div><div class="orca-badge">SWIM / LIFT #3</div><div class="orca-detail">🏊 Swim #3 (45m: 600yd continuous)<br>🏋 45m Full Body #3 (Arms Focus)<br>• Smith Hip Thrusts 3x12 (50lbs)<br>• KB Goblet Squats 3x10 (30lbs)<br>• Cable Chest Flyes 3x12 (15lbs)<br>• 💪 Incline DB Curls 3x12<br>• 💪 Cable Tricep Kickback 3x12<br>• Pull-Up Station / Tucks 3x10<br>🚴 Spin 8mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-01" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-02" class="orca-cell type-raceweek"><div class="orca-date">2</div><div class="orca-badge">BIKE / SWIM #4</div><div class="orca-detail">🚴 18 mi Zone 2 Bike Ride<br>🏊 Swim #4 (30m: 4x100yd recovery)<br>⚽ Soccer Clinic</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-02" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td></tr>
+<tr><td data-date="2026-08-03" class="orca-cell type-strength"><div class="orca-date">3</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-03" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-04" class="orca-cell type-speed"><div class="orca-date">4</div><div class="orca-badge">RUN #5</div><div class="orca-detail">🏃 4.0 mi Broken Miles @ 9:45<br>🧗 Stairclimber 10m Warmup</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-04" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-05" class="orca-cell type-strength"><div class="orca-date">5</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-05" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-06" class="orca-cell type-easy"><div class="orca-date">6</div><div class="orca-badge">RUN #6</div><div class="orca-detail">🏃 3.1 mi Zone 2 Easy @ 11:15<br>🧘 Mobility Stretch</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-06" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-07" class="orca-cell type-strength"><div class="orca-date">7</div><div class="orca-badge">SWIM / LIFT #3</div><div class="orca-detail">🏊 Swim #3 (45m: 600yd continuous)<br>🏋 45m Full Body #3 (Arms Focus)<br>• Smith Hip Thrusts 3x12 (50lbs)<br>• KB Goblet Squats 3x10 (30lbs)<br>• Cable Chest Flyes 3x12 (15lbs)<br>• 💪 Incline DB Curls 3x12<br>• 💪 Cable Tricep Kickback 3x12<br>• Pull-Up Station / Tucks 3x10<br>🚴 Spin 8mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-07" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-08" class="orca-cell type-long"><div class="orca-date">8</div><div class="orca-badge">LONG RUN #2</div><div class="orca-detail">🏃 6.5 mi Long Run<br>Pace @ 10:40-11:30/mi<br>⛽ Hydration & Gels</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-08" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-09" class="orca-cell type-raceweek"><div class="orca-date">9</div><div class="orca-badge">BIKE / SWIM #4</div><div class="orca-detail">🚴 20 mi Zone 2 Bike Ride<br>🏊 Swim #4 (30m: 500yd continuous)<br>🧘 30m Full Body Yoga</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-09" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td></tr>
+<tr><td data-date="2026-08-10" class="orca-cell type-strength"><div class="orca-date">10</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-10" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-11" class="orca-cell type-recovery"><div class="orca-date">11</div><div class="orca-badge">RECOVERY / SWIM</div><div class="orca-detail">🚴 Bike 10mi Zone 2 spin<br>🏊 Swim #4 (30m float)<br>🧗 Stairclimber 15m</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-11" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-12" class="orca-cell type-speed"><div class="orca-date">12</div><div class="orca-badge">RUN / SWIM #2</div><div class="orca-detail">🏃 2.5 mi Rolling 400s @ 9:30<br>🏊 Swim #2 (45m: 6x100yd @1:50)</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-12" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-13" class="orca-cell type-strength"><div class="orca-date">13</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-13" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-14" class="orca-cell type-easy"><div class="orca-date">14</div><div class="orca-badge">RUN / SWIM #3</div><div class="orca-detail">🏃 3.1 mi Zone 2 @ 11:45/mi<br>🏊 Swim #3 (45m continuous)</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-14" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-15" class="orca-cell type-raceweek"><div class="orca-date">15</div><div class="orca-badge">LONG BIKE</div><div class="orca-detail">🚴 20 mi Zone 2 Bike Ride<br>🧘 Core & Mobility</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-15" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-16" class="orca-cell type-long"><div class="orca-date">16</div><div class="orca-badge">LONG RUN #3</div><div class="orca-detail">🏃 8.0 mi Long Run<br>Pace @ 10:45-11:30/mi<br>🎂 Charlie's Bday!</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-16" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td></tr>
+<tr><td data-date="2026-08-17" class="orca-cell type-strength"><div class="orca-date">17</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-17" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-18" class="orca-cell type-speed"><div class="orca-date">18</div><div class="orca-badge">RUN #12</div><div class="orca-detail">🏃 4.6 mi On Off Ks @ 9:45/mi<br>🧗 Stairclimber 10m</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-18" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-19" class="orca-cell type-strength"><div class="orca-date">19</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-19" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-20" class="orca-cell type-speed"><div class="orca-date">20</div><div class="orca-badge">RUN #13</div><div class="orca-detail">🏃 3.1 mi Pyramid Intervals @ 9:30<br>🎂 Mami's Bday!</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-20" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-21" class="orca-cell type-strength"><div class="orca-date">21</div><div class="orca-badge">SWIM / LIFT #3</div><div class="orca-detail">🏊 Swim #3 (45m: 600yd continuous)<br>🏋 45m Full Body #3 (Arms Focus)<br>• Smith Hip Thrusts 3x12 (50lbs)<br>• KB Goblet Squats 3x10 (30lbs)<br>• Cable Chest Flyes 3x12 (15lbs)<br>• 💪 Incline DB Curls 3x12<br>• 💪 Cable Tricep Kickback 3x12<br>• Pull-Up Station / Tucks 3x10<br>🚴 Spin 8mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-21" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-22" class="orca-cell type-long"><div class="orca-date">22</div><div class="orca-badge">LONG RUN #4</div><div class="orca-detail">🏃 10.0 mi Long Run<br>Pace @ 10:40-11:30/mi<br>⛽ Hydration & Gels</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-22" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-23" class="orca-cell type-raceweek"><div class="orca-date">23</div><div class="orca-badge">BIKE / SWIM #4</div><div class="orca-detail">🚴 22 mi Zone 2 Bike Ride<br>🏊 Swim #4 (30m recovery float)<br>🧘 30m Active Stretch</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-23" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td></tr>
+<tr><td data-date="2026-08-24" class="orca-cell type-strength"><div class="orca-date">24</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-24" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-25" class="orca-cell type-recovery"><div class="orca-date">25</div><div class="orca-badge">RECOVERY / SWIM</div><div class="orca-detail">🚴 Bike 10mi spin<br>🏊 Swim #4 (30m float)<br>🧘 30m Foam Rolling</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-25" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-26" class="orca-cell type-speed"><div class="orca-date">26</div><div class="orca-badge">RUN / SWIM #2</div><div class="orca-detail">🏃 4.1 mi Rolling 300s @ 9:30<br>🏊 Swim #2 (45m: 6x100yd)<br>🎂 Katelyn's Bday!</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-26" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-27" class="orca-cell type-strength"><div class="orca-date">27</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-27" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-28" class="orca-cell type-easy"><div class="orca-date">28</div><div class="orca-badge">RUN / SWIM #3</div><div class="orca-detail">🏃 4.0 mi Zone 2 @ 11:45/mi<br>🏊 Swim #3 (45m continuous)</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-28" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-29" class="orca-cell type-raceweek"><div class="orca-date">29</div><div class="orca-badge">LONG BIKE</div><div class="orca-detail">🚴 25 mi Peak Bike Ride<br>⛽ Hydration & Electrolytes</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-29" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-08-30" class="orca-cell type-long"><div class="orca-date">30</div><div class="orca-badge">LONG RUN #5</div><div class="orca-detail">🏃 11.5 mi Practice Long Run<br>Pace @ 10:40-11:15/mi<br>⛽ Maurten Gels x2</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-30" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td></tr>
+<tr><td data-date="2026-08-31" class="orca-cell type-strength"><div class="orca-date">31</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-08-31" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-01" class="orca-cell type-speed"><div class="orca-date">Sep 1</div><div class="orca-badge">RUN #19</div><div class="orca-detail">🏃 4.3 mi Tempo 2-1-1 @ 9:45<br>🧗 Stairclimber 10m</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-01" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-02" class="orca-cell type-strength"><div class="orca-date">2</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-02" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-03" class="orca-cell type-speed"><div class="orca-date">3</div><div class="orca-badge">RUN #20</div><div class="orca-detail">🏃 4.0 mi 400s into 200s @ 9:30<br>🧘 Stretching</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-03" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-04" class="orca-cell type-strength"><div class="orca-date">4</div><div class="orca-badge">SWIM / LIFT #3</div><div class="orca-detail">🏊 Swim #3 (45m: 600yd continuous)<br>🏋 45m Full Body #3 (Arms Focus)<br>• Smith Hip Thrusts 3x12 (50lbs)<br>• KB Goblet Squats 3x10 (30lbs)<br>• Cable Chest Flyes 3x12 (15lbs)<br>• 💪 Incline DB Curls 3x12<br>• 💪 Cable Tricep Kickback 3x12<br>• Pull-Up Station / Tucks 3x10<br>🚴 Spin 8mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-04" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-05" class="orca-cell type-long"><div class="orca-date">5</div><div class="orca-badge">13.1 MI PRACTICE</div><div class="orca-detail">🏃 13.1 mi FULL HALF PRACTICE<br>Party Pace @ 11:30-12:00/mi<br>⛽ Maurten Gels x3 & Electrolytes</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-05" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-06" class="orca-cell type-raceweek"><div class="orca-date">6</div><div class="orca-badge">BIKE / SWIM #4</div><div class="orca-detail">🚴 20 mi Recovery Bike Ride<br>🏊 Swim #4 (30m recovery)<br>🧘 Yoga<br>🎂 Ashley's Bday!</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-06" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td></tr>
+<tr><td data-date="2026-09-07" class="orca-cell type-easy"><div class="orca-date">7</div><div class="orca-badge">RUN / SWIM #1</div><div class="orca-detail">🏃 3.7 mi Zone 2 @ 11:45/mi<br>🏊 Swim #1 (30m easy)<br>🇺🇸 Labor Day</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-07" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-08" class="orca-cell type-strength"><div class="orca-date">8</div><div class="orca-badge">SWIM / LIFT #1</div><div class="orca-detail">🏊 Swim #1 (40m: 8x50yd glide)<br>🏋 45m Full Body #1 (Arms Focus)<br>• Smith Squats 3x10 (45lbs)<br>• Lat Pulldown 3x12 (50lbs)<br>• DB Bench Press 3x10 (20lbs)<br>• 💪 Cable Tricep Pushdown 3x12<br>• 💪 DB Hammer Curls 3x12<br>• Hanging Leg Raises 3x12<br>🚴 Easy Spin 8mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-08" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-09" class="orca-cell type-speed"><div class="orca-date">9</div><div class="orca-badge">RUN / SWIM #2</div><div class="orca-detail">🏃 3.1 mi Half Easy/Tempo @ 10:00<br>🏊 Swim #2 (30m)</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-09" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-10" class="orca-cell type-strength"><div class="orca-date">10</div><div class="orca-badge">SWIM / LIFT #2</div><div class="orca-detail">🏊 Swim #2 (45m: 6x100yd @1:50)<br>🏋 45m Full Body #2 (Arms Focus)<br>• Smith RDLs 3x10 (55lbs)<br>• Seated Cable Row 3x12 (45lbs)<br>• DB Shoulder Press 3x10 (15lbs)<br>• 💪 Overhead Tricep Ext 3x12<br>• 💪 Cable Bicep Curls 3x12<br>• KB Woodchoppers 3x12<br>🚴 Bike 10mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-10" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-11" class="orca-cell type-easy"><div class="orca-date">11</div><div class="orca-badge">RUN / SWIM #3</div><div class="orca-detail">🏃 3.1 mi Zone 2 @ 11:45/mi<br>🏊 Swim #3 (30m technique)<br>🧘 Core & Mobility</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-11" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-12" class="orca-cell type-raceweek"><div class="orca-date">12</div><div class="orca-badge">BIKE / SWIM #4</div><div class="orca-detail">🚴 15 mi Taper Bike Ride<br>🏊 Swim #4 (25m float)<br>🧘 Core & Mobility</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-12" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-13" class="orca-cell type-long"><div class="orca-date">13</div><div class="orca-badge">TAPER LONG</div><div class="orca-detail">🏃 6.0 mi Taper Long Run @ 10:45<br>🧘 Full Body Stretch</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-13" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td></tr>
+<tr><td data-date="2026-09-14" class="orca-cell type-strength"><div class="orca-date">14</div><div class="orca-badge">FULL BODY / SWIM</div><div class="orca-detail">🏋 Light Core & Mobility<br>🏊 Swim #1 (20m float)</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-14" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-15" class="orca-cell type-easy"><div class="orca-date">15</div><div class="orca-badge">RUN #26</div><div class="orca-detail">🏃 3.4 mi Taper Run @ 11:45/mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-15" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-16" class="orca-cell type-easy"><div class="orca-date">16</div><div class="orca-badge">SWIM / SPIN</div><div class="orca-detail">🚴 Easy Bike 8mi<br>🏊 Swim #2 (20m float)</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-16" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-17" class="orca-cell type-easy"><div class="orca-date">17</div><div class="orca-badge">RUN #27</div><div class="orca-detail">🏃 3.1 mi Shakeout Run @ 11:45/mi<br>🎂 Sarahy's Bday!</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-17" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-18" class="orca-cell type-raceweek"><div class="orca-date">18</div><div class="orca-badge">CARB LOAD / SWIM</div><div class="orca-detail">🍝 Pasta Dinner Carb Load<br>🏊 Swim #3 (15m easy float)<br>💧 3L Hydration</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-18" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-19" class="orca-cell type-raceweek"><div class="orca-date">19</div><div class="orca-badge">GEAR CHECK</div><div class="orca-detail">🎒 Bib, Shoes & Gels Ready<br>😴 Bed by 9:30 PM</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-19" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td><td data-date="2026-09-20" class="orca-cell type-raceday"><div class="orca-date">20</div><div class="orca-badge">🏁 RACE DAY</div><div class="orca-detail">ORCA HALF MARATHON<br>📏 13.1 mi<br>⏱ Target Pace: 10:18/mi</div><div class="actual-workout-sec">
+            
+            <input type="text" class="actual-note-input" data-actual-date="2026-09-20" placeholder="✍️ Log actual workout notes..." oninput="saveActualNote(this)">
+        </div></td></tr>
 </tbody>
 </table>
             </div>
@@ -1559,6 +1749,27 @@
         }
 
         document.addEventListener('DOMContentLoaded', restorePcosLog);
+
+
+        function saveActualNote(inputEl) {
+            const dateKey = inputEl.dataset.actualDate;
+            const val = inputEl.value;
+            const savedNotes = JSON.parse(localStorage.getItem('orca_actual_notes') || '{}');
+            savedNotes[dateKey] = val;
+            localStorage.setItem('orca_actual_notes', JSON.stringify(savedNotes));
+        }
+
+        function restoreActualNotes() {
+            const savedNotes = JSON.parse(localStorage.getItem('orca_actual_notes') || '{}');
+            document.querySelectorAll('.actual-note-input').forEach(inputEl => {
+                const dateKey = inputEl.dataset.actualDate;
+                if (savedNotes[dateKey]) {
+                    inputEl.value = savedNotes[dateKey];
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', restoreActualNotes);
 
 </script>
 
