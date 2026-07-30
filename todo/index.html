@@ -1085,6 +1085,11 @@
             <div class="garmin-stat-val" id="garminRhr">— <span class="garmin-stat-unit">bpm</span></div>
             <div class="garmin-stat-sub sans" id="garminRhrSub">Garmin Connect</div>
         </div>
+        <div class="garmin-stat-card" style="border-color: rgba(59, 130, 246, 0.35); background: rgba(59, 130, 246, 0.04);">
+            <div class="garmin-stat-label sans" style="color: #60a5fa;">🚗 Today's Commute</div>
+            <div class="garmin-stat-val" id="commuteTodayVal">— <span class="garmin-stat-unit">mins</span></div>
+            <div class="garmin-stat-sub sans" id="commuteSub" style="color: #93c5fd;">Android Geofence Auto-Sync</div>
+        </div>
     </div>
 
     <!-- Monthly Daily Steps Graph -->
@@ -1847,14 +1852,40 @@
         }
     }
 
+    // ── Render Commute & Transit Data ────────────────────────────────
+    function renderCommuteData(commuteData) {
+        if (!commuteData || typeof commuteData !== 'object') return;
+        const todayStr = getTodayStr();
+        const todayLog = commuteData[todayStr] || {};
+
+        const valEl = document.getElementById('commuteTodayVal');
+        const subEl = document.getElementById('commuteSub');
+
+        if (todayLog.total_min !== undefined && todayLog.total_min !== null) {
+            if (valEl) valEl.innerHTML = `${todayLog.total_min} <span class="garmin-stat-unit">mins</span>`;
+            if (subEl) {
+                const am = todayLog.morning_min ? `AM: ${todayLog.morning_min}m` : 'AM: —';
+                const pm = todayLog.evening_min ? `PM: ${todayLog.evening_min}m` : 'PM: —';
+                subEl.textContent = `${am} · ${pm}`;
+            }
+        } else {
+            if (valEl) valEl.innerHTML = `0 <span class="garmin-stat-unit">mins</span>`;
+            if (subEl) subEl.textContent = 'Waiting for Android Geofence…';
+        }
+    }
+
     // ── Cloud Read & Write ───────────────────────────────────────────
     async function readCloudData() {
         const resp = await fetch(PROXY + '?v=' + Date.now(), { cache: 'no-store' });
         if (!resp.ok) throw new Error('read ' + resp.status);
         const data = await resp.json();
+        if (data.commute) {
+            renderCommuteData(data.commute);
+        }
         return {
             todos: Array.isArray(data.todos) ? data.todos : [],
-            habits: (data.habits && typeof data.habits === 'object') ? data.habits : {}
+            habits: (data.habits && typeof data.habits === 'object') ? data.habits : {},
+            commute: data.commute || {}
         };
     }
 
