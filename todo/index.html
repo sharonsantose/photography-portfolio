@@ -242,6 +242,136 @@
             border-radius: 2px;
             transition: width 0.4s ease;
         }
+
+        /* ── Steps Graph Styles ───────────────────────────────── */
+        .steps-chart-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 36px;
+        }
+
+        .steps-chart-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding-bottom: 14px;
+        }
+
+        .steps-meta-val {
+            font-size: 22px;
+            font-weight: 500;
+            color: #fff;
+            display: block;
+        }
+
+        .steps-meta-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .steps-bar-wrapper {
+            position: relative;
+            height: 160px;
+            padding-top: 25px;
+        }
+
+        .steps-goal-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 45px;
+            border-top: 1px dashed rgba(16, 185, 129, 0.5);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .steps-goal-label {
+            position: absolute;
+            right: 0;
+            top: -16px;
+            font-size: 10px;
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .steps-bars-flex {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 100%;
+            gap: 3px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .step-bar-fill {
+            width: 100%;
+            max-width: 14px;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 3px 3px 0 0;
+            transition: height 0.4s ease, background 0.2s;
+            min-height: 2px;
+        }
+
+        .step-bar-col:hover .step-bar-fill {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .step-bar-col.hit-goal .step-bar-fill {
+            background: #10b981;
+            box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+        }
+
+        .step-bar-col.is-today .step-bar-fill {
+            background: #3b82f6;
+            box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+        }
+
+        .step-bar-date {
+            font-size: 9px;
+            color: #555;
+            margin-top: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .step-bar-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #18181b;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            display: none;
+            z-index: 10;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .step-bar-col:hover .step-bar-tooltip {
+            display: block;
+        }
         .habits-today-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -687,10 +817,37 @@
             <div class="garmin-stat-label sans">❤️ Resting HR</div>
             <div class="garmin-stat-val" id="garminRhr">— <span class="garmin-stat-unit">bpm</span></div>
             <div class="garmin-stat-sub sans" id="garminRhrSub">Garmin Connect</div>
-        </div>
     </div>
 
-    <!-- Section 1: Today's Habit Cards -->
+    <!-- Monthly Daily Steps Graph -->
+    <div class="section-header">
+        <h2 class="section-title">👟 Monthly Daily Steps Graph</h2>
+        <span class="section-subtitle sans">Last 30 Days</span>
+    </div>
+
+    <div class="steps-chart-container">
+        <div class="steps-chart-meta sans">
+            <div>
+                <span class="steps-meta-val" id="stepsMonthTotal">—</span>
+                <span class="steps-meta-label">Total Steps (30 Days)</span>
+            </div>
+            <div>
+                <span class="steps-meta-val" id="stepsMonthAvgVal">—</span>
+                <span class="steps-meta-label">Daily Avg</span>
+            </div>
+            <div>
+                <span class="steps-meta-val" id="stepsGoalDays">—</span>
+                <span class="steps-meta-label">Days Goal Hit</span>
+            </div>
+        </div>
+
+        <div class="steps-bar-wrapper">
+            <div class="steps-goal-line" title="15,000 Step Goal">
+                <span class="steps-goal-label sans">15k Goal</span>
+            </div>
+            <div class="steps-bars-flex" id="stepsBarsFlex"></div>
+        </div>
+    </div>
     <div class="section-header">
         <h2 class="section-title">✨ Today's Habits</h2>
         <span class="section-subtitle sans" id="todayHabitCount">0 of 4 completed</span>
@@ -890,6 +1047,73 @@
         }
     }
 
+    // ── Render Monthly Daily Steps Graph ──────────────────────────────
+    function renderMonthlyStepsChart(stepsHistory) {
+        if (!stepsHistory || typeof stepsHistory !== 'object') return;
+
+        const flexContainer = document.getElementById('stepsBarsFlex');
+        if (!flexContainer) return;
+        flexContainer.innerHTML = '';
+
+        const dates = Object.keys(stepsHistory).sort();
+        if (dates.length === 0) return;
+
+        let totalSteps = 0;
+        let goalDaysCount = 0;
+        let maxSteps = 20000;
+        const todayStr = getTodayStr();
+
+        // Calculate max for bar scaling
+        dates.forEach(d => {
+            const item = stepsHistory[d];
+            const st = typeof item === 'object' ? item.steps : item;
+            if (st > maxSteps) maxSteps = st;
+        });
+
+        dates.forEach(d => {
+            const item = stepsHistory[d];
+            const st = typeof item === 'object' ? item.steps : item;
+            const goal = typeof item === 'object' ? (item.goal || 15000) : 15000;
+
+            totalSteps += st;
+            if (st >= goal) goalDaysCount++;
+
+            const pctHeight = Math.max(3, Math.min(100, Math.round((st / maxSteps) * 100)));
+            const dayNum = parseInt(d.split('-')[2], 10);
+            const isToday = (d === todayStr);
+            const hitGoal = (st >= goal);
+
+            let colClass = 'step-bar-col';
+            if (hitGoal) colClass += ' hit-goal';
+            if (isToday) colClass += ' is-today';
+
+            const col = document.createElement('div');
+            col.className = colClass;
+
+            const tooltip = document.createElement('div');
+            tooltip.className = 'step-bar-tooltip sans';
+            tooltip.textContent = `${d}: ${st.toLocaleString()} steps ${hitGoal ? '🎉' : ''}`;
+
+            const fill = document.createElement('div');
+            fill.className = 'step-bar-fill';
+            fill.style.height = `${pctHeight}%`;
+
+            const dateLbl = document.createElement('div');
+            dateLbl.className = 'step-bar-date';
+            dateLbl.textContent = dayNum;
+
+            col.appendChild(tooltip);
+            col.appendChild(fill);
+            col.appendChild(dateLbl);
+            flexContainer.appendChild(col);
+        });
+
+        // Render meta summary
+        document.getElementById('stepsMonthTotal').textContent = totalSteps.toLocaleString();
+        document.getElementById('stepsMonthAvgVal').textContent = Math.round(totalSteps / dates.length).toLocaleString();
+        document.getElementById('stepsGoalDays').textContent = `${goalDaysCount} / ${dates.length}`;
+    }
+
     // ── Fetch Garmin Health Data (Steps, Sleep, Resting HR) ───────────
     async function loadGarminHealthData() {
         try {
@@ -901,9 +1125,9 @@
                 // Steps
                 if (stats.steps !== undefined) {
                     const stepsFormatted = stats.steps.toLocaleString();
-                    const goalFormatted = stats.step_goal ? (stats.step_goal / 1000).toFixed(0) + 'k' : '10k';
+                    const goalFormatted = stats.step_goal ? (stats.step_goal / 1000).toFixed(0) + 'k' : '15k';
                     document.getElementById('garminSteps').innerHTML = `${stepsFormatted} <span class="garmin-stat-unit">/ ${goalFormatted}</span>`;
-                    const pct = Math.min(100, Math.round((stats.steps / (stats.step_goal || 10000)) * 100));
+                    const pct = Math.min(100, Math.round((stats.steps / (stats.step_goal || 15000)) * 100));
                     document.getElementById('garminStepsFill').style.width = `${pct}%`;
                 }
 
@@ -922,6 +1146,11 @@
 
                 if (data.today) {
                     document.getElementById('garminLastSync').textContent = `Updated ${data.today}`;
+                }
+
+                // Render Monthly Daily Steps Graph
+                if (data.steps_history) {
+                    renderMonthlyStepsChart(data.steps_history);
                 }
             }
         } catch (e) {

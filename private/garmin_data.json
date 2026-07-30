@@ -1,12 +1,361 @@
 {
-  "fetched_at": "2026-07-29T21:00:33Z",
+  "fetched_at": "2026-07-30T04:05:17Z",
   "today": "2026-07-29",
   "stats": {
     "steps": 5808,
     "step_goal": 15000,
+    "resting_hr": 46,
+    "active_calories": 92.0,
     "sleep_hours": 7.5,
-    "sleep_score": 85,
-    "resting_hr": 46
+    "sleep_score": 85
   },
-  "activities_by_date": {}
+  "steps_history": {
+    "2026-07-29": {
+      "steps": 5808,
+      "goal": 15000
+    },
+    "2026-07-28": {
+      "steps": 5384,
+      "goal": 15000
+    },
+    "2026-07-27": {
+      "steps": 19087,
+      "goal": 15000
+    },
+    "2026-07-26": {
+      "steps": 6142,
+      "goal": 15000
+    },
+    "2026-07-25": {
+      "steps": 5829,
+      "goal": 15000
+    },
+    "2026-07-24": {
+      "steps": 8014,
+      "goal": 15000
+    },
+    "2026-07-23": {
+      "steps": 10323,
+      "goal": 15000
+    },
+    "2026-07-22": {
+      "steps": 17602,
+      "goal": 15000
+    },
+    "2026-07-21": {
+      "steps": 8395,
+      "goal": 15000
+    },
+    "2026-07-20": {
+      "steps": 6409,
+      "goal": 15000
+    },
+    "2026-07-19": {
+      "steps": 15981,
+      "goal": 15000
+    },
+    "2026-07-18": {
+      "steps": 5283,
+      "goal": 15000
+    },
+    "2026-07-17": {
+      "steps": 14626,
+      "goal": 15000
+    },
+    "2026-07-16": {
+      "steps": 7285,
+      "goal": 15000
+    },
+    "2026-07-15": {
+      "steps": 11800,
+      "goal": 15000
+    },
+    "2026-07-14": {
+      "steps": 8519,
+      "goal": 15000
+    },
+    "2026-07-13": {
+      "steps": 8512,
+      "goal": 15000
+    },
+    "2026-07-12": {
+      "steps": 2740,
+      "goal": 15000
+    },
+    "2026-07-11": {
+      "steps": 879,
+      "goal": 15000
+    },
+    "2026-07-10": {
+      "steps": 17637,
+      "goal": 15000
+    },
+    "2026-07-09": {
+      "steps": 6815,
+      "goal": 15000
+    },
+    "2026-07-08": {
+      "steps": 10852,
+      "goal": 15000
+    },
+    "2026-07-07": {
+      "steps": 12912,
+      "goal": 15000
+    },
+    "2026-07-06": {
+      "steps": 11437,
+      "goal": 15000
+    },
+    "2026-07-05": {
+      "steps": 6658,
+      "goal": 15000
+    },
+    "2026-07-04": {
+      "steps": 12366,
+      "goal": 15000
+    },
+    "2026-07-03": {
+      "steps": 13167,
+      "goal": 15000
+    },
+    "2026-07-02": {
+      "steps": 10309,
+      "goal": 15000
+    },
+    "2026-07-01": {
+      "steps": 13953,
+      "goal": 15000
+    },
+    "2026-06-30": {
+      "steps": 9201,
+      "goal": 15000
+    },
+    "2026-06-29": {
+      "steps": 2610,
+      "goal": 15000
+    }
+  },
+  "activities_by_date": {
+    "2026-07-27": [
+      {
+        "name": "Seattle Running",
+        "type": "running",
+        "distance_mi": 5.1,
+        "duration_min": 58.1,
+        "calories": 616.0
+      }
+    ],
+    "2026-07-25": [
+      {
+        "name": "swim",
+        "type": "lap_swimming",
+        "distance_mi": 0.34,
+        "duration_min": 40.0,
+        "calories": 290.0
+      }
+    ],
+    "2026-07-19": [
+      {
+        "name": "Seattle - Seattle Triathalon",
+        "type": "multi_sport",
+        "distance_mi": 16.1,
+        "duration_min": 121.4,
+        "calories": 1221.0
+      }
+    ],
+    "2026-07-16": [
+      {
+        "name": "Treadmill",
+        "type": "treadmill_running",
+        "distance_mi": 2.21,
+        "duration_min": 27.1,
+        "calories": 262.0
+      }
+    ],
+    "2026-07-15": [
+      {
+        "name": "Seattle Running",
+        "type": "running",
+        "distance_mi": 1.47,
+        "duration_min": 21.4,
+        "calories": 173.0
+      }
+    ],
+    "2026-07-13": [
+      {
+        "name": "Stair Stepper",
+        "type": "stair_climbing",
+        "distance_mi": 0.0,
+        "duration_min": 8.2,
+        "calories": 65.0
+      }
+    ],
+    "2026-07-11": [
+      {
+        "name": "Seattle Cycling",
+        "type": "cycling",
+        "distance_mi": 15.07,
+        "duration_min": 90.1,
+        "calories": 703.0
+      }
+    ],
+    "2026-07-10": [
+      {
+        "name": "Seattle Running",
+        "type": "running",
+        "distance_mi": 3.5,
+        "duration_min": 42.3,
+        "calories": 433.0
+      }
+    ],
+    "2026-07-09": [
+      {
+        "name": "Seattle Cycling",
+        "type": "cycling",
+        "distance_mi": 6.51,
+        "duration_min": 39.0,
+        "calories": 287.0
+      }
+    ],
+    "2026-07-04": [
+      {
+        "name": "Treadmill Running",
+        "type": "treadmill_running",
+        "distance_mi": 2.5,
+        "duration_min": 30.0,
+        "calories": 325.0
+      }
+    ],
+    "2026-06-26": [
+      {
+        "name": "San Francisco Walking",
+        "type": "walking",
+        "distance_mi": 0.72,
+        "duration_min": 18.0,
+        "calories": 75.0
+      }
+    ],
+    "2026-06-25": [
+      {
+        "name": "Reno Running",
+        "type": "running",
+        "distance_mi": 1.16,
+        "duration_min": 12.8,
+        "calories": 137.0
+      }
+    ],
+    "2026-06-24": [
+      {
+        "name": "Clark County Open Water Swimming",
+        "type": "open_water_swimming",
+        "distance_mi": 0.14,
+        "duration_min": 8.7,
+        "calories": 44.0
+      }
+    ],
+    "2026-06-23": [
+      {
+        "name": "Clark County Walking",
+        "type": "walking",
+        "distance_mi": 0.51,
+        "duration_min": 17.9,
+        "calories": 59.0
+      },
+      {
+        "name": "Mohave County Walking",
+        "type": "walking",
+        "distance_mi": 0.53,
+        "duration_min": 21.5,
+        "calories": 58.0
+      }
+    ],
+    "2026-06-21": [
+      {
+        "name": "Harris County Running",
+        "type": "running",
+        "distance_mi": 1.08,
+        "duration_min": 13.1,
+        "calories": 127.0
+      }
+    ],
+    "2026-06-13": [
+      {
+        "name": "Jefferson County Walking",
+        "type": "walking",
+        "distance_mi": 0.11,
+        "duration_min": 2.8,
+        "calories": 10.0
+      }
+    ],
+    "2026-06-07": [
+      {
+        "name": "Madison County Hiking",
+        "type": "hiking",
+        "distance_mi": 9.79,
+        "duration_min": 301.5,
+        "calories": 1422.0
+      }
+    ],
+    "2026-06-06": [
+      {
+        "name": "Washington Running",
+        "type": "running",
+        "distance_mi": 2.62,
+        "duration_min": 30.6,
+        "calories": 318.0
+      }
+    ],
+    "2026-06-04": [
+      {
+        "name": "Nassau Open Water Swimming",
+        "type": "open_water_swimming",
+        "distance_mi": 0.11,
+        "duration_min": 6.4,
+        "calories": 17.0
+      }
+    ],
+    "2026-06-03": [
+      {
+        "name": "Berry Islands Open Water Swimming",
+        "type": "open_water_swimming",
+        "distance_mi": 0.32,
+        "duration_min": 16.6,
+        "calories": 108.0
+      }
+    ],
+    "2026-06-02": [
+      {
+        "name": "Treadmill Running",
+        "type": "treadmill_running",
+        "distance_mi": 0.42,
+        "duration_min": 5.1,
+        "calories": 43.0
+      },
+      {
+        "name": "Indoor Cycling",
+        "type": "indoor_cycling",
+        "distance_mi": 6.0,
+        "duration_min": 30.2,
+        "calories": 131.0
+      }
+    ],
+    "2026-06-01": [
+      {
+        "name": "Treadmill Running",
+        "type": "treadmill_running",
+        "distance_mi": 2.0,
+        "duration_min": 24.0,
+        "calories": 238.0
+      }
+    ],
+    "2026-05-30": [
+      {
+        "name": "Fort Lauderdale Open Water Swimming",
+        "type": "open_water_swimming",
+        "distance_mi": 0.38,
+        "duration_min": 23.1,
+        "calories": 142.0
+      }
+    ]
+  }
 }
