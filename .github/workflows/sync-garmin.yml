@@ -36,10 +36,11 @@
                                                                                
           - name: Commit and push updated Garmin data                          
             run: |                                                             
-              git config user.name  "github-actions[bot]"                      
+              git config user.name "github-actions[bot]"                       
               git config user.email "github-actions[bot]@users.noreply.github. 
   com"                                                                         
               git add private/garmin_data.json private/todo_data.json          
               git diff --cached --quiet || git commit -m "chore: sync Garmin   
   health & workouts [skip ci]"                                                 
-              git push 
+              git push                                                         
+                       
