@@ -1,12 +1,5 @@
 {
-  "todos": [
-    {
-      "id": 1785380098496,
-      "text": "🥑 PCOS High Protein Meal Prep",
-      "cat": "health",
-      "done": false
-    }
-  ],
+  "todos": [],
   "habits": {
     "2026-07-29": {
       "creatine": false,
