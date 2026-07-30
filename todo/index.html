@@ -1256,6 +1256,17 @@
     <div id="taskList"></div>
     <div id="emptyTasks">No tasks yet. Type above and hit + to add one!</div>
 
+    <!-- Section 4: Completed Tasks Archive & History Log -->
+    <div class="section-header" style="margin-top: 36px;">
+        <h2 class="section-title">📜 Completed Task History</h2>
+        <span class="section-subtitle sans" id="completedTaskCount">0 Tasks Completed</span>
+    </div>
+
+    <div class="completed-archive-container" style="background: rgba(255, 255, 255, 0.015); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 16px;">
+        <div id="completedTaskList" style="display: flex; flex-direction: column; gap: 6px;"></div>
+        <div id="emptyArchive" style="color: #444; font-style: italic; font-size: 14px; text-align: center; padding: 12px 0;">No completed tasks in history log yet.</div>
+    </div>
+
     <!-- Footer -->
     <div class="footer">
         <a href="/private">🐋 Race Countdown</a>
@@ -2020,91 +2031,125 @@
         });
     }
 
-    // ── To-Do List Logic ─────────────────────────────────────────────
+    // ── To-Do List & Completed Archive Logic ────────────────────────
+    function createSingleTaskElement(todo) {
+        const div = document.createElement('div');
+        div.className = 'task-item' + (todo.done ? ' done' : '');
+
+        const check = document.createElement('div');
+        check.className = 'task-check';
+
+        const wrap = document.createElement('div');
+        wrap.className = 'task-text-wrap';
+
+        const text = document.createElement('span');
+        text.className = 'task-text';
+        text.textContent = todo.text;
+        wrap.appendChild(text);
+
+        if (todo.cat) {
+            const badge = document.createElement('span');
+            badge.className = `task-cat-badge cat-${todo.cat} sans`;
+            badge.style.cursor = 'pointer';
+            badge.title = `Filter by ${todo.cat}`;
+            const catLabels = { running: 'Training', health: 'Health', photo: 'Photo', life: 'Life' };
+            badge.textContent = catLabels[todo.cat] || todo.cat;
+            badge.addEventListener('click', e => {
+                e.stopPropagation();
+                setCategoryFilter(todo.cat);
+            });
+            wrap.appendChild(badge);
+        }
+
+        const actionsDiv = document.createElement('div');
+        actionsDiv.style.display = 'flex';
+        actionsDiv.style.gap = '6px';
+        actionsDiv.style.alignItems = 'center';
+
+        if (!todo.done) {
+            const elevateBtn = document.createElement('button');
+            elevateBtn.className = 'btn-trio-action sans';
+            elevateBtn.style.fontSize = '11px';
+            elevateBtn.style.padding = '2px 8px';
+            elevateBtn.innerHTML = '🧪 Focus';
+            elevateBtn.title = 'Formulate & add to Today\'s Focus Trio';
+            elevateBtn.addEventListener('click', e => {
+                e.stopPropagation();
+                openWizardForTask(todo.id);
+            });
+            actionsDiv.appendChild(elevateBtn);
+        } else {
+            const reopenBtn = document.createElement('button');
+            reopenBtn.className = 'btn-trio-action sans';
+            reopenBtn.style.fontSize = '11px';
+            reopenBtn.style.padding = '2px 8px';
+            reopenBtn.innerHTML = '↺ Restore';
+            reopenBtn.title = 'Restore task to active mental inbox';
+            reopenBtn.addEventListener('click', e => {
+                e.stopPropagation();
+                toggleTask(todo.id);
+            });
+            actionsDiv.appendChild(reopenBtn);
+        }
+
+        const del = document.createElement('button');
+        del.className = 'task-del';
+        del.textContent = '×';
+        del.title = 'Delete task';
+        del.addEventListener('click', e => {
+            e.stopPropagation();
+            deleteTask(todo.id);
+        });
+        actionsDiv.appendChild(del);
+
+        div.addEventListener('click', () => toggleTask(todo.id));
+        div.appendChild(check);
+        div.appendChild(wrap);
+        div.appendChild(actionsDiv);
+        return div;
+    }
+
     function renderTasks() {
         const list  = document.getElementById('taskList');
         const empty = document.getElementById('emptyTasks');
+        const archiveList = document.getElementById('completedTaskList');
+        const emptyArchive = document.getElementById('emptyArchive');
+        const completedCountEl = document.getElementById('completedTaskCount');
+
         list.innerHTML = '';
+        if (archiveList) archiveList.innerHTML = '';
 
         renderFocusTrio();
         updateCategoryCounts();
 
-        let inboxTasks = (todos || []).filter(t => !t.isFocus);
+        // 1. Active uncompleted inbox tasks
+        let inboxTasks = (todos || []).filter(t => !t.isFocus && !t.done);
         if (selectedCatFilter !== 'all') {
             inboxTasks = inboxTasks.filter(t => (t.cat || 'life') === selectedCatFilter);
         }
 
         if (inboxTasks.length === 0) {
             empty.style.display = 'block';
-            empty.textContent = selectedCatFilter === 'all' ? 'No tasks in inbox.' : `No ${selectedCatFilter} tasks.`;
-            return;
-        }
-        empty.style.display = 'none';
-
-        inboxTasks.forEach(todo => {
-            const div = document.createElement('div');
-            div.className = 'task-item' + (todo.done ? ' done' : '');
-
-            const check = document.createElement('div');
-            check.className = 'task-check';
-
-            const wrap = document.createElement('div');
-            wrap.className = 'task-text-wrap';
-
-            const text = document.createElement('span');
-            text.className = 'task-text';
-            text.textContent = todo.text;
-            wrap.appendChild(text);
-
-            if (todo.cat) {
-                const badge = document.createElement('span');
-                badge.className = `task-cat-badge cat-${todo.cat} sans`;
-                badge.style.cursor = 'pointer';
-                badge.title = `Filter by ${todo.cat}`;
-                const catLabels = { running: 'Training', health: 'Health', photo: 'Photo', life: 'Life' };
-                badge.textContent = catLabels[todo.cat] || todo.cat;
-                badge.addEventListener('click', e => {
-                    e.stopPropagation();
-                    setCategoryFilter(todo.cat);
-                });
-                wrap.appendChild(badge);
-            }
-
-            const actionsDiv = document.createElement('div');
-            actionsDiv.style.display = 'flex';
-            actionsDiv.style.gap = '6px';
-            actionsDiv.style.alignItems = 'center';
-
-            if (!todo.done) {
-                const elevateBtn = document.createElement('button');
-                elevateBtn.className = 'btn-trio-action sans';
-                elevateBtn.style.fontSize = '11px';
-                elevateBtn.style.padding = '2px 8px';
-                elevateBtn.innerHTML = '🧪 Focus';
-                elevateBtn.title = 'Formulate & add to Today\'s Focus Trio';
-                elevateBtn.addEventListener('click', e => {
-                    e.stopPropagation();
-                    openWizardForTask(todo.id);
-                });
-                actionsDiv.appendChild(elevateBtn);
-            }
-
-            const del = document.createElement('button');
-            del.className = 'task-del';
-            del.textContent = '×';
-            del.title = 'Delete task';
-            del.addEventListener('click', e => {
-                e.stopPropagation();
-                deleteTask(todo.id);
+            empty.textContent = selectedCatFilter === 'all' ? 'No active tasks in mental inbox.' : `No active ${selectedCatFilter} tasks.`;
+        } else {
+            empty.style.display = 'none';
+            inboxTasks.forEach(todo => {
+                list.appendChild(createSingleTaskElement(todo));
             });
-            actionsDiv.appendChild(del);
+        }
 
-            div.addEventListener('click', () => toggleTask(todo.id));
-            div.appendChild(check);
-            div.appendChild(wrap);
-            div.appendChild(actionsDiv);
-            list.appendChild(div);
-        });
+        // 2. Historical Completed Tasks Archive Log
+        const completedTasks = (todos || []).filter(t => t.done);
+        if (completedCountEl) completedCountEl.textContent = `${completedTasks.length} Completed Tasks (All-Time History)`;
+
+        if (completedTasks.length === 0) {
+            if (emptyArchive) emptyArchive.style.display = 'block';
+        } else {
+            if (emptyArchive) emptyArchive.style.display = 'none';
+            completedTasks.forEach(todo => {
+                if (archiveList) archiveList.appendChild(createSingleTaskElement(todo));
+            });
+        }
     }
 
     function addTask() {

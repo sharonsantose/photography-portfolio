@@ -149,19 +149,38 @@ def main():
     except Exception as e:
         print(f"Warning fetching activities: {e}")
 
+    # Merge with existing historical data to preserve all past months indefinitely
+    existing_data = {}
+    if os.path.exists(OUT_FILE):
+        try:
+            with open(OUT_FILE, "r", encoding="utf-8") as f:
+                existing_data = json.load(f)
+        except Exception:
+            pass
+
+    merged_steps = existing_data.get("steps_history", {})
+    merged_steps.update(steps_history)
+
+    merged_sleep = existing_data.get("sleep_history", {})
+    merged_sleep.update(sleep_history)
+
+    merged_activities = existing_data.get("activities_by_date", {})
+    for d, acts in activities_by_date.items():
+        merged_activities[d] = acts
+
     output_data = {
         "fetched_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
         "today": today_str,
         "stats": stats,
-        "steps_history": steps_history,
-        "sleep_history": sleep_history,
-        "activities_by_date": activities_by_date
+        "steps_history": merged_steps,
+        "sleep_history": merged_sleep,
+        "activities_by_date": merged_activities
     }
 
     os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
     with open(OUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=2)
-    print(f"✅ Saved 31-day step & sleep history → {OUT_FILE}")
+    print(f"✅ Preserved all historical records and saved updated data → {OUT_FILE}")
 
     # Auto-fill habits grid in todo_data.json
     if os.path.exists(TODO_FILE):
