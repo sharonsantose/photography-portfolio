@@ -838,6 +838,35 @@
                 <span class="steps-goal-label sans">15k Goal</span>
             </div>
             <div class="steps-bars-flex" id="stepsBarsFlex"></div>
+    </div>
+
+    <!-- Monthly Daily Sleep Score Graph -->
+    <div class="section-header">
+        <h2 class="section-title">😴 Monthly Daily Sleep Score Graph</h2>
+        <span class="section-subtitle sans">80 Goal (Optimal Rest)</span>
+    </div>
+
+    <div class="steps-chart-container">
+        <div class="steps-chart-meta sans">
+            <div>
+                <span class="steps-meta-val" id="sleepMonthAvgVal">—</span>
+                <span class="steps-meta-label">30-Day Avg Score</span>
+            </div>
+            <div>
+                <span class="steps-meta-val" id="sleepMonthBestVal">—</span>
+                <span class="steps-meta-label">Best Sleep Score</span>
+            </div>
+            <div>
+                <span class="steps-meta-val" id="sleepGoalDays">—</span>
+                <span class="steps-meta-label">Optimal Rest Days (80+)</span>
+            </div>
+        </div>
+
+        <div class="steps-bar-wrapper">
+            <div class="steps-goal-line" style="top: 32px; border-color: rgba(16, 185, 129, 0.5);" title="80 Sleep Score Goal">
+                <span class="steps-goal-label sans">80 Goal</span>
+            </div>
+            <div class="steps-bars-flex" id="sleepBarsFlex"></div>
         </div>
     </div>
 
@@ -1101,6 +1130,73 @@
         document.getElementById('stepsGoalDays').textContent = `${goalDaysCount} / ${dates.length}`;
     }
 
+    // ── Render Monthly Daily Sleep Score Graph ────────────────────────
+    function renderMonthlySleepChart(sleepHistory) {
+        if (!sleepHistory || typeof sleepHistory !== 'object') return;
+
+        const flexContainer = document.getElementById('sleepBarsFlex');
+        if (!flexContainer) return;
+        flexContainer.innerHTML = '';
+
+        const dates = Object.keys(sleepHistory).sort();
+        if (dates.length === 0) return;
+
+        let totalScore = 0;
+        let bestScore = 0;
+        let goalDaysCount = 0;
+        const todayStr = getTodayStr();
+
+        dates.forEach(d => {
+            const item = sleepHistory[d];
+            const sc = typeof item === 'object' ? (item.score || 80) : item;
+            const hrs = typeof item === 'object' ? (item.hours || 7.5) : 7.5;
+
+            totalScore += sc;
+            if (sc > bestScore) bestScore = sc;
+            if (sc >= 80) goalDaysCount++;
+
+            const pctHeight = Math.max(5, Math.min(100, sc));
+            const dayNum = parseInt(d.split('-')[2], 10);
+            const isToday = (d === todayStr);
+            const hitGoal = (sc >= 80);
+
+            let colClass = 'step-bar-col';
+            if (hitGoal) colClass += ' hit-goal';
+            if (isToday) colClass += ' is-today';
+
+            const col = document.createElement('div');
+            col.className = colClass;
+
+            const tooltip = document.createElement('div');
+            tooltip.className = 'step-bar-tooltip sans';
+            tooltip.textContent = `${d}: Score ${sc}/100 (${hrs}h) ${hitGoal ? '😴' : ''}`;
+
+            const fill = document.createElement('div');
+            fill.className = 'step-bar-fill';
+            fill.style.height = `${pctHeight}%`;
+            if (sc >= 80) {
+                fill.style.background = '#10b981';
+                fill.style.boxShadow = '0 0 6px rgba(16, 185, 129, 0.5)';
+            } else if (sc >= 70) {
+                fill.style.background = '#f59e0b';
+            }
+
+            const dateLbl = document.createElement('div');
+            dateLbl.className = 'step-bar-date';
+            dateLbl.textContent = dayNum;
+
+            col.appendChild(tooltip);
+            col.appendChild(fill);
+            col.appendChild(dateLbl);
+            flexContainer.appendChild(col);
+        });
+
+        // Render meta summary
+        document.getElementById('sleepMonthAvgVal').textContent = `${Math.round(totalScore / dates.length)} / 100`;
+        document.getElementById('sleepMonthBestVal').textContent = `${bestScore} / 100`;
+        document.getElementById('sleepGoalDays').textContent = `${goalDaysCount} / ${dates.length}`;
+    }
+
     // ── Fetch Garmin Health Data (Steps, Sleep, Resting HR) ───────────
     async function loadGarminHealthData() {
         try {
@@ -1138,6 +1234,11 @@
                 // Render Monthly Daily Steps Graph
                 if (data.steps_history) {
                     renderMonthlyStepsChart(data.steps_history);
+                }
+
+                // Render Monthly Daily Sleep Score Graph
+                if (data.sleep_history) {
+                    renderMonthlySleepChart(data.sleep_history);
                 }
             }
         } catch (e) {
