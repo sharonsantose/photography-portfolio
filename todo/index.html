@@ -1185,7 +1185,7 @@
     <!-- Section 1: Today's Habits -->
     <div class="section-header">
         <h2 class="section-title">✨ Today's Habits</h2>
-        <span class="section-subtitle sans" id="todayHabitCount">0 of 4 completed</span>
+        <span class="section-subtitle sans" id="todayHabitCount">0 of 3 completed</span>
     </div>
 
     <div class="habits-today-grid">
@@ -1219,39 +1219,6 @@
             <div>
                 <div class="habit-name">Journal</div>
                 <div class="habit-sub sans" id="sub-journal">Reflection & notes</div>
-            </div>
-        </div>
-
-        <div class="habit-card" id="habitCard-strava" style="cursor: default;" title="Auto-synced from Strava dataset">
-            <div class="habit-header">
-                <span class="habit-icon">🏃</span>
-                <div class="habit-check-box" id="check-strava"></div>
-            </div>
-            <div>
-                <div class="habit-name">Strava Exercise</div>
-                <div class="habit-sub sans" id="sub-strava">Workout logged</div>
-            </div>
-        </div>
-
-        <div class="habit-card" id="habitCard-garmin_steps" style="cursor: default;" title="Auto-synced from Garmin Connect">
-            <div class="habit-header">
-                <span class="habit-icon">👟</span>
-                <div class="habit-check-box" id="check-garmin_steps"></div>
-            </div>
-            <div>
-                <div class="habit-name">15k Steps Goal</div>
-                <div class="habit-sub sans" id="sub-garmin_steps">Garmin Auto-Sync</div>
-            </div>
-        </div>
-
-        <div class="habit-card" id="habitCard-garmin_calories" style="cursor: default;" title="Auto-synced from Garmin Connect">
-            <div class="habit-header">
-                <span class="habit-icon">🔥</span>
-                <div class="habit-check-box" id="check-garmin_calories"></div>
-            </div>
-            <div>
-                <div class="habit-name">500 Active Cals</div>
-                <div class="habit-sub sans" id="sub-garmin_calories">Garmin Auto-Sync</div>
             </div>
         </div>
     </div>
@@ -1955,8 +1922,9 @@
     function renderTodayHabits() {
         const todayStr = getTodayStr();
         let doneCount = 0;
+        const editableHabits = HABITS_DEF.filter(h => !isReadOnlyHabit(h.id));
 
-        HABITS_DEF.forEach(h => {
+        editableHabits.forEach(h => {
             const isDone = getHabitStatus(todayStr, h.id);
             const card = document.getElementById(`habitCard-${h.id}`);
             const check = document.getElementById(`check-${h.id}`);
@@ -1966,25 +1934,16 @@
                 doneCount++;
                 if (card) card.classList.add('done');
                 if (check) check.innerHTML = '✓';
-                if (sub) {
-                    if (h.id === 'strava') sub.textContent = 'Workout logged (Strava ✓)';
-                    else if (h.id === 'garmin_steps') sub.textContent = '15k Goal Hit (Garmin ✓)';
-                    else if (h.id === 'garmin_calories') sub.textContent = '500 kcal Hit (Garmin ✓)';
-                    else sub.textContent = 'Completed today ✓';
-                }
+                if (sub) sub.textContent = 'Completed today ✓';
             } else {
                 if (card) card.classList.remove('done');
                 if (check) check.innerHTML = '';
-                if (sub) {
-                    if (h.id === 'strava') sub.textContent = 'Auto-synced from Strava';
-                    else if (h.id === 'garmin_steps') sub.textContent = 'Auto-synced from Garmin';
-                    else if (h.id === 'garmin_calories') sub.textContent = 'Auto-synced from Garmin';
-                    else sub.textContent = h.sub || 'Daily habit';
-                }
+                if (sub) sub.textContent = h.sub || 'Daily habit';
             }
         });
 
-        document.getElementById('todayHabitCount').textContent = `${doneCount} of ${HABITS_DEF.length} completed`;
+        const countEl = document.getElementById('todayHabitCount');
+        if (countEl) countEl.textContent = `${doneCount} of ${editableHabits.length} completed`;
     }
 
     // ── Render Monthly Habit Grid (Unified Non-Slidey Matrix) ────────
