@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
 Fetch Garmin Connect data (steps, sleep, resting HR, activities)
+using cached GARMIN_TOKENS (or fallback to email/password)
 and update private/garmin_data.json + habits in private/todo_data.json.
 """
 
 import os
 import sys
 import json
+import base64
 from datetime import datetime, date
 
 try:
@@ -22,46 +24,39 @@ except ImportError:
 
 EMAIL = os.environ.get("GARMIN_EMAIL")
 PASSWORD = os.environ.get("GARMIN_PASSWORD")
+TOKENS_B64 = os.environ.get("GARMIN_TOKENS")
+
 OUT_FILE = os.path.join(os.path.dirname(__file__), "../private/garmin_data.json")
 TODO_FILE = os.path.join(os.path.dirname(__file__), "../private/todo_data.json")
-TOKEN_DIR = os.path.expanduser("~/.garminconnect")
 
 
 def init_garmin():
-    if not EMAIL or not PASSWORD:
-        print("Error: GARMIN_EMAIL and GARMIN_PASSWORD environment variables are required.")
-        sys.exit(1)
+    garmin = Garmin()
 
-    os.makedirs(TOKEN_DIR, exist_ok=True)
-    token_file = os.path.join(TOKEN_DIR, f"{EMAIL.replace('@', '_at_')}.json")
-
-    garmin = Garmin(EMAIL, PASSWORD)
-
-    # Try loading cached OAuth tokens first
-    if os.path.exists(token_file):
+    # 1. Try restoring from GARMIN_TOKENS environment variable (GitHub Secrets)
+    if TOKENS_B64:
         try:
-            with open(token_file, "r") as f:
-                token_data = json.load(f)
-            garmin.login(token_data)
-            print("Successfully logged into Garmin using cached tokens.")
+            token_json = base64.b64decode(TOKENS_B64.strip()).decode("utf-8")
+            token_data = json.loads(token_json)
+            garmin.garth.load(token_data)
+            print("✅ Successfully restored Garmin session from GARMIN_TOKENS environment secret.")
             return garmin
         except Exception as e:
-            print(f"Cached token login failed ({e}), doing full login...")
+            print(f"Warning: Failed to restore session from GARMIN_TOKENS secret ({e}). Trying fallback...")
 
-    try:
-        garmin.login()
-        # Save tokens for future logins
-        tokens = garmin.garth.dump()
-        with open(token_file, "w") as f:
-            json.dump(tokens, f)
-        print("Successfully logged into Garmin Connect & saved OAuth session.")
-        return garmin
-    except (GarminConnectAuthenticationError, GarminConnectTooManyRequestsError) as err:
-        print(f"Garmin Authentication Error: {err}")
-        sys.exit(1)
-    except Exception as err:
-        print(f"Garmin Login Exception: {err}")
-        sys.exit(1)
+    # 2. Fallback to Email + Password
+    if EMAIL and PASSWORD:
+        try:
+            garmin = Garmin(EMAIL, PASSWORD)
+            garmin.login()
+            print("✅ Successfully logged into Garmin using EMAIL and PASSWORD.")
+            return garmin
+        except Exception as err:
+            print(f"Garmin Email/Password Login Error: {err}")
+            sys.exit(1)
+
+    print("Error: Neither GARMIN_TOKENS nor GARMIN_EMAIL/GARMIN_PASSWORD set.")
+    sys.exit(1)
 
 
 def main():
@@ -71,7 +66,6 @@ def main():
     today_str = date.today().isoformat()
     print(f"Fetching Garmin stats for {today_str}...")
 
-    # Fetch daily stats
     stats = {}
     try:
         user_summary = garmin.get_user_summary(today_str)
@@ -82,7 +76,6 @@ def main():
     except Exception as e:
         print(f"Warning fetching summary: {e}")
 
-    # Fetch sleep data
     try:
         sleep_data = garmin.get_sleep_data(today_str)
         daily_sleep = sleep_data.get("dailySleepDTO", {})
@@ -92,10 +85,9 @@ def main():
     except Exception as e:
         print(f"Warning fetching sleep: {e}")
 
-    # Fetch recent activities
     activities_by_date = {}
     try:
-        recent_activities = garmin.get_activities(0, 20)
+        recent_activities = garmin.get_activities(0, 25)
         for act in recent_activities:
             start_time = act.get("startTimeLocal", "")
             if start_time:
@@ -119,13 +111,11 @@ def main():
         "activities_by_date": activities_by_date
     }
 
-    # Save to garmin_data.json
     os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
     with open(OUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=2)
     print(f"✅ Saved Garmin data → {OUT_FILE}")
 
-    # Auto-fill habits grid in todo_data.json
     if os.path.exists(TODO_FILE):
         try:
             with open(TODO_FILE, "r", encoding="utf-8") as tf:
