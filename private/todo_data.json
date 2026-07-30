@@ -1,12 +1,6 @@
 {
   "todos": [
     {
-      "id": 1785380098495,
-      "text": "🏃 Orca Half Practice Run",
-      "cat": "running",
-      "done": false
-    },
-    {
       "id": 1785380098496,
       "text": "🥑 PCOS High Protein Meal Prep",
       "cat": "health",
