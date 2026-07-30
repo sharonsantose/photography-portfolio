@@ -1052,11 +1052,6 @@
             <div class="garmin-stat-val" id="garminRhr">— <span class="garmin-stat-unit">bpm</span></div>
             <div class="garmin-stat-sub sans" id="garminRhrSub">Garmin Connect</div>
         </div>
-        <div class="garmin-stat-card" id="spotifyStatCard" style="border-color: rgba(30, 215, 96, 0.35); background: rgba(30, 215, 96, 0.04);">
-            <div class="garmin-stat-label sans" style="color: #1ed760;"><i class="fa-brands fa-spotify"></i> 🎵 Spotify Focus BPM</div>
-            <div class="garmin-stat-val" id="spotifyTrackTitle" style="font-size: 16px; font-weight: 500;">Midnight City</div>
-            <div class="garmin-stat-sub sans" id="spotifyTrackSub" style="color: #34d399;">M83 · 105 BPM (Deep Work)</div>
-        </div>
     </div>
 
     <!-- Monthly Daily Steps Graph -->
@@ -1555,7 +1550,15 @@
     // ── Fetch Garmin Health Data (Steps, Sleep, Resting HR) ───────────
     async function loadGarminHealthData() {
         try {
-            const res = await fetch('/private/garmin_data.json?v=' + Date.now(), { cache: 'no-store' });
+            // Force fresh load from server/GitHub on every single site reload
+            const res = await fetch('/private/garmin_data.json?t=' + Date.now(), {
+                cache: 'no-store',
+                headers: {
+                    'Cache-Control': 'no-cache, no-store, must-revalidate',
+                    'Pragma': 'no-cache',
+                    'Expires': '0'
+                }
+            });
             if (res.ok) {
                 const data = await res.json();
                 const stats = data.stats || {};
@@ -1582,8 +1585,11 @@
                     document.getElementById('garminRhr').innerHTML = `${stats.resting_hr} <span class="garmin-stat-unit">bpm</span>`;
                 }
 
-                if (data.today) {
-                    document.getElementById('garminLastSync').textContent = `Updated ${data.today}`;
+                if (data.fetched_at || data.today) {
+                    const syncTimeStr = data.fetched_at 
+                        ? new Date(data.fetched_at).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) 
+                        : data.today;
+                    document.getElementById('garminLastSync').textContent = `Updated ${syncTimeStr}`;
                 }
 
                 // Render Monthly Daily Steps Graph
@@ -1598,28 +1604,6 @@
             }
         } catch (e) {
             console.log('Garmin fetch info:', e);
-        }
-    }
-
-    // ── Fetch Spotify Audio & Cadence Data ─────────────────────────────
-    async function loadSpotifyData() {
-        try {
-            const res = await fetch('/private/spotify_data.json?v=' + Date.now(), { cache: 'no-store' });
-            if (res.ok) {
-                const data = await res.json();
-                const curr = data.currently_playing || {};
-                if (curr.track) {
-                    const titleEl = document.getElementById('spotifyTrackTitle');
-                    const subEl = document.getElementById('spotifyTrackSub');
-                    if (titleEl) titleEl.textContent = curr.track;
-                    if (subEl) {
-                        const bpmText = curr.bpm ? ` · ${curr.bpm} BPM` : '';
-                        subEl.textContent = `${curr.artist || ''}${bpmText} (${curr.context || 'Focus Audio'})`;
-                    }
-                }
-            }
-        } catch (e) {
-            console.log('Spotify fetch info:', e);
         }
     }
 
@@ -2044,7 +2028,6 @@
             renderHabitGrid();
             renderTasks();
             await loadGarminHealthData();
-            await loadSpotifyData();
             setSyncStatus('Synced', 'synced');
         } catch (e) {
             // silent poll fail
@@ -2060,7 +2043,6 @@
 
         await loadStravaActivities();
         await loadGarminHealthData();
-        await loadSpotifyData();
 
         try {
             const data = await readCloudData();
