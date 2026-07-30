@@ -1,9 +1,17 @@
 [
   {
-    "id": 1,
-    "text": "Cross-device sync test",
-    "cat": "life",
+    "id": 1722280000000,
+    "text": "\ud83c\udfc3 Orca Half Practice Run",
+    "cat": "running",
     "priority": "high",
+    "due": "2026-09-05",
+    "done": false
+  },
+  {
+    "id": 1722280000001,
+    "text": "\ud83e\udd51 PCOS High Protein Meal Prep",
+    "cat": "health",
+    "priority": "med",
     "due": null,
     "done": false
   }
