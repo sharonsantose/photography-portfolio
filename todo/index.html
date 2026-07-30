@@ -183,7 +183,65 @@
             color: #555;
         }
 
-        /* ── Daily Habits Grid (Today Cards) ────────────────────── */
+        /* ── Garmin Health Summary Banner ───────────────────────── */
+        .garmin-banner-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .garmin-stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 90px;
+        }
+
+        .garmin-stat-label {
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .garmin-stat-val {
+            font-size: 26px;
+            color: #ffffff;
+            font-weight: 400;
+            margin: 6px 0 4px;
+            line-height: 1;
+        }
+
+        .garmin-stat-unit {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .garmin-stat-sub {
+            font-size: 11px;
+            color: #10b981;
+            font-weight: 500;
+        }
+
+        .garmin-bar-bg {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .garmin-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+            border-radius: 2px;
+            transition: width 0.4s ease;
+        }
         .habits-today-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -606,6 +664,28 @@
             <span style="width:6px; height:6px; border-radius:50%; background:currentColor;"></span>
             <span id="syncStatusText">Synced</span>
         </div>
+    <!-- Garmin Health Summary Banner -->
+    <div class="section-header" style="margin-top: 10px;">
+        <h2 class="section-title">⌚ Garmin Health & Recovery</h2>
+        <span class="section-subtitle sans" id="garminLastSync">Synced from Watch</span>
+    </div>
+
+    <div class="garmin-banner-container" id="garminBanner">
+        <div class="garmin-stat-card">
+            <div class="garmin-stat-label sans">👟 Daily Steps</div>
+            <div class="garmin-stat-val" id="garminSteps">— <span class="garmin-stat-unit">/ 10k</span></div>
+            <div class="garmin-bar-bg"><div class="garmin-bar-fill" id="garminStepsFill" style="width: 0%;"></div></div>
+        </div>
+        <div class="garmin-stat-card">
+            <div class="garmin-stat-label sans">😴 Sleep & Rest</div>
+            <div class="garmin-stat-val" id="garminSleep">— <span class="garmin-stat-unit">hrs</span></div>
+            <div class="garmin-stat-sub sans" id="garminSleepScore">Score: —</div>
+        </div>
+        <div class="garmin-stat-card">
+            <div class="garmin-stat-label sans">❤️ Resting HR</div>
+            <div class="garmin-stat-val" id="garminRhr">— <span class="garmin-stat-unit">bpm</span></div>
+            <div class="garmin-stat-sub sans" id="garminRhrSub">Garmin Connect</div>
+        </div>
     </div>
 
     <!-- Section 1: Today's Habit Cards -->
@@ -805,6 +885,45 @@
             }
         } catch (e) {
             console.log('Strava fetch info:', e);
+        }
+    }
+
+    // ── Fetch Garmin Health Data (Steps, Sleep, Resting HR) ───────────
+    async function loadGarminHealthData() {
+        try {
+            const res = await fetch('/private/garmin_data.json?v=' + Date.now(), { cache: 'no-store' });
+            if (res.ok) {
+                const data = await res.json();
+                const stats = data.stats || {};
+
+                // Steps
+                if (stats.steps !== undefined) {
+                    const stepsFormatted = stats.steps.toLocaleString();
+                    const goalFormatted = stats.step_goal ? (stats.step_goal / 1000).toFixed(0) + 'k' : '10k';
+                    document.getElementById('garminSteps').innerHTML = `${stepsFormatted} <span class="garmin-stat-unit">/ ${goalFormatted}</span>`;
+                    const pct = Math.min(100, Math.round((stats.steps / (stats.step_goal || 10000)) * 100));
+                    document.getElementById('garminStepsFill').style.width = `${pct}%`;
+                }
+
+                // Sleep
+                if (stats.sleep_hours !== undefined) {
+                    document.getElementById('garminSleep').innerHTML = `${stats.sleep_hours} <span class="garmin-stat-unit">hrs</span>`;
+                    if (stats.sleep_score) {
+                        document.getElementById('garminSleepScore').textContent = `Score: ${stats.sleep_score} / 100`;
+                    }
+                }
+
+                // Resting HR
+                if (stats.resting_hr !== undefined) {
+                    document.getElementById('garminRhr').innerHTML = `${stats.resting_hr} <span class="garmin-stat-unit">bpm</span>`;
+                }
+
+                if (data.today) {
+                    document.getElementById('garminLastSync').textContent = `Updated ${data.today}`;
+                }
+            }
+        } catch (e) {
+            console.log('Garmin fetch info:', e);
         }
     }
 
@@ -1073,6 +1192,7 @@
             now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
 
         await loadStravaActivities();
+        await loadGarminHealthData();
 
         try {
             const data = await readCloudData();
