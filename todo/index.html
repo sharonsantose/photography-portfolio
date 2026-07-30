@@ -5,388 +5,205 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do — Sharon Santos</title>
     <meta name="robots" content="noindex, nofollow">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
-
     <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        html {
-            font-family: 'EB Garamond', 'Garamond', 'Georgia', serif;
-            background-color: #000000;
-            color: #ffffff;
+        html, body {
+            font-family: 'EB Garamond', Georgia, serif;
+            background: #0a0a0a;
+            color: #fff;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
         }
 
-        body {
-            min-height: 100vh;
-            padding: 60px 20px 80px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 760px;
-            margin: 0 auto;
-        }
-
-        /* ── Auth Screen ─────────────────────────────────────────── */
+        /* ── Auth ─────────────────────────────────── */
         #authScreen {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: calc(100vh - 120px);
+            min-height: 100vh;
+            padding: 40px 20px;
         }
 
-        .title {
-            font-size: clamp(34px, 5vw, 46px);
+        #authScreen h1 {
+            font-size: 38px;
             font-weight: 400;
-            margin-bottom: 6px;
-            color: #ffffff;
-            text-align: center;
+            margin-bottom: 8px;
         }
 
-        .subtitle {
-            font-size: 18px;
+        #authScreen p {
+            font-size: 17px;
             font-style: italic;
-            color: #a3a3a3;
-            margin-bottom: 32px;
-            text-align: center;
+            color: #666;
+            margin-bottom: 28px;
         }
 
-        .auth-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            width: 100%;
-            max-width: 320px;
-        }
-
-        .password-input {
-            width: 100%;
-            padding: 12px 18px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            color: #ffffff;
+        #passcodeInput {
+            width: 200px;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            color: #fff;
             font-family: inherit;
-            font-size: 18px;
+            font-size: 20px;
             text-align: center;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             outline: none;
-            transition: border-color 0.3s ease;
+            margin-bottom: 12px;
+            transition: border-color 0.2s;
         }
 
-        .password-input:focus { border-color: #ffffff; }
+        #passcodeInput:focus { border-color: rgba(255,255,255,0.5); }
 
-        .unlock-btn {
-            width: 100%;
-            padding: 12px 20px;
-            background: #ffffff;
-            color: #000000;
+        #unlockBtn {
+            width: 200px;
+            padding: 12px;
+            background: #fff;
+            color: #000;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-family: inherit;
             font-size: 16px;
             cursor: pointer;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.2s;
         }
 
-        .unlock-btn:hover { opacity: 0.9; }
+        #unlockBtn:hover { opacity: 0.85; }
 
-        .error-msg {
+        #authError {
             color: #f87171;
             font-size: 14px;
-            display: none;
-            margin-top: 4px;
-        }
-
-        .nav-home {
-            display: inline-block;
-            margin-top: 40px;
-            color: #525252;
-            text-decoration: none;
-            font-size: 14px;
-            border-bottom: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .nav-home:hover {
-            color: #ffffff;
-            border-color: #ffffff;
-        }
-
-        /* ── Main Content ────────────────────────────────────────── */
-        #todoContent {
+            margin-top: 8px;
             display: none;
         }
 
-        /* ── Page Header ─────────────────────────────────────────── */
-        .page-header {
+        /* ── Main ─────────────────────────────────── */
+        #app {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        .header {
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
             margin-bottom: 32px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 18px;
         }
 
-        .page-title {
-            font-size: clamp(28px, 5vw, 40px);
+        .header h1 {
+            font-size: 36px;
             font-weight: 400;
-            color: #ffffff;
         }
 
-        .page-meta {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        #syncStatus {
+            font-family: -apple-system, sans-serif;
             font-size: 12px;
-            color: #525252;
-            letter-spacing: 0.5px;
+            color: #444;
+            transition: color 0.3s;
         }
 
-        /* ── Category Nav ────────────────────────────────────────── */
-        .cat-nav {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin-bottom: 24px;
-        }
+        #syncStatus.saving { color: #60a5fa; }
+        #syncStatus.synced { color: #34d399; }
+        #syncStatus.error  { color: #f87171; }
 
-        .cat-btn {
-            padding: 6px 14px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: transparent;
-            color: #737373;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .cat-btn:hover {
-            border-color: rgba(255, 255, 255, 0.35);
-            color: #ffffff;
-        }
-
-        .cat-btn.active {
-            background: #ffffff;
-            color: #000000;
-            border-color: #ffffff;
-            font-weight: 700;
-        }
-
-        /* ── Add Task Row ─────────────────────────────────────────── */
+        /* ── Input ─────────────────────────────────── */
         .add-row {
             display: flex;
             gap: 8px;
-            margin-bottom: 10px;
-            align-items: stretch;
+            margin-bottom: 28px;
         }
 
-        .add-input {
+        #taskInput {
             flex: 1;
-            padding: 13px 16px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.16);
+            padding: 12px 14px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.14);
             border-radius: 6px;
-            color: #ffffff;
+            color: #fff;
             font-family: inherit;
-            font-size: 17px;
+            font-size: 18px;
             outline: none;
-            transition: border-color 0.25s ease;
+            transition: border-color 0.2s;
         }
 
-        .add-input:focus { border-color: rgba(255, 255, 255, 0.5); }
-        .add-input::placeholder { color: #3a3a3a; }
+        #taskInput:focus { border-color: rgba(255,255,255,0.4); }
+        #taskInput::placeholder { color: #333; }
 
-        .add-btn {
-            padding: 0 22px;
-            background: #ffffff;
-            color: #000000;
+        #addBtn {
+            padding: 0 18px;
+            background: #fff;
+            color: #000;
             border: none;
             border-radius: 6px;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 300;
             cursor: pointer;
-            transition: opacity 0.2s ease;
+            transition: opacity 0.2s;
             line-height: 1;
         }
 
-        .add-btn:hover { opacity: 0.85; }
+        #addBtn:hover { opacity: 0.8; }
 
-        /* ── Task Options Row ─────────────────────────────────────── */
-        .add-options {
+        /* ── Task List ─────────────────────────────── */
+        #taskList {
             display: flex;
-            gap: 8px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .opt-select {
-            padding: 6px 10px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            border-radius: 4px;
-            color: #a3a3a3;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 12px;
-            outline: none;
-            cursor: pointer;
-            transition: border-color 0.2s ease;
-        }
-
-        .opt-select:focus { border-color: rgba(255,255,255,0.4); color: #fff; }
-
-        .opt-date {
-            padding: 6px 10px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            border-radius: 4px;
-            color: #a3a3a3;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 12px;
-            outline: none;
-            cursor: pointer;
-            transition: border-color 0.2s ease;
-            color-scheme: dark;
-        }
-
-        .opt-date:focus { border-color: rgba(255,255,255,0.4); }
-
-        .opt-hint {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 11px;
-            color: #3a3a3a;
-            margin-left: auto;
-        }
-
-        /* ── Filter / Sort Bar ────────────────────────────────────── */
-        .filter-bar {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 14px;
-            flex-wrap: wrap;
-        }
-
-        .filter-label {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #525252;
-        }
-
-        .filter-btns {
-            display: flex;
+            flex-direction: column;
             gap: 4px;
         }
 
-        .filter-btn {
-            padding: 4px 10px;
-            border-radius: 4px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: transparent;
-            color: #737373;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 11px;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-
-        .filter-btn.active {
-            background: rgba(255,255,255,0.08);
-            color: #ffffff;
-            border-color: rgba(255,255,255,0.3);
-        }
-
-        .filter-btn:hover { color: #ffffff; border-color: rgba(255,255,255,0.25); }
-
-        .task-count {
-            margin-left: auto;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 11px;
-            color: #525252;
-        }
-
-        /* ── Task List ────────────────────────────────────────────── */
-        .task-list {
+        .task {
             display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .task-item {
-            display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 12px;
-            padding: 14px 16px;
-            background: rgba(255, 255, 255, 0.025);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 13px 14px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.07);
             border-radius: 6px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
-            animation: slideIn 0.2s ease;
+            transition: background 0.15s, border-color 0.15s;
+            animation: fadeIn 0.18s ease;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-6px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        .task-item:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.045);
-        }
+        .task:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); }
 
-        .task-item.done {
-            opacity: 0.42;
-        }
-
-        /* Priority left-border accent */
-        .task-item[data-priority="high"] { border-left: 3px solid rgba(239, 68, 68, 0.7); }
-        .task-item[data-priority="med"]  { border-left: 3px solid rgba(234, 179, 8, 0.6); }
-        .task-item[data-priority="low"]  { border-left: 3px solid rgba(255,255,255,0.1); }
+        .task.done { opacity: 0.38; }
 
         /* Checkbox */
-        .task-check {
-            width: 19px;
-            height: 19px;
-            border: 1.5px solid rgba(255, 255, 255, 0.35);
+        .check {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid rgba(255,255,255,0.3);
             border-radius: 4px;
             flex-shrink: 0;
-            margin-top: 3px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
+            transition: all 0.15s;
         }
 
-        .task-item.done .task-check {
-            background: #ffffff;
-            border-color: #ffffff;
+        .task.done .check {
+            background: #fff;
+            border-color: #fff;
         }
 
-        .task-item.done .task-check::after {
+        .task.done .check::after {
             content: '';
-            width: 5px;
-            height: 9px;
+            width: 4px;
+            height: 8px;
             border: 2px solid #000;
             border-top: none;
             border-left: none;
@@ -394,329 +211,102 @@
             display: block;
         }
 
-        /* Task body */
-        .task-body {
-            flex: 1;
-            min-width: 0;
-        }
-
+        /* Text */
         .task-text {
-            font-size: 17px;
-            color: #ffffff;
+            flex: 1;
+            font-size: 18px;
+            color: #fff;
             line-height: 1.4;
-            transition: opacity 0.2s ease;
             word-break: break-word;
         }
 
-        .task-item.done .task-text {
+        .task.done .task-text {
             text-decoration: line-through;
-            color: #525252;
+            color: #444;
         }
 
-        .task-meta-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 5px;
-            flex-wrap: wrap;
-        }
-
-        .task-cat-tag {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 2px 7px;
-            border-radius: 3px;
-        }
-
-        /* Category tag colors */
-        .tag-running   { background: rgba(59,130,246,0.18); color: #60a5fa; }
-        .tag-life      { background: rgba(168,85,247,0.18); color: #c084fc; }
-        .tag-work      { background: rgba(249,115,22,0.18); color: #fb923c; }
-        .tag-health    { background: rgba(16,185,129,0.18); color: #34d399; }
-        .tag-errands   { background: rgba(234,179,8,0.18);  color: #fde047; }
-        .tag-any       { background: rgba(255,255,255,0.07); color: #737373; }
-
-        .task-priority-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .dot-high { background: #ef4444; }
-        .dot-med  { background: #eab308; }
-        .dot-low  { background: #525252; }
-
-        .task-due {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 11px;
-            color: #525252;
-        }
-
-        .task-due.overdue { color: #f87171; }
-        .task-due.due-soon { color: #fde047; }
-
-        /* Delete button */
-        .task-delete {
+        /* Delete */
+        .del {
             background: none;
             border: none;
-            color: #2e2e2e;
+            color: #1e1e1e;
             font-size: 18px;
             cursor: pointer;
             padding: 0 2px;
             line-height: 1;
-            transition: color 0.2s ease;
+            font-family: -apple-system, sans-serif;
+            transition: color 0.2s;
             flex-shrink: 0;
-            margin-top: 1px;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
-        .task-item:hover .task-delete { color: #525252; }
-        .task-delete:hover { color: #f87171 !important; }
+        .task:hover .del { color: #444; }
+        .del:hover { color: #f87171 !important; }
 
-        /* ── Empty State ─────────────────────────────────────────── */
-        .empty-state {
+        /* ── Empty ─────────────────────────────────── */
+        #emptyState {
             text-align: center;
-            padding: 56px 20px;
-            border: 1px dashed rgba(255,255,255,0.08);
-            border-radius: 8px;
-        }
-
-        .empty-icon {
-            font-size: 36px;
-            margin-bottom: 14px;
-            display: block;
-            opacity: 0.4;
-        }
-
-        .empty-text {
+            padding: 60px 20px;
+            color: #333;
             font-size: 18px;
             font-style: italic;
-            color: #525252;
+            display: none;
         }
 
-        /* ── Progress Summary Bar ────────────────────────────────── */
-        .progress-summary {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 18px;
-            background: rgba(255,255,255,0.025);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 6px;
-            margin-bottom: 20px;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        .prog-label {
-            font-size: 12px;
-            color: #525252;
-            white-space: nowrap;
-        }
-
-        .prog-bar-wrap {
-            flex: 1;
-            height: 3px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .prog-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0.5) 100%);
-            border-radius: 2px;
-            transition: width 0.4s ease;
-        }
-
-        .prog-pct {
-            font-size: 12px;
-            color: #ffffff;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        /* ── Section Heading ─────────────────────────────────────── */
-        .section-heading {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            color: #3a3a3a;
-            margin: 22px 0 8px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* ── Footer nav ──────────────────────────────────────────── */
-        .footer-nav {
+        /* ── Footer ────────────────────────────────── */
+        .footer {
+            margin-top: 48px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
             display: flex;
             gap: 24px;
             justify-content: center;
-            margin-top: 56px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255,255,255,0.07);
         }
 
-        .footer-nav a {
+        .footer a {
             font-size: 14px;
-            color: #525252;
+            color: #444;
             text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: all 0.3s ease;
+            transition: color 0.2s;
         }
 
-        .footer-nav a:hover {
-            color: #ffffff;
-            border-color: #ffffff;
-        }
-
-        /* ── Clear done button ───────────────────────────────────── */
-        .clear-done-btn {
-            background: none;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 4px;
-            color: #525252;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 11px;
-            padding: 4px 10px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-left: auto;
-        }
-
-        .clear-done-btn:hover {
-            color: #f87171;
-            border-color: rgba(248,113,113,0.4);
-        }
-
-        @media (max-width: 540px) {
-            .add-options { gap: 6px; }
-            .opt-hint { display: none; }
-            body { padding: 40px 16px 60px; }
-        }
+        .footer a:hover { color: #fff; }
     </style>
 </head>
 <body>
 
-<!-- ── Auth Screen ──────────────────────────────────────────────── -->
+<!-- Auth -->
 <div id="authScreen">
-    <h1 class="title">To-Do</h1>
-    <p class="subtitle">Enter passcode to unlock</p>
-
-    <form class="auth-box" id="authForm">
-        <input
-            type="password"
-            id="passwordInput"
-            class="password-input"
-            placeholder="••••"
-            maxlength="8"
-            required
-            autofocus
-            autocomplete="off"
-        >
-        <button type="submit" class="unlock-btn">Unlock</button>
-        <div class="error-msg" id="errorMsg">Incorrect passcode. Try again.</div>
-    </form>
-
-    <a href="/" class="nav-home">← Back to sharonsantos.me</a>
+    <h1>To-Do</h1>
+    <p>Enter passcode to continue</p>
+    <input type="password" id="passcodeInput" placeholder="••••" maxlength="8" autocomplete="off">
+    <button id="unlockBtn">Unlock</button>
+    <div id="authError">Wrong passcode.</div>
 </div>
 
-<!-- ── Main To-Do Content ───────────────────────────────────────── -->
-<div id="todoContent">
-    <div class="container">
+<!-- App -->
+<div id="app">
+    <div class="header">
+        <h1>To-Do</h1>
+        <span id="syncStatus">—</span>
+    </div>
 
-        <!-- Page header -->
-        <div class="page-header">
-            <div>
-                <h1 class="page-title">To-Do</h1>
-                <span class="page-meta" id="headerDate"></span>
-            </div>
-            <div id="cloudStatus" onclick="manualSync()" style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: #10b981; display: flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); padding: 5px 12px; border-radius: 20px; cursor: pointer; transition: all 0.2s ease;" title="Tap to sync with cloud now">
-                <span style="width: 6px; height: 6px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
-                <span id="cloudStatusText">Cloud Synced</span>
-                <span style="font-size: 10px; opacity: 0.6;">(Tap to sync)</span>
-            </div>
-        </div>
+    <div class="add-row">
+        <input type="text" id="taskInput" placeholder="Add a task…" maxlength="300" autocomplete="off">
+        <button id="addBtn">+</button>
+    </div>
 
-        <!-- Category filter pills -->
-        <div class="cat-nav" id="catNav">
-            <button class="cat-btn active" data-cat="all" onclick="setCat('all', this)">All</button>
-            <button class="cat-btn" data-cat="running"  onclick="setCat('running', this)">🏃 Running</button>
-            <button class="cat-btn" data-cat="health"   onclick="setCat('health', this)">🥑 Health</button>
-            <button class="cat-btn" data-cat="work"     onclick="setCat('work', this)">💼 Work</button>
-            <button class="cat-btn" data-cat="life"     onclick="setCat('life', this)">✨ Life</button>
-            <button class="cat-btn" data-cat="errands"  onclick="setCat('errands', this)">📦 Errands</button>
-        </div>
+    <div id="taskList"></div>
+    <div id="emptyState">Nothing here yet.</div>
 
-        <!-- Add task -->
-        <div class="add-row">
-            <input
-                type="text"
-                id="addInput"
-                class="add-input"
-                placeholder="Add a task…"
-                maxlength="240"
-            >
-            <button class="add-btn" id="addBtn" title="Add task">+</button>
-        </div>
-        <div class="add-options">
-            <select id="newCat" class="opt-select">
-                <option value="any">No category</option>
-                <option value="running">🏃 Running</option>
-                <option value="health">🥑 Health</option>
-                <option value="work">💼 Work</option>
-                <option value="life">✨ Life</option>
-                <option value="errands">📦 Errands</option>
-            </select>
-            <select id="newPriority" class="opt-select">
-                <option value="none">No priority</option>
-                <option value="high">🔴 High</option>
-                <option value="med">🟡 Medium</option>
-                <option value="low">⬜ Low</option>
-            </select>
-            <input type="date" id="newDue" class="opt-date" title="Due date">
-            <span class="opt-hint">↵ Enter to add</span>
-        </div>
-
-        <!-- Progress bar -->
-        <div class="progress-summary" id="progressSummary">
-            <span class="prog-label" id="progLabel">0 / 0 done</span>
-            <div class="prog-bar-wrap">
-                <div class="prog-bar-fill" id="progFill" style="width:0%"></div>
-            </div>
-            <span class="prog-pct" id="progPct">—</span>
-        </div>
-
-        <!-- Filter bar -->
-        <div class="filter-bar">
-            <span class="filter-label">Show</span>
-            <div class="filter-btns">
-                <button class="filter-btn active" data-filter="all"    onclick="setFilter('all', this)">All</button>
-                <button class="filter-btn"         data-filter="active" onclick="setFilter('active', this)">Active</button>
-                <button class="filter-btn"         data-filter="done"   onclick="setFilter('done', this)">Done</button>
-            </div>
-            <span class="task-count" id="taskCount"></span>
-            <button class="clear-done-btn" id="clearDoneBtn" onclick="clearDone()">Clear done</button>
-        </div>
-
-        <!-- Task list -->
-        <div class="task-list" id="taskList"></div>
-
-        <!-- Footer navigation -->
-        <div class="footer-nav">
-            <a href="/private">🐋 Training Plan</a>
-            <a href="/">← Home</a>
-        </div>
+    <div class="footer">
+        <a href="/private">🐋 Training</a>
+        <a href="/">← Home</a>
     </div>
 </div>
 
 <script>
-    // ── Auth ───────────────────────────────────────────────────────
-    const PASS_HASH = "e4782cfc2b471cd4e24686f692188416d8a313cccb62679dc08c348447c2507b";
+    // ── Auth ──────────────────────────────────────────────────────────
+    const HASH = "e4782cfc2b471cd4e24686f692188416d8a313cccb62679dc08c348447c2507b";
 
     async function sha256(str) {
         const buf = new TextEncoder().encode(str);
@@ -724,88 +314,141 @@
         return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
     }
 
-    document.getElementById('authForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const val = document.getElementById('passwordInput').value.trim();
-        const hash = await sha256(val);
-        if (hash === PASS_HASH) {
+    async function tryUnlock() {
+        const val = document.getElementById('passcodeInput').value.trim();
+        if (!val) return;
+        const h = await sha256(val);
+        if (h === HASH) {
             document.getElementById('authScreen').style.display = 'none';
-            document.getElementById('todoContent').style.display = 'block';
-            initTodo();
+            document.getElementById('app').style.display = 'block';
+            init();
         } else {
-            document.getElementById('errorMsg').style.display = 'block';
+            document.getElementById('authError').style.display = 'block';
         }
+    }
+
+    document.getElementById('unlockBtn').addEventListener('click', tryUnlock);
+    document.getElementById('passcodeInput').addEventListener('keydown', e => {
+        if (e.key === 'Enter') tryUnlock();
     });
 
-    // ── Cloud Sync Configuration ──────────────────────────────────
+    // ── Cloud Config ──────────────────────────────────────────────────
     const GH_TOKEN = atob("Z2hwX3pITXdXQ0VHb0lmZXNJNHJMSEU4c2I5UEZ4eUtDYzFCV0VhTA==");
-    const GH_REPO  = "sharonsantose/photography-portfolio";
-    const GH_PATH  = "private/todo_data.json";
-    const GH_API   = `https://api.github.com/repos/${GH_REPO}/contents/${GH_PATH}`;
+    const GH_API   = "https://api.github.com/repos/sharonsantose/photography-portfolio/contents/private/todo_data.json";
 
-    let currentFileSha = null;
+    let fileSha   = null;
     let isSyncing = false;
 
-    // ── State ──────────────────────────────────────────────────────
-    let activeCat    = 'all';
-    let activeFilter = 'all';
-
-    const STORAGE_KEY = 'sharon_todo_v2';
-
-    function load() {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-    }
-
-    function save(todos, syncCloud = true) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
-        render();
-        if (syncCloud) {
-            pushToCloud(todos);
-        }
-    }
-
-    function updateCloudBadge(text, color = '#10b981') {
-        const badge = document.getElementById('cloudStatus');
-        const badgeText = document.getElementById('cloudStatusText');
-        if (badgeText) badgeText.textContent = text;
-        if (badge) {
-            badge.style.borderColor = color;
-            const dot = badge.querySelector('span');
-            if (dot) dot.style.background = color;
-        }
-    }
-
-    // ── Unicode Base64 Helper (Safari & Emojis Safe) ───────────────
-    function b64DecodeUnicode(str) {
-        const binaryStr = atob(str.replace(/\s/g, ''));
-        const len = binaryStr.length;
-        const bytes = new Uint8Array(len);
-        for (let i = 0; i < len; i++) {
-            bytes[i] = binaryStr.charCodeAt(i);
-        }
+    // ── Base64 UTF-8 helpers (Safari-safe) ───────────────────────────
+    function b64Decode(str) {
+        const bin = atob(str.replace(/\s/g, ''));
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
         return new TextDecoder('utf-8').decode(bytes);
     }
 
-    function b64EncodeUnicode(str) {
+    function b64Encode(str) {
         const bytes = new TextEncoder().encode(str);
-        let binaryStr = '';
-        const len = bytes.length;
-        for (let i = 0; i < len; i++) {
-            binaryStr += String.fromCharCode(bytes[i]);
+        let bin = '';
+        for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+        return btoa(bin);
+    }
+
+    // ── Sync status indicator ─────────────────────────────────────────
+    function setStatus(text, cls) {
+        const el = document.getElementById('syncStatus');
+        el.textContent = text;
+        el.className = cls || '';
+    }
+
+    // ── State ─────────────────────────────────────────────────────────
+    const KEY = 'sharon_todo_v3';
+
+    function loadLocal() {
+        try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; }
+    }
+
+    function saveLocal(todos) {
+        localStorage.setItem(KEY, JSON.stringify(todos));
+    }
+
+    // ── Render ────────────────────────────────────────────────────────
+    function render() {
+        const todos = loadLocal();
+        const list  = document.getElementById('taskList');
+        const empty = document.getElementById('emptyState');
+
+        list.innerHTML = '';
+
+        if (todos.length === 0) {
+            empty.style.display = 'block';
+            return;
         }
-        return btoa(binaryStr);
+        empty.style.display = 'none';
+
+        todos.forEach(todo => {
+            const div = document.createElement('div');
+            div.className = 'task' + (todo.done ? ' done' : '');
+
+            const check = document.createElement('div');
+            check.className = 'check';
+
+            const text = document.createElement('span');
+            text.className = 'task-text';
+            text.textContent = todo.text;
+
+            const del = document.createElement('button');
+            del.className = 'del';
+            del.textContent = '×';
+            del.title = 'Delete';
+            del.addEventListener('click', e => {
+                e.stopPropagation();
+                deleteTask(todo.id);
+            });
+
+            div.addEventListener('click', () => toggleTask(todo.id));
+
+            div.appendChild(check);
+            div.appendChild(text);
+            div.appendChild(del);
+            list.appendChild(div);
+        });
     }
 
-    function manualSync() {
-        pullFromCloud(true);
+    // ── Add ───────────────────────────────────────────────────────────
+    function addTask() {
+        const input = document.getElementById('taskInput');
+        const text  = input.value.trim();
+        if (!text) return;
+
+        const todos = loadLocal();
+        todos.unshift({ id: Date.now(), text, done: false });
+        saveLocal(todos);
+        render();
+        push(todos);
+        input.value = '';
     }
 
-    // ── Cloud Read (Fetch from GitHub) ─────────────────────────────
-    async function pullFromCloud(isManual = false) {
+    // ── Toggle ────────────────────────────────────────────────────────
+    function toggleTask(id) {
+        const todos = loadLocal().map(t => t.id === id ? { ...t, done: !t.done } : t);
+        saveLocal(todos);
+        render();
+        push(todos);
+    }
+
+    // ── Delete ────────────────────────────────────────────────────────
+    function deleteTask(id) {
+        const todos = loadLocal().filter(t => t.id !== id);
+        saveLocal(todos);
+        render();
+        push(todos);
+    }
+
+    // ── Pull from GitHub ──────────────────────────────────────────────
+    async function pull() {
         if (isSyncing) return;
         isSyncing = true;
-        updateCloudBadge(isManual ? 'Syncing Now…' : 'Syncing…', '#eab308');
-
         try {
             const resp = await fetch(GH_API + '?v=' + Date.now(), {
                 headers: {
@@ -814,63 +457,44 @@
                 },
                 cache: 'no-store'
             });
-
-            if (!resp.ok) throw new Error('HTTP ' + resp.status);
-
-            const fileData = await resp.json();
-            currentFileSha = fileData.sha;
-
-            const jsonStr = b64DecodeUnicode(fileData.content);
-            const cloudTodos = JSON.parse(jsonStr);
-
-            if (Array.isArray(cloudTodos)) {
-                // Cloud is the single source of truth across devices
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudTodos));
+            if (!resp.ok) throw new Error(resp.status);
+            const data   = await resp.json();
+            fileSha      = data.sha;
+            const cloud  = JSON.parse(b64Decode(data.content));
+            if (Array.isArray(cloud)) {
+                saveLocal(cloud);
                 render();
-                updateCloudBadge('Synced across devices', '#10b981');
+                setStatus('synced', 'synced');
             }
-        } catch (err) {
-            console.log('Cloud pull fallback to local:', err);
-            updateCloudBadge('Saved locally', '#737373');
+        } catch (e) {
+            setStatus('offline', 'error');
         } finally {
             isSyncing = false;
         }
     }
 
-    // ── Cloud Write (Push to GitHub) ───────────────────────────────
-    async function pushToCloud(todos) {
+    // ── Push to GitHub ────────────────────────────────────────────────
+    async function push(todos) {
         if (isSyncing) return;
         isSyncing = true;
-        updateCloudBadge('Saving to Cloud…', '#38bdf8');
-
+        setStatus('saving…', 'saving');
         try {
-            // First get fresh SHA if missing
-            if (!currentFileSha) {
-                try {
-                    const getResp = await fetch(GH_API + '?v=' + Date.now(), {
-                        headers: {
-                            'Authorization': 'token ' + GH_TOKEN,
-                            'Accept': 'application/vnd.github.v3+json'
-                        },
-                        cache: 'no-store'
-                    });
-                    if (getResp.ok) {
-                        const getJson = await getResp.json();
-                        currentFileSha = getJson.sha;
-                    }
-                } catch (e) {}
+            // Fetch fresh SHA if we don't have one
+            if (!fileSha) {
+                const r = await fetch(GH_API + '?v=' + Date.now(), {
+                    headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' },
+                    cache: 'no-store'
+                });
+                if (r.ok) { const d = await r.json(); fileSha = d.sha; }
             }
 
-            const jsonStr = JSON.stringify(todos, null, 2);
-            const b64Str = b64EncodeUnicode(jsonStr);
-
             const payload = {
-                message: 'sync to-do list from device',
-                content: b64Str
+                message: 'sync todos',
+                content: b64Encode(JSON.stringify(todos, null, 2))
             };
-            if (currentFileSha) payload.sha = currentFileSha;
+            if (fileSha) payload.sha = fileSha;
 
-            let putResp = await fetch(GH_API, {
+            let resp = await fetch(GH_API, {
                 method: 'PUT',
                 headers: {
                     'Authorization': 'token ' + GH_TOKEN,
@@ -880,229 +504,55 @@
                 body: JSON.stringify(payload)
             });
 
-            // Handle 409 Conflict (SHA mismatch) by re-fetching SHA and retrying once
-            if (putResp.status === 409) {
-                console.log('Conflict 409, fetching fresh SHA and retrying...');
-                const getResp = await fetch(GH_API + '?v=' + Date.now(), {
-                    headers: {
-                        'Authorization': 'token ' + GH_TOKEN,
-                        'Accept': 'application/vnd.github.v3+json'
-                    },
+            // Retry once on 409 conflict
+            if (resp.status === 409) {
+                const r2 = await fetch(GH_API + '?v=' + Date.now(), {
+                    headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' },
                     cache: 'no-store'
                 });
-                if (getResp.ok) {
-                    const getJson = await getResp.json();
-                    currentFileSha = getJson.sha;
-                    payload.sha = currentFileSha;
-                    putResp = await fetch(GH_API, {
-                        method: 'PUT',
-                        headers: {
-                            'Authorization': 'token ' + GH_TOKEN,
-                            'Accept': 'application/vnd.github.v3+json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(payload)
-                    });
-                }
+                if (r2.ok) { const d2 = await r2.json(); fileSha = d2.sha; payload.sha = fileSha; }
+                resp = await fetch(GH_API, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': 'token ' + GH_TOKEN,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
             }
 
-            if (putResp.ok) {
-                const resJson = await putResp.json();
-                currentFileSha = resJson.content ? resJson.content.sha : currentFileSha;
-                updateCloudBadge('Synced across devices', '#10b981');
+            if (resp.ok) {
+                const res = await resp.json();
+                fileSha   = res.content ? res.content.sha : fileSha;
+                setStatus('synced', 'synced');
             } else {
-                throw new Error('PUT HTTP ' + putResp.status);
+                throw new Error(resp.status);
             }
-        } catch (err) {
-            console.log('Cloud push error:', err);
-            updateCloudBadge('Saved locally', '#eab308');
+        } catch (e) {
+            setStatus('error saving', 'error');
         } finally {
             isSyncing = false;
         }
     }
 
-    // ── Init ───────────────────────────────────────────────────────
-    function initTodo() {
-        // Header date
-        const now = new Date();
-        document.getElementById('headerDate').textContent =
-            now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    // ── Init ──────────────────────────────────────────────────────────
+    function init() {
+        render();
+        pull();
 
-        // Wire up add
         document.getElementById('addBtn').addEventListener('click', addTask);
-        document.getElementById('addInput').addEventListener('keydown', e => {
+        document.getElementById('taskInput').addEventListener('keydown', e => {
             if (e.key === 'Enter') { e.preventDefault(); addTask(); }
         });
 
-        render();
+        // Auto-sync every 5 seconds
+        setInterval(pull, 5000);
 
-        // Immediate Cloud Sync pull
-        pullFromCloud();
-
-        // Auto Sync when switching back to tab / unlocking phone screen / focusing page
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) pullFromCloud();
-        });
-        window.addEventListener('focus', () => pullFromCloud());
-        window.addEventListener('pageshow', () => pullFromCloud());
-
-        // Fast background polling every 3 seconds for near-instant automatic sync
-        setInterval(() => pullFromCloud(), 3000);
-    }
-
-    // ── Category filter ────────────────────────────────────────────
-    function setCat(cat, btn) {
-        activeCat = cat;
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        render();
-    }
-
-    // ── Show filter ────────────────────────────────────────────────
-    function setFilter(f, btn) {
-        activeFilter = f;
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        render();
-    }
-
-    // ── Add task ───────────────────────────────────────────────────
-    function addTask() {
-        const input = document.getElementById('addInput');
-        const text = input.value.trim();
-        if (!text) { input.focus(); return; }
-
-        const cat      = document.getElementById('newCat').value;
-        const priority = document.getElementById('newPriority').value;
-        const due      = document.getElementById('newDue').value;
-
-        const todos = load();
-        todos.unshift({
-            id:       Date.now(),
-            text,
-            cat,
-            priority: priority === 'none' ? 'low' : priority,
-            due:      due || null,
-            done:     false,
-            created:  Date.now()
-        });
-        save(todos);
-        input.value = '';
-        document.getElementById('newDue').value = '';
-        render();
-        input.focus();
-    }
-
-    // ── Toggle done ────────────────────────────────────────────────
-    function toggleDone(id) {
-        const todos = load().map(t => t.id === id ? { ...t, done: !t.done } : t);
-        save(todos);
-        render();
-    }
-
-    // ── Delete ─────────────────────────────────────────────────────
-    function deleteTask(id) {
-        save(load().filter(t => t.id !== id));
-        render();
-    }
-
-    // ── Clear done ─────────────────────────────────────────────────
-    function clearDone() {
-        if (!confirm('Remove all completed tasks?')) return;
-        save(load().filter(t => !t.done));
-        render();
-    }
-
-    // ── Render ─────────────────────────────────────────────────────
-    function render() {
-        let todos = load();
-
-        // Progress (all, regardless of filter)
-        const total = todos.length;
-        const doneCount = todos.filter(t => t.done).length;
-        const pct = total ? Math.round((doneCount / total) * 100) : 0;
-        document.getElementById('progLabel').textContent = `${doneCount} / ${total} done`;
-        document.getElementById('progFill').style.width  = pct + '%';
-        document.getElementById('progPct').textContent   = total ? pct + '%' : '—';
-
-        // Filter by category
-        if (activeCat !== 'all') {
-            todos = todos.filter(t => t.cat === activeCat);
-        }
-
-        // Filter by done/active
-        if (activeFilter === 'active') todos = todos.filter(t => !t.done);
-        if (activeFilter === 'done')   todos = todos.filter(t => t.done);
-
-        // Sort: active first, then by priority, then done
-        const priOrder = { high: 0, med: 1, low: 2 };
-        todos.sort((a, b) => {
-            if (a.done !== b.done) return a.done ? 1 : -1;
-            return (priOrder[a.priority] ?? 2) - (priOrder[b.priority] ?? 2);
-        });
-
-        const list = document.getElementById('taskList');
-        document.getElementById('taskCount').textContent = `${todos.length} task${todos.length !== 1 ? 's' : ''}`;
-
-        if (!todos.length) {
-            list.innerHTML = `
-                <div class="empty-state">
-                    <span class="empty-icon">${activeFilter === 'done' ? '🎉' : '☁️'}</span>
-                    <div class="empty-text">${
-                        activeFilter === 'done' ? 'Nothing completed yet.' :
-                        activeFilter === 'active' ? 'All clear — nothing left to do!' :
-                        activeCat !== 'all' ? 'No tasks in this category yet.' :
-                        'Nothing here yet — add a task above.'
-                    }</div>
-                </div>`;
-            return;
-        }
-
-        list.innerHTML = todos.map(t => {
-            const catClass = `tag-${t.cat}`;
-            const catLabel = {
-                running: '🏃 Running', health: '🥑 Health', work: '💼 Work',
-                life: '✨ Life', errands: '📦 Errands', any: ''
-            }[t.cat] || '';
-
-            const priClass = `dot-${t.priority}`;
-
-            let dueHtml = '';
-            if (t.due) {
-                const dueDate = new Date(t.due + 'T00:00:00');
-                const today   = new Date(); today.setHours(0,0,0,0);
-                const diffMs  = dueDate - today;
-                const diffD   = Math.round(diffMs / 86400000);
-                let dueCls = 'task-due';
-                let dueStr = dueDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-                if (!t.done && diffD < 0)    { dueCls += ' overdue';  dueStr = 'Overdue · ' + dueStr; }
-                else if (!t.done && diffD === 0) { dueCls += ' due-soon'; dueStr = 'Today'; }
-                else if (!t.done && diffD === 1) { dueCls += ' due-soon'; dueStr = 'Tomorrow'; }
-                dueHtml = `<span class="${dueCls}">📅 ${dueStr}</span>`;
-            }
-
-            return `
-            <div
-                class="task-item${t.done ? ' done' : ''}"
-                data-priority="${t.priority}"
-                id="task-${t.id}"
-            >
-                <div class="task-check" onclick="toggleDone(${t.id})"></div>
-                <div class="task-body">
-                    <div class="task-text">${escHtml(t.text)}</div>
-                    <div class="task-meta-row">
-                        ${t.priority !== 'low' ? `<span class="task-priority-dot ${priClass}"></span>` : ''}
-                        ${catLabel ? `<span class="task-cat-tag ${catClass}">${catLabel}</span>` : ''}
-                        ${dueHtml}
-                    </div>
-                </div>
-                <button class="task-delete" onclick="event.stopPropagation(); deleteTask(${t.id})" title="Delete">×</button>
-            </div>`;
-        }).join('');
-    }
-
-    function escHtml(s) {
-        return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        // Sync when tab becomes visible or window gets focus
+        document.addEventListener('visibilitychange', () => { if (!document.hidden) pull(); });
+        window.addEventListener('focus', pull);
+        window.addEventListener('pageshow', pull);
     }
 </script>
 </body>
