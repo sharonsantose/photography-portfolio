@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "text": "Cross-device sync test",
+    "cat": "life",
+    "priority": "high",
+    "due": null,
+    "done": false
+  }
+]
