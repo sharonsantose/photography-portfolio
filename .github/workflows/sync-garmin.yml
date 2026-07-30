@@ -2,10 +2,9 @@
                                                                                
     on:                                                                        
       schedule:                                                                
-        # Run twice daily: 9 AM PT (16:00 UTC) and 8 PM PT (03:00 UTC)         
         - cron: '0 16 * * *'                                                   
         - cron: '0 3 * * *'                                                    
-      workflow_dispatch:  # Allow manual trigger from GitHub Actions tab       
+      workflow_dispatch:                                                       
                                                                                
     permissions:                                                               
       contents: write                                                          
@@ -30,7 +29,7 @@
                                                                                
           - name: Fetch Garmin data                                            
             env:                                                               
-              GARMIN_EMAIL:    ${{ secrets.GARMIN_EMAIL }}                     
+              GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}                        
               GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}                  
             run: python scripts/fetch_garmin.py                                
                                                                                
@@ -42,5 +41,4 @@
               git add private/garmin_data.json private/todo_data.json          
               git diff --cached --quiet || git commit -m "chore: sync Garmin   
   health & workouts [skip ci]"                                                 
-              git push                                                         
-                       
+              git push 
