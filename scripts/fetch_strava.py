@@ -166,6 +166,7 @@ def build_summary(act):
         "hr_max":  int(hr_max) if hr_max else None,
         "elev_ft": int(elev * 3.28084) if elev else 0,
         "strava_id": act.get("id"),
+        "map_polyline": act.get("map", {}).get("summary_polyline"),
     }
 
 def group_by_date(activities):
