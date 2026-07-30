@@ -228,6 +228,56 @@
             font-weight: 500;
         }
 
+        /* ── Outdoor Weather & Golden Hour Banner ───────────────── */
+        .weather-golden-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin: 16px 0 24px;
+        }
+
+        .weather-stat-box, .golden-stat-box {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .weather-icon {
+            font-size: 28px;
+        }
+
+        .weather-temp-val, .golden-time-val {
+            font-size: 18px;
+            font-weight: 500;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .golden-time-val {
+            color: #fbbf24;
+        }
+
+        .weather-sub {
+            font-size: 11px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        .habit-streak-pill {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: 12px;
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            margin-left: 6px;
+        }
+
         .garmin-bar-bg {
             height: 4px;
             background: rgba(255, 255, 255, 0.08);
@@ -1063,6 +1113,24 @@
         </div>
     </div>
 
+    <!-- Outdoor Running Weather & Golden Hour Bar -->
+    <div class="weather-golden-container" id="weatherGoldenBanner">
+        <div class="weather-stat-box">
+            <span class="weather-icon" id="weatherIcon">🌤️</span>
+            <div>
+                <div class="weather-temp-val" id="weatherTemp">—°F</div>
+                <div class="weather-sub sans" id="weatherDesc">Outdoor Running Weather</div>
+            </div>
+        </div>
+        <div class="golden-stat-box">
+            <span class="weather-icon">📸</span>
+            <div>
+                <div class="golden-time-val" id="goldenHourTime">Golden Hour: —</div>
+                <div class="weather-sub sans" id="goldenHourSub">Sunset & Photography Window</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Garmin Health Summary Banner -->
     <div class="section-header" style="margin-top: 10px;">
         <h2 class="section-title">⌚ Garmin Health & Recovery</h2>
@@ -1070,6 +1138,11 @@
     </div>
 
     <div class="garmin-banner-container" id="garminBanner">
+        <div class="garmin-stat-card" style="border-color: rgba(168, 85, 247, 0.35); background: rgba(168, 85, 247, 0.04);">
+            <div class="garmin-stat-label sans" style="color: #c084fc;">⚡ Training Readiness</div>
+            <div class="garmin-stat-val" id="readinessVal">— <span class="garmin-stat-unit">%</span></div>
+            <div class="garmin-stat-sub sans" id="readinessSub" style="color: #e9d5ff;">Analyzing recovery…</div>
+        </div>
         <div class="garmin-stat-card">
             <div class="garmin-stat-label sans">👟 Daily Steps</div>
             <div class="garmin-stat-val" id="garminSteps">— <span class="garmin-stat-unit">/ 10k</span></div>
@@ -1777,6 +1850,32 @@
                     document.getElementById('garminRhr').innerHTML = `${stats.resting_hr} <span class="garmin-stat-unit">bpm</span>`;
                 }
 
+                // Calculate Training & Energy Readiness Score (Garmin RHR & Sleep Driven)
+                let readinessScore = 85;
+                if (stats.sleep_score || stats.resting_hr) {
+                    const slp = stats.sleep_score || 80;
+                    const rhr = stats.resting_hr || 46;
+                    const rhrFactor = Math.max(0, Math.min(100, 100 - (rhr - 44) * 3));
+                    readinessScore = Math.round((slp * 0.6) + (rhrFactor * 0.4));
+                }
+
+                const readValEl = document.getElementById('readinessVal');
+                const readSubEl = document.getElementById('readinessSub');
+                if (readValEl) readValEl.innerHTML = `${readinessScore} <span class="garmin-stat-unit">%</span>`;
+
+                if (readSubEl) {
+                    if (readinessScore >= 85) {
+                        readSubEl.textContent = '🔥 Peak Recovery — Optimal for Hard Work & Intervals!';
+                        readSubEl.style.color = '#34d399';
+                    } else if (readinessScore >= 70) {
+                        readSubEl.textContent = '🟢 Good Energy — Great for Steady Work & Zone 2 Run.';
+                        readSubEl.style.color = '#60a5fa';
+                    } else {
+                        readSubEl.textContent = '🟡 Low Energy — Prioritize Rest, Hydration & Easy Tasks.';
+                        readSubEl.style.color = '#fbbf24';
+                    }
+                }
+
                 // Populate garminStepGoalDates and garminCalorieGoalDates
                 garminStepGoalDates.clear();
                 garminCalorieGoalDates.clear();
@@ -1817,6 +1916,68 @@
         } catch (e) {
             console.log('Garmin fetch info:', e);
         }
+    }
+
+    // ── Fetch Outdoor Weather & Golden Hour Sunset Timestamps ──────────
+    async function loadOutdoorWeatherAndGoldenHour() {
+        try {
+            const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.7749&longitude=-122.4194&current_weather=true&daily=sunrise,sunset&temperature_unit=fahrenheit&timezone=auto');
+            if (res.ok) {
+                const data = await res.json();
+                const curr = data.current_weather || {};
+                const daily = data.daily || {};
+
+                if (curr.temperature !== undefined) {
+                    document.getElementById('weatherTemp').textContent = `${Math.round(curr.temperature)}°F`;
+                    const wCode = curr.weathercode || 0;
+                    let icon = '🌤️';
+                    let desc = 'Clear & Great for Outdoor Running';
+                    if (wCode === 0) { icon = '☀️'; desc = 'Clear Skies · Ideal for Running & Shoots'; }
+                    else if (wCode <= 3) { icon = '⛅'; desc = 'Partly Cloudy · Pleasant Running Weather'; }
+                    else if (wCode <= 67) { icon = '🌧️'; desc = 'Light Rain · Indoor Gym Session'; }
+                    document.getElementById('weatherIcon').textContent = icon;
+                    document.getElementById('weatherDesc').textContent = desc;
+                }
+
+                if (daily.sunset && daily.sunset.length > 0) {
+                    const sunsetDate = new Date(daily.sunset[0]);
+                    const goldenStart = new Date(sunsetDate.getTime() - 60 * 60 * 1000);
+                    const timeOpts = { hour: 'numeric', minute: '2-digit' };
+                    const goldenStr = `${goldenStart.toLocaleTimeString('en-US', timeOpts)} – ${sunsetDate.toLocaleTimeString('en-US', timeOpts)}`;
+                    document.getElementById('goldenHourTime').textContent = `Golden Hour: ${goldenStr}`;
+                    document.getElementById('goldenHourSub').textContent = `Sunset at ${sunsetDate.toLocaleTimeString('en-US', timeOpts)} · Photography Window`;
+                }
+            }
+        } catch (e) {
+            console.log('Weather fetch info:', e);
+        }
+    }
+
+    // ── Calculate Habit Streaks (Don't Break The Chain) ──────────────
+    function calculateHabitStreak(habitId) {
+        let streak = 0;
+        let checkDate = new Date();
+        const todayStr = getTodayStr();
+        const todayDone = getHabitStatus(todayStr, habitId);
+
+        if (!todayDone) {
+            checkDate.setDate(checkDate.getDate() - 1);
+        }
+
+        for (let i = 0; i < 365; i++) {
+            const y = checkDate.getFullYear();
+            const m = String(checkDate.getMonth() + 1).padStart(2, '0');
+            const d = String(checkDate.getDate()).padStart(2, '0');
+            const dateKey = `${y}-${m}-${d}`;
+
+            if (getHabitStatus(dateKey, habitId)) {
+                streak++;
+                checkDate.setDate(checkDate.getDate() - 1);
+            } else {
+                break;
+            }
+        }
+        return streak;
     }
 
     // ── Render Commute & Transit Data ────────────────────────────────
@@ -2328,6 +2489,7 @@
         document.getElementById('currentDateDisplay').textContent =
             now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
 
+        await loadOutdoorWeatherAndGoldenHour();
         await loadStravaActivities();
         await loadGarminHealthData();
 
