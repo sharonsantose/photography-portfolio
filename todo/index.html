@@ -1454,6 +1454,26 @@
         }
     }
 
+    // ── Date Filtering Helper for Graphs (Starts on 1st of the Month) ──
+    function getMonthFilteredDates(historyObj) {
+        const allDates = Object.keys(historyObj || {}).sort();
+        if (allDates.length === 0) return [];
+
+        const now = new Date();
+        const curYear = (typeof viewYear !== 'undefined') ? viewYear : now.getFullYear();
+        const curMonthIdx = (typeof viewMonth !== 'undefined') ? viewMonth : now.getMonth();
+        const curMonthStr = String(curMonthIdx + 1).padStart(2, '0');
+        const monthPrefix = `${curYear}-${curMonthStr}`;
+
+        const monthDates = allDates.filter(d => d.startsWith(monthPrefix));
+        if (monthDates.length > 0) return monthDates;
+
+        // Fallback: return dates for latest month in history starting on 1st
+        const latestDate = allDates[allDates.length - 1];
+        const latestPrefix = latestDate.substring(0, 7);
+        return allDates.filter(d => d.startsWith(latestPrefix));
+    }
+
     // ── Render Monthly Daily Steps Graph ──────────────────────────────
     function renderMonthlyStepsChart(stepsHistory) {
         if (!stepsHistory || typeof stepsHistory !== 'object') return;
@@ -1462,7 +1482,7 @@
         if (!flexContainer) return;
         flexContainer.innerHTML = '';
 
-        const dates = Object.keys(stepsHistory).sort();
+        const dates = getMonthFilteredDates(stepsHistory);
         if (dates.length === 0) return;
 
         let totalSteps = 0;
@@ -1529,7 +1549,7 @@
         if (!flexContainer) return;
         flexContainer.innerHTML = '';
 
-        const dates = Object.keys(sleepHistory).sort();
+        const dates = getMonthFilteredDates(sleepHistory);
         if (dates.length === 0) return;
 
         let totalScore = 0;
@@ -1594,7 +1614,7 @@
         if (!flexContainer || !stepsHistory) return;
         flexContainer.innerHTML = '';
 
-        const dates = Object.keys(stepsHistory).sort();
+        const dates = getMonthFilteredDates(stepsHistory);
         if (dates.length === 0) return;
 
         let totalCals = 0;
@@ -1900,6 +1920,7 @@
             viewYear++;
         }
         renderHabitGrid();
+        loadGarminHealthData();
     }
 
     function resetToCurrentMonth() {
@@ -1907,6 +1928,7 @@
         viewYear = now.getFullYear();
         viewMonth = now.getMonth();
         renderHabitGrid();
+        loadGarminHealthData();
     }
 
     // ── Scientific Focus & Task Logic ───────────────────────────────
