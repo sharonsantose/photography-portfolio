@@ -995,6 +995,39 @@
             .add-task-row { flex-direction: column; }
             #addBtn { padding: 12px; }
             .focus-trio-container { grid-template-columns: 1fr; }
+
+            /* ── Slidy Mobile Graph Optimizations ── */
+            .steps-chart-container {
+                padding: 14px 12px;
+            }
+            .steps-bar-wrapper {
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 8px;
+            }
+            .steps-bars-flex {
+                min-width: 580px;
+                gap: 5px;
+            }
+            .step-bar-col {
+                min-width: 14px;
+            }
+            .step-bar-fill {
+                max-width: 12px;
+                min-width: 8px;
+            }
+            .steps-bar-wrapper::-webkit-scrollbar {
+                height: 4px;
+            }
+            .steps-bar-wrapper::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 2px;
+            }
+            .steps-bar-wrapper::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 2px;
+            }
         }
     </style>
 </head>
