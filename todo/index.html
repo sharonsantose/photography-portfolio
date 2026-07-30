@@ -1110,10 +1110,11 @@
         </div>
 
         <div class="steps-bar-wrapper">
-            <div class="steps-goal-line" title="15,000 Step Goal">
+            <div class="steps-goal-line" id="stepsGoalLine" title="15,000 Step Goal">
                 <span class="steps-goal-label sans">15k Goal</span>
             </div>
             <div class="steps-bars-flex" id="stepsBarsFlex"></div>
+        </div>
     </div>
 
     <!-- Monthly Daily Sleep Score Graph -->
@@ -1139,7 +1140,7 @@
         </div>
 
         <div class="steps-bar-wrapper">
-            <div class="steps-goal-line" style="top: 32px; border-color: rgba(16, 185, 129, 0.5);" title="80 Sleep Score Goal">
+            <div class="steps-goal-line" id="sleepGoalLine" style="border-color: rgba(16, 185, 129, 0.5);" title="80 Sleep Score Goal">
                 <span class="steps-goal-label sans">80 Goal</span>
             </div>
             <div class="steps-bars-flex" id="sleepBarsFlex"></div>
@@ -1169,7 +1170,7 @@
         </div>
 
         <div class="steps-bar-wrapper">
-            <div class="steps-goal-line" style="top: 35px; border-color: rgba(245, 158, 11, 0.5);" title="500 kcal Goal">
+            <div class="steps-goal-line" id="calsGoalLine" style="border-color: rgba(245, 158, 11, 0.5);" title="500 kcal Goal">
                 <span class="steps-goal-label sans" style="color: #f59e0b;">500 kcal</span>
             </div>
             <div class="steps-bars-flex" id="calsBarsFlex"></div>
@@ -1530,6 +1531,13 @@
             if (st > maxSteps) maxSteps = st;
         });
 
+        // Position steps goal line dynamically
+        const stepsGoalLine = document.getElementById('stepsGoalLine');
+        if (stepsGoalLine) {
+            const goalTopPct = Math.max(8, Math.min(92, 100 - Math.round((15000 / maxSteps) * 100)));
+            stepsGoalLine.style.top = `${goalTopPct}%`;
+        }
+
         dates.forEach(d => {
             const item = stepsHistory[d];
             const st = typeof item === 'object' ? item.steps : item;
@@ -1589,6 +1597,12 @@
         let bestScore = 0;
         let goalDaysCount = 0;
         const todayStr = getTodayStr();
+
+        // Position sleep goal line at 80% (20% from top)
+        const sleepGoalLine = document.getElementById('sleepGoalLine');
+        if (sleepGoalLine) {
+            sleepGoalLine.style.top = `20%`;
+        }
 
         dates.forEach(d => {
             const item = sleepHistory[d];
@@ -1671,6 +1685,13 @@
             calsMap[d] = val;
             if (val > maxCals) maxCals = val;
         });
+
+        // Position calories goal line dynamically based on 500 kcal / maxCals
+        const calsGoalLine = document.getElementById('calsGoalLine');
+        if (calsGoalLine) {
+            const goalTopPct = Math.max(8, Math.min(92, 100 - Math.round((500 / maxCals) * 100)));
+            calsGoalLine.style.top = `${goalTopPct}%`;
+        }
 
         dates.forEach(d => {
             const cals = calsMap[d] || 0;
