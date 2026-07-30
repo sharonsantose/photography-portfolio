@@ -1,0 +1,21 @@
+{
+  "fetched_at": "2026-07-30T01:44:42Z",
+  "athlete_id": 197020850,
+  "activities_by_date": {
+    "2026-07-27": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "first run club!",
+        "detail": "5.10 mi \u00b7 58m \u00b7 @ 11:23/mi \u00b7 \u2764\ufe0f 174 bpm \u00b7 \u2191 30ft \u00b7 cadence 175 spm",
+        "dist_mi": 5.1,
+        "duration_sec": 3484,
+        "pace": "11:23/mi",
+        "hr_avg": 174,
+        "hr_max": 194,
+        "elev_ft": 98,
+        "strava_id": 19494164345
+      }
+    ]
+  }
+}

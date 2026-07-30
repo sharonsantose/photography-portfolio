@@ -930,6 +930,65 @@
         .actual-note-input::placeholder { color: #525252; font-style: italic; }
         .actual-note-input:focus { border-color: #38bdf8; }
 
+        /* ── Strava Actual Workout Overlay ─────────────────────────── */
+        .orca-cell.strava-actual-cell {
+            border-color: rgba(252, 76, 2, 0.55) !important;
+            background: rgba(252, 76, 2, 0.07) !important;
+        }
+
+        .strava-overlay {
+            margin-top: 6px;
+            padding: 5px 7px;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(252, 76, 2, 0.45);
+            border-radius: 4px;
+        }
+
+        .strava-overlay-tag {
+            font-size: 9px;
+            font-weight: 800;
+            color: #fc4c02;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .strava-overlay-tag a {
+            color: #fc4c02;
+            text-decoration: none;
+            opacity: 0.7;
+            font-size: 9px;
+        }
+        .strava-overlay-tag a:hover { opacity: 1; text-decoration: underline; }
+
+        .strava-overlay-detail {
+            font-size: 10.5px;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .strava-planned-dim {
+            margin-top: 4px;
+            padding-top: 4px;
+            border-top: 1px dashed rgba(255,255,255,0.08);
+            font-size: 9.5px;
+            color: #3a3a3a;
+            line-height: 1.35;
+            font-style: italic;
+        }
+
+        .strava-sync-badge {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 10px;
+            color: #525252;
+            text-align: right;
+            margin-top: 8px;
+        }
+        .strava-sync-badge span { color: #fc4c02; font-weight: 700; }
+
         /* ── Hero Race Countdown ───────────────────────────────────────── */
         .race-hero {
             position: relative;
@@ -1557,6 +1616,7 @@
 
             initTodo();
             initWeekSchedule();
+            loadStravaOverlay();
         }
 
         // ── TO-DO LIST ────────────────────────────────────────────────────
@@ -1896,6 +1956,115 @@
         }
 
         document.addEventListener('DOMContentLoaded', restoreActualNotes);
+
+
+        // ── STRAVA LIVE WORKOUT OVERLAY ──────────────────────────────────
+        // Fetches private/strava_data.json (updated daily by GitHub Actions)
+        // and replaces past calendar cells with actual Strava activity data.
+
+        async function loadStravaOverlay() {
+            let data;
+            try {
+                const resp = await fetch('/private/strava_data.json?_=' + Date.now());
+                if (!resp.ok) throw new Error('Not found');
+                data = await resp.json();
+            } catch (e) {
+                console.log('Strava data not yet available:', e.message);
+                return;
+            }
+
+            const byDate = data.activities_by_date || {};
+            const today  = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            let overlaidCount = 0;
+
+            document.querySelectorAll('.orca-cell[data-date]').forEach(cell => {
+                const dateStr = cell.dataset.date;   // e.g. "2026-07-27"
+                const cellDate = new Date(dateStr + 'T00:00:00');
+
+                // Only overlay past & today cells
+                if (cellDate > today) return;
+
+                const acts = byDate[dateStr];
+
+                if (!acts || acts.length === 0) {
+                    // Past date with NO Strava activity — mark as rest/missed
+                    const existingPlanned = cell.querySelector('.orca-detail');
+                    if (existingPlanned && !cell.querySelector('.strava-overlay')) {
+                        const restDiv = document.createElement('div');
+                        restDiv.className = 'strava-overlay';
+                        restDiv.innerHTML = `
+                            <div class="strava-overlay-tag">📵 No Activity Recorded</div>
+                            <div class="strava-overlay-detail" style="color:#525252;">Rest day or unsynced</div>
+                        `;
+                        cell.appendChild(restDiv);
+                    }
+                    return;
+                }
+
+                // Build detail lines for all activities that day
+                const detailLines = acts.map(a => {
+                    const link = a.strava_id
+                        ? `<a href="https://www.strava.com/activities/${a.strava_id}" target="_blank" rel="noopener" title="View on Strava">↗</a>`
+                        : '';
+                    return `
+                        <div class="strava-overlay" style="margin-bottom:4px;">
+                            <div class="strava-overlay-tag">
+                                ${a.emoji} ACTUAL · ${a.sport.toUpperCase()} ${link}
+                            </div>
+                            <div class="strava-overlay-detail">${a.detail}</div>
+                        </div>`;
+                }).join('');
+
+                // Keep the planned text, dimmed below
+                const plannedEl = cell.querySelector('.orca-detail');
+                const plannedText = plannedEl ? plannedEl.textContent.trim() : '';
+
+                // Hide the planned detail (we'll show it dimmed)
+                if (plannedEl) plannedEl.style.display = 'none';
+
+                // Inject Strava overlay after the badge
+                const badge = cell.querySelector('.orca-badge');
+                const insertPoint = badge ? badge : cell.querySelector('.orca-date');
+
+                const wrapper = document.createElement('div');
+                wrapper.innerHTML = detailLines;
+
+                // Dimmed planned workout note
+                if (plannedText) {
+                    const dimDiv = document.createElement('div');
+                    dimDiv.className = 'strava-planned-dim';
+                    dimDiv.textContent = 'Plan: ' + plannedText.replace(/\n/g, ' · ').substring(0, 80);
+                    wrapper.appendChild(dimDiv);
+                }
+
+                if (insertPoint && insertPoint.nextSibling) {
+                    cell.insertBefore(wrapper, insertPoint.nextSibling);
+                } else {
+                    cell.appendChild(wrapper);
+                }
+
+                // Style the cell
+                cell.classList.add('strava-actual-cell');
+                cell.classList.remove('completed-workout'); // let strava overlay take precedence
+                overlaidCount++;
+            });
+
+            // Show sync timestamp
+            if (overlaidCount > 0 && data.fetched_at) {
+                const syncBadge = document.createElement('div');
+                syncBadge.className = 'strava-sync-badge';
+                const fetchedDate = new Date(data.fetched_at);
+                const timeStr = fetchedDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                const dateStr2 = fetchedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                syncBadge.innerHTML = `<span>STRAVA</span> synced ${dateStr2} @ ${timeStr}`;
+                const calWrap = document.querySelector('.orca-calendar-wrap');
+                if (calWrap) calWrap.appendChild(syncBadge);
+            }
+
+            console.log(`Strava overlay: ${overlaidCount} cells updated from ${Object.keys(byDate).length} activity dates.`);
+        }
 
 </script>
 
