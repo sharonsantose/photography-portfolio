@@ -271,10 +271,44 @@
             color: #fbbf24;
         }
 
+        .sunrise-time-val {
+            color: #60a5fa;
+        }
+
         .weather-sub {
             font-size: 11px;
             color: #888;
             margin-top: 2px;
+        }
+
+        .year-progress-container {
+            margin: 10px 0 18px;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .year-progress-bar-wrap {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .year-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 3px;
+            transition: width 0.6s ease;
+        }
+        .year-progress-text {
+            font-size: 12px;
+            color: #888;
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
         }
 
         .habit-streak-pill {
@@ -1062,7 +1096,9 @@
 
             .weather-golden-container { grid-template-columns: 1fr; gap: 8px; margin: 10px 0 18px; }
             .weather-stat-box, .golden-stat-box { padding: 10px 14px; gap: 10px; }
-            .weather-temp-val, .golden-time-val { font-size: 15px; }
+            .weather-temp-val, .golden-time-val, .sunrise-time-val { font-size: 15px; }
+            .year-progress-container { padding: 8px 12px; gap: 8px; margin: 8px 0 14px; }
+            .year-progress-text { font-size: 10px; }
 
             .garmin-banner-container { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 20px; }
             .garmin-stat-card { padding: 10px; min-height: 70px; }
@@ -1207,6 +1243,15 @@
         </div>
     </div>
 
+    <!-- Year Progress Bar -->
+    <div class="year-progress-container" id="yearProgressBar">
+        <span style="font-size:14px;">📅</span>
+        <div class="year-progress-bar-wrap">
+            <div class="year-progress-fill" id="yearProgressFill" style="width:0%"></div>
+        </div>
+        <span class="year-progress-text" id="yearProgressText">0% of 2026</span>
+    </div>
+
     <!-- Outdoor Running Weather & Golden Hour Bar -->
     <div class="weather-golden-container" id="weatherGoldenBanner">
         <div class="weather-stat-box">
@@ -1221,6 +1266,13 @@
             <div>
                 <div class="golden-time-val" id="goldenHourTime">Golden Hour: —</div>
                 <div class="weather-sub sans" id="goldenHourSub">Sunset & Photography Window</div>
+            </div>
+        </div>
+        <div class="golden-stat-box" style="border-color: rgba(96,165,250,0.2);">
+            <span class="weather-icon" id="sunriseIcon">🌅</span>
+            <div>
+                <div class="sunrise-time-val" id="sunriseTime">—</div>
+                <div class="weather-sub sans" id="sunriseSub">Sunrise</div>
             </div>
         </div>
     </div>
@@ -2033,10 +2085,17 @@
                     document.getElementById('weatherDesc').textContent = desc;
                 }
 
+                const timeOpts = { hour: 'numeric', minute: '2-digit' };
+
+                if (daily.sunrise && daily.sunrise.length > 0) {
+                    const sunriseDate = new Date(daily.sunrise[0]);
+                    document.getElementById('sunriseTime').textContent = sunriseDate.toLocaleTimeString('en-US', timeOpts);
+                    document.getElementById('sunriseSub').textContent = 'Sunrise';
+                }
+
                 if (daily.sunset && daily.sunset.length > 0) {
                     const sunsetDate = new Date(daily.sunset[0]);
                     const goldenStart = new Date(sunsetDate.getTime() - 60 * 60 * 1000);
-                    const timeOpts = { hour: 'numeric', minute: '2-digit' };
                     const goldenStr = `${goldenStart.toLocaleTimeString('en-US', timeOpts)} – ${sunsetDate.toLocaleTimeString('en-US', timeOpts)}`;
                     document.getElementById('goldenHourTime').textContent = `Golden Hour: ${goldenStr}`;
                     document.getElementById('goldenHourSub').textContent = `Sunset at ${sunsetDate.toLocaleTimeString('en-US', timeOpts)} · Photography Window`;
@@ -2582,6 +2641,18 @@
         const now = new Date();
         document.getElementById('currentDateDisplay').textContent =
             now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+
+        // Year progress bar
+        (function updateYearProgress() {
+            const now2 = new Date();
+            const start = new Date(now2.getFullYear(), 0, 0);
+            const end = new Date(now2.getFullYear() + 1, 0, 0);
+            const pct = ((now2 - start) / (end - start)) * 100;
+            const fill = document.getElementById('yearProgressFill');
+            const txt = document.getElementById('yearProgressText');
+            if (fill) fill.style.width = `${Math.min(100, pct)}%`;
+            if (txt) txt.textContent = `${pct.toFixed(1)}% of ${now2.getFullYear()}`;
+        })();
 
         await loadOutdoorWeatherAndGoldenHour();
         await loadStravaActivities();
