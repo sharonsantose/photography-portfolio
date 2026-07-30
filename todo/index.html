@@ -962,14 +962,15 @@
         // Immediate Cloud Sync pull
         pullFromCloud();
 
-        // Auto Sync when switching back to tab / unlocking phone screen
+        // Auto Sync when switching back to tab / unlocking phone screen / focusing page
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden) pullFromCloud();
         });
-        window.addEventListener('focus', pullFromCloud);
+        window.addEventListener('focus', () => pullFromCloud());
+        window.addEventListener('pageshow', () => pullFromCloud());
 
-        // Background polling every 12 seconds for seamless live updates
-        setInterval(pullFromCloud, 12000);
+        // Fast background polling every 3 seconds for near-instant automatic sync
+        setInterval(() => pullFromCloud(), 3000);
     }
 
     // ── Category filter ────────────────────────────────────────────
