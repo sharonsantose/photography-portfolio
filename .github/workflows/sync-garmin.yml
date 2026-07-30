@@ -2,9 +2,10 @@ name: Sync Garmin Health & Workouts
 
 on:
   schedule:
-    - cron: "0 16 * * *"
-    - cron: "0 3 * * *"
-  workflow_dispatch:
+    # Run twice daily: 9 AM PT (16:00 UTC) and 8 PM PT (03:00 UTC)
+    - cron: '0 16 * * *'
+    - cron: '0 3 * * *'
+  workflow_dispatch:  # Allow manual trigger from GitHub Actions tab
 
 permissions:
   contents: write
@@ -20,7 +21,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
@@ -29,8 +30,9 @@ jobs:
 
       - name: Fetch Garmin data
         env:
-          GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
+          GARMIN_EMAIL:    ${{ secrets.GARMIN_EMAIL }}
           GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+          GARMIN_TOKENS:   ${{ secrets.GARMIN_TOKENS }}
         run: python scripts/fetch_garmin.py
 
       - name: Commit and push updated Garmin data
