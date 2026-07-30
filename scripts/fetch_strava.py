@@ -200,6 +200,25 @@ if __name__ == "__main__":
         json.dump(output, f, indent=2)
 
     print(f"\n✅ Wrote {len(by_date)} dates → {OUT_FILE}")
+
+    # Also update private/todo_data.json habits grid with Strava workout dates
+    todo_file = os.path.join(os.path.dirname(__file__), "../private/todo_data.json")
+    if os.path.exists(todo_file):
+        try:
+            with open(todo_file, "r", encoding="utf-8") as tf:
+                todo_content = json.load(tf)
+            habits = todo_content.get("habits", {})
+            for d in by_date.keys():
+                if d not in habits:
+                    habits[d] = {}
+                habits[d]["strava"] = True
+            todo_content["habits"] = habits
+            with open(todo_file, "w", encoding="utf-8") as tf:
+                json.dump(todo_content, tf, indent=2)
+            print(f"✅ Updated habits grid in {todo_file}")
+        except Exception as e:
+            print(f"  Warning updating todo_data.json: {e}")
+
     for d in sorted(by_date):
         acts = by_date[d]
         for a in acts:
