@@ -635,9 +635,10 @@
                 <h1 class="page-title">To-Do</h1>
                 <span class="page-meta" id="headerDate"></span>
             </div>
-            <div id="cloudStatus" style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: #10b981; display: flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); padding: 4px 10px; border-radius: 20px;">
+            <div id="cloudStatus" onclick="manualSync()" style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: #10b981; display: flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); padding: 5px 12px; border-radius: 20px; cursor: pointer; transition: all 0.2s ease;" title="Tap to sync with cloud now">
                 <span style="width: 6px; height: 6px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
                 <span id="cloudStatusText">Cloud Synced</span>
+                <span style="font-size: 10px; opacity: 0.6;">(Tap to sync)</span>
             </div>
         </div>
 
@@ -774,11 +775,36 @@
         }
     }
 
+    // ── Unicode Base64 Helper (Safari & Emojis Safe) ───────────────
+    function b64DecodeUnicode(str) {
+        const binaryStr = atob(str.replace(/\s/g, ''));
+        const len = binaryStr.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            bytes[i] = binaryStr.charCodeAt(i);
+        }
+        return new TextDecoder('utf-8').decode(bytes);
+    }
+
+    function b64EncodeUnicode(str) {
+        const bytes = new TextEncoder().encode(str);
+        let binaryStr = '';
+        const len = bytes.length;
+        for (let i = 0; i < len; i++) {
+            binaryStr += String.fromCharCode(bytes[i]);
+        }
+        return btoa(binaryStr);
+    }
+
+    function manualSync() {
+        pullFromCloud(true);
+    }
+
     // ── Cloud Read (Fetch from GitHub) ─────────────────────────────
-    async function pullFromCloud() {
+    async function pullFromCloud(isManual = false) {
         if (isSyncing) return;
         isSyncing = true;
-        updateCloudBadge('Syncing…', '#eab308');
+        updateCloudBadge(isManual ? 'Syncing Now…' : 'Syncing…', '#eab308');
 
         try {
             const resp = await fetch(GH_API + '?v=' + Date.now(), {
@@ -794,22 +820,48 @@
             const fileData = await resp.json();
             currentFileSha = fileData.sha;
 
-            // Decode base64 UTF-8 string
-            const jsonStr = decodeURIComponent(escape(atob(fileData.content.replace(/\s/g, ''))));
+            const jsonStr = b64DecodeUnicode(fileData.content);
             const cloudTodos = JSON.parse(jsonStr);
 
             if (Array.isArray(cloudTodos)) {
-                // Merge cloud and local state safely
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudTodos));
+                const localTodos = load();
+                const merged = mergeTodos(localTodos, cloudTodos);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
                 render();
                 updateCloudBadge('Synced across devices', '#10b981');
             }
         } catch (err) {
             console.log('Cloud pull fallback to local:', err);
-            updateCloudBadge('Synced (Local)', '#737373');
+            updateCloudBadge('Saved locally', '#737373');
         } finally {
             isSyncing = false;
         }
+    }
+
+    function mergeTodos(localArr, cloudArr) {
+        if (!Array.isArray(cloudArr)) return localArr || [];
+        if (!Array.isArray(localArr) || localArr.length === 0) return cloudArr;
+
+        const map = new Map();
+        cloudArr.forEach(item => {
+            if (item && item.id) map.set(item.id, item);
+        });
+
+        localArr.forEach(item => {
+            if (!item || !item.id) return;
+            if (!map.has(item.id)) {
+                map.set(item.id, item);
+            } else {
+                const existing = map.get(item.id);
+                if ((item.updatedAt || item.created || 0) >= (existing.updatedAt || existing.created || 0)) {
+                    map.set(item.id, item);
+                }
+            }
+        });
+
+        const merged = Array.from(map.values());
+        merged.sort((a, b) => (b.id || 0) - (a.id || 0));
+        return merged;
     }
 
     // ── Cloud Write (Push to GitHub) ───────────────────────────────
@@ -820,7 +872,7 @@
             // First get fresh SHA if missing
             if (!currentFileSha) {
                 try {
-                    const getResp = await fetch(GH_API, {
+                    const getResp = await fetch(GH_API + '?v=' + Date.now(), {
                         headers: {
                             'Authorization': 'token ' + GH_TOKEN,
                             'Accept': 'application/vnd.github.v3+json'
@@ -835,8 +887,7 @@
             }
 
             const jsonStr = JSON.stringify(todos, null, 2);
-            // UTF-8 base64 encoding
-            const b64Str = btoa(unescape(encodeURIComponent(jsonStr)));
+            const b64Str = b64EncodeUnicode(jsonStr);
 
             const payload = {
                 message: 'sync to-do list from device',
@@ -844,7 +895,7 @@
             };
             if (currentFileSha) payload.sha = currentFileSha;
 
-            const putResp = await fetch(GH_API, {
+            let putResp = await fetch(GH_API, {
                 method: 'PUT',
                 headers: {
                     'Authorization': 'token ' + GH_TOKEN,
@@ -853,6 +904,32 @@
                 },
                 body: JSON.stringify(payload)
             });
+
+            // Handle 409 Conflict (SHA mismatch) by re-fetching SHA and retrying once
+            if (putResp.status === 409) {
+                console.log('Conflict 409, fetching fresh SHA and retrying...');
+                const getResp = await fetch(GH_API + '?v=' + Date.now(), {
+                    headers: {
+                        'Authorization': 'token ' + GH_TOKEN,
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    cache: 'no-store'
+                });
+                if (getResp.ok) {
+                    const getJson = await getResp.json();
+                    currentFileSha = getJson.sha;
+                    payload.sha = currentFileSha;
+                    putResp = await fetch(GH_API, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': 'token ' + GH_TOKEN,
+                            'Accept': 'application/vnd.github.v3+json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                }
+            }
 
             if (putResp.ok) {
                 const resJson = await putResp.json();
