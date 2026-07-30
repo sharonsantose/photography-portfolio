@@ -1052,6 +1052,11 @@
             <div class="garmin-stat-val" id="garminRhr">— <span class="garmin-stat-unit">bpm</span></div>
             <div class="garmin-stat-sub sans" id="garminRhrSub">Garmin Connect</div>
         </div>
+        <div class="garmin-stat-card" id="spotifyStatCard" style="border-color: rgba(30, 215, 96, 0.35); background: rgba(30, 215, 96, 0.04);">
+            <div class="garmin-stat-label sans" style="color: #1ed760;"><i class="fa-brands fa-spotify"></i> 🎵 Spotify Focus BPM</div>
+            <div class="garmin-stat-val" id="spotifyTrackTitle" style="font-size: 16px; font-weight: 500;">Midnight City</div>
+            <div class="garmin-stat-sub sans" id="spotifyTrackSub" style="color: #34d399;">M83 · 105 BPM (Deep Work)</div>
+        </div>
     </div>
 
     <!-- Monthly Daily Steps Graph -->
@@ -1596,6 +1601,28 @@
         }
     }
 
+    // ── Fetch Spotify Audio & Cadence Data ─────────────────────────────
+    async function loadSpotifyData() {
+        try {
+            const res = await fetch('/private/spotify_data.json?v=' + Date.now(), { cache: 'no-store' });
+            if (res.ok) {
+                const data = await res.json();
+                const curr = data.currently_playing || {};
+                if (curr.track) {
+                    const titleEl = document.getElementById('spotifyTrackTitle');
+                    const subEl = document.getElementById('spotifyTrackSub');
+                    if (titleEl) titleEl.textContent = curr.track;
+                    if (subEl) {
+                        const bpmText = curr.bpm ? ` · ${curr.bpm} BPM` : '';
+                        subEl.textContent = `${curr.artist || ''}${bpmText} (${curr.context || 'Focus Audio'})`;
+                    }
+                }
+            }
+        } catch (e) {
+            console.log('Spotify fetch info:', e);
+        }
+    }
+
     // ── Cloud Read & Write ───────────────────────────────────────────
     async function readCloudData() {
         const resp = await fetch(PROXY + '?v=' + Date.now(), { cache: 'no-store' });
@@ -2017,6 +2044,7 @@
             renderHabitGrid();
             renderTasks();
             await loadGarminHealthData();
+            await loadSpotifyData();
             setSyncStatus('Synced', 'synced');
         } catch (e) {
             // silent poll fail
@@ -2032,6 +2060,7 @@
 
         await loadStravaActivities();
         await loadGarminHealthData();
+        await loadSpotifyData();
 
         try {
             const data = await readCloudData();
