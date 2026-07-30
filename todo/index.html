@@ -664,6 +664,8 @@
             <span style="width:6px; height:6px; border-radius:50%; background:currentColor;"></span>
             <span id="syncStatusText">Synced</span>
         </div>
+    </div>
+
     <!-- Garmin Health Summary Banner -->
     <div class="section-header" style="margin-top: 10px;">
         <h2 class="section-title">⌚ Garmin Health & Recovery</h2>
@@ -1178,6 +1180,7 @@
             renderTodayHabits();
             renderHabitGrid();
             renderTasks();
+            await loadGarminHealthData();
             setSyncStatus('Synced', 'synced');
         } catch (e) {
             // silent poll fail
