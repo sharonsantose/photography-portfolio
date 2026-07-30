@@ -5,38 +5,60 @@
       "creatine": false,
       "read": false,
       "journal": false,
-      "strava": false
+      "strava": false,
+      "garmin_steps": false,
+      "garmin_calories": false
     },
     "2026-07-04": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": false,
+      "garmin_calories": true
     },
     "2026-07-09": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": false,
+      "garmin_calories": false
     },
     "2026-07-10": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": true,
+      "garmin_calories": true
     },
     "2026-07-11": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": false,
+      "garmin_calories": true
     },
     "2026-07-13": {
       "strava": true,
-      "journal": false
+      "journal": false,
+      "garmin_steps": false,
+      "garmin_calories": false
     },
     "2026-07-15": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": false,
+      "garmin_calories": true
     },
     "2026-07-16": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": false,
+      "garmin_calories": false
     },
     "2026-07-19": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": true,
+      "garmin_calories": true
     },
     "2026-07-25": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": false,
+      "garmin_calories": false
     },
     "2026-07-27": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": true,
+      "garmin_calories": true
     },
     "2026-06-26": {
       "strava": true
@@ -78,22 +100,98 @@
       "strava": true
     },
     "2026-07-20": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": false,
+      "garmin_calories": false
     },
     "2026-07-22": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": true,
+      "garmin_calories": true
     },
     "2026-07-14": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": false,
+      "garmin_calories": false
     },
     "2026-07-07": {
-      "read": false
+      "read": false,
+      "garmin_steps": false,
+      "garmin_calories": true
     },
     "2026-07-08": {
-      "read": false
+      "read": false,
+      "garmin_steps": false,
+      "garmin_calories": false
     },
     "2026-07-30": {
-      "creatine": true
+      "creatine": true,
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-06-28": {
+      "garmin_steps": false,
+      "garmin_calories": true
+    },
+    "2026-06-29": {
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-06-30": {
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-07-01": {
+      "garmin_steps": false,
+      "garmin_calories": true
+    },
+    "2026-07-02": {
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-07-03": {
+      "garmin_steps": false,
+      "garmin_calories": true
+    },
+    "2026-07-05": {
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-07-06": {
+      "garmin_steps": false,
+      "garmin_calories": true
+    },
+    "2026-07-12": {
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-07-17": {
+      "garmin_steps": false,
+      "garmin_calories": true
+    },
+    "2026-07-18": {
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-07-21": {
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-07-23": {
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-07-24": {
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-07-26": {
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-07-28": {
+      "garmin_steps": false,
+      "garmin_calories": false
     }
   },
   "commute": {}
