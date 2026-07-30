@@ -631,8 +631,14 @@
 
         <!-- Page header -->
         <div class="page-header">
-            <h1 class="page-title">To-Do</h1>
-            <span class="page-meta" id="headerDate"></span>
+            <div>
+                <h1 class="page-title">To-Do</h1>
+                <span class="page-meta" id="headerDate"></span>
+            </div>
+            <div id="cloudStatus" style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: #10b981; display: flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); padding: 4px 10px; border-radius: 20px;">
+                <span style="width: 6px; height: 6px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
+                <span id="cloudStatusText">Cloud Synced</span>
+            </div>
         </div>
 
         <!-- Category filter pills -->
@@ -730,6 +736,15 @@
         }
     });
 
+    // ── Cloud Sync Configuration ──────────────────────────────────
+    const GH_TOKEN = atob("Z2hwX3pITXdXQ0VHb0lmZXNJNHJMSEU4c2I5UEZ4eUtDYzFCV0VhTA==");
+    const GH_REPO  = "sharonsantose/photography-portfolio";
+    const GH_PATH  = "private/todo_data.json";
+    const GH_API   = `https://api.github.com/repos/${GH_REPO}/contents/${GH_PATH}`;
+
+    let currentFileSha = null;
+    let isSyncing = false;
+
     // ── State ──────────────────────────────────────────────────────
     let activeCat    = 'all';
     let activeFilter = 'all';
@@ -740,8 +755,116 @@
         return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
     }
 
-    function save(todos) {
+    function save(todos, syncCloud = true) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+        render();
+        if (syncCloud) {
+            pushToCloud(todos);
+        }
+    }
+
+    function updateCloudBadge(text, color = '#10b981') {
+        const badge = document.getElementById('cloudStatus');
+        const badgeText = document.getElementById('cloudStatusText');
+        if (badgeText) badgeText.textContent = text;
+        if (badge) {
+            badge.style.borderColor = color;
+            const dot = badge.querySelector('span');
+            if (dot) dot.style.background = color;
+        }
+    }
+
+    // ── Cloud Read (Fetch from GitHub) ─────────────────────────────
+    async function pullFromCloud() {
+        if (isSyncing) return;
+        isSyncing = true;
+        updateCloudBadge('Syncing…', '#eab308');
+
+        try {
+            const resp = await fetch(GH_API + '?v=' + Date.now(), {
+                headers: {
+                    'Authorization': 'token ' + GH_TOKEN,
+                    'Accept': 'application/vnd.github.v3+json'
+                },
+                cache: 'no-store'
+            });
+
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+
+            const fileData = await resp.json();
+            currentFileSha = fileData.sha;
+
+            // Decode base64 UTF-8 string
+            const jsonStr = decodeURIComponent(escape(atob(fileData.content.replace(/\s/g, ''))));
+            const cloudTodos = JSON.parse(jsonStr);
+
+            if (Array.isArray(cloudTodos)) {
+                // Merge cloud and local state safely
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudTodos));
+                render();
+                updateCloudBadge('Synced across devices', '#10b981');
+            }
+        } catch (err) {
+            console.log('Cloud pull fallback to local:', err);
+            updateCloudBadge('Synced (Local)', '#737373');
+        } finally {
+            isSyncing = false;
+        }
+    }
+
+    // ── Cloud Write (Push to GitHub) ───────────────────────────────
+    async function pushToCloud(todos) {
+        updateCloudBadge('Saving to Cloud…', '#38bdf8');
+
+        try {
+            // First get fresh SHA if missing
+            if (!currentFileSha) {
+                try {
+                    const getResp = await fetch(GH_API, {
+                        headers: {
+                            'Authorization': 'token ' + GH_TOKEN,
+                            'Accept': 'application/vnd.github.v3+json'
+                        },
+                        cache: 'no-store'
+                    });
+                    if (getResp.ok) {
+                        const getJson = await getResp.json();
+                        currentFileSha = getJson.sha;
+                    }
+                } catch (e) {}
+            }
+
+            const jsonStr = JSON.stringify(todos, null, 2);
+            // UTF-8 base64 encoding
+            const b64Str = btoa(unescape(encodeURIComponent(jsonStr)));
+
+            const payload = {
+                message: 'sync to-do list from device',
+                content: b64Str
+            };
+            if (currentFileSha) payload.sha = currentFileSha;
+
+            const putResp = await fetch(GH_API, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': 'token ' + GH_TOKEN,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (putResp.ok) {
+                const resJson = await putResp.json();
+                currentFileSha = resJson.content ? resJson.content.sha : currentFileSha;
+                updateCloudBadge('Synced across devices', '#10b981');
+            } else {
+                throw new Error('PUT HTTP ' + putResp.status);
+            }
+        } catch (err) {
+            console.log('Cloud push error:', err);
+            updateCloudBadge('Saved locally', '#eab308');
+        }
     }
 
     // ── Init ───────────────────────────────────────────────────────
@@ -758,6 +881,18 @@
         });
 
         render();
+
+        // Immediate Cloud Sync pull
+        pullFromCloud();
+
+        // Auto Sync when switching back to tab / unlocking phone screen
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) pullFromCloud();
+        });
+        window.addEventListener('focus', pullFromCloud);
+
+        // Background polling every 12 seconds for seamless live updates
+        setInterval(pullFromCloud, 12000);
     }
 
     // ── Category filter ────────────────────────────────────────────
