@@ -365,28 +365,10 @@
         if (e.key === 'Enter') tryUnlock();
     });
 
-    // ── GitHub API ────────────────────────────────────────────────────
-    // Token stored as base64 to avoid push-protection triggers
-    const GH_TOKEN = atob("Z2hwX1Rib1pPTlJCQVZoWUdqM1c=") + atob("RFZ1YXliSDBkMko3SUsxTG51T0E=");
-    const GH_API   = "https://api.github.com/repos/sharonsantose/photography-portfolio/contents/private/todo_data.json";
+    // ── Proxy API (Cloudflare Worker — token lives encrypted in Cloudflare, never here) ──
+    const PROXY = "https://sharon-todo-proxy.sharon5234.workers.dev";
 
-    let fileSha   = null;   // current SHA of the file on GitHub
-    let writing   = false;  // prevent concurrent writes
-
-    // ── Base64 UTF-8 (Safari-safe) ────────────────────────────────────
-    function b64Decode(str) {
-        const bin   = atob(str.replace(/\s/g, ''));
-        const bytes = new Uint8Array(bin.length);
-        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-        return new TextDecoder('utf-8').decode(bytes);
-    }
-
-    function b64Encode(str) {
-        const bytes = new TextEncoder().encode(str);
-        let bin = '';
-        for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
-        return btoa(bin);
-    }
+    let writing = false;  // prevent concurrent writes
 
     // ── Status indicator ─────────────────────────────────────────────
     function setStatus(text, cls) {
@@ -397,17 +379,10 @@
 
     // ── Read cloud → return array ─────────────────────────────────────
     async function readCloud() {
-        const resp = await fetch(GH_API + '?v=' + Date.now(), {
-            headers: {
-                'Authorization': 'token ' + GH_TOKEN,
-                'Accept': 'application/vnd.github.v3+json'
-            },
-            cache: 'no-store'
-        });
+        const resp = await fetch(PROXY + '?v=' + Date.now(), { cache: 'no-store' });
         if (!resp.ok) throw new Error('read ' + resp.status);
-        const data  = await resp.json();
-        fileSha     = data.sha;
-        return JSON.parse(b64Decode(data.content));
+        const data = await resp.json();
+        return Array.isArray(data) ? data : data.todos;
     }
 
     // ── Write array → cloud ───────────────────────────────────────────
@@ -415,54 +390,13 @@
         if (writing) return;
         writing = true;
         setStatus('saving…', 'saving');
-
         try {
-            // Ensure we have a fresh SHA
-            if (!fileSha) {
-                const r = await fetch(GH_API + '?v=' + Date.now(), {
-                    headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' },
-                    cache: 'no-store'
-                });
-                if (r.ok) { const d = await r.json(); fileSha = d.sha; }
-            }
-
-            const payload = {
-                message: 'sync todos',
-                content: b64Encode(JSON.stringify(todos, null, 2)),
-                sha: fileSha
-            };
-
-            let resp = await fetch(GH_API, {
+            const resp = await fetch(PROXY, {
                 method: 'PUT',
-                headers: {
-                    'Authorization': 'token ' + GH_TOKEN,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(todos)
             });
-
-            // 409 = SHA stale, fetch fresh and retry once
-            if (resp.status === 409) {
-                const r2 = await fetch(GH_API + '?v=' + Date.now(), {
-                    headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' },
-                    cache: 'no-store'
-                });
-                if (r2.ok) { const d2 = await r2.json(); fileSha = d2.sha; payload.sha = fileSha; }
-                resp = await fetch(GH_API, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': 'token ' + GH_TOKEN,
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-            }
-
             if (!resp.ok) throw new Error('write ' + resp.status);
-            const res = await resp.json();
-            fileSha = res.content ? res.content.sha : fileSha;
             setStatus('synced', 'synced');
         } catch (e) {
             console.error('writeCloud:', e);
