@@ -1514,6 +1514,66 @@
         <div id="emptyArchive" style="color: #444; font-style: italic; font-size: 14px; text-align: center; padding: 12px 0;">No completed tasks in history log yet.</div>
     </div>
 
+    <!-- Location Log Dashboard (from Owntracks) -->
+    <div class="section-header" style="margin-top: 36px;">
+        <h2 class="section-title">📍 Location Log</h2>
+        <span class="section-subtitle sans" id="locationStatus">Owntracks</span>
+    </div>
+
+    <div class="steps-chart-container" id="locationDashboard">
+        <div class="steps-chart-meta sans" style="align-items:center;">
+            <div>
+                <span class="steps-meta-val" id="locationPingCount">—</span>
+                <span class="steps-meta-label">Pings Today</span>
+            </div>
+            <div>
+                <span class="steps-meta-val" id="locationDistance">—</span>
+                <span class="steps-meta-label">Est. Distance</span>
+            </div>
+            <div>
+                <span class="steps-meta-val" id="locationPlaces">—</span>
+                <span class="steps-meta-label">Places Visited</span>
+            </div>
+            <div>
+                <span id="locationOwntracksHelp" style="font-size:11px; color:#555; cursor:pointer; text-decoration:underline; text-decoration-style:dotted;" onclick="document.getElementById('owntracksSetupModal').classList.add('active')">Setup</span>
+            </div>
+        </div>
+        <div id="locationTimeline" style="display:flex; flex-direction:column; gap:6px;"></div>
+        <div id="locationEmpty" style="color:#444; font-style:italic; font-size:14px; text-align:center; padding:20px 0;">No location data yet. Set up Owntracks on your phone.</div>
+        <div style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+            <button class="month-btn sans" onclick="refreshLocationData()">↻ Refresh</button>
+            <span style="font-size:11px; color:#444;" id="locationLastRefresh">—</span>
+        </div>
+    </div>
+
+    <!-- Owntracks Setup Instructions Modal -->
+    <div class="sc-modal-overlay" id="owntracksSetupModal">
+        <div class="sc-modal-box">
+            <div class="sc-modal-header">
+                <h3>📱 Owntracks Setup</h3>
+                <button class="sc-close-btn" onclick="document.getElementById('owntracksSetupModal').classList.remove('active')">&times;</button>
+            </div>
+            <div style="font-size:13px; color:#ccc; line-height:1.7;">
+                <ol style="padding-left:18px; display:flex; flex-direction:column; gap:10px;">
+                    <li><strong>Install Owntracks</strong> from Play Store (Android) or App Store (iOS)</li>
+                    <li>Open the app → tap the <strong>gear icon</strong> (Settings)</li>
+                    <li>Under <strong>Connection</strong> → <strong>Mode</strong>: select <code>HTTP</code></li>
+                    <li><strong>URL:</strong> <code>https://sharon-todo-proxy.sharon5234.workers.dev/owntracks?key=sharonsantos</code></li>
+                    <li><strong>Identification:</strong> Leave blank or use any Username/Password</li>
+                    <li>Set <strong>Locator</strong> → <strong>Locator interval</strong> to <code>120</code> seconds (or as desired)</li>
+                    <li>Enable <strong>Monitoring</strong> → <strong>Start monitoring after startup</strong></li>
+                    <li>Enable <strong>Locator</strong> → <strong>Move mode</strong> for better accuracy while moving</li>
+                    <li>Go back to main screen — you should see a green dot indicating connection</li>
+                    <li>Come back here and tap <strong>Refresh</strong> to see your location data</li>
+                </ol>
+                <div style="margin-top:16px; padding:12px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2); border-radius:6px;">
+                    <strong style="color:#34d399;">Privacy:</strong>
+                    <span style="color:#a3a3a3;"> Data is stored in your Cloudflare Worker's KV. Only you can access it via the passcode on this page.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <div class="footer">
         <a href="/private">🐋 Race Countdown</a>
@@ -1636,6 +1696,7 @@
 
     // ── Proxy API ────────────────────────────────────────────────────
     const PROXY = "https://sharon-todo-proxy.sharon5234.workers.dev";
+    const LOCATION_KEY = "sharonsantos";
     let isSaving = false;
 
     function setSyncStatus(text, cls) {
@@ -2618,6 +2679,110 @@
         writeCloudData();
     }
 
+    // ── Owntracks Location Dashboard ─────────────────────────────────
+    async function loadLocationData() {
+        const pingsEl = document.getElementById('locationPingCount');
+        const distEl = document.getElementById('locationDistance');
+        const placesEl = document.getElementById('locationPlaces');
+        const timeline = document.getElementById('locationTimeline');
+        const empty = document.getElementById('locationEmpty');
+        const refreshEl = document.getElementById('locationLastRefresh');
+
+        try {
+            const today = new Date().toISOString().split('T')[0];
+            const resp = await fetch(`${PROXY}/api/locations?key=${encodeURIComponent(LOCATION_KEY)}&date=${today}&v=${Date.now()}`, { cache: 'no-store' });
+            if (!resp.ok) throw new Error('status ' + resp.status);
+            const data = await resp.json();
+            const points = data.points || [];
+
+            if (refreshEl) refreshEl.textContent = `Updated ${new Date().toLocaleTimeString()}`;
+
+            if (points.length === 0) {
+                if (pingsEl) pingsEl.textContent = '0';
+                if (distEl) distEl.textContent = '—';
+                if (placesEl) placesEl.textContent = '—';
+                if (timeline) timeline.innerHTML = '';
+                if (empty) empty.style.display = 'block';
+                return;
+            }
+
+            if (empty) empty.style.display = 'none';
+
+            // Pings count
+            if (pingsEl) pingsEl.textContent = points.length;
+
+            // Estimate distance from GPS points (Haversine)
+            let totalDistM = 0;
+            for (let i = 1; i < points.length; i++) {
+                totalDistM += haversine(points[i-1].lat, points[i-1].lon, points[i].lat, points[i].lon);
+            }
+            const totalDistKm = totalDistM / 1000;
+            if (distEl) distEl.textContent = totalDistKm < 1 ? `${Math.round(totalDistM)}m` : `${totalDistKm.toFixed(1)}km`;
+
+            // Cluster into places (group nearby points within ~100m)
+            const clusters = clusterPoints(points, 0.001);
+            if (placesEl) placesEl.textContent = clusters.length;
+
+            // Build timeline
+            if (timeline) {
+                timeline.innerHTML = '';
+                points.slice().reverse().forEach((p, i) => {
+                    const time = new Date(p.tst * 1000).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+                    const div = document.createElement('div');
+                    div.style.cssText = 'display:flex; align-items:center; gap:10px; padding:6px 10px; background:rgba(255,255,255,0.02); border-radius:4px; font-size:13px;';
+                    const dot = document.createElement('span');
+                    dot.style.cssText = 'width:8px; height:8px; border-radius:50%; background:#60a5fa; flex-shrink:0;';
+                    const info = document.createElement('span');
+                    info.style.cssText = 'color:#aaa;';
+                    info.textContent = `${time} · ${p.lat.toFixed(4)}, ${p.lon.toFixed(4)}`;
+                    if (p.vel && p.vel > 0) info.textContent += ` · ${Math.round(p.vel * 3.6)} km/h`;
+                    if (p.batt) info.textContent += ` · 🔋${p.batt}%`;
+                    div.appendChild(dot);
+                    div.appendChild(info);
+                    timeline.appendChild(div);
+                });
+            }
+
+            document.getElementById('locationStatus').textContent = `Owntracks · ${points.length} pings`;
+        } catch (e) {
+            console.log('Location fetch:', e);
+            if (pingsEl) pingsEl.textContent = '—';
+            if (refreshEl) refreshEl.textContent = 'Offline';
+        }
+    }
+
+    function haversine(lat1, lon1, lat2, lon2) {
+        const R = 6371000;
+        const toRad = d => d * Math.PI / 180;
+        const dLat = toRad(lat2 - lat1);
+        const dLon = toRad(lon2 - lon1);
+        const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
+        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    function clusterPoints(points, threshold) {
+        const clusters = [];
+        const used = new Set();
+        points.forEach((p, i) => {
+            if (used.has(i)) return;
+            const group = [i];
+            used.add(i);
+            points.forEach((q, j) => {
+                if (used.has(j)) return;
+                if (haversine(p.lat, p.lon, q.lat, q.lon) < threshold * 1000) {
+                    group.push(j);
+                    used.add(j);
+                }
+            });
+            clusters.push(group);
+        });
+        return clusters;
+    }
+
+    function refreshLocationData() {
+        loadLocationData();
+    }
+
     // ── Auto Poll ────────────────────────────────────────────────────
     async function pollCloud() {
         if (isSaving) return;
@@ -2720,6 +2885,10 @@
             renderTasks();
             writeCloudData();
         });
+
+        // Load Owntracks location data
+        refreshLocationData();
+        setInterval(refreshLocationData, 30000);
 
         // Background auto sync every 5s
         setInterval(pollCloud, 5000);
