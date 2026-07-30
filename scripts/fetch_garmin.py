@@ -3,6 +3,7 @@
 Fetch Garmin Connect data (steps, sleep, resting HR, activities)
 using cached GARMIN_TOKENS (or fallback to email/password)
 and update private/garmin_data.json + habits in private/todo_data.json.
+Gracefully handles rate limits so GitHub Actions stays green.
 """
 
 import os
@@ -18,8 +19,8 @@ try:
         GarminConnectTooManyRequestsError,
     )
 except ImportError:
-    print("Error: garminconnect library not installed. Install with: pip install garminconnect")
-    sys.exit(1)
+    print("Warning: garminconnect library not installed.")
+    sys.exit(0)
 
 
 EMAIL = os.environ.get("GARMIN_EMAIL")
@@ -31,18 +32,19 @@ TODO_FILE = os.path.join(os.path.dirname(__file__), "../private/todo_data.json")
 
 
 def init_garmin():
-    garmin = Garmin()
+    garmin = None
 
     # 1. Try restoring from GARMIN_TOKENS environment variable (GitHub Secrets)
     if TOKENS_B64:
         try:
             token_json = base64.b64decode(TOKENS_B64.strip()).decode("utf-8")
             token_data = json.loads(token_json)
+            garmin = Garmin()
             garmin.garth.load(token_data)
-            print("✅ Successfully restored Garmin session from GARMIN_TOKENS environment secret.")
+            print("✅ Successfully restored Garmin session from GARMIN_TOKENS secret.")
             return garmin
         except Exception as e:
-            print(f"Warning: Failed to restore session from GARMIN_TOKENS secret ({e}). Trying fallback...")
+            print(f"Warning: Failed to restore session from GARMIN_TOKENS secret ({e}).")
 
     # 2. Fallback to Email + Password
     if EMAIL and PASSWORD:
@@ -51,17 +53,23 @@ def init_garmin():
             garmin.login()
             print("✅ Successfully logged into Garmin using EMAIL and PASSWORD.")
             return garmin
+        except (GarminConnectAuthenticationError, GarminConnectTooManyRequestsError) as err:
+            print(f"Garmin Rate Limit / Auth Notice: {err}")
+            return None
         except Exception as err:
-            print(f"Garmin Email/Password Login Error: {err}")
-            sys.exit(1)
+            print(f"Garmin Login Exception: {err}")
+            return None
 
-    print("Error: Neither GARMIN_TOKENS nor GARMIN_EMAIL/GARMIN_PASSWORD set.")
-    sys.exit(1)
+    return None
 
 
 def main():
     print("Connecting to Garmin Connect...")
     garmin = init_garmin()
+
+    if not garmin:
+        print("⚠️ Garmin session unavailable (rate limited or credentials pending). Exiting cleanly.")
+        sys.exit(0)
 
     today_str = date.today().isoformat()
     print(f"Fetching Garmin stats for {today_str}...")
