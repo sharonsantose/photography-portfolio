@@ -10,7 +10,7 @@
   ],
   "habits": {
     "2026-07-29": {
-      "creatine": false,
+      "creatine": true,
       "read": false,
       "journal": false,
       "strava": false
@@ -94,5 +94,6 @@
     "2026-07-14": {
       "strava": true
     }
-  }
+  },
+  "commute": {}
 }
