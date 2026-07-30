@@ -1,17 +1,24 @@
-[
-  {
-    "id": 1785380141493,
-    "text": "hello",
-    "done": false
-  },
-  {
-    "id": 1785380138802,
-    "text": "hi",
-    "done": false
-  },
-  {
-    "id": 1785380098495,
-    "text": "🏃 Orca Half Practice Run",
-    "done": false
+{
+  "todos": [
+    {
+      "id": 1785380098495,
+      "text": "\ud83c\udfc3 Orca Half Practice Run",
+      "cat": "running",
+      "done": false
+    },
+    {
+      "id": 1785380098496,
+      "text": "\ud83e\udd51 PCOS High Protein Meal Prep",
+      "cat": "health",
+      "done": false
+    }
+  ],
+  "habits": {
+    "2026-07-29": {
+      "creatine": true,
+      "read": true,
+      "journal": false,
+      "strava": true
+    }
   }
-]
+}
