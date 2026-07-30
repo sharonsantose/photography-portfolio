@@ -2,13 +2,13 @@
   "todos": [
     {
       "id": 1785380098495,
-      "text": "🏃 Orca Half Practice Run",
+      "text": "\ud83c\udfc3 Orca Half Practice Run",
       "cat": "running",
       "done": false
     },
     {
       "id": 1785380098496,
-      "text": "🥑 PCOS High Protein Meal Prep",
+      "text": "\ud83e\udd51 PCOS High Protein Meal Prep",
       "cat": "health",
       "done": false
     }
@@ -49,6 +49,45 @@
       "strava": true
     },
     "2026-07-27": {
+      "strava": true
+    },
+    "2026-06-26": {
+      "strava": true
+    },
+    "2026-06-25": {
+      "strava": true
+    },
+    "2026-06-24": {
+      "strava": true
+    },
+    "2026-06-23": {
+      "strava": true
+    },
+    "2026-06-21": {
+      "strava": true
+    },
+    "2026-06-13": {
+      "strava": true
+    },
+    "2026-06-07": {
+      "strava": true
+    },
+    "2026-06-06": {
+      "strava": true
+    },
+    "2026-06-04": {
+      "strava": true
+    },
+    "2026-06-03": {
+      "strava": true
+    },
+    "2026-06-02": {
+      "strava": true
+    },
+    "2026-06-01": {
+      "strava": true
+    },
+    "2026-05-30": {
       "strava": true
     }
   }
