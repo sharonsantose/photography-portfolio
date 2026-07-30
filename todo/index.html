@@ -747,6 +747,60 @@
 
         .footer a:hover { color: #fff; }
 
+        /* ── Category Filter Bar ───────────────────────────────── */
+        .cat-filter-bar {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .cat-filter-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #888;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .cat-filter-pill:hover {
+            background: rgba(255, 255, 255, 0.09);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .cat-filter-pill.active {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+            font-weight: 600;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+        }
+
+        .cat-count-badge {
+            font-size: 10px;
+            padding: 1px 6px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            color: inherit;
+        }
+
+        .cat-filter-pill.active .cat-count-badge {
+            background: rgba(0, 0, 0, 0.15);
+            color: #000;
+        }
+
         /* ── Scientific Task Management Enhancements ───────────── */
         .science-btn {
             background: rgba(139, 92, 246, 0.15);
@@ -1147,6 +1201,15 @@
     <div class="section-header" style="margin-top: 24px;">
         <h2 class="section-title">📝 Mental Inbox & Backlog</h2>
         <span class="section-subtitle sans">Zeigarnik Working Memory Storage</span>
+    </div>
+
+    <!-- Category Filter Bar (Cognitive Ergonomics) -->
+    <div class="cat-filter-bar sans" id="catFilterBar">
+        <button class="cat-filter-pill active" data-cat="all" onclick="setCategoryFilter('all')">All <span class="cat-count-badge" id="cnt-all">0</span></button>
+        <button class="cat-filter-pill" data-cat="running" onclick="setCategoryFilter('running')">🏃 Training <span class="cat-count-badge" id="cnt-running">0</span></button>
+        <button class="cat-filter-pill" data-cat="health" onclick="setCategoryFilter('health')">🥑 Health <span class="cat-count-badge" id="cnt-health">0</span></button>
+        <button class="cat-filter-pill" data-cat="photo" onclick="setCategoryFilter('photo')">📷 Photo <span class="cat-count-badge" id="cnt-photo">0</span></button>
+        <button class="cat-filter-pill" data-cat="life" onclick="setCategoryFilter('life')">✨ Life <span class="cat-count-badge" id="cnt-life">0</span></button>
     </div>
 
     <div class="add-task-row">
@@ -1793,6 +1856,34 @@
         return (str || '').replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
     }
 
+    // ── Category Filtering Logic (Cognitive Ergonomics) ──────────────
+    let selectedCatFilter = 'all';
+
+    function setCategoryFilter(cat) {
+        selectedCatFilter = cat;
+        document.querySelectorAll('.cat-filter-pill').forEach(pill => {
+            if (pill.getAttribute('data-cat') === cat) {
+                pill.classList.add('active');
+            } else {
+                pill.classList.remove('active');
+            }
+        });
+        renderTasks();
+    }
+
+    function updateCategoryCounts() {
+        const activeInbox = (todos || []).filter(t => !t.isFocus && !t.done);
+        const countMap = { all: activeInbox.length, running: 0, health: 0, photo: 0, life: 0 };
+        activeInbox.forEach(t => {
+            const cat = t.cat || 'life';
+            if (countMap[cat] !== undefined) countMap[cat]++;
+        });
+        Object.keys(countMap).forEach(cat => {
+            const badge = document.getElementById(`cnt-${cat}`);
+            if (badge) badge.textContent = countMap[cat];
+        });
+    }
+
     // ── To-Do List Logic ─────────────────────────────────────────────
     function renderTasks() {
         const list  = document.getElementById('taskList');
@@ -1800,11 +1891,16 @@
         list.innerHTML = '';
 
         renderFocusTrio();
+        updateCategoryCounts();
 
-        const inboxTasks = (todos || []).filter(t => !t.isFocus);
+        let inboxTasks = (todos || []).filter(t => !t.isFocus);
+        if (selectedCatFilter !== 'all') {
+            inboxTasks = inboxTasks.filter(t => (t.cat || 'life') === selectedCatFilter);
+        }
 
         if (inboxTasks.length === 0) {
             empty.style.display = 'block';
+            empty.textContent = selectedCatFilter === 'all' ? 'No tasks in inbox.' : `No ${selectedCatFilter} tasks.`;
             return;
         }
         empty.style.display = 'none';
@@ -1827,8 +1923,14 @@
             if (todo.cat) {
                 const badge = document.createElement('span');
                 badge.className = `task-cat-badge cat-${todo.cat} sans`;
+                badge.style.cursor = 'pointer';
+                badge.title = `Filter by ${todo.cat}`;
                 const catLabels = { running: 'Training', health: 'Health', photo: 'Photo', life: 'Life' };
                 badge.textContent = catLabels[todo.cat] || todo.cat;
+                badge.addEventListener('click', e => {
+                    e.stopPropagation();
+                    setCategoryFilter(todo.cat);
+                });
                 wrap.appendChild(badge);
             }
 
