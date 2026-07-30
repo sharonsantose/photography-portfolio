@@ -788,14 +788,18 @@
         try {
             const res = await fetch('/private/strava_data.json?v=' + Date.now(), { cache: 'no-store' });
             if (res.ok) {
-                const activities = await res.json();
-                if (Array.isArray(activities)) {
-                    activities.forEach(act => {
-                        if (act.date) {
-                            // Extract YYYY-MM-DD
-                            const dateStr = act.date.split('T')[0];
+                const data = await res.json();
+                if (data.activities_by_date && typeof data.activities_by_date === 'object') {
+                    Object.keys(data.activities_by_date).forEach(dateStr => {
+                        const list = data.activities_by_date[dateStr];
+                        if (Array.isArray(list) && list.length > 0) {
                             stravaDates.add(dateStr);
                         }
+                    });
+                }
+                if (Array.isArray(data.activities)) {
+                    data.activities.forEach(act => {
+                        if (act.date) stravaDates.add(act.date.split('T')[0]);
                     });
                 }
             }
