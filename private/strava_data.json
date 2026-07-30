@@ -1,7 +1,207 @@
 {
-  "fetched_at": "2026-07-30T01:57:00Z",
+  "fetched_at": "2026-07-30T02:01:44Z",
   "athlete_id": 197020850,
   "activities_by_date": {
+    "2026-07-04": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Lunch Run",
+        "detail": "2.50 mi \u00b7 30m \u00b7 @ 11:59/mi \u00b7 \u2764\ufe0f 162 bpm \u00b7 cadence 169 spm",
+        "dist_mi": 2.5,
+        "duration_sec": 1800,
+        "pace": "11:59/mi",
+        "hr_avg": 162,
+        "hr_max": 180,
+        "elev_ft": 0,
+        "strava_id": 19181029968
+      }
+    ],
+    "2026-07-09": [
+      {
+        "emoji": "\ud83d\udeb4",
+        "sport": "Ride",
+        "name": "Evening Ride",
+        "detail": "6.51 mi \u00b7 37m \u00b7 @ 10.3 mph \u00b7 \u2764\ufe0f 133 bpm \u00b7 \u2191 51ft",
+        "dist_mi": 6.51,
+        "duration_sec": 2271,
+        "pace": null,
+        "hr_avg": 133,
+        "hr_max": 185,
+        "elev_ft": 167,
+        "strava_id": 19250737848
+      }
+    ],
+    "2026-07-10": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Evening Run",
+        "detail": "3.50 mi \u00b7 42m \u00b7 @ 12:04/mi \u00b7 \u2764\ufe0f 163 bpm \u00b7 \u2191 58ft \u00b7 cadence 170 spm",
+        "dist_mi": 3.5,
+        "duration_sec": 2538,
+        "pace": "12:04/mi",
+        "hr_avg": 163,
+        "hr_max": 196,
+        "elev_ft": 190,
+        "strava_id": 19263125370
+      }
+    ],
+    "2026-07-11": [
+      {
+        "emoji": "\ud83d\udeb4",
+        "sport": "Ride",
+        "name": "Evening Ride",
+        "detail": "15.07 mi \u00b7 1h 20m \u00b7 @ 11.2 mph \u00b7 \u2764\ufe0f 152 bpm \u00b7 \u2191 170ft",
+        "dist_mi": 15.07,
+        "duration_sec": 4853,
+        "pace": null,
+        "hr_avg": 152,
+        "hr_max": 188,
+        "elev_ft": 557,
+        "strava_id": 19276438513
+      }
+    ],
+    "2026-07-13": [
+      {
+        "emoji": "\ud83e\uddd7",
+        "sport": "StairStepper",
+        "name": "Evening Stair-Stepper",
+        "detail": "8m \u00b7 \u2764\ufe0f 131 bpm",
+        "dist_mi": 0,
+        "duration_sec": 513,
+        "pace": null,
+        "hr_avg": 131,
+        "hr_max": 154,
+        "elev_ft": 0,
+        "strava_id": 19303290235
+      },
+      {
+        "emoji": "\ud83c\udfcb",
+        "sport": "WeightTraining",
+        "name": "first floor",
+        "detail": "5m",
+        "dist_mi": 0,
+        "duration_sec": 351,
+        "pace": null,
+        "hr_avg": null,
+        "hr_max": null,
+        "elev_ft": 0,
+        "strava_id": 19303323188
+      }
+    ],
+    "2026-07-15": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Afternoon Run",
+        "detail": "1.47 mi \u00b7 21m \u00b7 @ 14:32/mi \u00b7 \u2764\ufe0f 142 bpm \u00b7 cadence 158 spm",
+        "dist_mi": 1.47,
+        "duration_sec": 1284,
+        "pace": "14:32/mi",
+        "hr_avg": 142,
+        "hr_max": 176,
+        "elev_ft": 9,
+        "strava_id": 19331006045
+      }
+    ],
+    "2026-07-16": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Indoor Run",
+        "detail": "2.20 mi \u00b7 27m \u00b7 @ 12:19/mi",
+        "dist_mi": 2.2,
+        "duration_sec": 1626,
+        "pace": "12:19/mi",
+        "hr_avg": null,
+        "hr_max": null,
+        "elev_ft": 0,
+        "strava_id": 19344596075
+      }
+    ],
+    "2026-07-19": [
+      {
+        "emoji": "\ud83c\udfca",
+        "sport": "Swim",
+        "name": "Morning Swim",
+        "detail": "0.47 mi \u00b7 21m \u00b7 \u2764\ufe0f 135 bpm",
+        "dist_mi": 0.47,
+        "duration_sec": 1299,
+        "pace": null,
+        "hr_avg": 135,
+        "hr_max": 180,
+        "elev_ft": 0,
+        "strava_id": 19379397901
+      },
+      {
+        "emoji": "\ud83d\udcaa",
+        "sport": "Workout",
+        "name": "Morning Workout",
+        "detail": "0.10 mi \u00b7 2m \u00b7 \u2764\ufe0f 161 bpm",
+        "dist_mi": 0.1,
+        "duration_sec": 143,
+        "pace": null,
+        "hr_avg": 161,
+        "hr_max": 179,
+        "elev_ft": 16,
+        "strava_id": 19379397876
+      },
+      {
+        "emoji": "\ud83d\udeb4",
+        "sport": "Ride",
+        "name": "Morning Ride",
+        "detail": "12.18 mi \u00b7 51m \u00b7 @ 14.2 mph \u00b7 \u2764\ufe0f 173 bpm \u00b7 \u2191 93ft",
+        "dist_mi": 12.18,
+        "duration_sec": 3088,
+        "pace": null,
+        "hr_avg": 173,
+        "hr_max": 191,
+        "elev_ft": 305,
+        "strava_id": 19379397974
+      },
+      {
+        "emoji": "\ud83d\udcaa",
+        "sport": "Workout",
+        "name": "Morning Workout",
+        "detail": "0.20 mi \u00b7 5m \u00b7 \u2764\ufe0f 143 bpm",
+        "dist_mi": 0.2,
+        "duration_sec": 324,
+        "pace": null,
+        "hr_avg": 143,
+        "hr_max": 175,
+        "elev_ft": 6,
+        "strava_id": 19379397850
+      },
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Morning Run",
+        "detail": "3.13 mi \u00b7 33m \u00b7 @ 10:39/mi \u00b7 \u2764\ufe0f 177 bpm \u00b7 \u2191 42ft \u00b7 cadence 174 spm",
+        "dist_mi": 3.13,
+        "duration_sec": 2004,
+        "pace": "10:39/mi",
+        "hr_avg": 177,
+        "hr_max": 196,
+        "elev_ft": 137,
+        "strava_id": 19379397959
+      }
+    ],
+    "2026-07-25": [
+      {
+        "emoji": "\ud83c\udfca",
+        "sport": "Swim",
+        "name": "swim",
+        "detail": "0.34 mi \u00b7 30m",
+        "dist_mi": 0.34,
+        "duration_sec": 1800,
+        "pace": null,
+        "hr_avg": null,
+        "hr_max": null,
+        "elev_ft": 0,
+        "strava_id": 19467566347
+      }
+    ],
     "2026-07-27": [
       {
         "emoji": "\ud83c\udfc3",

@@ -21,7 +21,7 @@ CLIENT_ID     = os.environ.get("STRAVA_CLIENT_ID")
 CLIENT_SECRET = os.environ.get("STRAVA_CLIENT_SECRET")
 REFRESH_TOKEN = os.environ.get("STRAVA_REFRESH_TOKEN")
 
-TRAINING_START_TS = int(datetime(2026, 7, 27, 0, 0, 0, tzinfo=timezone.utc).timestamp())
+TRAINING_START_TS = int(datetime(2026, 7, 1, 0, 0, 0, tzinfo=timezone.utc).timestamp())
 
 OUT_FILE = os.path.join(os.path.dirname(__file__), "..", "private", "strava_data.json")
 
