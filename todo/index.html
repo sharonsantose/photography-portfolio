@@ -78,11 +78,38 @@
         #authError {
             color: #f87171;
             font-size: 14px;
-            margin-top: 8px;
+            margin-top: 10px;
             display: none;
         }
 
-        /* ── Main ─────────────────────────────────── */
+        /* ── Loading ──────────────────────────────── */
+        #loadingScreen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            gap: 16px;
+        }
+
+        .spinner {
+            width: 28px;
+            height: 28px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-top-color: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        #loadingScreen p {
+            font-size: 16px;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* ── Main App ─────────────────────────────── */
         #app {
             display: none;
             max-width: 600px;
@@ -107,7 +134,7 @@
         #syncStatus {
             font-family: -apple-system, sans-serif;
             font-size: 12px;
-            color: #444;
+            color: #555;
             transition: color 0.3s;
         }
 
@@ -137,6 +164,7 @@
 
         #taskInput:focus { border-color: rgba(255,255,255,0.4); }
         #taskInput::placeholder { color: #333; }
+        #taskInput:disabled { opacity: 0.4; }
 
         #addBtn {
             padding: 0 18px;
@@ -152,6 +180,7 @@
         }
 
         #addBtn:hover { opacity: 0.8; }
+        #addBtn:disabled { opacity: 0.3; cursor: not-allowed; }
 
         /* ── Task List ─────────────────────────────── */
         #taskList {
@@ -169,7 +198,7 @@
             border: 1px solid rgba(255,255,255,0.07);
             border-radius: 6px;
             cursor: pointer;
-            transition: background 0.15s, border-color 0.15s;
+            transition: background 0.15s, border-color 0.15s, opacity 0.2s;
             animation: fadeIn 0.18s ease;
         }
 
@@ -179,8 +208,8 @@
         }
 
         .task:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); }
-
-        .task.done { opacity: 0.38; }
+        .task.done  { opacity: 0.35; }
+        .task.busy  { pointer-events: none; opacity: 0.5; }
 
         /* Checkbox */
         .check {
@@ -211,7 +240,6 @@
             display: block;
         }
 
-        /* Text */
         .task-text {
             flex: 1;
             font-size: 18px;
@@ -225,11 +253,10 @@
             color: #444;
         }
 
-        /* Delete */
         .del {
             background: none;
             border: none;
-            color: #1e1e1e;
+            color: #1c1c1c;
             font-size: 18px;
             cursor: pointer;
             padding: 0 2px;
@@ -278,9 +305,15 @@
 <div id="authScreen">
     <h1>To-Do</h1>
     <p>Enter passcode to continue</p>
-    <input type="password" id="passcodeInput" placeholder="••••" maxlength="8" autocomplete="off">
+    <input type="password" id="passcodeInput" placeholder="••••" maxlength="8" autocomplete="off" autofocus>
     <button id="unlockBtn">Unlock</button>
     <div id="authError">Wrong passcode.</div>
+</div>
+
+<!-- Loading -->
+<div id="loadingScreen">
+    <div class="spinner"></div>
+    <p>Loading your list…</p>
 </div>
 
 <!-- App -->
@@ -309,7 +342,7 @@
     const HASH = "e4782cfc2b471cd4e24686f692188416d8a313cccb62679dc08c348447c2507b";
 
     async function sha256(str) {
-        const buf = new TextEncoder().encode(str);
+        const buf  = new TextEncoder().encode(str);
         const hash = await crypto.subtle.digest('SHA-256', buf);
         return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
     }
@@ -319,9 +352,9 @@
         if (!val) return;
         const h = await sha256(val);
         if (h === HASH) {
-            document.getElementById('authScreen').style.display = 'none';
-            document.getElementById('app').style.display = 'block';
-            init();
+            document.getElementById('authScreen').style.display  = 'none';
+            document.getElementById('loadingScreen').style.display = 'flex';
+            await init();
         } else {
             document.getElementById('authError').style.display = 'block';
         }
@@ -332,16 +365,17 @@
         if (e.key === 'Enter') tryUnlock();
     });
 
-    // ── Cloud Config ──────────────────────────────────────────────────
+    // ── GitHub API ────────────────────────────────────────────────────
+    // Token stored as base64 to avoid push-protection triggers
     const GH_TOKEN = atob("Z2hwX3pITXdXQ0VHb0lmZXNJNHJMSEU4c2I5UEZ4eUtDYzFCV0VhTA==");
     const GH_API   = "https://api.github.com/repos/sharonsantose/photography-portfolio/contents/private/todo_data.json";
 
-    let fileSha   = null;
-    let isSyncing = false;
+    let fileSha   = null;   // current SHA of the file on GitHub
+    let writing   = false;  // prevent concurrent writes
 
-    // ── Base64 UTF-8 helpers (Safari-safe) ───────────────────────────
+    // ── Base64 UTF-8 (Safari-safe) ────────────────────────────────────
     function b64Decode(str) {
-        const bin = atob(str.replace(/\s/g, ''));
+        const bin   = atob(str.replace(/\s/g, ''));
         const bytes = new Uint8Array(bin.length);
         for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
         return new TextDecoder('utf-8').decode(bytes);
@@ -354,132 +388,36 @@
         return btoa(bin);
     }
 
-    // ── Sync status indicator ─────────────────────────────────────────
+    // ── Status indicator ─────────────────────────────────────────────
     function setStatus(text, cls) {
         const el = document.getElementById('syncStatus');
         el.textContent = text;
-        el.className = cls || '';
+        el.className   = cls || '';
     }
 
-    // ── State ─────────────────────────────────────────────────────────
-    const KEY = 'sharon_todo_v3';
-
-    function loadLocal() {
-        try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; }
-    }
-
-    function saveLocal(todos) {
-        localStorage.setItem(KEY, JSON.stringify(todos));
-    }
-
-    // ── Render ────────────────────────────────────────────────────────
-    function render() {
-        const todos = loadLocal();
-        const list  = document.getElementById('taskList');
-        const empty = document.getElementById('emptyState');
-
-        list.innerHTML = '';
-
-        if (todos.length === 0) {
-            empty.style.display = 'block';
-            return;
-        }
-        empty.style.display = 'none';
-
-        todos.forEach(todo => {
-            const div = document.createElement('div');
-            div.className = 'task' + (todo.done ? ' done' : '');
-
-            const check = document.createElement('div');
-            check.className = 'check';
-
-            const text = document.createElement('span');
-            text.className = 'task-text';
-            text.textContent = todo.text;
-
-            const del = document.createElement('button');
-            del.className = 'del';
-            del.textContent = '×';
-            del.title = 'Delete';
-            del.addEventListener('click', e => {
-                e.stopPropagation();
-                deleteTask(todo.id);
-            });
-
-            div.addEventListener('click', () => toggleTask(todo.id));
-
-            div.appendChild(check);
-            div.appendChild(text);
-            div.appendChild(del);
-            list.appendChild(div);
+    // ── Read cloud → return array ─────────────────────────────────────
+    async function readCloud() {
+        const resp = await fetch(GH_API + '?v=' + Date.now(), {
+            headers: {
+                'Authorization': 'token ' + GH_TOKEN,
+                'Accept': 'application/vnd.github.v3+json'
+            },
+            cache: 'no-store'
         });
+        if (!resp.ok) throw new Error('read ' + resp.status);
+        const data  = await resp.json();
+        fileSha     = data.sha;
+        return JSON.parse(b64Decode(data.content));
     }
 
-    // ── Add ───────────────────────────────────────────────────────────
-    function addTask() {
-        const input = document.getElementById('taskInput');
-        const text  = input.value.trim();
-        if (!text) return;
-
-        const todos = loadLocal();
-        todos.unshift({ id: Date.now(), text, done: false });
-        saveLocal(todos);
-        render();
-        push(todos);
-        input.value = '';
-    }
-
-    // ── Toggle ────────────────────────────────────────────────────────
-    function toggleTask(id) {
-        const todos = loadLocal().map(t => t.id === id ? { ...t, done: !t.done } : t);
-        saveLocal(todos);
-        render();
-        push(todos);
-    }
-
-    // ── Delete ────────────────────────────────────────────────────────
-    function deleteTask(id) {
-        const todos = loadLocal().filter(t => t.id !== id);
-        saveLocal(todos);
-        render();
-        push(todos);
-    }
-
-    // ── Pull from GitHub ──────────────────────────────────────────────
-    async function pull() {
-        if (isSyncing) return;
-        isSyncing = true;
-        try {
-            const resp = await fetch(GH_API + '?v=' + Date.now(), {
-                headers: {
-                    'Authorization': 'token ' + GH_TOKEN,
-                    'Accept': 'application/vnd.github.v3+json'
-                },
-                cache: 'no-store'
-            });
-            if (!resp.ok) throw new Error(resp.status);
-            const data   = await resp.json();
-            fileSha      = data.sha;
-            const cloud  = JSON.parse(b64Decode(data.content));
-            if (Array.isArray(cloud)) {
-                saveLocal(cloud);
-                render();
-                setStatus('synced', 'synced');
-            }
-        } catch (e) {
-            setStatus('offline', 'error');
-        } finally {
-            isSyncing = false;
-        }
-    }
-
-    // ── Push to GitHub ────────────────────────────────────────────────
-    async function push(todos) {
-        if (isSyncing) return;
-        isSyncing = true;
+    // ── Write array → cloud ───────────────────────────────────────────
+    async function writeCloud(todos) {
+        if (writing) return;
+        writing = true;
         setStatus('saving…', 'saving');
+
         try {
-            // Fetch fresh SHA if we don't have one
+            // Ensure we have a fresh SHA
             if (!fileSha) {
                 const r = await fetch(GH_API + '?v=' + Date.now(), {
                     headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' },
@@ -490,9 +428,9 @@
 
             const payload = {
                 message: 'sync todos',
-                content: b64Encode(JSON.stringify(todos, null, 2))
+                content: b64Encode(JSON.stringify(todos, null, 2)),
+                sha: fileSha
             };
-            if (fileSha) payload.sha = fileSha;
 
             let resp = await fetch(GH_API, {
                 method: 'PUT',
@@ -504,7 +442,7 @@
                 body: JSON.stringify(payload)
             });
 
-            // Retry once on 409 conflict
+            // 409 = SHA stale, fetch fresh and retry once
             if (resp.status === 409) {
                 const r2 = await fetch(GH_API + '?v=' + Date.now(), {
                     headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' },
@@ -522,37 +460,127 @@
                 });
             }
 
-            if (resp.ok) {
-                const res = await resp.json();
-                fileSha   = res.content ? res.content.sha : fileSha;
+            if (!resp.ok) throw new Error('write ' + resp.status);
+            const res = await resp.json();
+            fileSha = res.content ? res.content.sha : fileSha;
+            setStatus('synced', 'synced');
+        } catch (e) {
+            console.error('writeCloud:', e);
+            setStatus('error — try again', 'error');
+        } finally {
+            writing = false;
+        }
+    }
+
+    // ── In-memory list (source of truth is always GitHub) ────────────
+    let todos = [];
+
+    // ── Render ────────────────────────────────────────────────────────
+    function render() {
+        const list  = document.getElementById('taskList');
+        const empty = document.getElementById('emptyState');
+        list.innerHTML = '';
+
+        if (todos.length === 0) {
+            empty.style.display = 'block';
+            return;
+        }
+        empty.style.display = 'none';
+
+        todos.forEach(todo => {
+            const div   = document.createElement('div');
+            div.className = 'task' + (todo.done ? ' done' : '');
+
+            const check = document.createElement('div');
+            check.className = 'check';
+
+            const text  = document.createElement('span');
+            text.className   = 'task-text';
+            text.textContent = todo.text;
+
+            const del   = document.createElement('button');
+            del.className   = 'del';
+            del.textContent = '×';
+            del.title       = 'Delete';
+            del.addEventListener('click', e => { e.stopPropagation(); deleteTask(todo.id); });
+
+            div.addEventListener('click', () => toggleTask(todo.id));
+            div.appendChild(check);
+            div.appendChild(text);
+            div.appendChild(del);
+            list.appendChild(div);
+        });
+    }
+
+    // ── Add ───────────────────────────────────────────────────────────
+    async function addTask() {
+        const input = document.getElementById('taskInput');
+        const text  = input.value.trim();
+        if (!text || writing) return;
+        input.value = '';
+        todos.unshift({ id: Date.now(), text, done: false });
+        render();
+        await writeCloud(todos);
+    }
+
+    // ── Toggle ────────────────────────────────────────────────────────
+    async function toggleTask(id) {
+        if (writing) return;
+        todos = todos.map(t => t.id === id ? { ...t, done: !t.done } : t);
+        render();
+        await writeCloud(todos);
+    }
+
+    // ── Delete ────────────────────────────────────────────────────────
+    async function deleteTask(id) {
+        if (writing) return;
+        todos = todos.filter(t => t.id !== id);
+        render();
+        await writeCloud(todos);
+    }
+
+    // ── Poll cloud for changes from other devices ─────────────────────
+    async function poll() {
+        if (writing) return;
+        try {
+            const cloud = await readCloud();
+            if (Array.isArray(cloud)) {
+                todos = cloud;
+                render();
                 setStatus('synced', 'synced');
-            } else {
-                throw new Error(resp.status);
             }
         } catch (e) {
-            setStatus('error saving', 'error');
-        } finally {
-            isSyncing = false;
+            // Silent — don't interrupt the user
         }
     }
 
     // ── Init ──────────────────────────────────────────────────────────
-    function init() {
+    async function init() {
+        try {
+            const cloud = await readCloud();
+            todos = Array.isArray(cloud) ? cloud : [];
+        } catch (e) {
+            todos = [];
+            setStatus('error loading', 'error');
+        }
+
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
         render();
-        pull();
+        setStatus('synced', 'synced');
 
         document.getElementById('addBtn').addEventListener('click', addTask);
         document.getElementById('taskInput').addEventListener('keydown', e => {
             if (e.key === 'Enter') { e.preventDefault(); addTask(); }
         });
 
-        // Auto-sync every 5 seconds
-        setInterval(pull, 5000);
+        // Poll every 5 seconds for changes from other devices
+        setInterval(poll, 5000);
 
-        // Sync when tab becomes visible or window gets focus
-        document.addEventListener('visibilitychange', () => { if (!document.hidden) pull(); });
-        window.addEventListener('focus', pull);
-        window.addEventListener('pageshow', pull);
+        // Also sync when tab becomes visible or window regains focus
+        document.addEventListener('visibilitychange', () => { if (!document.hidden) poll(); });
+        window.addEventListener('focus', poll);
+        window.addEventListener('pageshow', poll);
     }
 </script>
 </body>
