@@ -824,9 +824,8 @@
             const cloudTodos = JSON.parse(jsonStr);
 
             if (Array.isArray(cloudTodos)) {
-                const localTodos = load();
-                const merged = mergeTodos(localTodos, cloudTodos);
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+                // Cloud is the single source of truth across devices
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudTodos));
                 render();
                 updateCloudBadge('Synced across devices', '#10b981');
             }
@@ -838,34 +837,10 @@
         }
     }
 
-    function mergeTodos(localArr, cloudArr) {
-        if (!Array.isArray(cloudArr)) return localArr || [];
-        if (!Array.isArray(localArr) || localArr.length === 0) return cloudArr;
-
-        const map = new Map();
-        cloudArr.forEach(item => {
-            if (item && item.id) map.set(item.id, item);
-        });
-
-        localArr.forEach(item => {
-            if (!item || !item.id) return;
-            if (!map.has(item.id)) {
-                map.set(item.id, item);
-            } else {
-                const existing = map.get(item.id);
-                if ((item.updatedAt || item.created || 0) >= (existing.updatedAt || existing.created || 0)) {
-                    map.set(item.id, item);
-                }
-            }
-        });
-
-        const merged = Array.from(map.values());
-        merged.sort((a, b) => (b.id || 0) - (a.id || 0));
-        return merged;
-    }
-
     // ── Cloud Write (Push to GitHub) ───────────────────────────────
     async function pushToCloud(todos) {
+        if (isSyncing) return;
+        isSyncing = true;
         updateCloudBadge('Saving to Cloud…', '#38bdf8');
 
         try {
@@ -941,6 +916,8 @@
         } catch (err) {
             console.log('Cloud push error:', err);
             updateCloudBadge('Saved locally', '#eab308');
+        } finally {
+            isSyncing = false;
         }
     }
 
