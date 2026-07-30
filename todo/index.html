@@ -448,108 +448,115 @@
 
         .habit-card.done .habit-sub { color: #34d399; }
 
-        /* ── Non-Slidey Calendar Grid Dashboard ──────────────── */
-        .habit-cal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            margin-bottom: 44px;
-        }
-
-        .habit-cal-card {
+        /* ── Unified Non-Slidey Habit Grid Matrix ───────────── */
+        .grid-dashboard-container {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
-            padding: 18px;
+            padding: 16px 12px;
+            margin-bottom: 44px;
+            overflow-x: hidden;
+            width: 100%;
         }
 
-        .habit-cal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 14px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+        .habit-grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
         }
 
-        .habit-cal-title {
-            font-size: 17px;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .habit-grid-table th, .habit-grid-table td {
+            text-align: center;
+            padding: 3px 1px;
+            vertical-align: middle;
         }
 
-        .habit-cal-stat {
-            font-size: 11px;
-            color: #10b981;
+        .habit-col-label {
+            text-align: left !important;
+            font-size: 13px;
+            color: #eee;
+            width: 130px;
+            padding-right: 6px !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .day-header {
+            font-size: 9px;
+            color: #555;
             font-weight: 500;
         }
 
-        .month-days-matrix {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 6px;
-            text-align: center;
+        .day-header.today {
+            color: #10b981;
+            font-weight: 700;
         }
 
-        .cal-day-head {
+        .day-num {
             font-size: 10px;
-            color: #555;
-            font-weight: 600;
-            padding-bottom: 4px;
+            color: #777;
+            margin-bottom: 2px;
         }
 
-        .cal-day-box {
-            aspect-ratio: 1;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.04);
+        .day-header.today .day-num {
+            color: #fff;
+            background: #10b981;
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid-cell {
+            width: 100%;
+            height: 18px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
+            margin: 0 auto;
+            cursor: pointer;
+            transition: all 0.15s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            color: #888;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            position: relative;
-            font-family: 'Inter', sans-serif;
-            user-select: none;
         }
 
-        .cal-day-box:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-            z-index: 2;
+        .grid-cell:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.15);
         }
 
-        .cal-day-box.filled {
+        .grid-cell.filled {
             background: #10b981;
             border-color: #10b981;
+            box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+        }
+
+        .grid-cell.filled::after {
+            content: '✓';
+            font-size: 10px;
             color: #000;
-            font-weight: 700;
-            box-shadow: 0 0 8px rgba(16, 185, 129, 0.35);
+            font-weight: bold;
         }
 
-        .cal-day-box.today {
-            border: 2px solid #3b82f6;
-            color: #fff;
-        }
-
-        .cal-day-box.filled.today {
-            border-color: #fff;
-        }
-
-        .cal-day-box.empty-pad {
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .cal-day-box.future {
-            opacity: 0.2;
+        .grid-cell.future {
+            opacity: 0.15;
             cursor: default;
         }
-        .cal-day-box.future:hover { transform: none; border-color: rgba(255,255,255,0.08); }
+
+        .grid-cell.future:hover { transform: none; border-color: rgba(255, 255, 255, 0.08); }
+
+        @media (max-width: 600px) {
+            .grid-dashboard-container { padding: 10px 6px; }
+            .habit-col-label { width: 24px; font-size: 14px; text-align: center !important; padding-right: 0 !important; }
+            .habit-col-label span.label-text { display: none; }
+            .grid-cell { height: 15px; border-radius: 2px; }
+            .day-header { font-size: 8px; }
+            .day-num { font-size: 8px; }
+        }
 
         .month-btn {
             background: rgba(255,255,255,0.05);
@@ -801,6 +808,7 @@
             <div class="garmin-stat-label sans">❤️ Resting HR</div>
             <div class="garmin-stat-val" id="garminRhr">— <span class="garmin-stat-unit">bpm</span></div>
             <div class="garmin-stat-sub sans" id="garminRhrSub">Garmin Connect</div>
+        </div>
     </div>
 
     <!-- Monthly Daily Steps Graph -->
@@ -832,6 +840,8 @@
             <div class="steps-bars-flex" id="stepsBarsFlex"></div>
         </div>
     </div>
+
+    <!-- Section 1: Today's Habits -->
     <div class="section-header">
         <h2 class="section-title">✨ Today's Habits</h2>
         <span class="section-subtitle sans" id="todayHabitCount">0 of 4 completed</span>
@@ -888,12 +898,19 @@
         <h2 class="section-title">📊 Habit Grid Dashboard</h2>
         <div class="month-nav sans">
             <button class="month-btn" onclick="changeMonth(-1)">← Prev</button>
-            <span id="monthTitleDisplay" style="font-size: 15px; color: #fff; margin: 0 6px;"></span>
+            <span id="monthTitleDisplay" style="font-size: 15px; color: #fff; margin: 0 6px; font-weight: 500;"></span>
             <button class="month-btn" onclick="changeMonth(1)">Next →</button>
         </div>
     </div>
 
-    <div class="habit-cal-grid" id="habitCalGrid"></div>
+    <div class="grid-dashboard-container">
+        <table class="habit-grid-table">
+            <thead>
+                <tr id="gridHeaderRow"></tr>
+            </thead>
+            <tbody id="gridBody"></tbody>
+        </table>
+    </div>
 
     <!-- Section 3: To-Do List -->
     <div class="section-header">
@@ -1215,84 +1232,63 @@
         document.getElementById('todayHabitCount').textContent = `${doneCount} of ${HABITS_DEF.length} completed`;
     }
 
-    // ── Render Monthly Habit Grid (Non-Slidey Calendar Matrix) ───────
+    // ── Render Monthly Habit Grid (Unified Non-Slidey Matrix) ────────
     function renderHabitGrid() {
-        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        document.getElementById('monthTitleDisplay').textContent = `${monthNames[viewMonth]} ${viewYear}`;
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const monthHeaderElem = document.getElementById('monthTitleDisplay');
+        if (monthHeaderElem) monthHeaderElem.textContent = `${monthNames[viewMonth]} ${viewYear}`;
 
-        const gridContainer = document.getElementById('habitCalGrid');
-        if (!gridContainer) return;
-        gridContainer.innerHTML = '';
+        const headerRow = document.getElementById('gridHeaderRow');
+        const gridBody  = document.getElementById('gridBody');
+        if (!headerRow || !gridBody) return;
+
+        headerRow.innerHTML = '';
+        gridBody.innerHTML  = '';
 
         const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
-        const firstDayOfWeek = new Date(viewYear, viewMonth, 1).getDay(); // 0 = Sun
-        // Adjust so Monday is 0, Sunday is 6
-        const startPad = (firstDayOfWeek === 0) ? 6 : (firstDayOfWeek - 1);
         const todayStr = getTodayStr();
 
-        HABITS_DEF.forEach(h => {
-            let completedCount = 0;
-            for (let d = 1; d <= daysInMonth; d++) {
-                const dateStr = formatDateKey(viewYear, viewMonth, d);
-                if (getHabitStatus(dateStr, h.id)) completedCount++;
-            }
-            const pct = Math.round((completedCount / daysInMonth) * 100);
+        // 1. Header Row (Habit label + Days 1..31)
+        let headerHTML = '<th class="habit-col-label sans">Habit</th>';
+        for (let d = 1; d <= daysInMonth; d++) {
+            const dateStr = formatDateKey(viewYear, viewMonth, d);
+            const dateObj = new Date(viewYear, viewMonth, d);
+            const dayLetter = dateObj.toLocaleDateString('en-US', { weekday: 'narrow' });
+            const isToday = (dateStr === todayStr);
 
-            const card = document.createElement('div');
-            card.className = 'habit-cal-card';
-
-            const header = document.createElement('div');
-            header.className = 'habit-cal-header';
-            header.innerHTML = `
-                <div class="habit-cal-title">${h.icon} ${h.name}</div>
-                <div class="habit-cal-stat sans">${completedCount}/${daysInMonth} days (${pct}%)</div>
+            headerHTML += `
+                <th class="day-header ${isToday ? 'today' : ''} sans" title="${dateStr}">
+                    <div class="day-num">${d}</div>
+                </th>
             `;
-            card.appendChild(header);
+        }
+        headerRow.innerHTML = headerHTML;
 
-            const matrix = document.createElement('div');
-            matrix.className = 'month-days-matrix';
+        // 2. Body Rows (One row per habit x 31 days)
+        HABITS_DEF.forEach(h => {
+            let rowHTML = `<tr><td class="habit-col-label">${h.icon} <span class="label-text">${h.name}</span></td>`;
 
-            // Day Headers (M T W T F S S)
-            const dayLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-            dayLabels.forEach(lbl => {
-                const dHead = document.createElement('div');
-                dHead.className = 'cal-day-head sans';
-                dHead.textContent = lbl;
-                matrix.appendChild(dHead);
-            });
-
-            // Empty Start Padding
-            for (let i = 0; i < startPad; i++) {
-                const padBox = document.createElement('div');
-                padBox.className = 'cal-day-box empty-pad';
-                matrix.appendChild(padBox);
-            }
-
-            // Days 1 to daysInMonth
             for (let d = 1; d <= daysInMonth; d++) {
                 const dateStr = formatDateKey(viewYear, viewMonth, d);
                 const isDone  = getHabitStatus(dateStr, h.id);
-                const isToday = (dateStr === todayStr);
                 const isFuture = (new Date(viewYear, viewMonth, d) > new Date());
 
-                let boxClass = 'cal-day-box';
-                if (isDone) boxClass += ' filled';
-                if (isToday) boxClass += ' today';
-                if (isFuture) boxClass += ' future';
+                let cellClass = 'grid-cell';
+                if (isDone) cellClass += ' filled';
+                if (isFuture) cellClass += ' future';
 
-                const box = document.createElement('div');
-                box.className = boxClass;
-                box.textContent = d;
-                box.title = `${h.name}: ${dateStr} (${isDone ? 'Completed' : 'Pending'})`;
-                if (!isFuture) {
-                    box.onclick = () => toggleHabitDate(dateStr, h.id);
-                }
-
-                matrix.appendChild(box);
+                rowHTML += `
+                    <td>
+                        <div class="${cellClass}"
+                             title="${h.name}: ${dateStr} (${isDone ? 'Completed' : 'Pending'})"
+                             onclick="${isFuture ? '' : `toggleHabitDate('${dateStr}', '${h.id}')`}">
+                        </div>
+                    </td>
+                `;
             }
 
-            card.appendChild(matrix);
-            gridContainer.appendChild(card);
+            rowHTML += '</tr>';
+            gridBody.innerHTML += rowHTML;
         });
     }
 
