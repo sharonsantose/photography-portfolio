@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#080808">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>To-Do & Habit Tracker — Sharon Santos</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +20,8 @@
             color: #ffffff;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: rgba(255,255,255,0.1);
+            touch-action: manipulation;
         }
 
         .sans {
@@ -34,29 +39,29 @@
         }
 
         #authScreen h1 {
-            font-size: clamp(34px, 5vw, 44px);
+            font-size: clamp(30px, 6vw, 44px);
             font-weight: 400;
             margin-bottom: 8px;
         }
 
         #authScreen p {
-            font-size: 18px;
+            font-size: 16px;
             font-style: italic;
             color: #666;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         #passcodeInput {
-            width: 220px;
-            padding: 12px 16px;
+            width: min(220px, 80vw);
+            padding: 14px 16px;
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.18);
-            border-radius: 6px;
+            border-radius: 8px;
             color: #fff;
             font-family: inherit;
-            font-size: 22px;
+            font-size: 24px;
             text-align: center;
-            letter-spacing: 6px;
+            letter-spacing: 8px;
             outline: none;
             margin-bottom: 14px;
             transition: border-color 0.2s;
@@ -65,16 +70,17 @@
         #passcodeInput:focus { border-color: rgba(255,255,255,0.5); }
 
         #unlockBtn {
-            width: 220px;
-            padding: 12px;
+            width: min(220px, 80vw);
+            padding: 14px;
             background: #fff;
             color: #000;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-family: inherit;
             font-size: 16px;
             cursor: pointer;
             transition: opacity 0.2s;
+            min-height: 48px;
         }
 
         #unlockBtn:hover { opacity: 0.85; }
@@ -119,6 +125,8 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 50px 20px 80px;
+            padding-left: env(safe-area-inset-left, 20px);
+            padding-right: env(safe-area-inset-right, 20px);
         }
 
         .header {
@@ -226,6 +234,8 @@
             font-size: 11px;
             color: #10b981;
             font-weight: 500;
+            line-height: 1.3;
+            word-break: break-word;
         }
 
         /* ── Outdoor Weather & Golden Hour Banner ───────────────── */
@@ -600,12 +610,12 @@
         .grid-cell.future:hover { transform: none; border-color: rgba(255, 255, 255, 0.08); }
 
         @media (max-width: 600px) {
-            .grid-dashboard-container { padding: 10px 6px; }
-            .habit-col-label { width: 24px; font-size: 14px; text-align: center !important; padding-right: 0 !important; }
+            .grid-dashboard-container { padding: 8px 4px; }
+            .habit-col-label { width: 22px; font-size: 14px; text-align: center !important; padding-right: 0 !important; }
             .habit-col-label span.label-text { display: none; }
-            .grid-cell { height: 15px; border-radius: 2px; }
-            .day-header { font-size: 8px; }
-            .day-num { font-size: 8px; }
+            .grid-cell { height: 16px; border-radius: 2px; }
+            .day-header { font-size: 7px; }
+            .day-num { font-size: 7px; }
         }
 
         .month-btn {
@@ -1040,44 +1050,128 @@
         .sc-prefix { font-weight: 700; font-size: 12px; color: #c084fc; width: 45px; text-align: center; }
 
         @media (max-width: 600px) {
-            #app { padding: 30px 14px 60px; }
-            .grid-dashboard-container { padding: 14px 10px; }
-            .add-task-row { flex-direction: column; }
-            #addBtn { padding: 12px; }
-            .focus-trio-container { grid-template-columns: 1fr; }
+            #app { padding: 20px 10px 80px; }
+            .header { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 20px; padding-bottom: 14px; }
+            .header-title h1 { font-size: 26px; }
+            .header-title p { font-size: 13px; }
+            #syncStatus { font-size: 10px; padding: 4px 10px; }
 
-            /* ── Slidy Mobile Graph Optimizations ── */
-            .steps-chart-container {
-                padding: 14px 12px;
+            .section-header { flex-wrap: wrap; gap: 8px; }
+            .section-title { font-size: 17px; }
+            .section-subtitle { font-size: 11px; }
+
+            .weather-golden-container { grid-template-columns: 1fr; gap: 8px; margin: 10px 0 18px; }
+            .weather-stat-box, .golden-stat-box { padding: 10px 14px; gap: 10px; }
+            .weather-temp-val, .golden-time-val { font-size: 15px; }
+
+            .garmin-banner-container { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 20px; }
+            .garmin-stat-card { padding: 10px; min-height: 70px; }
+            .garmin-stat-val { font-size: 20px; }
+
+            .habits-today-grid { grid-template-columns: 1fr; gap: 8px; }
+
+            /* ── Stickied Add Task Row (bottom of viewport) ── */
+            .add-task-row {
+                flex-direction: row;
+                position: sticky;
+                bottom: 0;
+                z-index: 100;
+                background: #080808;
+                padding: 10px 0 12px;
+                margin-bottom: 0 !important;
+                border-top: 1px solid rgba(255,255,255,0.08);
+                gap: 6px;
+                padding-left: env(safe-area-inset-left, 0);
+                padding-right: env(safe-area-inset-right, 0);
+                padding-bottom: env(safe-area-inset-bottom, 12px);
             }
+            .add-task-row > * { border-radius: 8px; }
+            #taskInput { font-size: 15px; padding: 14px; }
+            #catSelect {
+                min-width: 48px;
+                width: 48px;
+                padding: 0;
+                text-align: center;
+                font-size: 20px;
+                line-height: 1;
+                background: rgba(255,255,255,0.04);
+                border: 1px solid rgba(255,255,255,0.14);
+                border-radius: 8px;
+                cursor: pointer;
+                color: #fff;
+            }
+            #catSelect option { font-size: 13px; }
+            #addBtn { font-size: 24px; min-width: 50px; padding: 0; }
+
+            .task-item { padding: 14px 12px; gap: 10px; }
+            .task-text { font-size: 15px; }
+            .task-cat-badge { font-size: 9px; padding: 3px 6px; }
+            .task-del { font-size: 22px; padding: 4px 8px; min-width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
+            .task-item .btn-trio-action { font-size: 10px; padding: 6px 10px; min-height: 34px; }
+
+            .cat-filter-bar { gap: 6px; margin: 10px 0 12px; padding-bottom: 6px; }
+            .cat-filter-pill { padding: 8px 14px; font-size: 12px; }
+
+            .focus-trio-container { grid-template-columns: 1fr; gap: 10px; }
+            .focus-trio-card { padding: 14px; min-height: 120px; }
+            .trio-action { font-size: 14px; }
+            .btn-trio-action { padding: 6px 12px; min-height: 36px; font-size: 12px; }
+
+            .month-btn { padding: 8px 14px; font-size: 13px; min-height: 36px; }
+
+            .grid-dashboard-container { padding: 8px 4px; border-radius: 8px; margin-bottom: 20px; }
+            .habit-grid-table th, .habit-grid-table td { padding: 2px 0; }
+            .grid-cell { height: 18px; }
+            .habit-col-label { width: 20px; font-size: 13px; text-align: center !important; padding-right: 0 !important; }
+            .habit-col-label span.label-text { display: none; }
+            .day-header { font-size: 7px; }
+            .day-num { font-size: 7px; }
+
+            .sc-modal-box { width: 96%; padding: 20px; max-height: 90vh; }
+            .sc-modal-header h3 { font-size: 17px; }
+            .sc-form-group { margin-bottom: 14px; }
+            .sc-form-group input, .sc-form-group select { padding: 12px; font-size: 16px; }
+
+            .footer { gap: 16px; margin-top: 40px; }
+            .footer a { font-size: 13px; padding: 8px 0; min-height: 44px; display: inline-flex; align-items: center; }
+
+            .completed-archive-container { padding: 10px; }
+
+            /* ── Sticky + Swipe Mobile Graph Optimizations ── */
+            .steps-chart-container { padding: 10px 10px; margin-bottom: 20px; }
+            .steps-chart-meta { gap: 12px; padding-bottom: 10px; margin-bottom: 12px; }
+            .steps-meta-val { font-size: 17px; }
+            .steps-meta-label { font-size: 9px; }
             .steps-bar-wrapper {
                 overflow-x: auto;
                 overflow-y: hidden;
                 -webkit-overflow-scrolling: touch;
                 padding-bottom: 8px;
+                margin: 0 -4px;
+                padding-left: 4px;
+                padding-right: 4px;
             }
-            .steps-bars-flex {
-                min-width: 580px;
-                gap: 5px;
-            }
-            .step-bar-col {
-                min-width: 14px;
-            }
-            .step-bar-fill {
-                max-width: 12px;
-                min-width: 8px;
-            }
-            .steps-bar-wrapper::-webkit-scrollbar {
-                height: 4px;
-            }
-            .steps-bar-wrapper::-webkit-scrollbar-track {
-                background: rgba(255, 255, 255, 0.03);
-                border-radius: 2px;
-            }
-            .steps-bar-wrapper::-webkit-scrollbar-thumb {
-                background: rgba(255, 255, 255, 0.2);
-                border-radius: 2px;
-            }
+            .steps-bars-flex { min-width: 580px; gap: 3px; }
+            .step-bar-col { min-width: 12px; }
+            .step-bar-fill { max-width: 10px; min-width: 6px; }
+            .step-bar-date { font-size: 8px; }
+            .steps-bar-wrapper::-webkit-scrollbar { height: 3px; }
+            .steps-bar-wrapper::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: 2px; }
+            .steps-bar-wrapper::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 2px; }
+
+            #emptyTasks { font-size: 14px; padding: 24px 16px; }
+        }
+
+        @media (max-width: 400px) {
+            #app { padding: 16px 8px 80px; }
+            .garmin-banner-container { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .garmin-stat-card { padding: 8px; min-height: 62px; }
+            .garmin-stat-val { font-size: 17px; }
+            .garmin-stat-label { font-size: 10px; }
+            .habits-today-grid { gap: 6px; }
+            .habit-card { padding: 12px; min-height: 80px; }
+            .habit-name { font-size: 14px; }
+            .task-item { padding: 12px 10px; }
         }
     </style>
 </head>
@@ -1346,10 +1440,10 @@
     <div class="add-task-row">
         <input type="text" id="taskInput" placeholder="Dump a new task to mental inbox…" maxlength="240" autocomplete="off">
         <select id="catSelect" class="sans">
-            <option value="life">✨ Life</option>
-            <option value="running">🏃 Training</option>
-            <option value="health">🥑 Health</option>
-            <option value="photo">📷 Photo</option>
+            <option value="life">✨</option>
+            <option value="running">🏃</option>
+            <option value="health">🥑</option>
+            <option value="photo">📷</option>
         </select>
         <button id="addBtn">+</button>
     </div>
