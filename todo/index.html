@@ -747,11 +747,200 @@
 
         .footer a:hover { color: #fff; }
 
+        /* ── Scientific Task Management Enhancements ───────────── */
+        .science-btn {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.35);
+            color: #c084fc;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .science-btn:hover {
+            background: rgba(139, 92, 246, 0.3);
+            color: #fff;
+        }
+
+        .science-badge-tag {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: rgba(139, 92, 246, 0.12);
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            font-weight: 500;
+        }
+
+        .focus-trio-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .focus-trio-card {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 140px;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .focus-trio-card.filled {
+            border-style: solid;
+            border-color: rgba(168, 85, 247, 0.35);
+            background: linear-gradient(145deg, rgba(24, 24, 38, 0.8), rgba(15, 15, 26, 0.8));
+        }
+
+        .focus-trio-card.completed {
+            border-color: rgba(16, 185, 129, 0.35);
+            background: rgba(16, 185, 129, 0.05);
+            opacity: 0.8;
+        }
+
+        .trio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .trio-slot-num {
+            font-size: 10px;
+            font-weight: 700;
+            color: #777;
+            letter-spacing: 1px;
+        }
+
+        .trio-energy-pill {
+            font-size: 10px;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .trio-energy-pill.high { background: rgba(244, 63, 94, 0.2); color: #fda4af; }
+        .trio-energy-pill.med  { background: rgba(245, 158, 11, 0.2); color: #fde68a; }
+        .trio-energy-pill.low  { background: rgba(16, 185, 129, 0.2); color: #a7f3d0; }
+
+        .trio-trigger {
+            font-size: 12px;
+            color: #60a5fa;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .trio-action {
+            font-size: 15px;
+            font-weight: 500;
+            color: #fff;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .trio-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 12px;
+        }
+
+        .trio-time {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .btn-trio-action {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-trio-action:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .goal-gradient-container {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .goal-gradient-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #8b5cf6, #10b981);
+            transition: width 0.4s ease;
+        }
+
+        /* Modal styling */
+        .sc-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.82);
+            backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        .sc-modal-overlay.active {
+            opacity: 1; pointer-events: all;
+        }
+        .sc-modal-box {
+            background: #12131c;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 14px;
+            width: 90%; max-width: 580px;
+            max-height: 85vh; overflow-y: auto;
+            padding: 28px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+        .sc-modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .sc-modal-header h3 { font-size: 20px; font-weight: 400; color: #fff; }
+        .sc-close-btn { background: none; border: none; color: #888; font-size: 24px; cursor: pointer; }
+        .sc-close-btn:hover { color: #fff; }
+
+        .sc-form-group { margin-bottom: 16px; }
+        .sc-form-group label { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
+        .sc-form-group input, .sc-form-group select {
+            width: 100%; padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px; color: #fff; font-family: inherit; font-size: 14px;
+        }
+        .sc-if-then-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+        .sc-prefix { font-weight: 700; font-size: 12px; color: #c084fc; width: 45px; text-align: center; }
+
         @media (max-width: 600px) {
             #app { padding: 30px 14px 60px; }
             .grid-dashboard-container { padding: 14px 10px; }
             .add-task-row { flex-direction: column; }
             #addBtn { padding: 12px; }
+            .focus-trio-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -941,13 +1130,27 @@
         </table>
     </div>
 
-    <!-- Section 3: To-Do List -->
+    <!-- Section 3: To-Do List & Scientific Focus -->
     <div class="section-header">
-        <h2 class="section-title">📝 Tasks & To-Dos</h2>
+        <h2 class="section-title">🎯 Today's Focus Trio (Rule of 3)</h2>
+        <button class="science-btn sans" id="openScienceGuideBtn">🧪 Science Behind This</button>
+    </div>
+
+    <div class="goal-gradient-container" title="Goal-Gradient Progress Bar (Hull 1932)">
+        <div class="goal-gradient-fill" id="focusGoalBar"></div>
+    </div>
+
+    <div class="focus-trio-container" id="focusTrioGrid">
+        <!-- Dynamic Focus Slots -->
+    </div>
+
+    <div class="section-header" style="margin-top: 24px;">
+        <h2 class="section-title">📝 Mental Inbox & Backlog</h2>
+        <span class="section-subtitle sans">Zeigarnik Working Memory Storage</span>
     </div>
 
     <div class="add-task-row">
-        <input type="text" id="taskInput" placeholder="Add a new task…" maxlength="240" autocomplete="off">
+        <input type="text" id="taskInput" placeholder="Dump a new task to mental inbox…" maxlength="240" autocomplete="off">
         <select id="catSelect" class="sans">
             <option value="life">✨ Life</option>
             <option value="running">🏃 Training</option>
@@ -966,6 +1169,90 @@
         <a href="/">← Home</a>
     </div>
 
+</div>
+
+<!-- Scientific Task Formulator Modal -->
+<div class="sc-modal-overlay" id="wizardModal">
+    <div class="sc-modal-box">
+        <div class="sc-modal-header">
+            <h3>🧪 Scientific Task Formulator</h3>
+            <button class="sc-close-btn" id="closeWizardModal">&times;</button>
+        </div>
+        <form id="wizardForm">
+            <input type="hidden" id="wzTaskId">
+            
+            <div class="sc-form-group">
+                <label>Task Idea</label>
+                <div id="wzTaskPreview" style="font-size: 16px; font-weight: 500; color: #a78bfa; padding: 8px 0;"></div>
+            </div>
+
+            <div class="sc-form-group">
+                <label>1. Implementation Intention (Gollwitzer '99)</label>
+                <div class="sc-if-then-row">
+                    <span class="sc-prefix">IF</span>
+                    <input type="text" id="wzTrigger" placeholder="e.g. 9:00 AM at my desk after coffee" required>
+                </div>
+                <div class="sc-if-then-row">
+                    <span class="sc-prefix">THEN</span>
+                    <input type="text" id="wzAction" placeholder="e.g. Write Section 1 of report" required>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 12px;">
+                <div class="sc-form-group" style="flex: 1;">
+                    <label>2. Duration (mins)</label>
+                    <input type="number" id="wzEstimate" value="20" min="5" max="180" required>
+                    <span id="wzBufferText" style="font-size: 11px; color: #fde68a; margin-top: 4px; display: block;">+ 50% buffer = 30m total block</span>
+                </div>
+
+                <div class="sc-form-group" style="flex: 1;">
+                    <label>3. Cognitive Energy</label>
+                    <select id="wzEnergy">
+                        <option value="high">🔴 High (Deep Focus)</option>
+                        <option value="med">🟡 Med (Creative/Collab)</option>
+                        <option value="low">🟢 Low (Admin/Routine)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px;">
+                <button type="button" class="btn-trio-action" id="cancelWizardBtn">Cancel</button>
+                <button type="submit" class="btn-trio-action" style="background: #8b5cf6; border-color: #8b5cf6;">Add to Today's Focus</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Science Research Guide Modal -->
+<div class="sc-modal-overlay" id="scienceGuideModal">
+    <div class="sc-modal-box">
+        <div class="sc-modal-header">
+            <h3>🔬 Research-Backed Productivity Principles</h3>
+            <button class="sc-close-btn" id="closeScienceGuideModal">&times;</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px; font-size: 13px; color: #ccc; line-height: 1.5;">
+            <div>
+                <strong style="color: #a78bfa;">1. Zeigarnik Effect & Masicampo-Baumeister (2011)</strong>
+                <p>Uncompleted tasks clutter working memory. Making a concrete plan (when, where, how) eliminates intrusive thoughts.</p>
+            </div>
+            <div>
+                <strong style="color: #a78bfa;">2. Hick's Law & Rule of 3 (Hick 1952)</strong>
+                <p>Decision time increases logarithmically with options. Daily focus is capped at 3 items to avoid paralysis.</p>
+            </div>
+            <div>
+                <strong style="color: #a78bfa;">3. Planning Fallacy & 1.5x Buffer (Kahneman 1979)</strong>
+                <p>Humans systematically underestimate completion time. CogniDo applies an empirical 1.5x buffer.</p>
+            </div>
+            <div>
+                <strong style="color: #a78bfa;">4. Implementation Intentions (Gollwitzer 1999)</strong>
+                <p>Formatting tasks as <code>If [Trigger], Then [Action]</code> increases completion rates by 2–3x.</p>
+            </div>
+            <div>
+                <strong style="color: #a78bfa;">5. Goal-Gradient Effect (Hull 1932)</strong>
+                <p>Motivation accelerates near task completion. Visual progress bars trigger dopamine momentum.</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -1412,19 +1699,117 @@
         renderHabitGrid();
     }
 
+    // ── Scientific Focus & Task Logic ───────────────────────────────
+    function getFocusTasks() {
+        return (todos || []).filter(t => t.isFocus && !t.done);
+    }
+
+    function renderFocusTrio() {
+        const grid = document.getElementById('focusTrioGrid');
+        const goalBar = document.getElementById('focusGoalBar');
+        if (!grid) return;
+
+        const focusItems = (todos || []).filter(t => t.isFocus);
+        const completedFocus = focusItems.filter(t => t.done).length;
+        const totalFocus = focusItems.length;
+        const goalPct = totalFocus > 0 ? Math.round((completedFocus / totalFocus) * 100) : 0;
+        
+        if (goalBar) goalBar.style.width = `${goalPct}%`;
+
+        let html = '';
+        for (let i = 0; i < 3; i++) {
+            const task = focusItems[i];
+            if (task) {
+                html += `
+                    <div class="focus-trio-card filled ${task.done ? 'completed' : ''}">
+                        <div>
+                            <div class="trio-header">
+                                <span class="trio-slot-num">SLOT ${i + 1}</span>
+                                <span class="trio-energy-pill ${task.energy || 'med'}">${(task.energy || 'med').toUpperCase()} FOCUS</span>
+                            </div>
+                            <div class="trio-trigger">IF ${escapeHTML(task.trigger || 'At desk')}</div>
+                            <div class="trio-action">THEN ${escapeHTML(task.action || task.text)}</div>
+                        </div>
+                        <div class="trio-footer">
+                            <span class="trio-time">⏱️ ${task.totalBuffer || 30}m block</span>
+                            <div style="display:flex; gap:6px;">
+                                <button class="btn-trio-action" onclick="toggleTask(${task.id})">${task.done ? 'Reopen' : '✓ Done'}</button>
+                                <button class="btn-trio-action" onclick="demoteFromFocus(${task.id})">Inbox</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="focus-trio-card">
+                        <div class="trio-header">
+                            <span class="trio-slot-num">SLOT ${i + 1}</span>
+                            <span class="science-badge-tag">Hick's Law</span>
+                        </div>
+                        <div style="color: #555; font-size: 13px; font-style: italic;">
+                            Slot empty. Elevate a task from Mental Inbox below.
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        grid.innerHTML = html;
+    }
+
+    function openWizardForTask(id) {
+        const activeFocusCount = (todos || []).filter(t => t.isFocus && !t.done).length;
+        if (activeFocusCount >= 3) {
+            alert("Hick's Law Enforcement: You already have 3 active focus items! Complete or demote one to maintain laser focus and prevent decision fatigue.");
+            return;
+        }
+
+        const task = todos.find(t => t.id === id);
+        if (!task) return;
+
+        document.getElementById('wzTaskId').value = task.id;
+        document.getElementById('wzTaskPreview').textContent = task.text;
+        document.getElementById('wzTrigger').value = task.trigger || '9:00 AM at desk after coffee';
+        document.getElementById('wzAction').value = task.action || task.text;
+        document.getElementById('wzEstimate').value = task.estimate || 20;
+        updateBufferDisplay();
+
+        document.getElementById('wizardModal').classList.add('active');
+    }
+
+    function updateBufferDisplay() {
+        const val = parseInt(document.getElementById('wzEstimate').value) || 20;
+        const buffered = Math.round(val * 1.5);
+        document.getElementById('wzBufferText').textContent = `+ 50% Planning Fallacy Buffer = ${buffered}m total block`;
+    }
+
+    function demoteFromFocus(id) {
+        todos = todos.map(t => t.id === id ? { ...t, isFocus: false } : t);
+        renderFocusTrio();
+        renderTasks();
+        writeCloudData();
+    }
+
+    function escapeHTML(str) {
+        return (str || '').replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+    }
+
     // ── To-Do List Logic ─────────────────────────────────────────────
     function renderTasks() {
         const list  = document.getElementById('taskList');
         const empty = document.getElementById('emptyTasks');
         list.innerHTML = '';
 
-        if (!todos || todos.length === 0) {
+        renderFocusTrio();
+
+        const inboxTasks = (todos || []).filter(t => !t.isFocus);
+
+        if (inboxTasks.length === 0) {
             empty.style.display = 'block';
             return;
         }
         empty.style.display = 'none';
 
-        todos.forEach(todo => {
+        inboxTasks.forEach(todo => {
             const div = document.createElement('div');
             div.className = 'task-item' + (todo.done ? ' done' : '');
 
@@ -1447,6 +1832,25 @@
                 wrap.appendChild(badge);
             }
 
+            const actionsDiv = document.createElement('div');
+            actionsDiv.style.display = 'flex';
+            actionsDiv.style.gap = '6px';
+            actionsDiv.style.alignItems = 'center';
+
+            if (!todo.done) {
+                const elevateBtn = document.createElement('button');
+                elevateBtn.className = 'btn-trio-action sans';
+                elevateBtn.style.fontSize = '11px';
+                elevateBtn.style.padding = '2px 8px';
+                elevateBtn.innerHTML = '🧪 Focus';
+                elevateBtn.title = 'Formulate & add to Today\'s Focus Trio';
+                elevateBtn.addEventListener('click', e => {
+                    e.stopPropagation();
+                    openWizardForTask(todo.id);
+                });
+                actionsDiv.appendChild(elevateBtn);
+            }
+
             const del = document.createElement('button');
             del.className = 'task-del';
             del.textContent = '×';
@@ -1455,11 +1859,12 @@
                 e.stopPropagation();
                 deleteTask(todo.id);
             });
+            actionsDiv.appendChild(del);
 
             div.addEventListener('click', () => toggleTask(todo.id));
             div.appendChild(check);
             div.appendChild(wrap);
-            div.appendChild(del);
+            div.appendChild(actionsDiv);
             list.appendChild(div);
         });
     }
@@ -1471,7 +1876,7 @@
         if (!text) return;
 
         input.value = '';
-        todos.unshift({ id: Date.now(), text, cat, done: false });
+        todos.unshift({ id: Date.now(), text, cat, done: false, isFocus: false });
         renderTasks();
         writeCloudData();
     }
@@ -1535,6 +1940,47 @@
         document.getElementById('addBtn').addEventListener('click', addTask);
         document.getElementById('taskInput').addEventListener('keydown', e => {
             if (e.key === 'Enter') { e.preventDefault(); addTask(); }
+        });
+
+        // Science Guide Modal Controls
+        document.getElementById('openScienceGuideBtn').addEventListener('click', () => {
+            document.getElementById('scienceGuideModal').classList.add('active');
+        });
+        document.getElementById('closeScienceGuideModal').addEventListener('click', () => {
+            document.getElementById('scienceGuideModal').classList.remove('active');
+        });
+
+        // Wizard Modal Controls
+        document.getElementById('closeWizardModal').addEventListener('click', () => {
+            document.getElementById('wizardModal').classList.remove('active');
+        });
+        document.getElementById('cancelWizardBtn').addEventListener('click', () => {
+            document.getElementById('wizardModal').classList.remove('active');
+        });
+        document.getElementById('wzEstimate').addEventListener('input', updateBufferDisplay);
+
+        document.getElementById('wizardForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const id = parseInt(document.getElementById('wzTaskId').value);
+            const trigger = document.getElementById('wzTrigger').value.trim();
+            const action = document.getElementById('wzAction').value.trim();
+            const estimate = parseInt(document.getElementById('wzEstimate').value) || 20;
+            const totalBuffer = Math.round(estimate * 1.5);
+            const energy = document.getElementById('wzEnergy').value;
+
+            todos = todos.map(t => t.id === id ? {
+                ...t,
+                isFocus: true,
+                trigger,
+                action,
+                estimate,
+                totalBuffer,
+                energy
+            } : t);
+
+            document.getElementById('wizardModal').classList.remove('active');
+            renderTasks();
+            writeCloudData();
         });
 
         // Background auto sync every 5s
