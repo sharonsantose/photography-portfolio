@@ -1629,18 +1629,21 @@
 
     // ── Habit Logic ──────────────────────────────────────────────────
     function getHabitStatus(dateStr, habitId) {
-        // Check manual store first
+        // Strava is strictly read-only, populated ONLY from hard Strava activity dataset
+        if (habitId === 'strava') {
+            return stravaDates.has(dateStr);
+        }
+        // Check manual store for other habits
         if (habitsData[dateStr] && typeof habitsData[dateStr][habitId] === 'boolean') {
             return habitsData[dateStr][habitId];
-        }
-        // Auto-check Strava if in Strava dataset
-        if (habitId === 'strava' && stravaDates.has(dateStr)) {
-            return true;
         }
         return false;
     }
 
     function toggleHabitDate(dateStr, habitId) {
+        // Do not allow manual toggling for Strava
+        if (habitId === 'strava') return;
+
         if (!habitsData[dateStr]) {
             habitsData[dateStr] = {};
         }
@@ -1653,6 +1656,7 @@
     }
 
     function toggleTodayHabit(habitId) {
+        if (habitId === 'strava') return;
         const todayStr = getTodayStr();
         toggleHabitDate(todayStr, habitId);
     }
@@ -1672,11 +1676,11 @@
                 doneCount++;
                 if (card) card.classList.add('done');
                 if (check) check.innerHTML = '✓';
-                if (sub) sub.textContent = 'Completed today ✓';
+                if (sub) sub.textContent = h.id === 'strava' ? 'Workout logged (Strava ✓)' : 'Completed today ✓';
             } else {
                 if (card) card.classList.remove('done');
                 if (check) check.innerHTML = '';
-                if (sub) sub.textContent = h.id === 'strava' ? 'Workout logged' : (h.id === 'creatine' ? 'With water' : 'Daily habit');
+                if (sub) sub.textContent = h.id === 'strava' ? 'Auto-synced from Strava' : (h.id === 'creatine' ? 'With water' : 'Daily habit');
             }
         });
 
@@ -1723,16 +1727,23 @@
                 const dateStr = formatDateKey(viewYear, viewMonth, d);
                 const isDone  = getHabitStatus(dateStr, h.id);
                 const isFuture = (new Date(viewYear, viewMonth, d) > new Date());
+                const isStrava = (h.id === 'strava');
 
                 let cellClass = 'grid-cell';
                 if (isDone) cellClass += ' filled';
                 if (isFuture) cellClass += ' future';
+                if (isStrava) cellClass += ' read-only';
+
+                const clickHandler = (isFuture || isStrava) ? '' : `onclick="toggleHabitDate('${dateStr}', '${h.id}')"`;
+                const titleText = isStrava 
+                    ? `${h.name}: ${dateStr} (${isDone ? 'Workout Logged on Strava' : 'No Strava Activity'}) [Auto-Synced]`
+                    : `${h.name}: ${dateStr} (${isDone ? 'Completed' : 'Pending'})`;
 
                 rowHTML += `
                     <td>
                         <div class="${cellClass}"
-                             title="${h.name}: ${dateStr} (${isDone ? 'Completed' : 'Pending'})"
-                             onclick="${isFuture ? '' : `toggleHabitDate('${dateStr}', '${h.id}')`}">
+                             title="${titleText}"
+                             ${clickHandler}>
                         </div>
                     </td>
                 `;
