@@ -95,7 +95,7 @@
       "strava": true
     },
     "2026-07-07": {
-      "read": true
+      "read": false
     }
   },
   "commute": {}
