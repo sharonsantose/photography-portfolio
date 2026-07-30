@@ -12,7 +12,7 @@
     "2026-07-29": {
       "creatine": false,
       "read": false,
-      "journal": false,
+      "journal": true,
       "strava": false
     },
     "2026-07-04": {
