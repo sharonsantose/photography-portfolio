@@ -1,13 +1,5 @@
 {
-  "todos": [
-    {
-      "id": 1785389539982,
-      "text": "hi",
-      "cat": "life",
-      "done": false,
-      "isFocus": false
-    }
-  ],
+  "todos": [],
   "habits": {
     "2026-07-29": {
       "creatine": false,
