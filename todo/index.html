@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do — Sharon Santos</title>
+    <title>To-Do & Habit Tracker — Sharon Santos</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         html, body {
             font-family: 'EB Garamond', Georgia, serif;
-            background: #0a0a0a;
-            color: #fff;
+            background: #080808;
+            color: #ffffff;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ── Auth ─────────────────────────────────── */
+        .sans {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        /* ── Auth Screen ────────────────────────────────────────── */
         #authScreen {
             display: flex;
             flex-direction: column;
@@ -30,38 +34,38 @@
         }
 
         #authScreen h1 {
-            font-size: 38px;
+            font-size: clamp(34px, 5vw, 44px);
             font-weight: 400;
             margin-bottom: 8px;
         }
 
         #authScreen p {
-            font-size: 17px;
+            font-size: 18px;
             font-style: italic;
             color: #666;
             margin-bottom: 28px;
         }
 
         #passcodeInput {
-            width: 200px;
+            width: 220px;
             padding: 12px 16px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.18);
             border-radius: 6px;
             color: #fff;
             font-family: inherit;
-            font-size: 20px;
+            font-size: 22px;
             text-align: center;
             letter-spacing: 6px;
             outline: none;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             transition: border-color 0.2s;
         }
 
         #passcodeInput:focus { border-color: rgba(255,255,255,0.5); }
 
         #unlockBtn {
-            width: 200px;
+            width: 220px;
             padding: 12px;
             background: #fff;
             color: #000;
@@ -82,7 +86,7 @@
             display: none;
         }
 
-        /* ── Loading ──────────────────────────────── */
+        /* ── Loading Screen ─────────────────────────────────────── */
         #loadingScreen {
             display: none;
             flex-direction: column;
@@ -93,10 +97,10 @@
         }
 
         .spinner {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border: 2px solid rgba(255,255,255,0.1);
-            border-top-color: rgba(255,255,255,0.6);
+            border-top-color: #10b981;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
@@ -104,49 +108,296 @@
         @keyframes spin { to { transform: rotate(360deg); } }
 
         #loadingScreen p {
-            font-size: 16px;
+            font-size: 17px;
             font-style: italic;
-            color: #555;
+            color: #666;
         }
 
-        /* ── Main App ─────────────────────────────── */
+        /* ── Main Layout ────────────────────────────────────────── */
         #app {
             display: none;
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 60px 24px 80px;
+            padding: 50px 20px 80px;
         }
 
         .header {
             display: flex;
-            align-items: baseline;
+            align-items: flex-end;
             justify-content: space-between;
-            margin-bottom: 32px;
+            margin-bottom: 36px;
             border-bottom: 1px solid rgba(255,255,255,0.08);
-            padding-bottom: 18px;
+            padding-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .header h1 {
-            font-size: 36px;
+        .header-title h1 {
+            font-size: clamp(32px, 5vw, 42px);
             font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .header-title p {
+            font-size: 15px;
+            color: #666;
+            margin-top: 4px;
         }
 
         #syncStatus {
-            font-family: -apple-system, sans-serif;
             font-size: 12px;
-            color: #555;
-            transition: color 0.3s;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.03);
+            color: #888;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s;
         }
 
-        #syncStatus.saving { color: #60a5fa; }
-        #syncStatus.synced { color: #34d399; }
-        #syncStatus.error  { color: #f87171; }
+        #syncStatus.synced { border-color: rgba(16,185,129,0.3); color: #34d399; background: rgba(16,185,129,0.08); }
+        #syncStatus.saving { border-color: rgba(59,130,246,0.3); color: #60a5fa; background: rgba(59,130,246,0.08); }
+        #syncStatus.error  { border-color: rgba(239,68,68,0.3);  color: #f87171; background: rgba(239,68,68,0.08); }
 
-        /* ── Input ─────────────────────────────────── */
-        .add-row {
+        /* ── Section Titles ─────────────────────────────────────── */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 36px 0 16px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 400;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: #555;
+        }
+
+        /* ── Daily Habits Grid (Today Cards) ────────────────────── */
+        .habits-today-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 36px;
+        }
+
+        .habit-card {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            user-select: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 105px;
+        }
+
+        .habit-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .habit-card.done {
+            background: rgba(16, 185, 129, 0.06);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .habit-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .habit-icon {
+            font-size: 22px;
+        }
+
+        .habit-check-box {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .habit-card.done .habit-check-box {
+            background: #10b981;
+            border-color: #10b981;
+            color: #000;
+        }
+
+        .habit-name {
+            font-size: 17px;
+            color: #fff;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+
+        .habit-sub {
+            font-size: 11px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .habit-card.done .habit-sub { color: #34d399; }
+
+        /* ── Monthly Habit Grid Dashboard ───────────────────────── */
+        .grid-dashboard-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 44px;
+            overflow-x: auto;
+        }
+
+        .dashboard-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .month-title {
+            font-size: 20px;
+            font-weight: 400;
+            color: #fff;
+        }
+
+        .month-nav {
+            display: flex;
+            gap: 6px;
+        }
+
+        .month-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #ccc;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .month-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+        .habit-grid-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        .habit-grid-table th, .habit-grid-table td {
+            text-align: center;
+            padding: 6px 3px;
+        }
+
+        .habit-grid-table th.habit-col-label,
+        .habit-grid-table td.habit-col-label {
+            text-align: left;
+            padding-left: 8px;
+            padding-right: 12px;
+            white-space: nowrap;
+            font-size: 14px;
+            color: #ddd;
+            width: 170px;
+        }
+
+        .day-header {
+            font-size: 10px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .day-header.today {
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        .day-num {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 2px;
+        }
+
+        .day-header.today .day-num {
+            color: #fff;
+            background: #10b981;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid-cell {
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            margin: 0 auto;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid-cell:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.15);
+        }
+
+        .grid-cell.filled {
+            background: #10b981;
+            border-color: #10b981;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+        }
+
+        .grid-cell.filled::after {
+            content: '✓';
+            font-size: 11px;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .grid-cell.future {
+            opacity: 0.25;
+            cursor: default;
+        }
+
+        .grid-cell.future:hover { transform: none; border-color: rgba(255, 255, 255, 0.07); }
+
+        /* ── To-Do List Section ─────────────────────────────────── */
+        .add-task-row {
             display: flex;
             gap: 8px;
-            margin-bottom: 28px;
+            margin-bottom: 20px;
+            align-items: stretch;
         }
 
         #taskInput {
@@ -157,39 +408,46 @@
             border-radius: 6px;
             color: #fff;
             font-family: inherit;
-            font-size: 18px;
+            font-size: 17px;
             outline: none;
             transition: border-color 0.2s;
         }
 
         #taskInput:focus { border-color: rgba(255,255,255,0.4); }
-        #taskInput::placeholder { color: #333; }
-        #taskInput:disabled { opacity: 0.4; }
+        #taskInput::placeholder { color: #444; }
+
+        #catSelect {
+            padding: 0 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 6px;
+            color: #aaa;
+            font-size: 13px;
+            outline: none;
+            cursor: pointer;
+        }
 
         #addBtn {
-            padding: 0 18px;
+            padding: 0 20px;
             background: #fff;
             color: #000;
             border: none;
             border-radius: 6px;
-            font-size: 24px;
-            font-weight: 300;
+            font-size: 22px;
             cursor: pointer;
             transition: opacity 0.2s;
             line-height: 1;
         }
 
-        #addBtn:hover { opacity: 0.8; }
-        #addBtn:disabled { opacity: 0.3; cursor: not-allowed; }
+        #addBtn:hover { opacity: 0.85; }
 
-        /* ── Task List ─────────────────────────────── */
         #taskList {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
         }
 
-        .task {
+        .task-item {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -198,21 +456,17 @@
             border: 1px solid rgba(255,255,255,0.07);
             border-radius: 6px;
             cursor: pointer;
-            transition: background 0.15s, border-color 0.15s, opacity 0.2s;
-            animation: fadeIn 0.18s ease;
+            transition: all 0.15s;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-4px); }
-            to   { opacity: 1; transform: translateY(0); }
+        .task-item:hover {
+            background: rgba(255,255,255,0.045);
+            border-color: rgba(255,255,255,0.16);
         }
 
-        .task:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.15); }
-        .task.done  { opacity: 0.35; }
-        .task.busy  { pointer-events: none; opacity: 0.5; }
+        .task-item.done { opacity: 0.38; }
 
-        /* Checkbox */
-        .check {
+        .task-check {
             width: 18px;
             height: 18px;
             border: 1.5px solid rgba(255,255,255,0.3);
@@ -221,15 +475,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.15s;
         }
 
-        .task.done .check {
+        .task-item.done .task-check {
             background: #fff;
             border-color: #fff;
         }
 
-        .task.done .check::after {
+        .task-item.done .task-check::after {
             content: '';
             width: 4px;
             height: 8px;
@@ -240,49 +493,66 @@
             display: block;
         }
 
-        .task-text {
+        .task-text-wrap {
             flex: 1;
-            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .task-text {
+            font-size: 17px;
             color: #fff;
-            line-height: 1.4;
             word-break: break-word;
         }
 
-        .task.done .task-text {
+        .task-item.done .task-text {
             text-decoration: line-through;
-            color: #444;
+            color: #555;
         }
 
-        .del {
+        .task-cat-badge {
+            font-size: 10px;
+            padding: 2px 7px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .cat-running   { background: rgba(59,130,246,0.18); color: #60a5fa; }
+        .cat-health    { background: rgba(16,185,129,0.18); color: #34d399; }
+        .cat-photo     { background: rgba(168,85,247,0.18); color: #c084fc; }
+        .cat-life      { background: rgba(255,255,255,0.08); color: #aaa; }
+
+        .task-del {
             background: none;
             border: none;
-            color: #1c1c1c;
+            color: #222;
             font-size: 18px;
             cursor: pointer;
-            padding: 0 2px;
+            padding: 0 4px;
             line-height: 1;
-            font-family: -apple-system, sans-serif;
             transition: color 0.2s;
-            flex-shrink: 0;
         }
 
-        .task:hover .del { color: #444; }
-        .del:hover { color: #f87171 !important; }
+        .task-item:hover .task-del { color: #555; }
+        .task-del:hover { color: #f87171 !important; }
 
-        /* ── Empty ─────────────────────────────────── */
-        #emptyState {
+        #emptyTasks {
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px;
             color: #333;
-            font-size: 18px;
             font-style: italic;
+            font-size: 17px;
             display: none;
         }
 
-        /* ── Footer ────────────────────────────────── */
+        /* ── Footer Navigation ──────────────────────────────────── */
         .footer {
-            margin-top: 48px;
-            padding-top: 20px;
+            margin-top: 60px;
+            padding-top: 24px;
             border-top: 1px solid rgba(255,255,255,0.06);
             display: flex;
             gap: 24px;
@@ -291,55 +561,161 @@
 
         .footer a {
             font-size: 14px;
-            color: #444;
+            color: #555;
             text-decoration: none;
             transition: color 0.2s;
         }
 
         .footer a:hover { color: #fff; }
+
+        @media (max-width: 600px) {
+            #app { padding: 30px 14px 60px; }
+            .grid-dashboard-container { padding: 14px 10px; }
+            .add-task-row { flex-direction: column; }
+            #addBtn { padding: 12px; }
+        }
     </style>
 </head>
 <body>
 
-<!-- Auth -->
+<!-- Auth Screen -->
 <div id="authScreen">
-    <h1>To-Do</h1>
+    <h1>Sharon's Dashboard</h1>
     <p>Enter passcode to continue</p>
     <input type="password" id="passcodeInput" placeholder="••••" maxlength="8" autocomplete="off" autofocus>
     <button id="unlockBtn">Unlock</button>
     <div id="authError">Wrong passcode.</div>
 </div>
 
-<!-- Loading -->
+<!-- Loading Screen -->
 <div id="loadingScreen">
     <div class="spinner"></div>
-    <p>Loading your list…</p>
+    <p>Syncing your habits & tasks…</p>
 </div>
 
-<!-- App -->
+<!-- Main Application -->
 <div id="app">
+
+    <!-- Header -->
     <div class="header">
-        <h1>To-Do</h1>
-        <span id="syncStatus">—</span>
+        <div class="header-title">
+            <h1>To-Do & Habit Tracker</h1>
+            <p id="currentDateDisplay" class="sans"></p>
+        </div>
+        <div id="syncStatus" class="sans">
+            <span style="width:6px; height:6px; border-radius:50%; background:currentColor;"></span>
+            <span id="syncStatusText">Synced</span>
+        </div>
     </div>
 
-    <div class="add-row">
-        <input type="text" id="taskInput" placeholder="Add a task…" maxlength="300" autocomplete="off">
+    <!-- Section 1: Today's Habit Cards -->
+    <div class="section-header">
+        <h2 class="section-title">✨ Today's Habits</h2>
+        <span class="section-subtitle sans" id="todayHabitCount">0 of 4 completed</span>
+    </div>
+
+    <div class="habits-today-grid">
+        <div class="habit-card" id="habitCard-creatine" onclick="toggleTodayHabit('creatine')">
+            <div class="habit-header">
+                <span class="habit-icon">💧</span>
+                <div class="habit-check-box" id="check-creatine"></div>
+            </div>
+            <div>
+                <div class="habit-name">Creatine & Inositol</div>
+                <div class="habit-sub sans" id="sub-creatine">With water</div>
+            </div>
+        </div>
+
+        <div class="habit-card" id="habitCard-read" onclick="toggleTodayHabit('read')">
+            <div class="habit-header">
+                <span class="habit-icon">📖</span>
+                <div class="habit-check-box" id="check-read"></div>
+            </div>
+            <div>
+                <div class="habit-name">Read a Book</div>
+                <div class="habit-sub sans" id="sub-read">Daily reading</div>
+            </div>
+        </div>
+
+        <div class="habit-card" id="habitCard-journal" onclick="toggleTodayHabit('journal')">
+            <div class="habit-header">
+                <span class="habit-icon">✍️</span>
+                <div class="habit-check-box" id="check-journal"></div>
+            </div>
+            <div>
+                <div class="habit-name">Journal</div>
+                <div class="habit-sub sans" id="sub-journal">Reflection & notes</div>
+            </div>
+        </div>
+
+        <div class="habit-card" id="habitCard-strava" onclick="toggleTodayHabit('strava')">
+            <div class="habit-header">
+                <span class="habit-icon">🏃</span>
+                <div class="habit-check-box" id="check-strava"></div>
+            </div>
+            <div>
+                <div class="habit-name">Strava Exercise</div>
+                <div class="habit-sub sans" id="sub-strava">Workout logged</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Monthly Habit Dashboard Grid -->
+    <div class="section-header">
+        <h2 class="section-title">📊 Habit Grid Dashboard</h2>
+        <span class="section-subtitle sans">Monthly Tracker</span>
+    </div>
+
+    <div class="grid-dashboard-container">
+        <div class="dashboard-controls">
+            <h3 class="month-title" id="monthTitleDisplay"></h3>
+            <div class="month-nav sans">
+                <button class="month-btn" onclick="changeMonth(-1)">← Prev</button>
+                <button class="month-btn" onclick="resetToCurrentMonth()">Today</button>
+                <button class="month-btn" onclick="changeMonth(1)">Next →</button>
+            </div>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table class="habit-grid-table">
+                <thead>
+                    <tr id="gridHeaderRow"></tr>
+                </thead>
+                <tbody id="gridBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Section 3: To-Do List -->
+    <div class="section-header">
+        <h2 class="section-title">📝 Tasks & To-Dos</h2>
+    </div>
+
+    <div class="add-task-row">
+        <input type="text" id="taskInput" placeholder="Add a new task…" maxlength="240" autocomplete="off">
+        <select id="catSelect" class="sans">
+            <option value="life">✨ Life</option>
+            <option value="running">🏃 Training</option>
+            <option value="health">🥑 Health</option>
+            <option value="photo">📷 Photo</option>
+        </select>
         <button id="addBtn">+</button>
     </div>
 
     <div id="taskList"></div>
-    <div id="emptyState">Nothing here yet.</div>
+    <div id="emptyTasks">No tasks yet. Type above and hit + to add one!</div>
 
+    <!-- Footer -->
     <div class="footer">
-        <a href="/private">🐋 Training</a>
+        <a href="/private">🐋 Race Countdown</a>
         <a href="/">← Home</a>
     </div>
+
 </div>
 
 <script>
-    // ── Auth ──────────────────────────────────────────────────────────
-    const HASH = "e4782cfc2b471cd4e24686f692188416d8a313cccb62679dc08c348447c2507b";
+    // ── Auth Logic ───────────────────────────────────────────────────
+    const PASS_HASH = "e4782cfc2b471cd4e24686f692188416d8a313cccb62679dc08c348447c2507b";
 
     async function sha256(str) {
         const buf  = new TextEncoder().encode(str);
@@ -351,10 +727,10 @@
         const val = document.getElementById('passcodeInput').value.trim();
         if (!val) return;
         const h = await sha256(val);
-        if (h === HASH) {
+        if (h === PASS_HASH) {
             document.getElementById('authScreen').style.display  = 'none';
             document.getElementById('loadingScreen').style.display = 'flex';
-            await init();
+            await initApp();
         } else {
             document.getElementById('authError').style.display = 'block';
         }
@@ -365,156 +741,362 @@
         if (e.key === 'Enter') tryUnlock();
     });
 
-    // ── Proxy API (Cloudflare Worker — token lives encrypted in Cloudflare, never here) ──
+    // ── Proxy API ────────────────────────────────────────────────────
     const PROXY = "https://sharon-todo-proxy.sharon5234.workers.dev";
+    let isSaving = false;
 
-    let writing = false;  // prevent concurrent writes
-
-    // ── Status indicator ─────────────────────────────────────────────
-    function setStatus(text, cls) {
-        const el = document.getElementById('syncStatus');
-        el.textContent = text;
-        el.className   = cls || '';
+    function setSyncStatus(text, cls) {
+        const badge = document.getElementById('syncStatus');
+        const badgeText = document.getElementById('syncStatusText');
+        if (badgeText) badgeText.textContent = text;
+        if (badge) badge.className = 'sans ' + (cls || '');
     }
 
-    // ── Read cloud → return array ─────────────────────────────────────
-    async function readCloud() {
+    // ── Global State ─────────────────────────────────────────────────
+    let todos = [];
+    let habitsData = {}; // Format: { "YYYY-MM-DD": { creatine: true, read: false, journal: true, strava: true } }
+    let stravaDates = new Set(); // Auto-populated from strava_data.json
+
+    // Date Navigation State
+    let viewYear = new Date().getFullYear();
+    let viewMonth = new Date().getMonth(); // 0-indexed
+
+    const HABITS_DEF = [
+        { id: 'creatine', name: 'Creatine & Inositol', icon: '💧' },
+        { id: 'read',     name: 'Read a Book',        icon: '📖' },
+        { id: 'journal',  name: 'Journal',            icon: '✍️' },
+        { id: 'strava',   name: 'Strava Workout',     icon: '🏃' }
+    ];
+
+    // ── Date Helpers ─────────────────────────────────────────────────
+    function getTodayStr() {
+        const d = new Date();
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${y}-${m}-${day}`;
+    }
+
+    function formatDateKey(year, monthZeroIdx, dayNum) {
+        const m = String(monthZeroIdx + 1).padStart(2, '0');
+        const d = String(dayNum).padStart(2, '0');
+        return `${year}-${m}-${d}`;
+    }
+
+    // ── Fetch Strava Data for auto-marking exercise ──────────────────
+    async function loadStravaActivities() {
+        try {
+            const res = await fetch('/private/strava_data.json?v=' + Date.now(), { cache: 'no-store' });
+            if (res.ok) {
+                const activities = await res.json();
+                if (Array.isArray(activities)) {
+                    activities.forEach(act => {
+                        if (act.date) {
+                            // Extract YYYY-MM-DD
+                            const dateStr = act.date.split('T')[0];
+                            stravaDates.add(dateStr);
+                        }
+                    });
+                }
+            }
+        } catch (e) {
+            console.log('Strava fetch info:', e);
+        }
+    }
+
+    // ── Cloud Read & Write ───────────────────────────────────────────
+    async function readCloudData() {
         const resp = await fetch(PROXY + '?v=' + Date.now(), { cache: 'no-store' });
         if (!resp.ok) throw new Error('read ' + resp.status);
         const data = await resp.json();
-        return Array.isArray(data) ? data : data.todos;
+        return {
+            todos: Array.isArray(data.todos) ? data.todos : [],
+            habits: (data.habits && typeof data.habits === 'object') ? data.habits : {}
+        };
     }
 
-    // ── Write array → cloud ───────────────────────────────────────────
-    async function writeCloud(todos) {
-        if (writing) return;
-        writing = true;
-        setStatus('saving…', 'saving');
+    async function writeCloudData() {
+        if (isSaving) return;
+        isSaving = true;
+        setSyncStatus('Saving…', 'saving');
         try {
             const resp = await fetch(PROXY, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(todos)
+                body: JSON.stringify({ todos, habits: habitsData })
             });
             if (!resp.ok) throw new Error('write ' + resp.status);
-            setStatus('synced', 'synced');
+            setSyncStatus('Synced', 'synced');
         } catch (e) {
-            console.error('writeCloud:', e);
-            setStatus('error — try again', 'error');
+            console.error('writeCloudData:', e);
+            setSyncStatus('Error saving', 'error');
         } finally {
-            writing = false;
+            isSaving = false;
         }
     }
 
-    // ── In-memory list (source of truth is always GitHub) ────────────
-    let todos = [];
+    // ── Habit Logic ──────────────────────────────────────────────────
+    function getHabitStatus(dateStr, habitId) {
+        // Check manual store first
+        if (habitsData[dateStr] && typeof habitsData[dateStr][habitId] === 'boolean') {
+            return habitsData[dateStr][habitId];
+        }
+        // Auto-check Strava if in Strava dataset
+        if (habitId === 'strava' && stravaDates.has(dateStr)) {
+            return true;
+        }
+        return false;
+    }
 
-    // ── Render ────────────────────────────────────────────────────────
-    function render() {
+    function toggleHabitDate(dateStr, habitId) {
+        if (!habitsData[dateStr]) {
+            habitsData[dateStr] = {};
+        }
+        const current = getHabitStatus(dateStr, habitId);
+        habitsData[dateStr][habitId] = !current;
+
+        renderTodayHabits();
+        renderHabitGrid();
+        writeCloudData();
+    }
+
+    function toggleTodayHabit(habitId) {
+        const todayStr = getTodayStr();
+        toggleHabitDate(todayStr, habitId);
+    }
+
+    // ── Render Today's Habits ────────────────────────────────────────
+    function renderTodayHabits() {
+        const todayStr = getTodayStr();
+        let doneCount = 0;
+
+        HABITS_DEF.forEach(h => {
+            const isDone = getHabitStatus(todayStr, h.id);
+            const card = document.getElementById(`habitCard-${h.id}`);
+            const check = document.getElementById(`check-${h.id}`);
+            const sub = document.getElementById(`sub-${h.id}`);
+
+            if (isDone) {
+                doneCount++;
+                if (card) card.classList.add('done');
+                if (check) check.innerHTML = '✓';
+                if (sub) sub.textContent = 'Completed today ✓';
+            } else {
+                if (card) card.classList.remove('done');
+                if (check) check.innerHTML = '';
+                if (sub) sub.textContent = h.id === 'strava' ? 'Workout logged' : (h.id === 'creatine' ? 'With water' : 'Daily habit');
+            }
+        });
+
+        document.getElementById('todayHabitCount').textContent = `${doneCount} of ${HABITS_DEF.length} completed`;
+    }
+
+    // ── Render Monthly Habit Grid ────────────────────────────────────
+    function renderHabitGrid() {
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        document.getElementById('monthTitleDisplay').textContent = `${monthNames[viewMonth]} ${viewYear}`;
+
+        const headerRow = document.getElementById('gridHeaderRow');
+        const gridBody  = document.getElementById('gridBody');
+
+        headerRow.innerHTML = '';
+        gridBody.innerHTML  = '';
+
+        const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+        const todayStr = getTodayStr();
+
+        // 1. Render Header Row (Habit Label + Day Numbers)
+        let headerHTML = '<th class="habit-col-label sans">Habit</th>';
+        for (let d = 1; d <= daysInMonth; d++) {
+            const dateStr = formatDateKey(viewYear, viewMonth, d);
+            const dateObj = new Date(viewYear, viewMonth, d);
+            const dayOfWeek = dateObj.toLocaleDateString('en-US', { weekday: 'narrow' });
+            const isToday = (dateStr === todayStr);
+
+            headerHTML += `
+                <th class="day-header ${isToday ? 'today' : ''} sans">
+                    <div class="day-num">${d}</div>
+                    <div>${dayOfWeek}</div>
+                </th>
+            `;
+        }
+        headerRow.innerHTML = headerHTML;
+
+        // 2. Render Body Rows (One row per habit)
+        HABITS_DEF.forEach(h => {
+            let rowHTML = `<tr><td class="habit-col-label">${h.icon} ${h.name}</td>`;
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateStr = formatDateKey(viewYear, viewMonth, d);
+                const isDone  = getHabitStatus(dateStr, h.id);
+                const isFuture = (new Date(viewYear, viewMonth, d) > new Date());
+
+                let cellClass = 'grid-cell';
+                if (isDone) cellClass += ' filled';
+                if (isFuture) cellClass += ' future';
+
+                rowHTML += `
+                    <td>
+                        <div class="${cellClass}"
+                             title="${h.name} (${dateStr})"
+                             onclick="${isFuture ? '' : `toggleHabitDate('${dateStr}', '${h.id}')`}">
+                        </div>
+                    </td>
+                `;
+            }
+
+            rowHTML += '</tr>';
+            gridBody.innerHTML += rowHTML;
+        });
+    }
+
+    function changeMonth(delta) {
+        viewMonth += delta;
+        if (viewMonth < 0) {
+            viewMonth = 11;
+            viewYear--;
+        } else if (viewMonth > 11) {
+            viewMonth = 0;
+            viewYear++;
+        }
+        renderHabitGrid();
+    }
+
+    function resetToCurrentMonth() {
+        const now = new Date();
+        viewYear = now.getFullYear();
+        viewMonth = now.getMonth();
+        renderHabitGrid();
+    }
+
+    // ── To-Do List Logic ─────────────────────────────────────────────
+    function renderTasks() {
         const list  = document.getElementById('taskList');
-        const empty = document.getElementById('emptyState');
+        const empty = document.getElementById('emptyTasks');
         list.innerHTML = '';
 
-        if (todos.length === 0) {
+        if (!todos || todos.length === 0) {
             empty.style.display = 'block';
             return;
         }
         empty.style.display = 'none';
 
         todos.forEach(todo => {
-            const div   = document.createElement('div');
-            div.className = 'task' + (todo.done ? ' done' : '');
+            const div = document.createElement('div');
+            div.className = 'task-item' + (todo.done ? ' done' : '');
 
             const check = document.createElement('div');
-            check.className = 'check';
+            check.className = 'task-check';
 
-            const text  = document.createElement('span');
-            text.className   = 'task-text';
+            const wrap = document.createElement('div');
+            wrap.className = 'task-text-wrap';
+
+            const text = document.createElement('span');
+            text.className = 'task-text';
             text.textContent = todo.text;
+            wrap.appendChild(text);
 
-            const del   = document.createElement('button');
-            del.className   = 'del';
+            if (todo.cat) {
+                const badge = document.createElement('span');
+                badge.className = `task-cat-badge cat-${todo.cat} sans`;
+                const catLabels = { running: 'Training', health: 'Health', photo: 'Photo', life: 'Life' };
+                badge.textContent = catLabels[todo.cat] || todo.cat;
+                wrap.appendChild(badge);
+            }
+
+            const del = document.createElement('button');
+            del.className = 'task-del';
             del.textContent = '×';
-            del.title       = 'Delete';
-            del.addEventListener('click', e => { e.stopPropagation(); deleteTask(todo.id); });
+            del.title = 'Delete task';
+            del.addEventListener('click', e => {
+                e.stopPropagation();
+                deleteTask(todo.id);
+            });
 
             div.addEventListener('click', () => toggleTask(todo.id));
             div.appendChild(check);
-            div.appendChild(text);
+            div.appendChild(wrap);
             div.appendChild(del);
             list.appendChild(div);
         });
     }
 
-    // ── Add ───────────────────────────────────────────────────────────
-    async function addTask() {
+    function addTask() {
         const input = document.getElementById('taskInput');
-        const text  = input.value.trim();
-        if (!text || writing) return;
+        const text = input.value.trim();
+        const cat = document.getElementById('catSelect').value;
+        if (!text) return;
+
         input.value = '';
-        todos.unshift({ id: Date.now(), text, done: false });
-        render();
-        await writeCloud(todos);
+        todos.unshift({ id: Date.now(), text, cat, done: false });
+        renderTasks();
+        writeCloudData();
     }
 
-    // ── Toggle ────────────────────────────────────────────────────────
-    async function toggleTask(id) {
-        if (writing) return;
+    function toggleTask(id) {
         todos = todos.map(t => t.id === id ? { ...t, done: !t.done } : t);
-        render();
-        await writeCloud(todos);
+        renderTasks();
+        writeCloudData();
     }
 
-    // ── Delete ────────────────────────────────────────────────────────
-    async function deleteTask(id) {
-        if (writing) return;
+    function deleteTask(id) {
         todos = todos.filter(t => t.id !== id);
-        render();
-        await writeCloud(todos);
+        renderTasks();
+        writeCloudData();
     }
 
-    // ── Poll cloud for changes from other devices ─────────────────────
-    async function poll() {
-        if (writing) return;
+    // ── Auto Poll ────────────────────────────────────────────────────
+    async function pollCloud() {
+        if (isSaving) return;
         try {
-            const cloud = await readCloud();
-            if (Array.isArray(cloud)) {
-                todos = cloud;
-                render();
-                setStatus('synced', 'synced');
-            }
+            const data = await readCloudData();
+            todos = data.todos;
+            habitsData = data.habits;
+            renderTodayHabits();
+            renderHabitGrid();
+            renderTasks();
+            setSyncStatus('Synced', 'synced');
         } catch (e) {
-            // Silent — don't interrupt the user
+            // silent poll fail
         }
     }
 
-    // ── Init ──────────────────────────────────────────────────────────
-    async function init() {
+    // ── Init Application ─────────────────────────────────────────────
+    async function initApp() {
+        // Date Header
+        const now = new Date();
+        document.getElementById('currentDateDisplay').textContent =
+            now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+
+        await loadStravaActivities();
+
         try {
-            const cloud = await readCloud();
-            todos = Array.isArray(cloud) ? cloud : [];
+            const data = await readCloudData();
+            todos = data.todos;
+            habitsData = data.habits;
         } catch (e) {
             todos = [];
-            setStatus('error loading', 'error');
+            habitsData = {};
+            setSyncStatus('Offline mode', 'error');
         }
 
         document.getElementById('loadingScreen').style.display = 'none';
         document.getElementById('app').style.display = 'block';
-        render();
-        setStatus('synced', 'synced');
+
+        renderTodayHabits();
+        renderHabitGrid();
+        renderTasks();
 
         document.getElementById('addBtn').addEventListener('click', addTask);
         document.getElementById('taskInput').addEventListener('keydown', e => {
             if (e.key === 'Enter') { e.preventDefault(); addTask(); }
         });
 
-        // Poll every 5 seconds for changes from other devices
-        setInterval(poll, 5000);
-
-        // Also sync when tab becomes visible or window regains focus
-        document.addEventListener('visibilitychange', () => { if (!document.hidden) poll(); });
-        window.addEventListener('focus', poll);
-        window.addEventListener('pageshow', poll);
+        // Background auto sync every 5s
+        setInterval(pollCloud, 5000);
+        document.addEventListener('visibilitychange', () => { if (!document.hidden) pollCloud(); });
+        window.addEventListener('focus', pollCloud);
+        window.addEventListener('pageshow', pollCloud);
     }
 </script>
 </body>
