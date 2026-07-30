@@ -1962,20 +1962,38 @@
         // Fetches private/strava_data.json (updated daily by GitHub Actions)
         // and replaces past calendar cells with actual Strava activity data.
 
+        // ── STRAVA LIVE WORKOUT OVERLAY ──────────────────────────────────
+        // Fetches private/strava_data.json (updated daily by GitHub Actions)
+        // and replaces past calendar cells with actual Strava activity data.
+
         async function loadStravaOverlay() {
-            let data;
-            try {
-                const resp = await fetch('/private/strava_data.json?_=' + Date.now());
-                if (!resp.ok) throw new Error('Not found');
-                data = await resp.json();
-            } catch (e) {
-                console.log('Strava data not yet available:', e.message);
+            let data = null;
+            const candidatePaths = [
+                './strava_data.json',
+                'strava_data.json',
+                '/private/strava_data.json',
+                '../private/strava_data.json'
+            ];
+
+            for (const p of candidatePaths) {
+                try {
+                    const resp = await fetch(p + '?v=' + Date.now(), { cache: 'no-store' });
+                    if (resp.ok) {
+                        data = await resp.json();
+                        console.log('Successfully loaded Strava data from:', p);
+                        break;
+                    }
+                } catch (e) {}
+            }
+
+            if (!data) {
+                console.warn('Strava data file could not be loaded from candidate paths.');
                 return;
             }
 
             const byDate = data.activities_by_date || {};
             const today  = new Date();
-            today.setHours(0, 0, 0, 0);
+            today.setHours(23, 59, 59, 999); // Include full today
 
             let overlaidCount = 0;
 
@@ -1988,15 +2006,18 @@
 
                 const acts = byDate[dateStr];
 
+                // Remove previous overlays if re-running
+                const oldOverlay = cell.querySelectorAll('.strava-overlay, .strava-planned-dim');
+                oldOverlay.forEach(el => el.remove());
+
                 if (!acts || acts.length === 0) {
-                    // Past date with NO Strava activity — mark as rest/missed
                     const existingPlanned = cell.querySelector('.orca-detail');
-                    if (existingPlanned && !cell.querySelector('.strava-overlay')) {
+                    if (existingPlanned) {
                         const restDiv = document.createElement('div');
                         restDiv.className = 'strava-overlay';
+                        restDiv.style.cssText = 'margin-top:6px; padding:4px 6px; background:rgba(255,255,255,0.03); border:1px dashed rgba(255,255,255,0.15); border-radius:4px;';
                         restDiv.innerHTML = `
-                            <div class="strava-overlay-tag">📵 No Activity Recorded</div>
-                            <div class="strava-overlay-detail" style="color:#525252;">Rest day or unsynced</div>
+                            <div style="font-size:9px; font-weight:700; color:#737373; text-transform:uppercase; letter-spacing:0.5px;">📵 Rest / Unsynced</div>
                         `;
                         cell.appendChild(restDiv);
                     }
@@ -2006,14 +2027,15 @@
                 // Build detail lines for all activities that day
                 const detailLines = acts.map(a => {
                     const link = a.strava_id
-                        ? `<a href="https://www.strava.com/activities/${a.strava_id}" target="_blank" rel="noopener" title="View on Strava">↗</a>`
+                        ? `<a href="https://www.strava.com/activities/${a.strava_id}" target="_blank" rel="noopener" title="View on Strava" style="color:#fc4c02; text-decoration:underline; margin-left:4px; font-weight:700;">↗ Strava</a>`
                         : '';
                     return `
-                        <div class="strava-overlay" style="margin-bottom:4px;">
-                            <div class="strava-overlay-tag">
-                                ${a.emoji} ACTUAL · ${a.sport.toUpperCase()} ${link}
+                        <div class="strava-overlay" style="margin-top:6px; padding:6px 8px; background:rgba(252,76,2,0.18); border:1px solid #fc4c02; border-radius:4px;">
+                            <div class="strava-overlay-tag" style="color:#fc4c02; font-weight:800; font-size:10px; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:3px; display:flex; justify-content:space-between; align-items:center;">
+                                <span>${a.emoji} ACTUAL: ${a.sport.toUpperCase()}</span>
+                                ${link}
                             </div>
-                            <div class="strava-overlay-detail">${a.detail}</div>
+                            <div class="strava-overlay-detail" style="color:#ffffff; font-weight:600; font-size:11px; line-height:1.4;">${a.detail}</div>
                         </div>`;
                 }).join('');
 
@@ -2021,50 +2043,55 @@
                 const plannedEl = cell.querySelector('.orca-detail');
                 const plannedText = plannedEl ? plannedEl.textContent.trim() : '';
 
-                // Hide the planned detail (we'll show it dimmed)
                 if (plannedEl) plannedEl.style.display = 'none';
 
-                // Inject Strava overlay after the badge
                 const badge = cell.querySelector('.orca-badge');
-                const insertPoint = badge ? badge : cell.querySelector('.orca-date');
+                if (badge) {
+                    badge.style.background = '#fc4c02';
+                    badge.style.color = '#ffffff';
+                    badge.textContent = 'STRAVA COMPLETED';
+                }
 
                 const wrapper = document.createElement('div');
                 wrapper.innerHTML = detailLines;
 
-                // Dimmed planned workout note
                 if (plannedText) {
                     const dimDiv = document.createElement('div');
                     dimDiv.className = 'strava-planned-dim';
-                    dimDiv.textContent = 'Plan: ' + plannedText.replace(/\n/g, ' · ').substring(0, 80);
+                    dimDiv.style.cssText = 'margin-top:4px; font-size:9.5px; color:#525252; font-style:italic; border-top:1px dashed rgba(255,255,255,0.1); padding-top:3px;';
+                    dimDiv.textContent = 'Plan: ' + plannedText.replace(/\n/g, ' · ').substring(0, 75);
                     wrapper.appendChild(dimDiv);
                 }
 
+                const insertPoint = badge ? badge : cell.querySelector('.orca-date');
                 if (insertPoint && insertPoint.nextSibling) {
                     cell.insertBefore(wrapper, insertPoint.nextSibling);
                 } else {
                     cell.appendChild(wrapper);
                 }
 
-                // Style the cell
                 cell.classList.add('strava-actual-cell');
-                cell.classList.remove('completed-workout'); // let strava overlay take precedence
+                cell.classList.remove('completed-workout');
                 overlaidCount++;
             });
 
-            // Show sync timestamp
             if (overlaidCount > 0 && data.fetched_at) {
+                const existingBadge = document.querySelector('.strava-sync-badge');
+                if (existingBadge) existingBadge.remove();
+
                 const syncBadge = document.createElement('div');
                 syncBadge.className = 'strava-sync-badge';
                 const fetchedDate = new Date(data.fetched_at);
                 const timeStr = fetchedDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
                 const dateStr2 = fetchedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-                syncBadge.innerHTML = `<span>STRAVA</span> synced ${dateStr2} @ ${timeStr}`;
+                syncBadge.innerHTML = `<span>STRAVA LIVE SYNC ACTIVE</span> · Last updated ${dateStr2} @ ${timeStr}`;
                 const calWrap = document.querySelector('.orca-calendar-wrap');
                 if (calWrap) calWrap.appendChild(syncBadge);
             }
-
-            console.log(`Strava overlay: ${overlaidCount} cells updated from ${Object.keys(byDate).length} activity dates.`);
         }
+
+        document.addEventListener('DOMContentLoaded', loadStravaOverlay);
+
 
 </script>
 
