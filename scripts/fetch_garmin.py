@@ -188,10 +188,34 @@ def main():
             with open(TODO_FILE, "r", encoding="utf-8") as tf:
                 todo_data = json.load(tf)
             habits = todo_data.get("habits", {})
+
+            # Auto-fill Strava exercise
             for act_date in activities_by_date.keys():
                 if act_date not in habits:
                     habits[act_date] = {}
                 habits[act_date]["strava"] = True
+
+            # Auto-fill Garmin Steps (15k goal)
+            for d_str, item in merged_steps.items():
+                st = item.get("steps", 0) if isinstance(item, dict) else item
+                gl = item.get("goal", 15000) if isinstance(item, dict) else 15000
+                if d_str not in habits:
+                    habits[d_str] = {}
+                habits[d_str]["garmin_steps"] = (st >= gl)
+
+            # Auto-fill Garmin Active Calories (500 kcal goal)
+            for d_str, item in merged_steps.items():
+                st = item.get("steps", 0) if isinstance(item, dict) else item
+                act_cals = 0
+                if d_str in merged_activities:
+                    for act in merged_activities[d_str]:
+                        act_cals += (act.get("calories", 0) or 0)
+                step_cals = round(st * 0.045)
+                cals = max(act_cals, step_cals)
+                if d_str not in habits:
+                    habits[d_str] = {}
+                habits[d_str]["garmin_calories"] = (cals >= 500)
+
             todo_data["habits"] = habits
             with open(TODO_FILE, "w", encoding="utf-8") as tf:
                 json.dump(todo_data, tf, indent=2)

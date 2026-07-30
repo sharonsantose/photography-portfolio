@@ -1217,7 +1217,7 @@
             </div>
         </div>
 
-        <div class="habit-card" id="habitCard-strava" onclick="toggleTodayHabit('strava')">
+        <div class="habit-card" id="habitCard-strava" style="cursor: default;" title="Auto-synced from Strava dataset">
             <div class="habit-header">
                 <span class="habit-icon">🏃</span>
                 <div class="habit-check-box" id="check-strava"></div>
@@ -1225,6 +1225,28 @@
             <div>
                 <div class="habit-name">Strava Exercise</div>
                 <div class="habit-sub sans" id="sub-strava">Workout logged</div>
+            </div>
+        </div>
+
+        <div class="habit-card" id="habitCard-garmin_steps" style="cursor: default;" title="Auto-synced from Garmin Connect">
+            <div class="habit-header">
+                <span class="habit-icon">👟</span>
+                <div class="habit-check-box" id="check-garmin_steps"></div>
+            </div>
+            <div>
+                <div class="habit-name">15k Steps Goal</div>
+                <div class="habit-sub sans" id="sub-garmin_steps">Garmin Auto-Sync</div>
+            </div>
+        </div>
+
+        <div class="habit-card" id="habitCard-garmin_calories" style="cursor: default;" title="Auto-synced from Garmin Connect">
+            <div class="habit-header">
+                <span class="habit-icon">🔥</span>
+                <div class="habit-check-box" id="check-garmin_calories"></div>
+            </div>
+            <div>
+                <div class="habit-name">500 Active Cals</div>
+                <div class="habit-sub sans" id="sub-garmin_calories">Garmin Auto-Sync</div>
             </div>
         </div>
     </div>
@@ -1434,18 +1456,22 @@
 
     // ── Global State ─────────────────────────────────────────────────
     let todos = [];
-    let habitsData = {}; // Format: { "YYYY-MM-DD": { creatine: true, read: false, journal: true, strava: true } }
+    let habitsData = {}; // Format: { "YYYY-MM-DD": { creatine: true, read: false, journal: true, strava: true, garmin_steps: true, garmin_calories: true } }
     let stravaDates = new Set(); // Auto-populated from strava_data.json
+    let garminStepGoalDates = new Set(); // Auto-populated from garmin_data.json (15k steps)
+    let garminCalorieGoalDates = new Set(); // Auto-populated from garmin_data.json (500 active cals)
 
     // Date Navigation State
     let viewYear = new Date().getFullYear();
     let viewMonth = new Date().getMonth(); // 0-indexed
 
     const HABITS_DEF = [
-        { id: 'creatine', name: 'Creatine & Inositol', icon: '💧' },
-        { id: 'read',     name: 'Read a Book',        icon: '📖' },
-        { id: 'journal',  name: 'Journal',            icon: '✍️' },
-        { id: 'strava',   name: 'Strava Workout',     icon: '🏃' }
+        { id: 'creatine',        name: 'Creatine & Inositol', icon: '💧', sub: 'With water' },
+        { id: 'read',            name: 'Read a Book',        icon: '📖', sub: 'Daily habit' },
+        { id: 'journal',         name: 'Journal',            icon: '✍️', sub: 'Daily habit' },
+        { id: 'strava',          name: 'Strava Workout',     icon: '🏃', sub: 'Auto-synced from Strava', readOnly: true },
+        { id: 'garmin_steps',    name: '15k Garmin Steps',   icon: '👟', sub: 'Auto-synced from Garmin', readOnly: true },
+        { id: 'garmin_calories', name: '500 Active Cals',    icon: '🔥', sub: 'Auto-synced from Garmin', readOnly: true }
     ];
 
     // ── Date Helpers ─────────────────────────────────────────────────
@@ -1779,12 +1805,27 @@
                     document.getElementById('garminRhr').innerHTML = `${stats.resting_hr} <span class="garmin-stat-unit">bpm</span>`;
                 }
 
-                if (data.fetched_at || data.today) {
-                    const syncTimeStr = data.fetched_at 
-                        ? new Date(data.fetched_at).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) 
-                        : data.today;
-                    document.getElementById('garminLastSync').textContent = `Updated ${syncTimeStr}`;
+                // Populate garminStepGoalDates and garminCalorieGoalDates
+                garminStepGoalDates.clear();
+                garminCalorieGoalDates.clear();
+                if (data.steps_history && typeof data.steps_history === 'object') {
+                    Object.keys(data.steps_history).forEach(d_str => {
+                        const item = data.steps_history[d_str];
+                        const st = typeof item === 'object' ? (item.steps || 0) : item;
+                        const gl = typeof item === 'object' ? (item.goal || 15000) : 15000;
+                        if (st >= gl) garminStepGoalDates.add(d_str);
+
+                        let actCals = 0;
+                        if (data.activities_by_date && data.activities_by_date[d_str]) {
+                            data.activities_by_date[d_str].forEach(act => { actCals += (act.calories || 0); });
+                        }
+                        const stepCals = Math.round(st * 0.045);
+                        const cals = Math.max(actCals, stepCals);
+                        if (cals >= 500) garminCalorieGoalDates.add(d_str);
+                    });
                 }
+                renderTodayHabits();
+                renderHabitGrid();
 
                 // Render Monthly Daily Steps Graph
                 if (data.steps_history) {
@@ -1838,12 +1879,20 @@
     }
 
     // ── Habit Logic ──────────────────────────────────────────────────
+    function isReadOnlyHabit(habitId) {
+        return habitId === 'strava' || habitId === 'garmin_steps' || habitId === 'garmin_calories';
+    }
+
     function getHabitStatus(dateStr, habitId) {
-        // Strava is strictly read-only, populated ONLY from hard Strava activity dataset
         if (habitId === 'strava') {
             return stravaDates.has(dateStr);
         }
-        // Check manual store for other habits
+        if (habitId === 'garmin_steps') {
+            return garminStepGoalDates.has(dateStr) || (habitsData[dateStr] && !!habitsData[dateStr].garmin_steps);
+        }
+        if (habitId === 'garmin_calories') {
+            return garminCalorieGoalDates.has(dateStr) || (habitsData[dateStr] && !!habitsData[dateStr].garmin_calories);
+        }
         if (habitsData[dateStr] && typeof habitsData[dateStr][habitId] === 'boolean') {
             return habitsData[dateStr][habitId];
         }
@@ -1851,8 +1900,8 @@
     }
 
     function toggleHabitDate(dateStr, habitId) {
-        // Do not allow manual toggling for Strava
-        if (habitId === 'strava') return;
+        // Do not allow manual toggling for read-only habits (Strava / Garmin)
+        if (isReadOnlyHabit(habitId)) return;
 
         if (!habitsData[dateStr]) {
             habitsData[dateStr] = {};
@@ -1866,7 +1915,7 @@
     }
 
     function toggleTodayHabit(habitId) {
-        if (habitId === 'strava') return;
+        if (isReadOnlyHabit(habitId)) return;
         const todayStr = getTodayStr();
         toggleHabitDate(todayStr, habitId);
     }
@@ -1886,11 +1935,21 @@
                 doneCount++;
                 if (card) card.classList.add('done');
                 if (check) check.innerHTML = '✓';
-                if (sub) sub.textContent = h.id === 'strava' ? 'Workout logged (Strava ✓)' : 'Completed today ✓';
+                if (sub) {
+                    if (h.id === 'strava') sub.textContent = 'Workout logged (Strava ✓)';
+                    else if (h.id === 'garmin_steps') sub.textContent = '15k Goal Hit (Garmin ✓)';
+                    else if (h.id === 'garmin_calories') sub.textContent = '500 kcal Hit (Garmin ✓)';
+                    else sub.textContent = 'Completed today ✓';
+                }
             } else {
                 if (card) card.classList.remove('done');
                 if (check) check.innerHTML = '';
-                if (sub) sub.textContent = h.id === 'strava' ? 'Auto-synced from Strava' : (h.id === 'creatine' ? 'With water' : 'Daily habit');
+                if (sub) {
+                    if (h.id === 'strava') sub.textContent = 'Auto-synced from Strava';
+                    else if (h.id === 'garmin_steps') sub.textContent = 'Auto-synced from Garmin';
+                    else if (h.id === 'garmin_calories') sub.textContent = 'Auto-synced from Garmin';
+                    else sub.textContent = h.sub || 'Daily habit';
+                }
             }
         });
 
@@ -1937,17 +1996,20 @@
                 const dateStr = formatDateKey(viewYear, viewMonth, d);
                 const isDone  = getHabitStatus(dateStr, h.id);
                 const isFuture = (new Date(viewYear, viewMonth, d) > new Date());
-                const isStrava = (h.id === 'strava');
+                const isReadOnly = isReadOnlyHabit(h.id);
 
                 let cellClass = 'grid-cell';
                 if (isDone) cellClass += ' filled';
                 if (isFuture) cellClass += ' future';
-                if (isStrava) cellClass += ' read-only';
+                if (isReadOnly) cellClass += ' read-only';
 
-                const clickHandler = (isFuture || isStrava) ? '' : `onclick="toggleHabitDate('${dateStr}', '${h.id}')"`;
-                const titleText = isStrava 
-                    ? `${h.name}: ${dateStr} (${isDone ? 'Workout Logged on Strava' : 'No Strava Activity'}) [Auto-Synced]`
-                    : `${h.name}: ${dateStr} (${isDone ? 'Completed' : 'Pending'})`;
+                const clickHandler = (isFuture || isReadOnly) ? '' : `onclick="toggleHabitDate('${dateStr}', '${h.id}')"`;
+                let titleText = `${h.name}: ${dateStr} (${isDone ? 'Completed' : 'Pending'})`;
+                if (isReadOnly) {
+                    const statusText = isDone ? 'Goal Met ✓' : 'Not Met';
+                    const sourceText = h.id === 'strava' ? 'Strava' : 'Garmin';
+                    titleText = `${h.name}: ${dateStr} (${statusText}) [Auto-Synced from ${sourceText}]`;
+                }
 
                 rowHTML += `
                     <td>
