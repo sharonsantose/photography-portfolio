@@ -2,6 +2,9 @@
 // SHARON SANTOS — TAB SWITCHING & ROUTING
 // ==========================================================================
 
+// Track whether tab data has been loaded
+const tabLoaded = { letterboxd: false, strava: false };
+
 function switchTab(tabId) {
     const validTabs = ['main', 'photography', 'writing', 'letterboxd', 'strava'];
     if (!validTabs.includes(tabId)) tabId = 'main';
@@ -27,6 +30,16 @@ function switchTab(tabId) {
     const activeBtn = document.querySelector(`.nav-pill[data-tab="${tabId}"]`);
     if (activeBtn) {
         activeBtn.classList.add('active');
+    }
+
+    // Lazy-load tab data on first visit
+    if (tabId === 'letterboxd' && !tabLoaded.letterboxd) {
+        tabLoaded.letterboxd = true;
+        fetchRecentFilms();
+    }
+    if (tabId === 'strava' && !tabLoaded.strava) {
+        tabLoaded.strava = true;
+        fetchSixStravaWorkouts();
     }
 
     // Strip #main hash from URL bar
@@ -107,25 +120,13 @@ function initTypewriterScrollObserver() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    try {
-        localStorage.removeItem('sharon_saved_script_html');
-    } catch(e){}
+    try { localStorage.removeItem('sharon_saved_script_html'); } catch(e){}
 
-    fetchRecentFilms();
-    fetchSixStravaWorkouts();
     initTypewriterScrollObserver();
 
+    // Route to initial tab — data loads lazily inside switchTab
     const initialHash = window.location.hash.replace('#', '');
     switchTab(initialHash || 'main');
-
-    // Immediately clean #main or # from address bar
-    if (window.location.hash === '#main' || window.location.hash === '#') {
-        try {
-            if (window.history.replaceState) {
-                window.history.replaceState(null, null, window.location.pathname);
-            }
-        } catch(e) {}
-    }
 });
 
 const fallbackRecentFilms = [
