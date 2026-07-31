@@ -10,24 +10,28 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
     <!-- Leaflet.js Dark Map Library -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        *, *::before, *::after, html, body, button, input, select, textarea, .sans, .mono, .slugline {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'EB Garamond', 'Garamond', Georgia, serif !important;
+        }
 
         html, body {
-            font-family: 'Fraunces', Georgia, serif;
-            background: #09090b;
-            background-image: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.035) 0%, transparent 65%);
+            background: #050505;
+            background-image: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%);
             background-attachment: fixed;
-            color: #f4f4f5;
+            color: #f5f5f5;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
             -webkit-tap-highlight-color: rgba(255,255,255,0.1);
             touch-action: manipulation;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .sans {

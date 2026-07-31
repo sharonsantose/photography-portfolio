@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SHARON SANTOS — SCREENWRITER & DIGITAL GARDEN THEME
+   SHARON SANTOS — ULTRA MINIMAL GARAMOND EDITION
    ========================================================================== */
 
 *, *::before, *::after {
@@ -8,203 +8,164 @@
     padding: 0;
 }
 
+html, body, button, input, select, textarea {
+    font-family: 'EB Garamond', 'Garamond', Georgia, serif !important;
+}
+
 html {
-    font-family: 'Fraunces', Georgia, serif;
-    background-color: #09090b;
-    background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.035) 0%, transparent 65%);
+    background-color: #050505;
+    background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
     background-attachment: fixed;
-    color: #f4f4f5;
+    color: #f5f5f5;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    padding: 60px 20px 100px;
-}
-
-.sans {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-.mono {
-    font-family: 'JetBrains Mono', monospace;
-}
-
-.slugline {
-    font-family: 'Courier Prime', monospace;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-size: 11px;
+    padding: 70px 20px 100px;
 }
 
 .container {
     width: 100%;
-    max-width: 720px;
+    max-width: 660px;
     margin: 0 auto;
 }
 
-/* Top Screenplay Status Tag */
+/* Top Location Status Tag */
 .top-tag {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 11px;
-    color: #a1a1aa;
-    padding: 4px 12px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 13px;
+    color: #888888;
+    letter-spacing: 1px;
     margin-bottom: 24px;
 }
 
 .top-tag .dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: #10b981;
-    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
 }
 
 /* Header */
 .header {
-    margin-bottom: 44px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    padding-bottom: 28px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 30px;
 }
 
 .name {
-    font-size: clamp(38px, 6vw, 54px);
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    margin-bottom: 6px;
-    color: #f4f4f5;
+    font-size: clamp(42px, 7vw, 60px);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+    color: #ffffff;
 }
 
 .discipline {
-    font-size: clamp(15px, 2.2vw, 18px);
+    font-size: 18px;
     font-style: italic;
-    color: #a1a1aa;
-    margin-bottom: 16px;
-    font-weight: 300;
+    color: #a3a3a3;
+    margin-bottom: 18px;
+    font-weight: 400;
 }
 
 .bio-summary {
-    font-size: 15px;
-    line-height: 1.65;
-    color: #d4d4d8;
-    margin-bottom: 20px;
-    padding: 14px 18px;
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-    backdrop-filter: blur(8px);
+    font-size: 19px;
+    line-height: 1.6;
+    color: #d4d4d4;
+    font-style: italic;
+    margin-bottom: 22px;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
 }
 
 .contact-bar {
-    margin-bottom: 22px;
+    margin-bottom: 24px;
 }
 
 .email-link {
-    color: #f4f4f5;
+    color: #ffffff;
     text-decoration: none;
-    font-size: 14px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     padding-bottom: 2px;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease;
 }
 
 .email-link:hover {
     border-color: #ffffff;
-    color: #ffffff;
 }
 
-/* Writing Section Cards */
-.writing-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.writing-card {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 18px 20px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.writing-card:hover {
-    border-color: rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.035);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
-}
-
-.writing-title {
-    font-family: 'Fraunces', serif;
-    font-size: 18px;
-    color: #f4f4f5;
-    font-weight: 400;
-}
-
-.writing-desc {
-    font-size: 13.5px;
-    color: #a1a1aa;
-    line-height: 1.5;
-    font-family: 'Inter', sans-serif;
-}
-
-.writing-meta {
-    font-size: 10px;
-    color: #71717a;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    margin-top: 4px;
-}
-
-/* Navigation Pills */
+/* Navigation Tabs */
 .nav-links {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
     align-items: center;
 }
 
 .nav-pill {
-    font-size: 12px;
-    font-weight: 500;
-    color: #a1a1aa;
+    font-size: 14px;
+    color: #a3a3a3;
     text-decoration: none;
     padding: 6px 14px;
-    border-radius: 20px;
+    border-radius: 4px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-button.nav-pill {
+    transition: all 0.2s ease;
     cursor: pointer;
-    font-family: inherit;
 }
 
 .nav-pill.active {
-    background: #f4f4f5;
-    color: #09090b;
-    border-color: #f4f4f5;
-    font-weight: 600;
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+    font-weight: 500;
 }
 
-/* Quick Navigation Grid (Minimal Main Tab) */
+.nav-pill:hover:not(.active) {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* Content Sections */
+.content-section {
+    margin-bottom: 40px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.section-label {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #888888;
+    text-transform: uppercase;
+}
+
+.section-tag {
+    font-size: 12px;
+    color: #666666;
+    letter-spacing: 1px;
+}
+
+/* Quick Nav Cards (Minimal Main Tab) */
 .quick-nav-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -214,106 +175,99 @@ button.nav-pill {
 .quick-nav-card {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     padding: 20px;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
+    border-radius: 6px;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-    backdrop-filter: blur(12px);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.25s ease;
 }
 
 .quick-nav-card:hover {
-    border-color: rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.04);
     transform: translateY(-2px);
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4);
-}
-
-.quick-nav-icon {
-    font-size: 24px;
-    margin-bottom: 2px;
 }
 
 .quick-nav-title {
-    font-family: 'Fraunces', serif;
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 400;
-    color: #f4f4f5;
+    color: #ffffff;
 }
 
 .quick-nav-desc {
-    font-size: 13px;
-    color: #a1a1aa;
-    line-height: 1.45;
-    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #a3a3a3;
+    line-height: 1.5;
+    font-style: italic;
     flex-grow: 1;
 }
 
 .quick-nav-link {
-    font-size: 10px;
-    color: #38bdf8;
-    margin-top: 8px;
-    letter-spacing: 1px;
-}
-
-@media (max-width: 550px) {
-    .quick-nav-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.nav-pill:hover:not(.active) {
+    font-size: 13px;
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-1px);
-}
-
-/* Content Sections */
-.content-section {
-    margin-bottom: 44px;
-}
-
-.section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-    padding-bottom: 6px;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
-}
-
-.section-label {
-    font-size: 11px;
-    color: #a1a1aa;
-    font-weight: 700;
-}
-
-.section-tag {
-    font-size: 10px;
-    color: #71717a;
+    margin-top: 6px;
     letter-spacing: 1px;
 }
 
-/* Featured Photography Section */
+/* Writing Cards */
+.writing-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.writing-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+}
+
+.writing-card:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-2px);
+}
+
+.writing-title {
+    font-size: 21px;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.writing-desc {
+    font-size: 16px;
+    color: #a3a3a3;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+.writing-meta {
+    font-size: 12px;
+    color: #737373;
+    letter-spacing: 1px;
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+/* Photography Section */
 .photo-wrapper {
     position: relative;
-    border-radius: 12px;
+    border-radius: 6px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(12px);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.photo-wrapper:hover {
-    border-color: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
 }
 
 .featured-photo {
@@ -321,21 +275,16 @@ button.nav-pill {
     height: auto;
     display: block;
     object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.photo-wrapper:hover .featured-photo {
-    transform: scale(1.015);
 }
 
 .photo-caption {
-    font-size: 11px;
-    color: #a1a1aa;
+    font-size: 13px;
+    color: #a3a3a3;
     padding: 12px 16px;
     text-align: center;
-    background: rgba(9, 9, 11, 0.7);
-    backdrop-filter: blur(8px);
+    background: rgba(5, 5, 5, 0.8);
     border-top: 1px solid rgba(255, 255, 255, 0.06);
+    letter-spacing: 1px;
 }
 
 /* Film Grid (Letterboxd Posters) */
@@ -351,7 +300,7 @@ button.nav-pill {
     align-items: center;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.25s ease;
 }
 
 .film-card:hover {
@@ -362,16 +311,15 @@ button.nav-pill {
     width: 100%;
     aspect-ratio: 2/3;
     object-fit: cover;
-    border-radius: 8px;
-    filter: grayscale(80%);
+    border-radius: 4px;
+    filter: grayscale(60%);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
 }
 
 .film-card:hover .film-poster {
     filter: grayscale(0%);
     border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .film-info {
@@ -383,40 +331,35 @@ button.nav-pill {
 }
 
 .film-name {
-    font-size: 12px;
-    color: #d4d4d8;
-    line-height: 1.25;
+    font-size: 14px;
+    color: #d4d4d4;
     text-align: center;
-    font-family: 'Inter', sans-serif;
+    line-height: 1.3;
 }
 
 .film-rating {
-    font-size: 10px;
+    font-size: 12px;
     color: #fbbf24;
-    letter-spacing: 1px;
 }
 
-/* Strava Card & SVG Route Map */
+/* Strava Card */
 .strava-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     padding: 22px 20px;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
+    border-radius: 6px;
     text-decoration: none;
-    color: #f4f4f5;
-    backdrop-filter: blur(12px);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #f5f5f5;
+    transition: all 0.25s ease;
 }
 
 .strava-card:hover {
-    border-color: rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.035);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .strava-header {
@@ -427,28 +370,27 @@ button.nav-pill {
 }
 
 .strava-title {
-    font-size: 18px;
-    font-family: 'Fraunces', serif;
-    font-weight: 400;
-    color: #f4f4f5;
+    font-size: 20px;
+    color: #ffffff;
 }
 
 .strava-location {
-    font-size: 11px;
-    color: #a1a1aa;
+    font-size: 14px;
+    color: #a3a3a3;
+    font-style: italic;
 }
 
 .strava-metrics {
-    font-size: 12px;
-    color: #71717a;
+    font-size: 14px;
+    color: #737373;
     text-align: center;
 }
 
 .strava-map-container {
     width: 100%;
     background: rgba(0, 0, 0, 0.4);
-    border-radius: 8px;
-    padding: 14px 10px 10px;
+    border-radius: 4px;
+    padding: 12px 10px 8px;
     border: 1px dashed rgba(255, 255, 255, 0.08);
 }
 
@@ -460,13 +402,17 @@ button.nav-pill {
 
 /* Footer */
 .footer {
-    margin-top: 48px;
+    margin-top: 50px;
     text-align: center;
-    font-size: 11px;
-    color: #71717a;
+    font-size: 13px;
+    color: #666666;
+    letter-spacing: 1px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
+    .quick-nav-grid {
+        grid-template-columns: 1fr;
+    }
     .film-grid {
         grid-template-columns: repeat(2, 1fr);
     }
