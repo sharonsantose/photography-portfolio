@@ -172,23 +172,34 @@ async function fetchRecentFilms() {
     if (!filmGrid) return;
 
     try {
+        // Use allorigins CORS proxy to fetch Letterboxd RSS directly (no item limit)
         const rssUrl = 'https://letterboxd.com/sharon1/rss/';
-        // rss2json supports up to 50 items via &count=50
-        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&count=50`);
-        const data = await response.json();
+        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
+        const response = await fetch(proxyUrl);
+        const json = await response.json();
+        const xmlText = json.contents;
 
-        if (data.status === 'ok' && data.items && data.items.length > 0) {
-            const parsedFilms = data.items.map(item => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(item.description, 'text/html');
-                const imgTag = doc.querySelector('img');
-                const parts = item.title.split(' - ');
-                return {
-                    titleAndYear: parts[0],
-                    rating: parts[1] || '',
-                    link: item.link,
-                    img: imgTag ? imgTag.src : ''
-                };
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(xmlText, 'text/xml');
+        const items = Array.from(xml.querySelectorAll('item'));
+
+        if (items.length > 0) {
+            const parsedFilms = items.map(item => {
+                const title = item.querySelector('title')?.textContent || '';
+                const link = item.querySelector('link')?.textContent || '';
+                const description = item.querySelector('description')?.textContent || '';
+
+                // Parse poster image from description HTML
+                const descDoc = parser.parseFromString(description, 'text/html');
+                const imgTag = descDoc.querySelector('img');
+                const imgSrc = imgTag ? imgTag.src : '';
+
+                // Split "Film Name, Year - ★★★★" into title and rating
+                const dashIdx = title.lastIndexOf(' - ');
+                const titleAndYear = dashIdx > -1 ? title.slice(0, dashIdx) : title;
+                const rating = dashIdx > -1 ? title.slice(dashIdx + 3) : '';
+
+                return { titleAndYear, rating, link, img: imgSrc };
             });
             renderFilmGrid(parsedFilms);
         } else {
