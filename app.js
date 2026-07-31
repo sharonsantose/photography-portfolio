@@ -26,10 +26,14 @@ function switchTab(tabId) {
         activeBtn.classList.add('active');
     }
 
-    // Safely update hash without crashing on local file:// protocol
+    // Safely update hash without appending #main for home tab
     try {
         if (window.location.protocol !== 'file:' && window.history.pushState) {
-            window.history.pushState(null, null, `#${tabId}`);
+            if (tabId === 'main') {
+                window.history.pushState(null, null, window.location.pathname);
+            } else {
+                window.history.pushState(null, null, `#${tabId}`);
+            }
         }
     } catch(e) {}
 }
