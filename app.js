@@ -153,7 +153,7 @@ function renderFilmGrid(films) {
         card.href = film.link;
         card.target = '_blank';
         card.rel = 'noopener';
-        card.className = 'film-card typewriter-reveal is-visible';
+        card.className = 'film-card';
 
         card.innerHTML = `
             ${film.img ? `<img src="${film.img}" alt="${film.titleAndYear}" class="film-poster" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/230x345/18181b/ffffff?text=${encodeURIComponent(film.titleAndYear)}';">` : ''}
@@ -299,7 +299,7 @@ async function fetchSixStravaWorkouts() {
         card.href = act.strava_id ? `https://www.strava.com/activities/${act.strava_id}` : 'https://www.strava.com/athletes/197020850';
         card.target = '_blank';
         card.rel = 'noopener';
-        card.className = 'strava-card typewriter-reveal is-visible';
+        card.className = 'strava-card';
 
         const svgMapHtml = act.map_polyline ? generateSvgMapHtml(act.map_polyline) : '';
 
