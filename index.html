@@ -13,36 +13,38 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sharon Santos — Photography & Life Systems</title>
-    <meta name="description" content="Sharon Santos — Photography, Cinema & Life Systems">
+    <title>Sharon Santos — Screenwriter & Photographer</title>
+    <meta name="description" content="Sharon Santos — Screenwriter, Photographer & Life Systems">
     
-    <!-- Google Fonts: Fraunces, Inter, JetBrains Mono -->
+    <!-- Google Fonts: Courier Prime, Fraunces, Inter, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <main class="container">
-        <!-- Top Status Tag -->
-        <div class="top-tag sans">
+        <!-- Top Screenplay Slugline Tag -->
+        <div class="top-tag slugline">
             <span class="dot"></span>
-            <span>Seattle, WA · Photographer & Creative</span>
+            <span>EXT. SEATTLE - DAY (LIVE)</span>
         </div>
 
         <!-- Header -->
         <header class="header">
             <h1 class="name">Sharon Santos</h1>
-            <p class="discipline">Photography, Film & Life Systems</p>
+            <p class="discipline">Screenwriter, Photographer & Life Systems</p>
 
             <div class="contact-bar">
                 <a href="mailto:sharon5234@outlook.com" class="email-link sans">sharon5234@outlook.com</a>
             </div>
             
             <nav class="nav-links sans">
-                <a href="/todo" class="nav-pill">⚡ To-Do & Habits</a>
+                <a href="/" class="nav-pill active">🎬 Home</a>
+                <a href="/todo" class="nav-pill">⚡ Tasks & Habits</a>
+                <a href="/private" class="nav-pill">🔒 Private Space</a>
                 <a href="https://open.spotify.com/user/.sharon." target="_blank" rel="noopener" class="nav-pill">Spotify</a>
                 <a href="https://letterboxd.com/sharon1/" target="_blank" rel="noopener" class="nav-pill">Letterboxd</a>
                 <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener" class="nav-pill">Strava</a>
@@ -52,19 +54,19 @@
         <!-- Featured Photography (Fuji Cabo Series) -->
         <section class="content-section">
             <div class="section-header">
-                <span class="section-label sans">Featured Photography</span>
+                <span class="section-label slugline">SCENE 01 · FEATURED PHOTOGRAPHY</span>
                 <span class="section-tag mono">FUJI SERIES</span>
             </div>
             <div class="photo-wrapper">
                 <img src="images/DSCF5062_web.jpg" alt="Featured Photography — Cabo Fuji Series" class="featured-photo" loading="eager" onerror="this.onerror=null;this.src='DSCF5062_web.jpg';">
-                <div class="photo-caption sans">Cabo • Fuji Series (DSCF5062)</div>
+                <div class="photo-caption slugline">CABO • FUJI SERIES (DSCF5062) — CUT TO: BLACK</div>
             </div>
         </section>
 
         <!-- Live Letterboxd Recent Films -->
         <section class="content-section">
             <div class="section-header">
-                <span class="section-label sans">Recent Cinema</span>
+                <span class="section-label slugline">SCENE 02 · RECENT CINEMA</span>
                 <span class="section-tag mono">LETTERBOXD</span>
             </div>
             <div class="film-grid" id="filmGrid">
@@ -75,13 +77,13 @@
         <!-- Latest Strava Activity & Mercator Route Map -->
         <section class="content-section">
             <div class="section-header">
-                <span class="section-label sans" id="stravaSectionLabel">Latest Workout</span>
+                <span class="section-label slugline" id="stravaSectionLabel">SCENE 03 · LATEST WORKOUT</span>
                 <span class="section-tag mono">STRAVA SYNC</span>
             </div>
             <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener" class="strava-card" id="stravaCard">
                 <div class="strava-header">
                     <span class="strava-title" id="stravaTitle">🏃 first run club!</span>
-                    <span class="strava-location sans" id="stravaLocation">Jul 27, 2026 • Strava Live Sync</span>
+                    <span class="strava-location slugline" id="stravaLocation">Jul 27, 2026 • Strava Live Sync</span>
                     <span class="strava-metrics sans" id="stravaMetrics">5.10 mi · 58m · @ 11:23/mi · ❤️ 174 bpm · ↑ 30ft · cadence 175 spm</span>
                 </div>
                 <div class="strava-map-container" id="stravaMapContainer">
@@ -95,8 +97,8 @@
         </section>
 
         <!-- Footer -->
-        <footer class="footer sans">
-            <p>© 2026 Sharon Santos · All rights reserved</p>
+        <footer class="footer slugline">
+            <p>FADE OUT. — © 2026 Sharon Santos · All rights reserved</p>
         </footer>
     </main>
 

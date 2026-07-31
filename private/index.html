@@ -6,10 +6,10 @@
     <title>Private Space — Sharon Santos</title>
     <meta name="robots" content="noindex, nofollow">
     
-    <!-- Google Fonts: EB Garamond -->
+    <!-- Google Fonts: Courier Prime, Fraunces, Inter, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
         *, *::before, *::after {
@@ -19,11 +19,14 @@
         }
 
         html {
-            font-family: 'EB Garamond', 'Garamond', 'Georgia', serif;
-            background-color: #000000;
-            color: #ffffff;
+            font-family: 'Fraunces', Georgia, serif;
+            background-color: #09090b;
+            background-image: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.035) 0%, transparent 65%);
+            background-attachment: fixed;
+            color: #f4f4f5;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
         }
 
         body {
@@ -34,7 +37,58 @@
             padding: 60px 20px;
         }
 
-                .container {
+        .sans {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .slugline {
+            font-family: 'Courier Prime', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 11px;
+        }
+
+        /* Navigation Pills */
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0 28px;
+        }
+
+        .nav-pill {
+            font-size: 12px;
+            font-weight: 500;
+            color: #a1a1aa;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-pill.active {
+            background: #f4f4f5;
+            color: #09090b;
+            border-color: #f4f4f5;
+            font-weight: 600;
+        }
+
+        .nav-pill:hover:not(.active) {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
@@ -46,19 +100,22 @@
         }
 
         .title {
+            font-family: 'Fraunces', serif;
             font-size: clamp(34px, 5vw, 46px);
-            font-weight: 400;
+            font-weight: 300;
+            letter-spacing: -0.02em;
             margin-bottom: 6px;
             color: #ffffff;
             text-align: center;
         }
 
         .subtitle {
-            font-size: 18px;
+            font-size: 16px;
             font-style: italic;
-            color: #a3a3a3;
-            margin-bottom: 32px;
+            color: #a1a1aa;
+            margin-bottom: 28px;
             text-align: center;
+            font-family: 'Inter', sans-serif;
         }
 
         /* Password Auth Screen */
@@ -1191,6 +1248,24 @@
 
         <main class="container">
         
+        <!-- Top Screenplay Slugline Tag -->
+        <div style="text-align:center; margin-bottom:12px;">
+            <div class="top-tag slugline" style="display:inline-flex; align-items:center; gap:8px; padding:4px 12px; border-radius:20px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);">
+                <span style="width:6px; height:6px; border-radius:50%; background:#10b981; box-shadow:0 0 8px rgba(16,185,129,0.6);"></span>
+                <span>INT. WRITER'S ROOM - NIGHT (RESTRICTED SPACE)</span>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="nav-links sans">
+            <a href="/" class="nav-pill">🎬 Home</a>
+            <a href="/todo" class="nav-pill">⚡ Tasks & Habits</a>
+            <a href="/private" class="nav-pill active">🔒 Private Space</a>
+            <a href="https://open.spotify.com/user/.sharon." target="_blank" rel="noopener" class="nav-pill">Spotify</a>
+            <a href="https://letterboxd.com/sharon1/" target="_blank" rel="noopener" class="nav-pill">Letterboxd</a>
+            <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener" class="nav-pill">Strava</a>
+        </nav>
+
         <!-- Auth Lock Screen -->
         <div id="authScreen">
             <h1 class="title">Private Space</h1>
@@ -1201,8 +1276,6 @@
                 <button type="submit" class="unlock-btn">Unlock Space</button>
                 <div class="error-msg" id="errorMsg">Incorrect passcode. Try again.</div>
             </form>
-
-            <a href="/" class="nav-home">← Back to sharonsantos.me</a>
         </div>
 
         <!-- Decrypted Private Content (Hidden until Passcode Unlocked) -->

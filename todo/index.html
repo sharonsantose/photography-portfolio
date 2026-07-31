@@ -10,7 +10,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -33,6 +33,47 @@
 
         .mono {
             font-family: 'JetBrains Mono', monospace;
+        }
+
+        .slugline {
+            font-family: 'Courier Prime', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 11px;
+        }
+
+        /* Navigation Pills */
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .nav-pill {
+            font-size: 12px;
+            font-weight: 500;
+            color: #a1a1aa;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-pill.active {
+            background: #f4f4f5;
+            color: #09090b;
+            border-color: #f4f4f5;
+            font-weight: 600;
+        }
+
+        .nav-pill:hover:not(.active) {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-1px);
         }
 
         /* ── Auth Screen ────────────────────────────────────────── */
@@ -1278,18 +1319,34 @@
 <!-- Main Application -->
 <div id="app">
 
+    <!-- Top Screenplay Slugline Tag -->
+    <div class="top-tag slugline" style="display:inline-flex; align-items:center; gap:8px; padding:4px 12px; border-radius:20px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); margin-bottom:20px;">
+        <span style="width:6px; height:6px; border-radius:50%; background:#10b981; box-shadow:0 0 8px rgba(16,185,129,0.6);"></span>
+        <span>INT. LIFE SYSTEMS — DAY (HABITS & TASKS)</span>
+    </div>
+
     <!-- Header -->
     <div class="header">
-        <div class="header-title">
+        <div class="header-title" style="width:100%;">
             <h1>To-Do & Habit Tracker</h1>
             <p id="currentDateDisplay" class="sans"></p>
         </div>
-        <div style="display:flex; align-items:center; gap:10px;">
-            <div id="syncStatus" class="sans">
-                <span style="width:6px; height:6px; border-radius:50%; background:currentColor;"></span>
-                <span id="syncStatusText">Synced</span>
+        <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-top:14px; flex-wrap:wrap; gap:10px;">
+            <nav class="nav-links sans">
+                <a href="/" class="nav-pill">🎬 Home</a>
+                <a href="/todo" class="nav-pill active">⚡ Tasks & Habits</a>
+                <a href="/private" class="nav-pill">🔒 Private Space</a>
+                <a href="https://open.spotify.com/user/.sharon." target="_blank" rel="noopener" class="nav-pill">Spotify</a>
+                <a href="https://letterboxd.com/sharon1/" target="_blank" rel="noopener" class="nav-pill">Letterboxd</a>
+                <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener" class="nav-pill">Strava</a>
+            </nav>
+            <div style="display:flex; align-items:center; gap:10px;">
+                <div id="syncStatus" class="sans">
+                    <span style="width:6px; height:6px; border-radius:50%; background:currentColor;"></span>
+                    <span id="syncStatusText">Synced</span>
+                </div>
+                <button id="lockAppBtn" title="Lock Space" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:5px 12px; color:#aaa; font-size:12px; cursor:pointer;" class="sans">🔒 Lock</button>
             </div>
-            <button id="lockAppBtn" title="Lock Space" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:5px 12px; color:#aaa; font-size:12px; cursor:pointer;" class="sans">🔒 Lock</button>
         </div>
     </div>
 

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SHARON SANTOS — CHESTER HOW DIGITAL GARDEN STYLING
+   SHARON SANTOS — SCREENWRITER & DIGITAL GARDEN THEME
    ========================================================================== */
 
 *, *::before, *::after {
@@ -34,18 +34,25 @@ body {
     font-family: 'JetBrains Mono', monospace;
 }
 
+.slugline {
+    font-family: 'Courier Prime', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 11px;
+}
+
 .container {
     width: 100%;
-    max-width: 680px;
+    max-width: 720px;
     margin: 0 auto;
 }
 
-/* Top Status Tag */
+/* Top Screenplay Status Tag */
 .top-tag {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 12px;
+    font-size: 11px;
     color: #a1a1aa;
     padding: 4px 12px;
     border-radius: 20px;
@@ -64,9 +71,9 @@ body {
 
 /* Header */
 .header {
-    margin-bottom: 48px;
+    margin-bottom: 44px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    padding-bottom: 32px;
+    padding-bottom: 28px;
 }
 
 .name {
@@ -78,7 +85,7 @@ body {
 }
 
 .discipline {
-    font-size: clamp(16px, 2.5vw, 19px);
+    font-size: clamp(15px, 2.2vw, 18px);
     font-style: italic;
     color: #a1a1aa;
     margin-bottom: 20px;
@@ -86,7 +93,7 @@ body {
 }
 
 .contact-bar {
-    margin-bottom: 24px;
+    margin-bottom: 22px;
 }
 
 .email-link {
@@ -123,7 +130,14 @@ body {
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nav-pill:hover {
+.nav-pill.active {
+    background: #f4f4f5;
+    color: #09090b;
+    border-color: #f4f4f5;
+    font-weight: 600;
+}
+
+.nav-pill:hover:not(.active) {
     color: #ffffff;
     border-color: rgba(255, 255, 255, 0.3);
     background: rgba(255, 255, 255, 0.08);
@@ -132,7 +146,7 @@ body {
 
 /* Content Sections */
 .content-section {
-    margin-bottom: 48px;
+    margin-bottom: 44px;
 }
 
 .section-header {
@@ -145,11 +159,9 @@ body {
 }
 
 .section-label {
-    font-size: 12px;
-    letter-spacing: 0.5px;
+    font-size: 11px;
     color: #a1a1aa;
-    font-weight: 500;
-    text-transform: uppercase;
+    font-weight: 700;
 }
 
 .section-tag {
@@ -188,7 +200,7 @@ body {
 }
 
 .photo-caption {
-    font-size: 12px;
+    font-size: 11px;
     color: #a1a1aa;
     padding: 12px 16px;
     text-align: center;
@@ -293,9 +305,8 @@ body {
 }
 
 .strava-location {
-    font-size: 12px;
+    font-size: 11px;
     color: #a1a1aa;
-    letter-spacing: 0.3px;
 }
 
 .strava-metrics {
@@ -320,9 +331,9 @@ body {
 
 /* Footer */
 .footer {
-    margin-top: 40px;
+    margin-top: 48px;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
     color: #71717a;
 }
 
