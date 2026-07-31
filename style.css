@@ -262,13 +262,6 @@ body {
     gap: 14px;
 }
 
-/* Strava 6 Workout Grid */
-.strava-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-}
-
 .film-card {
     display: flex;
     flex-direction: column;
@@ -316,6 +309,80 @@ body {
     color: #d97706;
 }
 
+/* Strava 6 Workout Grid & SVG Maps */
+.strava-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.strava-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background: #fafafa;
+    border: 1px solid #e4e4e7;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #111111;
+    transition: all 0.2s ease;
+}
+
+.strava-card:hover {
+    border-color: #000000;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.strava-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.strava-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.strava-location {
+    font-size: 12px;
+    color: #71717a;
+    font-weight: 700;
+}
+
+.strava-metrics {
+    font-size: 12px;
+    color: #52525b;
+    line-height: 1.4;
+}
+
+.strava-map-container {
+    width: 100%;
+    background: #f4f4f5;
+    border-radius: 4px;
+    padding: 12px 10px 8px;
+    border: 1px dashed #d4d4d8;
+    margin-top: 4px;
+}
+
+.route-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.route-svg polyline {
+    stroke: #000000 !important;
+    stroke-width: 2.5 !important;
+}
+
+.route-svg circle {
+    fill: #000000 !important;
+}
+
 /* Footer & Social Links */
 .footer {
     margin-top: 50px;
@@ -347,39 +414,6 @@ body {
     color: #2563eb;
 }
 
-/* Floating In-Browser Edit Toolbar */
-.edit-toolbar {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 9999;
-    display: flex;
-    gap: 8px;
-    background: #ffffff;
-    border: 1px solid #d4d4d8;
-    border-radius: 30px;
-    padding: 6px 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.edit-tool-btn {
-    background: #f4f4f5;
-    color: #000000;
-    border: 1px solid #d4d4d8;
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-family: inherit;
-}
-
-.edit-tool-btn:hover {
-    background: #000000;
-    color: #ffffff;
-}
-
 /* Screenplay Typewriter Scroll Reveal */
 .typewriter-reveal {
     opacity: 0;
@@ -393,11 +427,14 @@ body {
     transform: translateY(0);
 }
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
     .script-page {
-        padding: 30px 24px 50px;
+        padding: 30px 20px 50px;
     }
     .film-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .strava-grid {
+        grid-template-columns: 1fr;
     }
 }
