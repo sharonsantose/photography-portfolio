@@ -172,40 +172,77 @@ async function fetchRecentFilms() {
     if (!filmGrid) return;
 
     try {
-        // Use allorigins CORS proxy to fetch Letterboxd RSS directly (no item limit)
         const rssUrl = 'https://letterboxd.com/sharon1/rss/';
-        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
-        const response = await fetch(proxyUrl);
-        const json = await response.json();
-        const xmlText = json.contents;
+        let xmlText = '';
 
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(xmlText, 'text/xml');
-        const items = Array.from(xml.querySelectorAll('item'));
+        // Provider 1: allorigins.win (supports all 50 items)
+        try {
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}&_=${Date.now()}`;
+            const response = await fetch(proxyUrl);
+            const json = await response.json();
+            if (json && json.contents) {
+                if (json.contents.startsWith('data:')) {
+                    const base64Data = json.contents.split(',')[1];
+                    xmlText = atob(base64Data);
+                } else {
+                    xmlText = json.contents;
+                }
+            }
+        } catch (e) {
+            console.warn('allorigins proxy failed, falling back to rss2json', e);
+        }
 
-        if (items.length > 0) {
-            const parsedFilms = items.map(item => {
+        let parsedFilms = [];
+
+        if (xmlText) {
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(xmlText, 'text/xml');
+            const items = Array.from(xml.querySelectorAll('item'));
+
+            parsedFilms = items.map(item => {
                 const title = item.querySelector('title')?.textContent || '';
                 const link = item.querySelector('link')?.textContent || '';
                 const description = item.querySelector('description')?.textContent || '';
 
-                // Parse poster image from description HTML
                 const descDoc = parser.parseFromString(description, 'text/html');
                 const imgTag = descDoc.querySelector('img');
                 const imgSrc = imgTag ? imgTag.src : '';
 
-                // Split "Film Name, Year - ★★★★" into title and rating
                 const dashIdx = title.lastIndexOf(' - ');
                 const titleAndYear = dashIdx > -1 ? title.slice(0, dashIdx) : title;
                 const rating = dashIdx > -1 ? title.slice(dashIdx + 3) : '';
 
                 return { titleAndYear, rating, link, img: imgSrc };
-            });
+            }).filter(f => f.titleAndYear);
+        }
+
+        // Provider 2 Fallback: rss2json
+        if (parsedFilms.length === 0) {
+            const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`);
+            const data = await response.json();
+            if (data.status === 'ok' && data.items && data.items.length > 0) {
+                parsedFilms = data.items.map(item => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(item.description, 'text/html');
+                    const imgTag = doc.querySelector('img');
+                    const parts = item.title.split(' - ');
+                    return {
+                        titleAndYear: parts[0],
+                        rating: parts[1] || '',
+                        link: item.link,
+                        img: imgTag ? imgTag.src : ''
+                    };
+                });
+            }
+        }
+
+        if (parsedFilms.length > 0) {
             renderFilmGrid(parsedFilms);
         } else {
             renderFilmGrid(fallbackRecentFilms);
         }
     } catch (err) {
+        console.error('Failed to load Letterboxd films:', err);
         renderFilmGrid(fallbackRecentFilms);
     }
 }
