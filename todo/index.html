@@ -1273,8 +1273,17 @@
 </head>
 <body>
 
+<!-- Passcode Lock Screen -->
+<div id="authScreen" style="display:none;">
+    <h1>🔒 Protected Space</h1>
+    <p>Enter passcode to unlock To-Do & Habit Tracker</p>
+    <input type="password" id="passcodeInput" placeholder="••••" maxlength="8" autofocus />
+    <button id="unlockBtn">Unlock</button>
+    <div id="authError" style="display:none; color:#f87171; font-size:14px; margin-top:12px;" class="sans">Incorrect passcode. Try again.</div>
+</div>
+
 <!-- Loading Screen -->
-<div id="loadingScreen">
+<div id="loadingScreen" style="display:none;">
     <div class="spinner"></div>
     <p>Syncing your habits & tasks…</p>
 </div>
@@ -1288,9 +1297,12 @@
             <h1>To-Do & Habit Tracker</h1>
             <p id="currentDateDisplay" class="sans"></p>
         </div>
-        <div id="syncStatus" class="sans">
-            <span style="width:6px; height:6px; border-radius:50%; background:currentColor;"></span>
-            <span id="syncStatusText">Synced</span>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div id="syncStatus" class="sans">
+                <span style="width:6px; height:6px; border-radius:50%; background:currentColor;"></span>
+                <span id="syncStatusText">Synced</span>
+            </div>
+            <button id="lockAppBtn" title="Lock Space" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:5px 12px; color:#aaa; font-size:12px; cursor:pointer;" class="sans">🔒 Lock</button>
         </div>
     </div>
 
@@ -1737,8 +1749,68 @@
 </div>
 
 <script>
+    // ── Auth Passcode Security ───────────────────────────────────────
+    const PASS_HASH = "e4782cfc2b471cd4e24686f692188416d8a313cccb62679dc08c348447c2507b"; // Passcode: 0427
+
+    async function sha256(str) {
+        const buf  = new TextEncoder().encode(str);
+        const hash = await crypto.subtle.digest('SHA-256', buf);
+        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+
+    async function tryUnlock() {
+        const inputEl = document.getElementById('passcodeInput');
+        const errEl = document.getElementById('authError');
+        const val = inputEl ? inputEl.value.trim() : '';
+        if (!val) return;
+        const h = await sha256(val);
+        if (h === PASS_HASH) {
+            sessionStorage.setItem('todoUnlocked', 'true');
+            document.getElementById('authScreen').style.display = 'none';
+            document.getElementById('loadingScreen').style.display = 'flex';
+            if (errEl) errEl.style.display = 'none';
+            await initApp();
+        } else {
+            if (errEl) errEl.style.display = 'block';
+            if (inputEl) {
+                inputEl.value = '';
+                inputEl.focus();
+            }
+        }
+    }
+
+    function lockApp() {
+        sessionStorage.removeItem('todoUnlocked');
+        document.getElementById('app').style.display = 'none';
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('authScreen').style.display = 'flex';
+        const inputEl = document.getElementById('passcodeInput');
+        if (inputEl) {
+            inputEl.value = '';
+            inputEl.focus();
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-        initApp();
+        const unlockBtn = document.getElementById('unlockBtn');
+        const passInput = document.getElementById('passcodeInput');
+        const lockBtn = document.getElementById('lockAppBtn');
+
+        if (unlockBtn) unlockBtn.addEventListener('click', tryUnlock);
+        if (passInput) passInput.addEventListener('keydown', e => {
+            if (e.key === 'Enter') tryUnlock();
+        });
+        if (lockBtn) lockBtn.addEventListener('click', lockApp);
+
+        if (sessionStorage.getItem('todoUnlocked') === 'true') {
+            document.getElementById('authScreen').style.display = 'none';
+            document.getElementById('loadingScreen').style.display = 'flex';
+            initApp();
+        } else {
+            document.getElementById('authScreen').style.display = 'flex';
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.getElementById('app').style.display = 'none';
+        }
     });
 
     // ── Proxy API ────────────────────────────────────────────────────
