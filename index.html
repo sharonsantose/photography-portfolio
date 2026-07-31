@@ -1,169 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JW42P0QZ8N"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-JW42P0QZ8N');
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sharon Santos — Filmmaker, Photographer & Writer</title>
-    <meta name="description" content="Sharon Santos — Aspiring Filmmaker, Photographer, Writer & Vibecoder">
+    <title>Sharon Santos — Screenplay</title>
     
-    <!-- Google Fonts: EB Garamond -->
+    <!-- Google Fonts: Courier Prime -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <main class="container">
-        <!-- Top Status Tag -->
-        <div class="top-tag">
-            <span class="dot"></span>
-            <span>Live</span>
+    <main class="script-page">
+        <!-- Screenplay Page Header -->
+        <div class="script-page-header typewriter-reveal">
+            <span class="script-slug">EXT. SEATTLE - DAY</span>
+            <span class="script-page-num">PAGE 1.</span>
         </div>
 
-        <!-- Header -->
+        <!-- Header / Screenplay Title Page -->
         <header class="header">
-            <h1 class="name">Sharon Santos</h1>
-            <p class="discipline">Filmmaker · Photographer · Writer · Vibecoder</p>
+            <div class="script-title-block">
+                <h1 class="character-name typewriter-reveal">SHARON SANTOS</h1>
+                <div class="script-byline typewriter-reveal">WRITER · PHOTOGRAPHER · FILMMAKER · VIBECODER</div>
+            </div>
 
-            <div class="bio-summary">
+            <p class="dialogue-block typewriter-reveal">
                 Hi, I'm Sharon — an aspiring filmmaker, photographer, writer, and vibecoder. Welcome to my world.
-            </div>
+            </p>
 
-            <div class="contact-bar">
-                <a href="mailto:sharon5234@outlook.com" class="email-link">sharon5234@outlook.com</a>
-            </div>
-            
-            <nav class="nav-links">
-                <button class="nav-pill active" data-tab="main" onclick="switchTab('main')">Main</button>
-                <button class="nav-pill" data-tab="photography" onclick="switchTab('photography')">Photography</button>
-                <button class="nav-pill" data-tab="writing" onclick="switchTab('writing')">Writing</button>
+            <nav class="nav-links typewriter-reveal">
+                <button class="nav-pill active" data-tab="main" onclick="switchTab('main')">[ SCENE 01: MAIN ]</button>
+                <button class="nav-pill" data-tab="photography" onclick="switchTab('photography')">[ SCENE 02: PHOTOGRAPHY ]</button>
+                <button class="nav-pill" data-tab="writing" onclick="switchTab('writing')">[ SCENE 03: WRITING ]</button>
+                <button class="nav-pill" data-tab="letterboxd" onclick="switchTab('letterboxd')">[ SCENE 04: LETTERBOXD ]</button>
+                <button class="nav-pill" data-tab="strava" onclick="switchTab('strava')">[ SCENE 05: STRAVA ]</button>
             </nav>
         </header>
 
-        <!-- TAB 1: MAIN (ULTRA MINIMAL) -->
+        <!-- TAB 1: MAIN -->
         <div id="tab-main" class="tab-pane">
-            <section class="content-section">
-                <div class="section-header">
-                    <span class="section-label">Welcome</span>
-                    <span class="section-tag">Overview</span>
-                </div>
-                <div class="quick-nav-grid">
-                    <div class="quick-nav-card" onclick="switchTab('photography')">
-                        <h3 class="quick-nav-title">Photography</h3>
-                        <p class="quick-nav-desc">Fuji series street & travel visual portfolio.</p>
-                        <span class="quick-nav-link">View Gallery →</span>
-                    </div>
-                    <div class="quick-nav-card" onclick="switchTab('writing')">
-                        <h3 class="quick-nav-title">Writing & Journal</h3>
-                        <p class="quick-nav-desc">Feature screenplay drafts, creative essays, and monologue scene studies.</p>
-                        <span class="quick-nav-link">Read Journal →</span>
-                    </div>
-                </div>
-            </section>
+            <div class="scene-heading typewriter-reveal">SCENE 01 - INT. COVER PAGE - CONTINUOUS</div>
+            <div class="logline-box typewriter-reveal">
+                <div class="logline-title">LOGLINE:</div>
+                An aspiring filmmaker and photographer documents quiet spaces, street light, and urban motion through 35mm film, screenplays, and code.
+            </div>
         </div>
 
         <!-- TAB 2: PHOTOGRAPHY -->
         <div id="tab-photography" class="tab-pane" style="display:none;">
-            <!-- Featured Photography (Fuji Series) -->
+            <div class="scene-heading typewriter-reveal">SCENE 02 - INT. DARKROOM & GALLERY - DAY</div>
+            
             <section class="content-section">
-                <div class="section-header">
-                    <span class="section-label">Featured Photography</span>
-                    <span class="section-tag">Fuji Series</span>
-                </div>
-                <div class="photo-wrapper">
+                <div class="photo-wrapper typewriter-reveal">
                     <img src="images/DSCF5062_web.jpg" alt="Featured Photography — Cabo Fuji Series" class="featured-photo" loading="eager" onerror="this.onerror=null;this.src='DSCF5062_web.jpg';">
-                    <div class="photo-caption">Cabo • Fuji Series (DSCF5062)</div>
-                </div>
-            </section>
-
-            <!-- Live Letterboxd Recent Cinema -->
-            <section class="content-section">
-                <div class="section-header">
-                    <span class="section-label">Recent Cinema</span>
-                    <span class="section-tag">Letterboxd</span>
-                </div>
-                <div class="film-grid" id="filmGrid">
-                    <!-- Dynamically populated from Letterboxd -->
+                    <div class="photo-caption">CABO • FUJI SERIES (DSCF5062) — CUT TO: BLACK</div>
                 </div>
             </section>
         </div>
 
-        <!-- TAB 3: WRITING (BLOG FORMAT) -->
+        <!-- TAB 3: WRITING -->
         <div id="tab-writing" class="tab-pane" style="display:none;">
+            <div class="scene-heading typewriter-reveal">SCENE 03 - INT. WRITER'S ROOM - NIGHT</div>
+            
             <section class="content-section">
-                <div class="section-header">
-                    <span class="section-label">Writing & Essays</span>
-                    <span class="section-tag">Journal Format</span>
-                </div>
                 <div class="writing-list">
-                    <article class="writing-card">
-                        <span class="blog-date">July 28, 2026 · 4 min read</span>
-                        <h3 class="writing-title">Notes on Light and Motion</h3>
-                        <p class="writing-desc">Observations on street photography composition, analog color science, and cinematic storytelling across natural landscapes.</p>
-                        <a href="/blog/notes-on-light-and-motion.html" class="blog-read-link">Read Full Essay →</a>
+                    <article class="writing-card typewriter-reveal">
+                        <div class="script-date">JULY 28, 2026 · 4 MIN READ</div>
+                        <h3 class="writing-title">NOTES ON LIGHT AND MOTION</h3>
+                        <p class="writing-desc">Observations on street photography composition, analog color science, and cinematic storytelling.</p>
+                        <a href="blog/notes-on-light-and-motion.html" class="blog-read-link">[ READ ESSAY → ]</a>
                     </article>
 
-                    <article class="writing-card">
-                        <span class="blog-date">July 15, 2026 · 6 min read</span>
-                        <h3 class="writing-title">The Quiet Frame</h3>
-                        <p class="writing-desc">A feature screenplay exploration of memory, light, and urban solitude in modern cinema narratives.</p>
-                        <a href="/blog/notes-on-light-and-motion.html" class="blog-read-link">Read Script Notes →</a>
+                    <article class="writing-card typewriter-reveal">
+                        <div class="script-date">JULY 15, 2026 · 6 MIN READ</div>
+                        <h3 class="writing-title">THE QUIET FRAME</h3>
+                        <p class="writing-desc">A feature screenplay exploration of memory, light, and urban solitude.</p>
+                        <a href="blog/notes-on-light-and-motion.html" class="blog-read-link">[ READ SCRIPT NOTES → ]</a>
                     </article>
 
-                    <article class="writing-card">
-                        <span class="blog-date">June 30, 2026 · 3 min read</span>
-                        <h3 class="writing-title">Character Monologues & Short Scenes</h3>
-                        <p class="writing-desc">Experimental character studies, dialogue pacing exercises, and short narrative scene scripts.</p>
-                        <a href="/blog/notes-on-light-and-motion.html" class="blog-read-link">Read Scene Work →</a>
+                    <article class="writing-card typewriter-reveal">
+                        <div class="script-date">JUNE 30, 2026 · 3 MIN READ</div>
+                        <h3 class="writing-title">CHARACTER MONOLOGUES & SHORT SCENES</h3>
+                        <p class="writing-desc">Experimental character studies, dialogue pacing exercises, and short narrative scripts.</p>
+                        <a href="blog/notes-on-light-and-motion.html" class="blog-read-link">[ READ SCENE WORK → ]</a>
                     </article>
                 </div>
             </section>
         </div>
 
-        <!-- Latest Strava Activity -->
-        <section class="content-section" style="margin-top: 48px;">
-            <div class="section-header">
-                <span class="section-label" id="stravaSectionLabel">Latest Workout</span>
-                <span class="section-tag">Strava Sync</span>
-            </div>
-            <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener" class="strava-card" id="stravaCard">
-                <div class="strava-header">
-                    <span class="strava-title" id="stravaTitle">🏃 first run club!</span>
-                    <span class="strava-location" id="stravaLocation">Jul 27, 2026 • Strava Live Sync</span>
-                    <span class="strava-metrics" id="stravaMetrics">5.10 mi · 58m · @ 11:23/mi · ❤️ 174 bpm · ↑ 30ft · cadence 175 spm</span>
+        <!-- TAB 4: LETTERBOXD STATS -->
+        <div id="tab-letterboxd" class="tab-pane" style="display:none;">
+            <div class="scene-heading typewriter-reveal">SCENE 04 - INT. CINEMA ARCHIVE - LETTERBOXD STATS</div>
+            
+            <section class="content-section">
+                <div class="logline-box typewriter-reveal" style="margin-bottom: 24px;">
+                    <div class="logline-title">LETTERBOXD PROFILE:</div>
+                    Top 4 favorite films and 12 most recent watched films synced directly from <a href="https://letterboxd.com/sharon1/" target="_blank" rel="noopener" style="color:#000; font-weight:700;">letterboxd.com/sharon1/</a>.
                 </div>
-                <div class="strava-map-container" id="stravaMapContainer">
-                    <svg viewBox="0 0 340 180" class="route-svg">
-                        <polyline points="133.7,140.8 133.7,140.4 133.4,139.4 132.8,138.1 132.3,136.6 132.5,135.6 132.7,135.2 133.2,134.6 135.9,133.3 136.3,132.8 136.5,131.9 136.9,128.4 137.2,127.3 137.9,125.8 140.0,123.4 140.4,123.0 141.8,122.2 143.1,121.2 144.8,120.5 147.3,119.0 149.8,117.2 150.7,116.7 153.5,114.6 155.3,112.7 156.6,110.5 157.3,108.4 157.6,106.7 157.8,105.6 157.7,104.8 157.2,102.6 156.6,101.1 156.0,100.3 154.7,98.8 153.0,97.5 152.7,96.7 152.5,95.5 152.3,92.9 152.2,89.9 152.0,88.2 152.1,86.7 152.1,85.1 152.3,82.6 152.7,80.4 152.9,78.5 153.1,77.2 153.3,75.6 153.1,73.7 152.9,72.6 152.3,70.4 152.2,69.6 151.8,67.5 151.6,67.3 151.0,64.9 150.9,63.7 150.6,63.3 150.7,62.3 150.2,61.0 150.0,59.1 149.3,56.3 149.1,54.0 148.8,53.1 148.7,51.8 148.3,50.1 147.9,47.6 147.9,45.1 148.2,42.2 148.2,41.5 148.9,36.8 148.9,35.7 149.4,33.8 150.2,32.0 152.0,30.3 153.7,29.3 157.0,28.3 159.3,27.8 161.4,27.6 167.3,26.3 170.3,24.9 174.1,24.0 175.3,24.1 177.8,24.7 179.4,25.6 180.3,26.6 181.2,27.9 181.6,28.9 181.8,30.6 182.8,33.6 183.6,35.2 184.5,37.7 186.0,40.1 186.4,41.3 187.1,42.6 187.7,43.9 188.5,45.6 189.6,47.2 191.3,49.0 192.2,50.6 193.6,53.3 194.5,55.3 195.1,56.4 195.3,57.4 195.8,57.9 196.7,60.0 197.0,60.2 197.2,60.2 197.3,60.1 197.2,59.9 197.1,60.0 197.2,61.0 197.7,62.6 197.9,64.3 198.3,65.8 198.5,67.7 198.5,69.9 198.2,72.3 198.2,73.6 198.0,74.5 197.7,77.1 197.9,80.9 198.1,81.7 198.3,83.5 198.7,84.7 199.8,86.3 200.7,87.3 201.0,88.2 202.2,89.9 202.5,90.8 202.8,95.2 203.1,96.5 203.5,97.4 204.7,99.2 205.3,100.6 205.4,101.6 205.4,102.8 205.7,104.1 206.0,105.3 206.9,106.6 207.5,107.7 207.6,108.6 207.7,109.3 207.1,111.1 207.1,112.0 206.0,113.9 205.1,114.8 203.9,115.3 198.5,116.2 197.9,116.5 196.7,116.9 195.0,117.2 194.2,117.2 192.3,117.8 191.1,117.9 188.8,117.5 188.0,117.6 186.5,116.8 183.8,116.4 181.8,116.9 179.1,118.5 178.2,119.7 177.4,121.3 176.9,123.1 176.1,126.7 175.7,128.5 174.7,130.3 173.4,131.8 172.3,132.6 171.1,133.2 169.1,134.0 168.0,134.1 164.5,133.6 162.6,132.8 162.2,132.8 161.6,132.6 160.2,131.5 158.9,130.1 158.7,130.0 158.5,130.4 158.8,130.8 160.7,132.4 160.8,132.7 161.1,132.6 161.6,133.1 163.0,133.8 166.4,134.3 167.8,134.3 169.5,134.1 171.5,133.5 173.6,132.0 175.7,128.4 176.4,126.4 177.4,122.0 178.4,120.0 180.0,118.2 181.7,117.2 182.9,116.7 184.0,116.6 185.0,116.7 187.8,118.1 189.2,118.4 190.0,118.4 191.9,117.9 194.1,117.6 196.5,116.8 197.9,116.5 199.2,116.5 203.2,115.4 204.1,115.0 205.8,114.8 206.6,115.2 206.8,115.9 206.6,118.1 205.6,121.5 203.8,125.4 199.6,131.6 193.6,139.8 193.0,140.8 189.2,146.1 186.5,147.9 183.7,150.1 181.9,151.0 177.2,152.6 174.2,154.0 170.3,154.8 169.1,155.3 168.4,155.3 166.8,155.7 165.7,155.6 164.6,155.4 163.0,154.7 161.2,154.5 159.6,154.6 158.5,154.8 157.8,155.1 157.1,155.8 156.6,156.0 154.2,155.8 152.1,156.0 149.8,155.9 147.3,156.0 147.0,155.9 146.8,155.7" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="133.7" cy="140.8" r="3.5" fill="#ffffff" />
-                        <circle cx="146.8" cy="155.7" r="3.5" fill="#000000" stroke="#ffffff" stroke-width="1.8"/>
-                    </svg>
-                </div>
-            </a>
-        </section>
 
-        <!-- Footer with Social Links -->
-        <footer class="footer">
+                <div class="scene-subheading typewriter-reveal">TOP 4 FAVORITE FILMS</div>
+                <div class="film-grid typewriter-reveal" style="margin-bottom: 36px;">
+                    <a href="https://letterboxd.com/film/la-la-land/" target="_blank" rel="noopener" class="film-card">
+                        <img src="https://a.ltrbxd.com/resized/film-poster/2/4/0/3/4/2/240342-la-la-land-0-230-0-345-crop.jpg" alt="La La Land" class="film-poster" onerror="this.onerror=null;this.src='https://placehold.co/230x345/18181b/ffffff?text=La+La+Land';">
+                        <div class="film-info">
+                            <span class="film-name">La La Land (2016)</span>
+                            <span class="film-rating">★★★★★</span>
+                        </div>
+                    </a>
+                    <a href="https://letterboxd.com/film/before-sunrise/" target="_blank" rel="noopener" class="film-card">
+                        <img src="https://a.ltrbxd.com/resized/film-poster/5/1/4/9/4/51494-before-sunrise-0-230-0-345-crop.jpg" alt="Before Sunrise" class="film-poster" onerror="this.onerror=null;this.src='https://placehold.co/230x345/18181b/ffffff?text=Before+Sunrise';">
+                        <div class="film-info">
+                            <span class="film-name">Before Sunrise (1995)</span>
+                            <span class="film-rating">★★★★★</span>
+                        </div>
+                    </a>
+                    <a href="https://letterboxd.com/film/chungking-express/" target="_blank" rel="noopener" class="film-card">
+                        <img src="https://a.ltrbxd.com/resized/film-poster/4/9/8/3/9/49839-chungking-express-0-230-0-345-crop.jpg" alt="Chungking Express" class="film-poster" onerror="this.onerror=null;this.src='https://placehold.co/230x345/18181b/ffffff?text=Chungking+Express';">
+                        <div class="film-info">
+                            <span class="film-name">Chungking Express (1994)</span>
+                            <span class="film-rating">★★★★★</span>
+                        </div>
+                    </a>
+                    <a href="https://letterboxd.com/film/persona/" target="_blank" rel="noopener" class="film-card">
+                        <img src="https://a.ltrbxd.com/resized/film-poster/4/8/1/6/7/48167-persona-0-230-0-345-crop.jpg" alt="Persona" class="film-poster" onerror="this.onerror=null;this.src='https://placehold.co/230x345/18181b/ffffff?text=Persona';">
+                        <div class="film-info">
+                            <span class="film-name">Persona (1966)</span>
+                            <span class="film-rating">★★★★★</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="scene-subheading typewriter-reveal">12 MOST RECENT WATCHED FILMS</div>
+                <div class="film-grid" id="filmGrid"></div>
+            </section>
+        </div>
+
+        <!-- TAB 5: STRAVA STATS -->
+        <div id="tab-strava" class="tab-pane" style="display:none;">
+            <div class="scene-heading typewriter-reveal">SCENE 05 - EXT. ATHLETIC TRACK - STRAVA RUN LOGS</div>
+            
+            <section class="content-section">
+                <div class="logline-box typewriter-reveal" style="margin-bottom: 24px;">
+                    <div class="logline-title">STRAVA ATHLETE PROFILE:</div>
+                    6 most recent workouts, half marathon training, distance, and GPS route data synced live from <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener" style="color:#000; font-weight:700;">strava.com/athletes/197020850</a>.
+                </div>
+
+                <div class="scene-subheading typewriter-reveal">RECENT WORKOUTS & GPS MAPS</div>
+                <div class="strava-grid" id="stravaGrid"></div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer typewriter-reveal">
             <div class="footer-links">
-                <a href="https://www.linkedin.com/in/sharonsantos1/" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="https://open.spotify.com/user/.sharon." target="_blank" rel="noopener">Spotify</a>
-                <a href="https://letterboxd.com/sharon1/" target="_blank" rel="noopener">Letterboxd</a>
-                <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener">Strava</a>
+                <a href="mailto:sharon5234@outlook.com">EMAIL</a>
+                <a href="https://www.linkedin.com/in/sharonsantos1/" target="_blank" rel="noopener">LINKEDIN</a>
+                <a href="https://open.spotify.com/user/.sharon." target="_blank" rel="noopener">SPOTIFY</a>
+                <a href="https://letterboxd.com/sharon1/" target="_blank" rel="noopener">LETTERBOXD</a>
+                <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener">STRAVA</a>
             </div>
-            <p>© 2026 Sharon Santos · All rights reserved</p>
+            <p>© 2026 SHARON SANTOS · ALL RIGHTS RESERVED</p>
         </footer>
+
+        <!-- Floating In-Browser Live Edit Toolbar -->
+        <div class="edit-toolbar">
+            <button id="editModeToggleBtn" class="edit-tool-btn" onclick="toggleEditMode()">✏️ Edit Mode</button>
+            <button id="saveEditsBtn" class="edit-tool-btn" style="display:none; background:#10b981; color:#000;" onclick="saveScreenEdits()">💾 Save Edits</button>
+        </div>
     </main>
 
     <script src="app.js"></script>
