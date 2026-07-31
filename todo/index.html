@@ -81,6 +81,8 @@
             cursor: pointer;
             transition: opacity 0.2s;
             min-height: 48px;
+        }
+
         /* ── Loading Screen ─────────────────────────────────────── */
         #loadingScreen {
             display: flex;
@@ -2165,10 +2167,15 @@
                     renderMonthlyCaloriesChart(data.steps_history, data.activities_by_date);
                 }
             }
+        } catch (e) {
+            console.log('Garmin fetch info:', e);
+        }
+    }
+
     // ── Load Goodreads Reading Data ──────────────────────────────────
     async function loadGoodreadsData() {
         try {
-            const res = await fetch('../private/goodreads_data.json?t=' + Date.now(), { cache: 'no-store' });
+            const res = await fetch('/private/goodreads_data.json?t=' + Date.now(), { cache: 'no-store' });
             if (res.ok) {
                 const data = await res.json();
                 const curr = (data.currently_reading && data.currently_reading.length > 0) ? data.currently_reading[0] : null;
