@@ -103,7 +103,6 @@ function initTypewriterScrollObserver() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Clear any previously cached edits from browser storage
     try {
         localStorage.removeItem('sharon_saved_script_html');
     } catch(e){}
@@ -114,6 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const initialHash = window.location.hash.replace('#', '');
     switchTab(initialHash || 'main');
+
+    // Immediately clean #main or # from address bar
+    if (window.location.hash === '#main' || window.location.hash === '#') {
+        try {
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.pathname);
+            }
+        } catch(e) {}
+    }
 });
 
 const fallbackRecentFilms = [
