@@ -26,13 +26,14 @@ function switchTab(tabId) {
         activeBtn.classList.add('active');
     }
 
-    // Safely update hash without appending #main for home tab
+    // Strip #main hash from URL bar
     try {
-        if (window.location.protocol !== 'file:' && window.history.pushState) {
+        if (window.history.replaceState) {
             if (tabId === 'main') {
-                window.history.pushState(null, null, window.location.pathname);
+                const cleanUrl = window.location.protocol === 'file:' ? window.location.pathname : (window.location.origin + window.location.pathname);
+                window.history.replaceState(null, '', cleanUrl);
             } else {
-                window.history.pushState(null, null, `#${tabId}`);
+                window.history.replaceState(null, '', `#${tabId}`);
             }
         }
     } catch(e) {}
