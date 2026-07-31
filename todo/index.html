@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Leaflet.js Dark Map Library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1623,14 +1626,14 @@
         <div id="emptyArchive" style="color: #444; font-style: italic; font-size: 14px; text-align: center; padding: 12px 0;">No completed tasks in history log yet.</div>
     </div>
 
-    <!-- Location Log Dashboard (from Owntracks) -->
+    <!-- Location & Movement Log (Owntracks & Leaflet Map) -->
     <div class="section-header" style="margin-top: 36px;">
-        <h2 class="section-title">📍 Location Log</h2>
-        <span class="section-subtitle sans" id="locationStatus">Owntracks</span>
+        <h2 class="section-title">📍 Location & Movement Map</h2>
+        <span class="section-subtitle slugline" id="locationStatus">SCENE 09 · MOVEMENT LOG</span>
     </div>
 
     <div class="steps-chart-container" id="locationDashboard">
-        <div class="steps-chart-meta sans" style="align-items:center;">
+        <div class="steps-chart-meta sans" style="align-items:center; flex-wrap:wrap; gap:20px;">
             <div>
                 <span class="steps-meta-val" id="locationPingCount">—</span>
                 <span class="steps-meta-label">Pings Today</span>
@@ -1644,14 +1647,22 @@
                 <span class="steps-meta-label">Places Visited</span>
             </div>
             <div>
-                <span id="locationOwntracksHelp" style="font-size:11px; color:#555; cursor:pointer; text-decoration:underline; text-decoration-style:dotted;" onclick="document.getElementById('owntracksSetupModal').classList.add('active')">Setup</span>
+                <span class="steps-meta-val" id="locationCommuteTime" style="color:#60a5fa;">—</span>
+                <span class="steps-meta-label">Daily Commute</span>
+            </div>
+            <div style="margin-left:auto;">
+                <span id="locationOwntracksHelp" style="font-size:12px; color:#a1a1aa; cursor:pointer; text-decoration:underline; text-decoration-style:dotted;" onclick="document.getElementById('owntracksSetupModal').classList.add('active')">📱 Setup App</span>
             </div>
         </div>
-        <div id="locationTimeline" style="display:flex; flex-direction:column; gap:6px;"></div>
-        <div id="locationEmpty" style="color:#444; font-style:italic; font-size:14px; text-align:center; padding:20px 0;">No location data yet. Set up Owntracks on your phone.</div>
-        <div style="margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-            <button class="month-btn sans" onclick="refreshLocationData()">↻ Refresh</button>
-            <span style="font-size:11px; color:#444;" id="locationLastRefresh">—</span>
+
+        <!-- Interactive Dark Leaflet Route Map -->
+        <div id="locationMap" style="height:320px; width:100%; border-radius:10px; margin:16px 0; border:1px solid rgba(255,255,255,0.08); background:#09090b;"></div>
+
+        <div id="locationTimeline" style="display:flex; flex-direction:column; gap:6px; margin-top:14px;"></div>
+        <div id="locationEmpty" style="color:#71717a; font-style:italic; font-size:14px; text-align:center; padding:24px 0;">No location pings yet today. Set up Owntracks on your phone to track movement & commute.</div>
+        <div style="margin-top:14px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <button class="month-btn sans" onclick="refreshLocationData()">↻ Refresh Map</button>
+            <span style="font-size:11px; color:#71717a;" id="locationLastRefresh">—</span>
         </div>
     </div>
 
@@ -2827,11 +2838,42 @@
         writeCloudData();
     }
 
-    // ── Owntracks Location Dashboard ─────────────────────────────────
+    // ── Owntracks Location, Reverse Geocoding & Route Map ──────────────
+    const HOME_LAT = 47.6133;
+    const HOME_LON = -122.3400; // 300 Virginia St, Seattle WA 98101
+    const WORK_LAT = 47.6152;
+    const WORK_LON = -122.1963; // 555 108th Ave NE, Bellevue WA 98004
+
+    let leafletMap = null;
+    let leafletPolyline = null;
+    let leafletMarkers = [];
+
+    function getPlaceName(lat, lon) {
+        const distHome = haversine(lat, lon, HOME_LAT, HOME_LON);
+        if (distHome <= 250) {
+            return "🏠 Home (300 Virginia St, Seattle)";
+        }
+        const distWork = haversine(lat, lon, WORK_LAT, WORK_LON);
+        if (distWork <= 350) {
+            return "🏢 Work (555 108th Ave NE, Bellevue)";
+        }
+
+        // Regional & Neighborhood Reverse Geocode Matching
+        if (lat >= 47.610 && lat <= 47.618 && lon >= -122.350 && lon <= -122.335) return "📍 Belltown, Seattle";
+        if (lat >= 47.618 && lat <= 47.632 && lon >= -122.345 && lon <= -122.330) return "🏢 South Lake Union (SLU)";
+        if (lat >= 47.600 && lat <= 47.612 && lon >= -122.340 && lon <= -122.328) return "🌆 Downtown Seattle";
+        if (lat >= 47.610 && lat <= 47.625 && lon >= -122.328 && lon <= -122.312) return "☕ Capitol Hill";
+        if (lat >= 47.605 && lat <= 47.625 && lon >= -122.210 && lon <= -122.185) return "🏢 Downtown Bellevue";
+
+        const km = (distHome / 1000).toFixed(1);
+        return `📍 ${km}km from Home (${lat.toFixed(3)}°, ${lon.toFixed(3)}°)`;
+    }
+
     async function loadLocationData() {
         const pingsEl = document.getElementById('locationPingCount');
         const distEl = document.getElementById('locationDistance');
         const placesEl = document.getElementById('locationPlaces');
+        const commuteEl = document.getElementById('locationCommuteTime');
         const timeline = document.getElementById('locationTimeline');
         const empty = document.getElementById('locationEmpty');
         const refreshEl = document.getElementById('locationLastRefresh');
@@ -2841,7 +2883,7 @@
             const resp = await fetch(`${PROXY}/api/locations?key=${encodeURIComponent(LOCATION_KEY)}&date=${today}&v=${Date.now()}`, { cache: 'no-store' });
             if (!resp.ok) throw new Error('status ' + resp.status);
             const data = await resp.json();
-            const points = data.points || [];
+            const points = (data.points || []).filter(p => p.lat && p.lon);
 
             if (refreshEl) refreshEl.textContent = `Updated ${new Date().toLocaleTimeString()}`;
 
@@ -2849,17 +2891,19 @@
                 if (pingsEl) pingsEl.textContent = '0';
                 if (distEl) distEl.textContent = '—';
                 if (placesEl) placesEl.textContent = '—';
+                if (commuteEl) commuteEl.textContent = '—';
                 if (timeline) timeline.innerHTML = '';
                 if (empty) empty.style.display = 'block';
                 return;
             }
 
             if (empty) empty.style.display = 'none';
-
-            // Pings count
             if (pingsEl) pingsEl.textContent = points.length;
 
-            // Estimate distance from GPS points (Haversine)
+            // Sort points chronologically
+            points.sort((a, b) => (a.tst || 0) - (b.tst || 0));
+
+            // Estimate total distance
             let totalDistM = 0;
             for (let i = 1; i < points.length; i++) {
                 totalDistM += haversine(points[i-1].lat, points[i-1].lon, points[i].lat, points[i].lon);
@@ -2867,28 +2911,127 @@
             const totalDistKm = totalDistM / 1000;
             if (distEl) distEl.textContent = totalDistKm < 1 ? `${Math.round(totalDistM)}m` : `${totalDistKm.toFixed(1)}km`;
 
-            // Cluster into places (group nearby points within ~100m)
-            const clusters = clusterPoints(points, 0.001);
-            if (placesEl) placesEl.textContent = clusters.length;
+            // Calculate Clusters & Unique Places Visited
+            const placeNames = new Set(points.map(p => getPlaceName(p.lat, p.lon)));
+            if (placesEl) placesEl.textContent = placeNames.size;
 
-            // Build timeline
+            // Calculate Commute Duration between 300 Virginia St (Home) and 555 108th Ave NE (Work)
+            let morningLeaveTime = null;
+            let morningArriveTime = null;
+            let eveningLeaveTime = null;
+            let eveningArriveTime = null;
+
+            points.forEach(p => {
+                const distHome = haversine(p.lat, p.lon, HOME_LAT, HOME_LON);
+                const distWork = haversine(p.lat, p.lon, WORK_LAT, WORK_LON);
+                const isHome = distHome <= 250;
+                const isWork = distWork <= 350;
+                const dateObj = new Date(p.tst * 1000);
+                const hour = dateObj.getHours();
+
+                if (hour < 12) {
+                    if (isHome && !morningLeaveTime) morningLeaveTime = p.tst;
+                    if (isWork && morningLeaveTime && !morningArriveTime) morningArriveTime = p.tst;
+                } else {
+                    if (isWork && !eveningLeaveTime) eveningLeaveTime = p.tst;
+                    if (isHome && eveningLeaveTime && !eveningArriveTime) eveningArriveTime = p.tst;
+                }
+            });
+
+            let totalCommuteMin = 0;
+            if (morningLeaveTime && morningArriveTime && morningArriveTime > morningLeaveTime) {
+                totalCommuteMin += Math.round((morningArriveTime - morningLeaveTime) / 60);
+            }
+            if (eveningLeaveTime && eveningArriveTime && eveningArriveTime > eveningLeaveTime) {
+                totalCommuteMin += Math.round((eveningArriveTime - eveningLeaveTime) / 60);
+            }
+
+            if (commuteEl) {
+                commuteEl.textContent = totalCommuteMin > 0 ? `${totalCommuteMin} mins` : '—';
+            }
+
+            // Update Today's Commute card in Garmin section
+            const commuteValEl = document.getElementById('commuteTodayVal');
+            const commuteSubEl = document.getElementById('commuteSub');
+            if (commuteValEl) commuteValEl.innerHTML = `${totalCommuteMin} <span class="garmin-stat-unit">mins</span>`;
+            if (commuteSubEl) {
+                commuteSubEl.textContent = totalCommuteMin > 0 ? `Seattle (Home) ↔ Bellevue (Work) Sync` : `300 Virginia St ↔ 555 108th Ave NE`;
+            }
+
+            // Build Timeline with Human-Readable Place Names
             if (timeline) {
                 timeline.innerHTML = '';
-                points.slice().reverse().forEach((p, i) => {
+                points.slice().reverse().forEach((p) => {
                     const time = new Date(p.tst * 1000).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+                    const placeName = getPlaceName(p.lat, p.lon);
                     const div = document.createElement('div');
-                    div.style.cssText = 'display:flex; align-items:center; gap:10px; padding:6px 10px; background:rgba(255,255,255,0.02); border-radius:4px; font-size:13px;';
+                    div.style.cssText = 'display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 12px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:6px; font-size:13px;';
+                    
+                    const left = document.createElement('div');
+                    left.style.cssText = 'display:flex; align-items:center; gap:8px;';
                     const dot = document.createElement('span');
                     dot.style.cssText = 'width:8px; height:8px; border-radius:50%; background:#60a5fa; flex-shrink:0;';
-                    const info = document.createElement('span');
-                    info.style.cssText = 'color:#aaa;';
-                    info.textContent = `${time} · ${p.lat.toFixed(4)}, ${p.lon.toFixed(4)}`;
-                    if (p.vel && p.vel > 0) info.textContent += ` · ${Math.round(p.vel * 3.6)} km/h`;
-                    if (p.batt) info.textContent += ` · 🔋${p.batt}%`;
-                    div.appendChild(dot);
-                    div.appendChild(info);
+                    const placeSpan = document.createElement('span');
+                    placeSpan.style.cssText = 'color:#f4f4f5; font-weight:500; font-family:"Inter", sans-serif;';
+                    placeSpan.textContent = placeName;
+                    left.appendChild(dot);
+                    left.appendChild(placeSpan);
+
+                    const right = document.createElement('span');
+                    right.style.cssText = 'color:#71717a; font-family:"JetBrains Mono", monospace; font-size:11px;';
+                    let metaText = `${time}`;
+                    if (p.batt) metaText += ` · 🔋${p.batt}%`;
+                    right.textContent = metaText;
+
+                    div.appendChild(left);
+                    div.appendChild(right);
                     timeline.appendChild(div);
                 });
+            }
+
+            // Render Leaflet Dark Interactive Route Map
+            if (typeof L !== 'undefined' && document.getElementById('locationMap')) {
+                const latLngs = points.map(p => [p.lat, p.lon]);
+
+                if (!leafletMap) {
+                    leafletMap = L.map('locationMap', { zoomControl: true, attributionControl: false }).setView([HOME_LAT, HOME_LON], 12);
+                    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(leafletMap);
+                }
+
+                // Clear previous layers
+                if (leafletPolyline) leafletMap.removeLayer(leafletPolyline);
+                leafletMarkers.forEach(m => leafletMap.removeLayer(m));
+                leafletMarkers = [];
+
+                // Home Marker (300 Virginia St, Seattle)
+                const homeMarker = L.circleMarker([HOME_LAT, HOME_LON], { radius: 8, fillColor: '#10b981', color: '#ffffff', weight: 2, fillOpacity: 0.9 })
+                    .addTo(leafletMap)
+                    .bindPopup("<b>🏠 Home</b><br>300 Virginia St, Seattle WA");
+                leafletMarkers.push(homeMarker);
+
+                // Work Marker (555 108th Ave NE, Bellevue)
+                const workMarker = L.circleMarker([WORK_LAT, WORK_LON], { radius: 8, fillColor: '#3b82f6', color: '#ffffff', weight: 2, fillOpacity: 0.9 })
+                    .addTo(leafletMap)
+                    .bindPopup("<b>🏢 Work</b><br>555 108th Ave NE, Bellevue WA");
+                leafletMarkers.push(workMarker);
+
+                if (latLngs.length > 0) {
+                    // Draw Polyline Route
+                    leafletPolyline = L.polyline(latLngs, { color: '#8b5cf6', weight: 3, opacity: 0.85, smoothFactor: 1 }).addTo(leafletMap);
+
+                    // End/Current Location Marker
+                    const lastPt = latLngs[latLngs.length - 1];
+                    const lastMarker = L.circleMarker(lastPt, { radius: 8, fillColor: '#ec4899', color: '#ffffff', weight: 2, fillOpacity: 0.9 })
+                        .addTo(leafletMap)
+                        .bindPopup(`<b>Latest Location</b><br>${getPlaceName(lastPt[0], lastPt[1])}`);
+                    leafletMarkers.push(lastMarker);
+
+                    const bounds = L.latLngBounds([...latLngs, [HOME_LAT, HOME_LON], [WORK_LAT, WORK_LON]]);
+                    leafletMap.fitBounds(bounds, { padding: [40, 40] });
+                } else {
+                    const bounds = L.latLngBounds([[HOME_LAT, HOME_LON], [WORK_LAT, WORK_LON]]);
+                    leafletMap.fitBounds(bounds, { padding: [40, 40] });
+                }
             }
 
             document.getElementById('locationStatus').textContent = `Owntracks · ${points.length} pings`;
