@@ -1,10 +1,50 @@
 // ==========================================================================
-// SHARON SANTOS — LIVE LETTERBOXD RSS FEED INTEGRATION
+// SHARON SANTOS — TAB SWITCHING & ROUTING
 // ==========================================================================
+
+function switchTab(tabId) {
+    const validTabs = ['main', 'photography', 'writing'];
+    if (!validTabs.includes(tabId)) tabId = 'main';
+
+    // Hide all tab panes
+    const panes = document.querySelectorAll('.tab-pane');
+    panes.forEach(pane => pane.style.display = 'none');
+
+    // Remove active state from tab buttons
+    const buttons = document.querySelectorAll('.nav-pill[data-tab]');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    // Show target tab pane
+    const targetPane = document.getElementById(`tab-${tabId}`);
+    if (targetPane) {
+        targetPane.style.display = 'block';
+    }
+
+    // Set active button
+    const activeBtn = document.querySelector(`.nav-pill[data-tab="${tabId}"]`);
+    if (activeBtn) {
+        activeBtn.classList.add('active');
+    }
+
+    // Update URL hash without scrolling
+    if (window.history.pushState) {
+        window.history.pushState(null, null, `#${tabId}`);
+    } else {
+        window.location.hash = tabId;
+    }
+}
+
+window.addEventListener('hashchange', () => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash) switchTab(hash);
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchRecentFilms();
     fetchLatestStravaWorkout();
+
+    const initialHash = window.location.hash.replace('#', '');
+    switchTab(initialHash || 'main');
 });
 
 async function fetchRecentFilms() {

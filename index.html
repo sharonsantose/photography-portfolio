@@ -46,7 +46,9 @@
             </div>
             
             <nav class="nav-links sans">
-                <a href="/" class="nav-pill active">🎬 Home</a>
+                <button class="nav-pill active" data-tab="main" onclick="switchTab('main')">🎬 Main</button>
+                <button class="nav-pill" data-tab="photography" onclick="switchTab('photography')">📷 Photography</button>
+                <button class="nav-pill" data-tab="writing" onclick="switchTab('writing')">📝 Writing</button>
                 <a href="/todo" class="nav-pill">⚡ Tasks & Habits</a>
                 <a href="/private" class="nav-pill">🔒 Private Space</a>
                 <a href="https://www.linkedin.com/in/sharonsantos1/" target="_blank" rel="noopener" class="nav-pill">LinkedIn</a>
@@ -56,70 +58,111 @@
             </nav>
         </header>
 
-        <!-- Section 1: Writing & Screenplays -->
-        <section class="content-section">
-            <div class="section-header">
-                <span class="section-label slugline">SCENE 01 · WRITING & SCREENPLAYS</span>
-                <span class="section-tag mono">DRAFTS & ESSAYS</span>
-            </div>
-            <div class="writing-list">
-                <article class="writing-card">
-                    <h3 class="writing-title">The Quiet Frame</h3>
-                    <p class="writing-desc">A feature screenplay exploration of memory, light, and urban solitude in the Pacific Northwest.</p>
-                    <div class="writing-meta slugline">
-                        <span>DRAFT 2.0</span>
-                        <span>·</span>
-                        <span>FEATURE SCREENPLAY</span>
+        <!-- TAB 1: MAIN (ULTRA MINIMAL) -->
+        <div id="tab-main" class="tab-pane">
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="section-label slugline">SCENE 01 · WELCOME TO MY WORLD</span>
+                    <span class="section-tag mono">MINIMAL HOME</span>
+                </div>
+                <div class="quick-nav-grid">
+                    <div class="quick-nav-card" onclick="switchTab('photography')">
+                        <div class="quick-nav-icon">📷</div>
+                        <h3 class="quick-nav-title">Photography</h3>
+                        <p class="quick-nav-desc">Fuji series street & travel visual portfolio.</p>
+                        <span class="quick-nav-link slugline">VIEW GALLERY →</span>
                     </div>
-                </article>
-                <article class="writing-card">
-                    <h3 class="writing-title">Notes on Light & Motion</h3>
-                    <p class="writing-desc">Essays on street photography composition, analog color science, and cinematic storytelling.</p>
-                    <div class="writing-meta slugline">
-                        <span>ESSAY SERIES</span>
-                        <span>·</span>
-                        <span>CREATIVE NONFICTION</span>
+                    <div class="quick-nav-card" onclick="switchTab('writing')">
+                        <div class="quick-nav-icon">📝</div>
+                        <h3 class="quick-nav-title">Writing & Screenplays</h3>
+                        <p class="quick-nav-desc">Feature screenplay drafts, essays, and monologue scene studies.</p>
+                        <span class="quick-nav-link slugline">READ DRAFTS →</span>
                     </div>
-                </article>
-                <article class="writing-card">
-                    <h3 class="writing-title">Character Monologues & Short Scenes</h3>
-                    <p class="writing-desc">Experimental character studies, dialogue exercises, and short narrative scene scripts.</p>
-                    <div class="writing-meta slugline">
-                        <span>SCENE WORK</span>
-                        <span>·</span>
-                        <span>SHORT SCRIPTS</span>
-                    </div>
-                </article>
-            </div>
-        </section>
+                    <a href="/todo" class="quick-nav-card">
+                        <div class="quick-nav-icon">⚡</div>
+                        <h3 class="quick-nav-title">Tasks & Habits</h3>
+                        <p class="quick-nav-desc">Garmin recovery metrics, habit matrix, location & commute map.</p>
+                        <span class="quick-nav-link slugline">OPEN DASHBOARD →</span>
+                    </a>
+                    <a href="/private" class="quick-nav-card">
+                        <div class="quick-nav-icon">🔒</div>
+                        <h3 class="quick-nav-title">Private Space</h3>
+                        <p class="quick-nav-desc">Orca Half Marathon race countdown & restricted space.</p>
+                        <span class="quick-nav-link slugline">ENTER SPACE →</span>
+                    </a>
+                </div>
+            </section>
+        </div>
 
-        <!-- Section 2: Featured Photography -->
-        <section class="content-section">
-            <div class="section-header">
-                <span class="section-label slugline">SCENE 02 · PHOTOGRAPHY & VISUALS</span>
-                <span class="section-tag mono">FUJI SERIES</span>
-            </div>
-            <div class="photo-wrapper">
-                <img src="images/DSCF5062_web.jpg" alt="Featured Photography — Cabo Fuji Series" class="featured-photo" loading="eager" onerror="this.onerror=null;this.src='DSCF5062_web.jpg';">
-                <div class="photo-caption slugline">CABO • FUJI SERIES (DSCF5062) — CUT TO: BLACK</div>
-            </div>
-        </section>
+        <!-- TAB 2: PHOTOGRAPHY -->
+        <div id="tab-photography" class="tab-pane" style="display:none;">
+            <!-- Featured Photography (Fuji Series) -->
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="section-label slugline">SCENE 01 · PHOTOGRAPHY & VISUALS</span>
+                    <span class="section-tag mono">FUJI SERIES</span>
+                </div>
+                <div class="photo-wrapper">
+                    <img src="images/DSCF5062_web.jpg" alt="Featured Photography — Cabo Fuji Series" class="featured-photo" loading="eager" onerror="this.onerror=null;this.src='DSCF5062_web.jpg';">
+                    <div class="photo-caption slugline">CABO • FUJI SERIES (DSCF5062) — CUT TO: BLACK</div>
+                </div>
+            </section>
 
-        <!-- Section 3: Live Letterboxd Recent Films -->
-        <section class="content-section">
-            <div class="section-header">
-                <span class="section-label slugline">SCENE 03 · RECENT CINEMA</span>
-                <span class="section-tag mono">LETTERBOXD</span>
-            </div>
-            <div class="film-grid" id="filmGrid">
-                <!-- Dynamically populated from Letterboxd -->
-            </div>
-        </section>
+            <!-- Live Letterboxd Recent Cinema -->
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="section-label slugline">SCENE 02 · RECENT CINEMA</span>
+                    <span class="section-tag mono">LETTERBOXD</span>
+                </div>
+                <div class="film-grid" id="filmGrid">
+                    <!-- Dynamically populated from Letterboxd -->
+                </div>
+            </section>
+        </div>
 
-        <!-- Section 4: Latest Strava Activity & Mercator Route Map -->
-        <section class="content-section">
+        <!-- TAB 3: WRITING -->
+        <div id="tab-writing" class="tab-pane" style="display:none;">
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="section-label slugline">SCENE 01 · WRITING & SCREENPLAYS</span>
+                    <span class="section-tag mono">DRAFTS & ESSAYS</span>
+                </div>
+                <div class="writing-list">
+                    <article class="writing-card">
+                        <h3 class="writing-title">The Quiet Frame</h3>
+                        <p class="writing-desc">A feature screenplay exploration of memory, light, and urban solitude in the Pacific Northwest.</p>
+                        <div class="writing-meta slugline">
+                            <span>DRAFT 2.0</span>
+                            <span>·</span>
+                            <span>FEATURE SCREENPLAY</span>
+                        </div>
+                    </article>
+                    <article class="writing-card">
+                        <h3 class="writing-title">Notes on Light & Motion</h3>
+                        <p class="writing-desc">Essays on street photography composition, analog color science, and cinematic storytelling.</p>
+                        <div class="writing-meta slugline">
+                            <span>ESSAY SERIES</span>
+                            <span>·</span>
+                            <span>CREATIVE NONFICTION</span>
+                        </div>
+                    </article>
+                    <article class="writing-card">
+                        <h3 class="writing-title">Character Monologues & Short Scenes</h3>
+                        <p class="writing-desc">Experimental character studies, dialogue exercises, and short narrative scene scripts.</p>
+                        <div class="writing-meta slugline">
+                            <span>SCENE WORK</span>
+                            <span>·</span>
+                            <span>SHORT SCRIPTS</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <!-- Latest Strava Activity -->
+        <section class="content-section" style="margin-top: 48px;">
             <div class="section-header">
-                <span class="section-label slugline" id="stravaSectionLabel">SCENE 04 · LATEST WORKOUT</span>
+                <span class="section-label slugline" id="stravaSectionLabel">LATEST WORKOUT</span>
                 <span class="section-tag mono">STRAVA SYNC</span>
             </div>
             <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener" class="strava-card" id="stravaCard">

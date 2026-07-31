@@ -192,11 +192,78 @@ body {
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+button.nav-pill {
+    cursor: pointer;
+    font-family: inherit;
+}
+
 .nav-pill.active {
     background: #f4f4f5;
     color: #09090b;
     border-color: #f4f4f5;
     font-weight: 600;
+}
+
+/* Quick Navigation Grid (Minimal Main Tab) */
+.quick-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.quick-nav-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quick-nav-card:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.035);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4);
+}
+
+.quick-nav-icon {
+    font-size: 24px;
+    margin-bottom: 2px;
+}
+
+.quick-nav-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #f4f4f5;
+}
+
+.quick-nav-desc {
+    font-size: 13px;
+    color: #a1a1aa;
+    line-height: 1.45;
+    font-family: 'Inter', sans-serif;
+    flex-grow: 1;
+}
+
+.quick-nav-link {
+    font-size: 10px;
+    color: #38bdf8;
+    margin-top: 8px;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 550px) {
+    .quick-nav-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .nav-pill:hover:not(.active) {
