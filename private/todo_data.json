@@ -1544,6 +1544,16 @@
         "vel": 0,
         "alt": 59,
         "topic": "owntracks/user/op611fl1"
+      },
+      {
+        "tst": 1785463042,
+        "lat": 47.6134593,
+        "lon": -122.340685,
+        "acc": 19,
+        "batt": 64,
+        "vel": 0,
+        "alt": 59,
+        "topic": "owntracks/user/op611fl1"
       }
     ]
   }
