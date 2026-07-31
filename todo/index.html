@@ -81,20 +81,9 @@
             cursor: pointer;
             transition: opacity 0.2s;
             min-height: 48px;
-        }
-
-        #unlockBtn:hover { opacity: 0.85; }
-
-        #authError {
-            color: #f87171;
-            font-size: 14px;
-            margin-top: 10px;
-            display: none;
-        }
-
         /* ── Loading Screen ─────────────────────────────────────── */
         #loadingScreen {
-            display: none;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -1282,15 +1271,6 @@
 </head>
 <body>
 
-<!-- Auth Screen -->
-<div id="authScreen">
-    <h1>Sharon's Dashboard</h1>
-    <p>Enter passcode to continue</p>
-    <input type="password" id="passcodeInput" placeholder="••••" maxlength="8" autocomplete="off" autofocus>
-    <button id="unlockBtn">Unlock</button>
-    <div id="authError">Wrong passcode.</div>
-</div>
-
 <!-- Loading Screen -->
 <div id="loadingScreen">
     <div class="spinner"></div>
@@ -1755,31 +1735,8 @@
 </div>
 
 <script>
-    // ── Auth Logic ───────────────────────────────────────────────────
-    const PASS_HASH = "e4782cfc2b471cd4e24686f692188416d8a313cccb62679dc08c348447c2507b";
-
-    async function sha256(str) {
-        const buf  = new TextEncoder().encode(str);
-        const hash = await crypto.subtle.digest('SHA-256', buf);
-        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
-    }
-
-    async function tryUnlock() {
-        const val = document.getElementById('passcodeInput').value.trim();
-        if (!val) return;
-        const h = await sha256(val);
-        if (h === PASS_HASH) {
-            document.getElementById('authScreen').style.display  = 'none';
-            document.getElementById('loadingScreen').style.display = 'flex';
-            await initApp();
-        } else {
-            document.getElementById('authError').style.display = 'block';
-        }
-    }
-
-    document.getElementById('unlockBtn').addEventListener('click', tryUnlock);
-    document.getElementById('passcodeInput').addEventListener('keydown', e => {
-        if (e.key === 'Enter') tryUnlock();
+    document.addEventListener('DOMContentLoaded', () => {
+        initApp();
     });
 
     // ── Proxy API ────────────────────────────────────────────────────
