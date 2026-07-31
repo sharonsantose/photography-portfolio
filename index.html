@@ -29,7 +29,7 @@
         <!-- Top Status Tag -->
         <div class="top-tag">
             <span class="dot"></span>
-            <span>Seattle, WA · Live</span>
+            <span>Live</span>
         </div>
 
         <!-- Header -->
@@ -49,12 +49,6 @@
                 <button class="nav-pill active" data-tab="main" onclick="switchTab('main')">Main</button>
                 <button class="nav-pill" data-tab="photography" onclick="switchTab('photography')">Photography</button>
                 <button class="nav-pill" data-tab="writing" onclick="switchTab('writing')">Writing</button>
-                <a href="/todo" class="nav-pill">Tasks & Habits</a>
-                <a href="/private" class="nav-pill">Private Space</a>
-                <a href="https://www.linkedin.com/in/sharonsantos1/" target="_blank" rel="noopener" class="nav-pill">LinkedIn</a>
-                <a href="https://open.spotify.com/user/.sharon." target="_blank" rel="noopener" class="nav-pill">Spotify</a>
-                <a href="https://letterboxd.com/sharon1/" target="_blank" rel="noopener" class="nav-pill">Letterboxd</a>
-                <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener" class="nav-pill">Strava</a>
             </nav>
         </header>
 
@@ -72,20 +66,10 @@
                         <span class="quick-nav-link">View Gallery →</span>
                     </div>
                     <div class="quick-nav-card" onclick="switchTab('writing')">
-                        <h3 class="quick-nav-title">Writing & Screenplays</h3>
-                        <p class="quick-nav-desc">Feature screenplay drafts, essays, and monologue scene studies.</p>
-                        <span class="quick-nav-link">Read Drafts →</span>
+                        <h3 class="quick-nav-title">Writing & Journal</h3>
+                        <p class="quick-nav-desc">Feature screenplay drafts, creative essays, and monologue scene studies.</p>
+                        <span class="quick-nav-link">Read Journal →</span>
                     </div>
-                    <a href="/todo" class="quick-nav-card">
-                        <h3 class="quick-nav-title">Tasks & Habits</h3>
-                        <p class="quick-nav-desc">Garmin health metrics, habit matrix, location & commute map.</p>
-                        <span class="quick-nav-link">Open Dashboard →</span>
-                    </a>
-                    <a href="/private" class="quick-nav-card">
-                        <h3 class="quick-nav-title">Private Space</h3>
-                        <p class="quick-nav-desc">Orca Half Marathon race countdown & restricted space.</p>
-                        <span class="quick-nav-link">Enter Space →</span>
-                    </a>
                 </div>
             </section>
         </div>
@@ -116,40 +100,33 @@
             </section>
         </div>
 
-        <!-- TAB 3: WRITING -->
+        <!-- TAB 3: WRITING (BLOG FORMAT) -->
         <div id="tab-writing" class="tab-pane" style="display:none;">
             <section class="content-section">
                 <div class="section-header">
-                    <span class="section-label">Writing & Screenplays</span>
-                    <span class="section-tag">Drafts & Essays</span>
+                    <span class="section-label">Writing & Essays</span>
+                    <span class="section-tag">Journal Format</span>
                 </div>
                 <div class="writing-list">
                     <article class="writing-card">
+                        <span class="blog-date">July 28, 2026 · 4 min read</span>
+                        <h3 class="writing-title">Notes on Light and Motion</h3>
+                        <p class="writing-desc">Observations on street photography composition, analog color science, and cinematic storytelling across natural landscapes.</p>
+                        <a href="/blog/notes-on-light-and-motion.html" class="blog-read-link">Read Full Essay →</a>
+                    </article>
+
+                    <article class="writing-card">
+                        <span class="blog-date">July 15, 2026 · 6 min read</span>
                         <h3 class="writing-title">The Quiet Frame</h3>
-                        <p class="writing-desc">A feature screenplay exploration of memory, light, and urban solitude in the Pacific Northwest.</p>
-                        <div class="writing-meta">
-                            <span>Draft 2.0</span>
-                            <span>·</span>
-                            <span>Feature Screenplay</span>
-                        </div>
+                        <p class="writing-desc">A feature screenplay exploration of memory, light, and urban solitude in modern cinema narratives.</p>
+                        <a href="/blog/notes-on-light-and-motion.html" class="blog-read-link">Read Script Notes →</a>
                     </article>
+
                     <article class="writing-card">
-                        <h3 class="writing-title">Notes on Light & Motion</h3>
-                        <p class="writing-desc">Essays on street photography composition, analog color science, and cinematic storytelling.</p>
-                        <div class="writing-meta">
-                            <span>Essay Series</span>
-                            <span>·</span>
-                            <span>Creative Nonfiction</span>
-                        </div>
-                    </article>
-                    <article class="writing-card">
+                        <span class="blog-date">June 30, 2026 · 3 min read</span>
                         <h3 class="writing-title">Character Monologues & Short Scenes</h3>
-                        <p class="writing-desc">Experimental character studies, dialogue exercises, and short narrative scene scripts.</p>
-                        <div class="writing-meta">
-                            <span>Scene Work</span>
-                            <span>·</span>
-                            <span>Short Scripts</span>
-                        </div>
+                        <p class="writing-desc">Experimental character studies, dialogue pacing exercises, and short narrative scene scripts.</p>
+                        <a href="/blog/notes-on-light-and-motion.html" class="blog-read-link">Read Scene Work →</a>
                     </article>
                 </div>
             </section>
@@ -177,8 +154,14 @@
             </a>
         </section>
 
-        <!-- Footer -->
+        <!-- Footer with Social Links -->
         <footer class="footer">
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/sharonsantos1/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://open.spotify.com/user/.sharon." target="_blank" rel="noopener">Spotify</a>
+                <a href="https://letterboxd.com/sharon1/" target="_blank" rel="noopener">Letterboxd</a>
+                <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener">Strava</a>
+            </div>
             <p>© 2026 Sharon Santos · All rights reserved</p>
         </footer>
     </main>
