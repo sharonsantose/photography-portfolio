@@ -1,5 +1,13 @@
 {
-  "todos": [],
+  "todos": [
+    {
+      "id": 1785474425013,
+      "text": "get bike refund",
+      "cat": "life",
+      "done": false,
+      "isFocus": false
+    }
+  ],
   "habits": {
     "2026-07-29": {
       "creatine": false,
