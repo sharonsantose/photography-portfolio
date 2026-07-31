@@ -194,5 +194,19 @@
       "garmin_calories": false
     }
   },
-  "commute": {}
+  "commute": {},
+  "locations": {
+    "2026-07-31": [
+      {
+        "tst": 1785461800,
+        "lat": 47.6062,
+        "lon": -122.3321,
+        "acc": 5,
+        "batt": 90,
+        "vel": 0,
+        "alt": 0,
+        "topic": ""
+      }
+    ]
+  }
 }
