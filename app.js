@@ -173,12 +173,12 @@ async function fetchRecentFilms() {
 
     try {
         const rssUrl = 'https://letterboxd.com/sharon1/rss/';
-        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`);
+        // rss2json supports up to 50 items via &count=50
+        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&count=50`);
         const data = await response.json();
 
         if (data.status === 'ok' && data.items && data.items.length > 0) {
-            const items = data.items.slice(0, 12);
-            const parsedFilms = items.map(item => {
+            const parsedFilms = data.items.map(item => {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(item.description, 'text/html');
                 const imgTag = doc.querySelector('img');
