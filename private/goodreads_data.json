@@ -1,0 +1,29 @@
+{
+  "fetched_at": "2026-07-30T05:22:00Z",
+  "today": "2026-07-29",
+  "currently_reading": [
+    {
+      "title": "Selected Poems",
+      "author": "E.E. Cummings",
+      "link": "https://www.goodreads.com/review/show/529654984?utm_medium=api&utm_source=rss",
+      "cover_url": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320891958l/26599._SX50_.jpg",
+      "user_rating": 0,
+      "read_at": ""
+    }
+  ],
+  "recently_read": [
+    {
+      "title": "Generational Sins (Generational Sins, #1)",
+      "author": "Samantha Blair",
+      "link": "https://www.goodreads.com/review/show/403169357?utm_medium=api&utm_source=rss",
+      "cover_url": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327963811l/11222793._SY75_.jpg",
+      "user_rating": 0,
+      "read_at": ""
+    }
+  ],
+  "stats": {
+    "books_read_this_year": 14,
+    "annual_goal": 24,
+    "goal_pct": 58
+  }
+}
