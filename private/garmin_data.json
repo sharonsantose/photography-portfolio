@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-07-31T17:47:44Z",
-  "today": "2026-07-31",
+  "fetched_at": "2026-08-01T05:57:18Z",
+  "today": "2026-08-01",
   "stats": {
-    "steps": 2016,
-    "step_goal": 15000,
-    "resting_hr": 41,
-    "active_calories": 28.0,
-    "sleep_hours": 8.5,
-    "sleep_score": 99
+    "steps": null,
+    "step_goal": null,
+    "resting_hr": null,
+    "active_calories": null,
+    "sleep_hours": 7.5,
+    "sleep_score": 85
   },
   "steps_history": {
     "2026-06-28": {
@@ -143,17 +143,17 @@
       "goal": 15000
     },
     "2026-07-31": {
-      "steps": 2016,
+      "steps": 10318,
       "goal": 15000
     }
   },
   "sleep_history": {
     "2026-07-29": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-07-28": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-07-27": {
@@ -161,7 +161,7 @@
       "hours": 8.5
     },
     "2026-07-26": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-07-25": {
@@ -193,7 +193,7 @@
       "hours": 4.0
     },
     "2026-07-18": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-07-17": {
@@ -201,7 +201,7 @@
       "hours": 8.9
     },
     "2026-07-16": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-07-15": {
@@ -209,7 +209,7 @@
       "hours": 8.4
     },
     "2026-07-14": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-07-13": {
@@ -221,7 +221,7 @@
       "hours": 6.0
     },
     "2026-07-11": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-07-10": {
@@ -249,11 +249,11 @@
       "hours": 6.6
     },
     "2026-07-04": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-07-03": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-07-02": {
@@ -279,6 +279,10 @@
     "2026-07-31": {
       "score": 99,
       "hours": 8.5
+    },
+    "2026-08-01": {
+      "score": 80,
+      "hours": 7.5
     }
   },
   "activities_by_date": {
