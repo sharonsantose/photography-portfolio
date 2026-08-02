@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-01T16:54:23Z",
+  "fetched_at": "2026-08-02T16:53:42Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -230,6 +230,22 @@
         "elev_ft": 98,
         "strava_id": 19494164345,
         "map_polyline": "wduaH`~tiVbCBTP\\`@XTDRJhBCf@If@Q\\ORQJ[FQFWVWd@MH_@JSHOVQJI@SIM?cCvAQFq@n@[R]Pg@Ny@NoAD]@k@GgA@a@FoAAw@CM@s@AgA@YAW?SEKMIEkAWWKi@Kc@Oc@IWM]Ec@@YGsAAeCBm@DwAE{AFkBAa@B_ANQ@UFYNYHu@\\OBe@Vo@RcBx@g@PiAz@o@V]VcAd@_Al@c@RQDWLMDKFi@RuBrAw@`@y@l@m@j@{A~@ST_BnAm@n@MR}@nB[bA?TLTDRCZi@xAI^IL]lAMVS|@]x@m@lBm@nBq@dAm@v@m@VU?QCu@DUEOJ[Be@EkB?]Ce@?]EYB_ACi@BGAMQS}@CaAFm@Bk@LsABc@Hk@XcFHg@?[H[VcDNcAD{@X}C@SLo@JmAAGHSCDB?A@RwCBk@LsA@_@f@qDZoA^_AJc@Vm@fAgBd@k@JYD_@@YC_@A_BEaB?wAAKGCB@FMBV?jB@b@C`ABrBCl@KVMLu@hAw@~Ak@bB[jAYv@Ez@[`CA^UrBAl@@TAb@OTEVCn@GRGfAI`@Af@G`A[|CE|@[dDKdCCJA\\GVKhABRCBKp@GhAI^Bl@DPAl@FVHTRTBABBb@?f@DXE^Dt@ATD^Dn@CP?TF^A^@`@IfAAPA`@KZSXYn@}@j@qAXgAl@_BV_Ab@cB`@uAFUXq@Pm@@MCMQ_@?KDQl@yARq@f@}@p@m@`As@HANYfAw@LSNIr@o@LENMRI\\Yv@[n@a@|@c@b@MPQXQRIl@a@z@a@tAy@TGd@a@`Ac@hAs@jAg@b@GVOXIj@WXG\\O`@Mt@MDEl@CNCX@J@HAp@@XExAGh@Fp@GNBR@FABEN?|@DVG^Ax@Db@JhBVhAXr@Fn@VLBZVp@F`A?dAFREd@CVD`@@h@CRC|@A^DTHl@BZM`AEv@Q~@i@NQTMLM`@SXSL[VUXGPCb@UBBHLL@RYLGDGB{@E[?s@BsA?q@O}@Ua@KICM?g@"
+      }
+    ],
+    "2026-08-01": [
+      {
+        "emoji": "\ud83c\udfca",
+        "sport": "Swim",
+        "name": "Afternoon Swim",
+        "detail": "0.74 mi \u00b7 29m \u00b7 \u2764\ufe0f 145 bpm",
+        "dist_mi": 0.74,
+        "duration_sec": 1786,
+        "pace": null,
+        "hr_avg": 145,
+        "hr_max": 171,
+        "elev_ft": 0,
+        "strava_id": 19563129396,
+        "map_polyline": ""
       }
     ]
   }
