@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-01T17:08:55Z",
-  "today": "2026-08-01",
+  "fetched_at": "2026-08-02T06:04:54Z",
+  "today": "2026-08-02",
   "stats": {
-    "steps": 108,
-    "step_goal": 15000,
-    "resting_hr": 40,
-    "active_calories": 1.0,
-    "sleep_hours": 9.6,
-    "sleep_score": 92
+    "steps": null,
+    "step_goal": null,
+    "resting_hr": null,
+    "active_calories": null,
+    "sleep_hours": 7.5,
+    "sleep_score": 85
   },
   "steps_history": {
     "2026-06-28": {
@@ -147,17 +147,17 @@
       "goal": 15000
     },
     "2026-08-01": {
-      "steps": 108,
+      "steps": 1717,
       "goal": 15000
     }
   },
   "sleep_history": {
     "2026-07-29": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-07-28": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-07-27": {
@@ -165,7 +165,7 @@
       "hours": 8.5
     },
     "2026-07-26": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-07-25": {
@@ -197,7 +197,7 @@
       "hours": 4.0
     },
     "2026-07-18": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-07-17": {
@@ -205,7 +205,7 @@
       "hours": 8.9
     },
     "2026-07-16": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-07-15": {
@@ -213,7 +213,7 @@
       "hours": 8.4
     },
     "2026-07-14": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-07-13": {
@@ -225,7 +225,7 @@
       "hours": 6.0
     },
     "2026-07-11": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-07-10": {
@@ -253,11 +253,11 @@
       "hours": 6.6
     },
     "2026-07-04": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-07-03": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-07-02": {
@@ -287,6 +287,10 @@
     "2026-08-01": {
       "score": 92,
       "hours": 9.6
+    },
+    "2026-08-02": {
+      "score": 80,
+      "hours": 7.5
     }
   },
   "activities_by_date": {
@@ -509,6 +513,15 @@
         "distance_mi": 0.38,
         "duration_min": 23.1,
         "calories": 142.0
+      }
+    ],
+    "2026-08-01": [
+      {
+        "name": "Pool Swim",
+        "type": "lap_swimming",
+        "distance_mi": 0.74,
+        "duration_min": 40.9,
+        "calories": 372.0
       }
     ]
   }
