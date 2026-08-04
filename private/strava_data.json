@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-03T17:46:20Z",
+  "fetched_at": "2026-08-04T17:39:52Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -246,6 +246,64 @@
         "elev_ft": 0,
         "strava_id": 19563129396,
         "map_polyline": ""
+      }
+    ],
+    "2026-08-03": [
+      {
+        "emoji": "\ud83c\udfcb",
+        "sport": "WeightTraining",
+        "name": "full body rotation",
+        "detail": "30m",
+        "dist_mi": 0,
+        "duration_sec": 1800,
+        "pace": null,
+        "hr_avg": null,
+        "hr_max": null,
+        "elev_ft": 0,
+        "strava_id": 19591481848,
+        "map_polyline": ""
+      },
+      {
+        "emoji": "\ud83c\udfcb",
+        "sport": "WeightTraining",
+        "name": "Afternoon Weight Training",
+        "detail": "19m \u00b7 \u2764\ufe0f 79 bpm",
+        "dist_mi": 0,
+        "duration_sec": 1151,
+        "pace": null,
+        "hr_avg": 79,
+        "hr_max": 114,
+        "elev_ft": 0,
+        "strava_id": 19590580357,
+        "map_polyline": ""
+      },
+      {
+        "emoji": "\u26a1",
+        "sport": "Rowing",
+        "name": "Evening Row",
+        "detail": "9m \u00b7 \u2764\ufe0f 111 bpm",
+        "dist_mi": 0,
+        "duration_sec": 598,
+        "pace": null,
+        "hr_avg": 111,
+        "hr_max": 128,
+        "elev_ft": 0,
+        "strava_id": 19590743523,
+        "map_polyline": ""
+      },
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "run club 2.0",
+        "detail": "4.06 mi \u00b7 45m \u00b7 @ 11:18/mi \u00b7 \u2764\ufe0f 160 bpm \u00b7 \u2191 11ft \u00b7 cadence 176 spm",
+        "dist_mi": 4.06,
+        "duration_sec": 2758,
+        "pace": "11:18/mi",
+        "hr_avg": 160,
+        "hr_max": 182,
+        "elev_ft": 36,
+        "strava_id": 19591327233,
+        "map_polyline": "smraHvpuiV@GEYm@gAU[g@e@M_@g@m@k@}@m@g@Qg@YUKAQMg@?SPQDa@@OFi@DUF_ANIE_@Be@LIACEIi@EGE?OIIAK@q@\\CAIBGAo@Lo@A]HWAu@NUJSAWEWLYDi@Gc@BC@m@Ea@DADIBm@BaALMA]K]UUIEDSDIHWJsA`@_@Cq@OGEESOK_@AW@[C]BUC]@c@IMQQFaAJcARC@CFKF[DS?UGSKi@Uy@?[Mu@Ag@B_@HA@@@GHI@QAQMKOMg@KMSGQB[AWG{BmDLDf@D|A@RJZ\\`@ZBLLvBK`AIV_@h@KDi@LQJSXMXKJOHOZEFGBOAQDS@YGO@iAl@a@^[LiBrAMDWN_@Ho@?_@HUJCCc@AUIa@?MCuADMDQ?_AGqADa@E_@DoAAICYSaCi@YQc@IECo@O}CQ[DUAc@@s@De@A]@UAA@UB{@CIDU@_@Gk@@MAi@D_@Cc@JYBYFM@k@TKBa@NWDA@k@PgAj@k@Re@\\e@NGHk@^i@`@UFIFk@VQLa@R[V_@L_@Tg@NMJq@Ps@f@SHUPKDMJIBULQRi@P]R]\\m@`@i@j@WNONYNUVUTa@PADe@b@i@x@ITSp@Uj@Mj@KZCCP{@h@sAlAoBRQ^UtAmAh@_@rAqAjBeAt@[pAy@hAo@d@OvA{@l@Wb@[d@UL?HEVUf@]NMTOLCj@]z@[d@W\\CjBy@|@YXGT?f@Kl@CL@b@AHBn@G`@@~@IrF?NARKVAh@N^Fj@BTDl@VHATDr@VvAXVTn@Hj@ApADlAEl@Dx@GP?ZF|@Ej@JVAb@I`AEXKREp@[n@m@tAw@z@q@RI^SD@HNr@Mt@g@Xo@^c@PIj@OFGNYH_@@}@AWMW_@_@GKMaAMUQEm@CM@a@CW@YC"
       }
     ]
   }
