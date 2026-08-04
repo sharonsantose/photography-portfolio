@@ -216,7 +216,8 @@
     },
     "2026-08-03": {
       "garmin_steps": false,
-      "garmin_calories": false
+      "garmin_calories": true,
+      "strava": true
     }
   },
   "commute": {},
