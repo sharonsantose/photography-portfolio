@@ -1,6 +1,6 @@
 {
-  "fetched_at": "2026-08-05T17:50:41Z",
-  "today": "2026-08-05",
+  "fetched_at": "2026-08-06T05:50:54Z",
+  "today": "2026-08-06",
   "stats": {
     "steps": null,
     "step_goal": null,
@@ -161,15 +161,19 @@
     "2026-08-04": {
       "steps": null,
       "goal": 15000
+    },
+    "2026-08-05": {
+      "steps": 1210,
+      "goal": 15000
     }
   },
   "sleep_history": {
     "2026-07-29": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-07-28": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-07-27": {
@@ -177,7 +181,7 @@
       "hours": 8.5
     },
     "2026-07-26": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-07-25": {
@@ -209,7 +213,7 @@
       "hours": 4.0
     },
     "2026-07-18": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-07-17": {
@@ -217,7 +221,7 @@
       "hours": 8.9
     },
     "2026-07-16": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-07-15": {
@@ -225,7 +229,7 @@
       "hours": 8.4
     },
     "2026-07-14": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-07-13": {
@@ -237,7 +241,7 @@
       "hours": 6.0
     },
     "2026-07-11": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-07-10": {
@@ -301,18 +305,22 @@
       "hours": 9.6
     },
     "2026-08-02": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-08-03": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-08-04": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-08-05": {
+      "score": 81,
+      "hours": 7.5
+    },
+    "2026-08-06": {
       "score": 80,
       "hours": 7.5
     }
@@ -569,6 +577,22 @@
         "distance_mi": 0.0,
         "duration_min": 19.2,
         "calories": 41.0
+      }
+    ],
+    "2026-08-05": [
+      {
+        "name": "Stair Stepper",
+        "type": "stair_climbing",
+        "distance_mi": 0.0,
+        "duration_min": 11.5,
+        "calories": 100.0
+      },
+      {
+        "name": "Indoor Rowing",
+        "type": "indoor_rowing",
+        "distance_mi": 0.0,
+        "duration_min": 22.5,
+        "calories": 96.0
       }
     ]
   }
