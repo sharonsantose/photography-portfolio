@@ -189,6 +189,7 @@ if __name__ == "__main__":
     if not access_token:
         print("⚠️ Skipping Strava sync due to missing credentials.")
         sys.exit(0)
+    raw_activities = fetch_activities(access_token)
     by_date = group_by_date(raw_activities)
 
     output = {
