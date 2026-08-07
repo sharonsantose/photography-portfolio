@@ -28,8 +28,8 @@ OUT_FILE = os.path.join(os.path.dirname(__file__), "..", "private", "strava_data
 # ── Token refresh ─────────────────────────────────────────────────────────────
 def refresh_access_token():
     if not CLIENT_ID or not CLIENT_SECRET or not REFRESH_TOKEN:
-        print("ERROR: Missing STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, or STRAVA_REFRESH_TOKEN env vars.")
-        sys.exit(1)
+        print("Notice: Missing STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, or STRAVA_REFRESH_TOKEN env vars. Skipping live sync.")
+        return None
 
     payload = urllib.parse.urlencode({
         "client_id":     CLIENT_ID,
@@ -186,7 +186,9 @@ def group_by_date(activities):
 # ── Main ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     access_token = refresh_access_token()
-    raw_activities = fetch_activities(access_token)
+    if not access_token:
+        print("⚠️ Skipping Strava sync due to missing credentials.")
+        sys.exit(0)
     by_date = group_by_date(raw_activities)
 
     output = {
