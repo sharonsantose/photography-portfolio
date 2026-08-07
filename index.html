@@ -3,105 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sharon Santos — Screenplay</title>
+    <title>The Sharon Santos Gazette — Portfolio & Journal</title>
     <link rel="icon" type="image/png" href="favicon-32.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260730i">
+    <link rel="stylesheet" href="style.css?v=20260807_newsprint">
 </head>
-<body>
+<body class="newsprint-texture">
 
     <main class="script-page">
 
-        <!-- Screenplay Page Header -->
-        <div class="script-page-header typewriter-reveal">
-            <span class="script-slug">EXT. SEATTLE - DAY</span>
-            <span class="script-page-num">PAGE 1.</span>
-        </div>
-
-        <!-- Header / Screenplay Title Page -->
-        <header class="header">
-            <div class="script-title-block">
-                <h1 class="character-name typewriter-reveal">SHARON SANTOS</h1>
+        <!-- Gazette Newspaper Masthead -->
+        <header class="gazette-masthead">
+            <div class="gazette-edition-bar">
+                <span>VOL. 1 — NO. 8</span>
+                <span>SEATTLE & NEW YORK EDITION</span>
+                <span>AUGUST 2026</span>
             </div>
-            <p class="dialogue-block typewriter-reveal">
-                hi, i'm sharon — an aspiring filmmaker, photographer, writer, and vibecoder. welcome to my world.
-            </p>
-            <nav class="nav-links typewriter-reveal">
-                <button class="nav-pill active" data-tab="main" onclick="switchTab('main')">[ SCENE 01: MAIN ]</button>
-                <button class="nav-pill" data-tab="photography" onclick="switchTab('photography')">[ SCENE 02: PHOTOGRAPHY ]</button>
-                <button class="nav-pill" data-tab="writing" onclick="switchTab('writing')">[ SCENE 03: WRITING ]</button>
-                <button class="nav-pill" data-tab="letterboxd" onclick="switchTab('letterboxd')">[ SCENE 04: LETTERBOXD ]</button>
-                <button class="nav-pill" data-tab="strava" onclick="switchTab('strava')">[ SCENE 05: STRAVA ]</button>
+            <h1 class="gazette-title">THE SHARON SANTOS GAZETTE</h1>
+            <p class="gazette-subtitle">"All the Motion That's Fit to Print — Film, Photography, Screenwriting & Code"</p>
+            
+            <!-- Newsprint Navigation Bar -->
+            <nav class="nav-links">
+                <button class="nav-pill active" data-tab="main" onclick="switchTab('main')">VOL. 01: FRONT PAGE</button>
+                <button class="nav-pill" data-tab="photography" onclick="switchTab('photography')">VOL. 02: PHOTOGRAPHY</button>
+                <button class="nav-pill" data-tab="writing" onclick="switchTab('writing')">VOL. 03: ESSAYS & SCRIPTS</button>
+                <button class="nav-pill" data-tab="letterboxd" onclick="switchTab('letterboxd')">VOL. 04: CINEMA ARCHIVE</button>
+                <button class="nav-pill" data-tab="strava" onclick="switchTab('strava')">VOL. 05: ATHLETIC DISPATCH</button>
             </nav>
         </header>
 
-        <!-- TAB 1: MAIN -->
+        <!-- TAB 1: MAIN / FRONT PAGE -->
         <div id="tab-main" class="tab-pane">
-            <div class="scene-heading typewriter-reveal">SCENE 01 - INT. COVER PAGE - CONTINUOUS</div>
-            <div class="logline-box typewriter-reveal">
-                <div class="logline-title">LOGLINE:</div>
-                An aspiring filmmaker and photographer documents quiet spaces, street light, and urban motion through 35mm film, screenplays, and code.
-            </div>
+            <div class="scene-heading" style="margin-top:24px;">PAGE 1 — FRONT PAGE EDITION</div>
 
-            <section class="content-section" style="margin-top: 36px;">
-                <div class="scene-subheading">FEATURED FILM / VIDEO</div>
-                <div class="video-wrapper" style="border: 1px solid #000; padding: 12px; background: #fff;">
-                    <video controls playsinline preload="auto" style="width: 100%; height: auto; display: block; border: 1px solid #e4e4e7; background: #000;">
-                        <source src="grieving_love_hd720.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="photo-caption" style="margin-top: 12px; font-family: 'Courier Prime', monospace; font-size: 13px; color: #18181b;">
-                        "GRIEVING LOVE" — SHORT FILM / VIDEO WORK
+            <div class="news-grid">
+                <div class="news-col-8">
+                    <div class="logline-box">
+                        <div class="logline-title">EDITORIAL LOGLINE</div>
+                        An aspiring filmmaker, photographer, and writer documenting urban geometry, street light, and analog motion through 35mm film, screenplays, and software.
+                    </div>
+
+                    <p class="drop-cap" style="font-size:17px; line-height:1.75; color:var(--newsprint-neutral-700); margin-bottom:20px;">
+                        Welcome to my journal and portfolio. As a visual creator, my work balances the tactile texture of physical mediums with the precision of modern code. Whether framing a street corner in the late afternoon sun or constructing a multi-threaded web app, the objective remains constant: eliminate friction until only pure narrative clarity survives.
+                    </p>
+
+                    <div class="ornament-divider">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+                    <div class="scene-subheading" style="margin-top:16px;">FEATURED FILM / VIDEO WORK</div>
+                    <div style="border: 2px solid var(--newsprint-ink); padding: 12px; background: #ffffff;">
+                        <video controls playsinline preload="auto" style="width: 100%; height: auto; display: block; border: 1px solid var(--newsprint-ink); background: #000;">
+                            <source src="grieving_love_hd720.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="photo-caption" style="margin-top: 10px;">
+                            <span>"GRIEVING LOVE" — SHORT FILM WORK</span>
+                            <span>DIR. SHARON SANTOS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-col-4" style="background:#ffffff;">
+                    <div style="font-family:var(--font-mono); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--newsprint-accent); margin-bottom:12px;">
+                        BREAKING DIRECTORY
+                    </div>
+
+                    <div style="border-bottom:1px solid var(--newsprint-ink); padding-bottom:16px; margin-bottom:16px;">
+                        <h4 style="font-family:var(--font-serif); font-size:18px; font-weight:700; margin-bottom:6px;">Private Space & Raceboard</h4>
+                        <p style="font-size:13px; color:var(--newsprint-neutral-600); margin-bottom:10px;">Orca Half Marathon Master Plan, live Strava workouts overlay, and daily fitness logs.</p>
+                        <a href="private/" class="blog-read-link">[ OPEN PRIVATE SPACE → ]</a>
+                    </div>
+
+                    <div style="border-bottom:1px solid var(--newsprint-ink); padding-bottom:16px; margin-bottom:16px;">
+                        <h4 style="font-family:var(--font-serif); font-size:18px; font-weight:700; margin-bottom:6px;">Daily Dispatch & To-Do</h4>
+                        <p style="font-size:13px; color:var(--newsprint-neutral-600); margin-bottom:10px;">High-density habit matrix, task board, and location log.</p>
+                        <a href="todo/" class="blog-read-link">[ OPEN DISPATCH → ]</a>
+                    </div>
+
+                    <div>
+                        <h4 style="font-family:var(--font-serif); font-size:18px; font-weight:700; margin-bottom:6px;">Notes on Light & Motion</h4>
+                        <p style="font-size:13px; color:var(--newsprint-neutral-600); margin-bottom:10px;">Observations on street photography composition and analog color science.</p>
+                        <a href="blog/notes-on-light-and-motion.html" class="blog-read-link">[ READ ARTICLE → ]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: PHOTOGRAPHY -->
+        <div id="tab-photography" class="tab-pane" style="display:none; margin-top:24px;">
+            <div class="scene-heading">PAGE 2 — DARKROOM & GALLERY PRINTS</div>
+            <section class="content-section" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 28px;">
+                <div class="photo-wrapper">
+                    <img src="images/DSCF5062_web.jpg" alt="Featured Photography — Cabo Fuji Series (DSCF5062)" class="featured-photo" loading="eager" onerror="this.onerror=null;this.src='DSCF5062_web.jpg';">
+                    <div class="photo-caption">
+                        <span>CABO • FUJI SERIES (DSCF5062)</span>
+                        <span>FIG. 2.1</span>
+                    </div>
+                </div>
+                <div class="photo-wrapper">
+                    <img src="images/DSCF2190_web.jpg" alt="Featured Photography — Fuji 35mm Series (DSCF2190)" class="featured-photo" loading="lazy" onerror="this.onerror=null;this.src='DSCF2190_web.jpg';">
+                    <div class="photo-caption">
+                        <span>FUJI 35MM SERIES (DSCF2190)</span>
+                        <span>FIG. 2.2</span>
+                    </div>
+                </div>
+                <div class="photo-wrapper">
+                    <img src="images/000097240012_web.jpg" alt="Featured Photography — 35mm Film Series (Frame 12)" class="featured-photo" loading="lazy" onerror="this.onerror=null;this.src='000097240012_web.jpg';">
+                    <div class="photo-caption">
+                        <span>35MM FILM SCAN • FRAME 12</span>
+                        <span>FIG. 2.3</span>
+                    </div>
+                </div>
+                <div class="photo-wrapper">
+                    <img src="images/000097240016_web.jpg" alt="Featured Photography — 35mm Film Series (Frame 16)" class="featured-photo" loading="lazy" onerror="this.onerror=null;this.src='000097240016_web.jpg';">
+                    <div class="photo-caption">
+                        <span>35MM FILM SCAN • FRAME 16</span>
+                        <span>FIG. 2.4</span>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- TAB 2: PHOTOGRAPHY -->
-        <div id="tab-photography" class="tab-pane" style="display:none;">
-            <div class="scene-heading">SCENE 02 - INT. DARKROOM &amp; GALLERY - DAY</div>
-            <section class="content-section" style="display: flex; flex-direction: column; gap: 32px;">
-                <div class="photo-wrapper">
-                    <img src="images/DSCF5062_web.jpg" alt="Featured Photography — Cabo Fuji Series (DSCF5062)" class="featured-photo" loading="eager" onerror="this.onerror=null;this.src='DSCF5062_web.jpg';">
-                    <div class="photo-caption">CABO • FUJI SERIES (DSCF5062) — CUT TO: BLACK</div>
-                </div>
-                <div class="photo-wrapper">
-                    <img src="images/DSCF2190_web.jpg" alt="Featured Photography — Fuji 35mm Series (DSCF2190)" class="featured-photo" loading="lazy" onerror="this.onerror=null;this.src='DSCF2190_web.jpg';">
-                    <div class="photo-caption">FUJI 35mm SERIES (DSCF2190) — CUT TO: FADE IN</div>
-                </div>
-                <div class="photo-wrapper">
-                    <img src="images/000097240012_web.jpg" alt="Featured Photography — 35mm Film Series (Frame 12)" class="featured-photo" loading="lazy" onerror="this.onerror=null;this.src='000097240012_web.jpg';">
-                    <div class="photo-caption">35mm FILM SCAN • FRAME 12 — DISSOLVE TO: DAY</div>
-                </div>
-                <div class="photo-wrapper">
-                    <img src="images/000097240016_web.jpg" alt="Featured Photography — 35mm Film Series (Frame 16)" class="featured-photo" loading="lazy" onerror="this.onerror=null;this.src='000097240016_web.jpg';">
-                    <div class="photo-caption">35mm FILM SCAN • FRAME 16 — DISSOLVE TO: NIGHT</div>
-                </div>
-            </section>
-        </div>
-
         <!-- TAB 3: WRITING -->
-        <div id="tab-writing" class="tab-pane" style="display:none;">
-            <div class="scene-heading">SCENE 03 - INT. WRITER'S ROOM - NIGHT</div>
+        <div id="tab-writing" class="tab-pane" style="display:none; margin-top:24px;">
+            <div class="scene-heading">PAGE 3 — ESSAYS & SCREENWRITING PRINTS</div>
             <section class="content-section">
                 <div class="writing-list">
                     <article class="writing-card">
-                        <div class="script-date">JULY 28, 2026 · 4 MIN READ</div>
+                        <div class="script-date">JULY 28, 2026 · 4 MIN READ · ESSAY NO. 01</div>
                         <h3 class="writing-title">NOTES ON LIGHT AND MOTION</h3>
                         <p class="writing-desc">Observations on street photography composition, analog color science, and cinematic storytelling.</p>
                         <a href="blog/notes-on-light-and-motion.html" class="blog-read-link">[ READ ESSAY → ]</a>
                     </article>
                     <article class="writing-card">
-                        <div class="script-date">JULY 15, 2026 · 6 MIN READ</div>
+                        <div class="script-date">JULY 15, 2026 · 6 MIN READ · SCRIPT NOTES</div>
                         <h3 class="writing-title">THE QUIET FRAME</h3>
                         <p class="writing-desc">A feature screenplay exploration of memory, light, and urban solitude.</p>
                         <a href="blog/notes-on-light-and-motion.html" class="blog-read-link">[ READ SCRIPT NOTES → ]</a>
                     </article>
                     <article class="writing-card">
-                        <div class="script-date">JUNE 30, 2026 · 3 MIN READ</div>
+                        <div class="script-date">JUNE 30, 2026 · 3 MIN READ · DRAMA SCENES</div>
                         <h3 class="writing-title">CHARACTER MONOLOGUES &amp; SHORT SCENES</h3>
                         <p class="writing-desc">Experimental character studies, dialogue pacing exercises, and short narrative scripts.</p>
                         <a href="blog/notes-on-light-and-motion.html" class="blog-read-link">[ READ SCENE WORK → ]</a>
@@ -111,11 +153,11 @@
         </div>
 
         <!-- TAB 4: LETTERBOXD STATS -->
-        <div id="tab-letterboxd" class="tab-pane" style="display:none;">
-            <div class="scene-heading">SCENE 04 - INT. CINEMA ARCHIVE - LETTERBOXD STATS</div>
+        <div id="tab-letterboxd" class="tab-pane" style="display:none; margin-top:24px;">
+            <div class="scene-heading">PAGE 4 — CINEMA ARCHIVE & LETTERBOXD SELECTIONS</div>
             <section class="content-section">
 
-                <div class="scene-subheading">TOP 4 FAVORITE FILMS</div>
+                <div class="scene-subheading" style="margin-bottom:16px;">TOP 4 FAVORITE FILMS OF RECORD</div>
                 <div class="film-grid" style="margin-bottom: 36px;">
                     <a href="https://letterboxd.com/film/mulholland-drive/" target="_blank" rel="noopener" class="film-card">
                         <img src="https://a.ltrbxd.com/resized/film-poster/1/3/4/3/6/3/134363-mulholland-dr--0-600-0-900-crop.jpg?v=52740ad276" alt="Mulholland Drive" class="film-poster" loading="lazy">
@@ -147,26 +189,26 @@
                     </a>
                 </div>
 
-                <div class="scene-subheading">RECENTLY WATCHED</div>
+                <div class="scene-subheading" style="margin-bottom:16px;">RECENTLY WATCHED FILMS</div>
                 <div class="film-grid" id="filmGrid">
-                    <p style="color:#71717a; font-size:13px; grid-column:1/-1;">Loading from Letterboxd...</p>
+                    <p style="color:var(--newsprint-neutral-600); font-size:13px; grid-column:1/-1;">Loading live Letterboxd feed...</p>
                 </div>
             </section>
         </div>
 
         <!-- TAB 5: STRAVA STATS -->
-        <div id="tab-strava" class="tab-pane" style="display:none;">
-            <div class="scene-heading">SCENE 05 - EXT. ATHLETIC TRACK - STRAVA RUN LOGS</div>
+        <div id="tab-strava" class="tab-pane" style="display:none; margin-top:24px;">
+            <div class="scene-heading">PAGE 5 — ATHLETIC DISPATCH & STRAVA LOGS</div>
             <section class="content-section">
-                <div class="scene-subheading">RECENT WORKOUTS &amp; GPS MAPS</div>
+                <div class="scene-subheading" style="margin-bottom:16px;">RECENT WORKOUTS & GPS TRACKS</div>
                 <div class="strava-grid" id="stravaGrid">
-                    <p style="color:#71717a; font-size:13px; grid-column:1/-1;">Loading from Strava...</p>
+                    <p style="color:var(--newsprint-neutral-600); font-size:13px; grid-column:1/-1;">Loading live Strava feed...</p>
                 </div>
             </section>
         </div>
 
-        <!-- Footer -->
-        <footer class="footer typewriter-reveal">
+        <!-- Gazette Footer -->
+        <footer class="footer">
             <div class="footer-links">
                 <a href="mailto:sharon5234@outlook.com">EMAIL</a>
                 <a href="https://www.linkedin.com/in/sharonsantos1/" target="_blank" rel="noopener">LINKEDIN</a>
@@ -174,11 +216,11 @@
                 <a href="https://letterboxd.com/sharon1/" target="_blank" rel="noopener">LETTERBOXD</a>
                 <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener">STRAVA</a>
             </div>
-            <p>© 2026 SHARON SANTOS · ALL RIGHTS RESERVED</p>
+            <p>© 2026 THE SHARON SANTOS GAZETTE · EDITION NO. 8 · ALL RIGHTS RESERVED</p>
         </footer>
 
     </main>
 
-    <script src="app.js?v=20260730l"></script>
+    <script src="app.js?v=20260807_newsprint"></script>
 </body>
 </html>
