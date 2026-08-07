@@ -2182,17 +2182,28 @@
     // ── Fetch Garmin Health Data (Steps, Sleep, Resting HR) ───────────
     async function loadGarminHealthData() {
         try {
-            // Force fresh load from server/GitHub on every single site reload
-            const res = await fetch('/private/garmin_data.json?t=' + Date.now(), {
-                cache: 'no-store',
-                headers: {
-                    'Cache-Control': 'no-cache, no-store, must-revalidate',
-                    'Pragma': 'no-cache',
-                    'Expires': '0'
-                }
-            });
-            if (res.ok) {
-                const data = await res.json();
+            let data = null;
+            const candidatePaths = [
+                '../private/garmin_data.json',
+                '/private/garmin_data.json',
+                './private/garmin_data.json',
+                'private/garmin_data.json',
+                '/photography-portfolio/private/garmin_data.json',
+                'https://sharonsantos.me/private/garmin_data.json',
+                'https://sharonsantose.github.io/photography-portfolio/private/garmin_data.json'
+            ];
+
+            for (const p of candidatePaths) {
+                try {
+                    const res = await fetch(p + '?t=' + Date.now(), { cache: 'no-store' });
+                    if (res.ok) {
+                        data = await res.json();
+                        break;
+                    }
+                } catch(e) {}
+            }
+
+            if (data) {
                 const stats = data.stats || {};
 
                 // Steps

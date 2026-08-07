@@ -310,12 +310,21 @@ async function fetchSixStravaWorkouts() {
     if (!grid) return;
 
     let data = null;
-    const paths = ['private/strava_data.json', './private/strava_data.json', '/private/strava_data.json'];
+    const paths = [
+        'private/strava_data.json',
+        './private/strava_data.json',
+        '/private/strava_data.json',
+        '../private/strava_data.json',
+        '/photography-portfolio/private/strava_data.json',
+        'https://sharonsantos.me/private/strava_data.json',
+        'https://sharonsantose.github.io/photography-portfolio/private/strava_data.json'
+    ];
     for (const p of paths) {
         try {
             const response = await fetch(p + '?v=' + Date.now(), { cache: 'no-store' });
             if (response.ok) {
                 data = await response.json();
+                console.log('Successfully loaded Strava feed from:', p);
                 break;
             }
         } catch (err) {}
@@ -431,11 +440,19 @@ function generateSvgMapHtml(polylineStr, width = 340, height = 180, padding = 22
 
     return `
         <svg viewBox="0 0 ${width} ${height}" class="route-svg">
-            <polyline points="${points.join(' ')}" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="${startPt[0]}" cy="${startPt[1]}" r="3.5" fill="#ffffff" />
-            <circle cx="${endPt[0]}" cy="${endPt[1]}" r="3.5" fill="#000000" stroke="#ffffff" stroke-width="1.8"/>
+            <polyline points="${points.join(' ')}" fill="none" stroke="#33ff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="${startPt[0]}" cy="${startPt[1]}" r="3.5" fill="#33ff00" />
+            <circle cx="${endPt[0]}" cy="${endPt[1]}" r="3.5" fill="#0a0a0a" stroke="#33ff00" stroke-width="1.8"/>
         </svg>
     `;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchSixStravaWorkouts();
+});
+
+window.addEventListener('load', () => {
+    fetchSixStravaWorkouts();
+});
 
 
