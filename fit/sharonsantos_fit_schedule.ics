@@ -1,0 +1,448 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Sharon Santos Fitness Control Center//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Sharon Santos 2:15 Half Marathon Plan
+BEGIN:VEVENT
+UID:workout-2026-08-03@sharonsantos.me
+DTSTART;VALUE=DATE:20260803
+SUMMARY:🏃 Sharon Santos — Run (4.06 mi) + Strength + Row
+DESCRIPTION:Run Club 2.0 (4.06 mi · 45m @ 11:18/mi) + Weight Training (19m) + Evening Row (9m) 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-04@sharonsantos.me
+DTSTART;VALUE=DATE:20260804
+SUMMARY:🏃 Sharon Santos — Strength A + Row + Bike
+DESCRIPTION:AM: Session A (Smith Squat, RDL, Bench, Row, Triceps, Farmer Carry + 10m row). PM: Outdoor Bike 60m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-05@sharonsantos.me
+DTSTART;VALUE=DATE:20260805
+SUMMARY:🏃 Sharon Santos — Row + StairStepper + Swim
+DESCRIPTION:Evening Row (25m) + Stair-Stepper (11m) + Swim 25m easy 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-06@sharonsantos.me
+DTSTART;VALUE=DATE:20260806
+SUMMARY:🏃 Sharon Santos — Strength B + StairStepper + Bike
+DESCRIPTION:AM: Session B (Smith Hip Thrust, Lunges, Shoulder Press, Lat Pulldown, 1-Arm Row, Triceps, Pallof Press) + 15m StairMaster. PM: Outdoor Bike 60m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-07@sharonsantos.me
+DTSTART;VALUE=DATE:20260807
+SUMMARY:🏃 Sharon Santos — Run + Swim
+DESCRIPTION:AM: Run 4 mi easy + 4 x 20s strides. PM: Swim 25m easy 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-08@sharonsantos.me
+DTSTART;VALUE=DATE:20260808
+SUMMARY:🏃 Sharon Santos — Run (6 mi) + Strength C
+DESCRIPTION:AM: Long run 6 mi (11:15-11:45/mi). PM: Session C (Smith Bench, Row, Lat Pulldown, Shoulder Press, Triceps, Biceps, Light Hip Thrust, Pallof Press) 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-09@sharonsantos.me
+DTSTART;VALUE=DATE:20260809
+SUMMARY:🏃 Sharon Santos — Bike + Swim
+DESCRIPTION:AM: Outdoor Ride 90-105m. PM: Swim 20m recovery 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-10@sharonsantos.me
+DTSTART;VALUE=DATE:20260810
+SUMMARY:🏃 Sharon Santos — Run + Swim
+DESCRIPTION:AM: Run 4 mi easy. PM: Swim 30m easy 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-11@sharonsantos.me
+DTSTART;VALUE=DATE:20260811
+SUMMARY:🏃 Sharon Santos — Strength A + Row + Bike
+DESCRIPTION:AM: Session A + 10m row. PM: Outdoor Bike 60m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-12@sharonsantos.me
+DTSTART;VALUE=DATE:20260812
+SUMMARY:🏃 Sharon Santos — Intervals + Swim
+DESCRIPTION:AM: 1m warm, 4x800m @ 9:45-10:00/mi, 1m cool. PM: Swim 25m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-13@sharonsantos.me
+DTSTART;VALUE=DATE:20260813
+SUMMARY:🏃 Sharon Santos — Strength B + StairStepper + Bike
+DESCRIPTION:AM: Session B + 15m StairMaster. PM: Outdoor Bike 60m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-14@sharonsantos.me
+DTSTART;VALUE=DATE:20260814
+SUMMARY:🏃 Sharon Santos — Run + Swim
+DESCRIPTION:AM: Run 4 mi easy + 4 strides. PM: Swim 25m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-15@sharonsantos.me
+DTSTART;VALUE=DATE:20260815
+SUMMARY:🏃 Sharon Santos — Run (8 mi) + Strength C
+DESCRIPTION:AM: Long run 8 mi (11:15-11:45/mi). PM: Session C 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-16@sharonsantos.me
+DTSTART;VALUE=DATE:20260816
+SUMMARY:🏃 Sharon Santos — Run (6 mi) + Swim + Bike
+DESCRIPTION:AM: Long run 6 mi / Ride 90m. PM: Swim 20m recovery 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-17@sharonsantos.me
+DTSTART;VALUE=DATE:20260817
+SUMMARY:🏃 Sharon Santos — Run + Swim
+DESCRIPTION:AM: Run 4 mi easy. PM: Swim 30m easy 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-18@sharonsantos.me
+DTSTART;VALUE=DATE:20260818
+SUMMARY:🏃 Sharon Santos — Strength A + Row + Bike
+DESCRIPTION:AM: Session A + 10m row. PM: Outdoor Bike 60m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-19@sharonsantos.me
+DTSTART;VALUE=DATE:20260819
+SUMMARY:🏃 Sharon Santos — Intervals + Swim
+DESCRIPTION:AM: 1m warm, 5x800m @ 9:45-10:00/mi, 1m cool. PM: Swim 25m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-20@sharonsantos.me
+DTSTART;VALUE=DATE:20260820
+SUMMARY:🏃 Sharon Santos — Strength B + StairStepper + Bike
+DESCRIPTION:AM: Session B + 15m StairMaster. PM: Outdoor Bike 60m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-21@sharonsantos.me
+DTSTART;VALUE=DATE:20260821
+SUMMARY:🏃 Sharon Santos — Run + Swim
+DESCRIPTION:AM: Run 4 mi easy + 4 strides. PM: Swim 25m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-22@sharonsantos.me
+DTSTART;VALUE=DATE:20260822
+SUMMARY:🏃 Sharon Santos — Run (9 mi) + Strength C
+DESCRIPTION:AM: Long run 9 mi (7 mi easy, 2 mi @ 10:30/mi). PM: Session C 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-23@sharonsantos.me
+DTSTART;VALUE=DATE:20260823
+SUMMARY:🏃 Sharon Santos — Run (6 mi) + Swim + Bike
+DESCRIPTION:AM: Long run 6 mi / Ride 2hr. PM: Swim 20m recovery 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-24@sharonsantos.me
+DTSTART;VALUE=DATE:20260824
+SUMMARY:🏃 Sharon Santos — Run + Swim
+DESCRIPTION:AM: Run 4 mi easy. PM: Swim 30m easy 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-25@sharonsantos.me
+DTSTART;VALUE=DATE:20260825
+SUMMARY:🏃 Sharon Santos — Strength A + Row + Bike
+DESCRIPTION:AM: Session A + 10m row. PM: Outdoor Bike 60m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-26@sharonsantos.me
+DTSTART;VALUE=DATE:20260826
+SUMMARY:🏃 Sharon Santos — Tempo + Swim
+DESCRIPTION:AM: 1m warm, 3 mi @ 10:15-10:25/mi, 1m cool. PM: Swim 25m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-27@sharonsantos.me
+DTSTART;VALUE=DATE:20260827
+SUMMARY:🏃 Sharon Santos — Strength B + StairStepper + Bike
+DESCRIPTION:AM: Session B + 10-15m StairMaster. PM: Outdoor Bike 45-60m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-28@sharonsantos.me
+DTSTART;VALUE=DATE:20260828
+SUMMARY:🏃 Sharon Santos — Run + Swim
+DESCRIPTION:AM: Run 3 mi easy + 4 strides. PM: Swim 25m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-29@sharonsantos.me
+DTSTART;VALUE=DATE:20260829
+SUMMARY:🏃 Sharon Santos — Run (10 mi) + Strength C
+DESCRIPTION:AM: Long run 10-11 mi easy (11:15-11:45/mi). PM: Reduced Session C 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-30@sharonsantos.me
+DTSTART;VALUE=DATE:20260830
+SUMMARY:🏃 Sharon Santos — Run (6 mi) + Swim + Bike
+DESCRIPTION:AM: Long run 6 mi / Ride 90m. PM: Swim 20m recovery 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-08-31@sharonsantos.me
+DTSTART;VALUE=DATE:20260831
+SUMMARY:🏃 Sharon Santos — Run + Swim
+DESCRIPTION:AM: Run 3-4 mi easy. PM: Swim 30m easy 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-01@sharonsantos.me
+DTSTART;VALUE=DATE:20260901
+SUMMARY:🏃 Sharon Santos — Strength A + Bike
+DESCRIPTION:AM: Reduced Session A. PM: Outdoor Bike 45m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-02@sharonsantos.me
+DTSTART;VALUE=DATE:20260902
+SUMMARY:🏃 Sharon Santos — Pickups + Swim
+DESCRIPTION:AM: Run 4 mi with 6x30s goal-pace pickups. PM: Swim 25m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-03@sharonsantos.me
+DTSTART;VALUE=DATE:20260903
+SUMMARY:🏃 Sharon Santos — Strength B + Bike
+DESCRIPTION:AM: Reduced Session B. PM: Outdoor Bike 40m easy 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-04@sharonsantos.me
+DTSTART;VALUE=DATE:20260904
+SUMMARY:🏃 Sharon Santos — Run + Swim
+DESCRIPTION:AM: Run 2 mi shakeout. PM: Swim 20m easy 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-05@sharonsantos.me
+DTSTART;VALUE=DATE:20260905
+SUMMARY:🏃 Sharon Santos — 13.1 Test
+DESCRIPTION:13.1-mi confidence run @ 12:00-12:30/mi (strictly easy) 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-06@sharonsantos.me
+DTSTART;VALUE=DATE:20260906
+SUMMARY:🏃 Sharon Santos — Run (6 mi) + Swim
+DESCRIPTION:AM: Long run 6 mi recovery option. PM: Swim 20m restorative 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-07@sharonsantos.me
+DTSTART;VALUE=DATE:20260907
+SUMMARY:🏃 Sharon Santos — Swim
+DESCRIPTION:Swim 30m easy (omit run recovering from 13.1 mi) 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-08@sharonsantos.me
+DTSTART;VALUE=DATE:20260908
+SUMMARY:🏃 Sharon Santos — Strength A + Bike
+DESCRIPTION:AM: Reduced Session A. PM: Outdoor Bike 45m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-09@sharonsantos.me
+DTSTART;VALUE=DATE:20260909
+SUMMARY:🏃 Sharon Santos — Rehearsal + Swim
+DESCRIPTION:AM: 1m warm, 3 mi @ 10:15-10:20/mi, 1m cool. PM: Swim 25m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-10@sharonsantos.me
+DTSTART;VALUE=DATE:20260910
+SUMMARY:🏃 Sharon Santos — Strength B + Bike
+DESCRIPTION:AM: Reduced Session B. PM: Outdoor Bike 45m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-11@sharonsantos.me
+DTSTART;VALUE=DATE:20260911
+SUMMARY:🏃 Sharon Santos — Run + Swim
+DESCRIPTION:AM: Run 3 mi easy + 4 strides. PM: Swim 25m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-12@sharonsantos.me
+DTSTART;VALUE=DATE:20260912
+SUMMARY:🏃 Sharon Santos — Long Run + Strength C
+DESCRIPTION:AM: Long run 7-8 mi easy (final long run). PM: Upper Session C 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-13@sharonsantos.me
+DTSTART;VALUE=DATE:20260913
+SUMMARY:🏃 Sharon Santos — Run (6 mi) + Swim + Bike
+DESCRIPTION:AM: Long run 6 mi / Ride 60m. PM: Swim 20m recovery 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-14@sharonsantos.me
+DTSTART;VALUE=DATE:20260914
+SUMMARY:🏃 Sharon Santos — Run + Swim
+DESCRIPTION:AM: Run 3 mi easy + 4 strides. PM: Swim 20m easy 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-15@sharonsantos.me
+DTSTART;VALUE=DATE:20260915
+SUMMARY:🏃 Sharon Santos — Activation A + Bike
+DESCRIPTION:AM: Light Session A (20m). PM: Outdoor Bike 30-40m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-16@sharonsantos.me
+DTSTART;VALUE=DATE:20260916
+SUMMARY:🏃 Sharon Santos — Pace Check + Swim
+DESCRIPTION:AM: 1m warm, 2 mi @ 10:18/mi, 0.5m cool. PM: Swim 20m 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-17@sharonsantos.me
+DTSTART;VALUE=DATE:20260917
+SUMMARY:🏃 Sharon Santos — Activation B
+DESCRIPTION:AM: Light Session B (15m). No StairMaster / No Bike 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-18@sharonsantos.me
+DTSTART;VALUE=DATE:20260918
+SUMMARY:🏃 Sharon Santos — Run + Swim
+DESCRIPTION:AM: Run 2 mi very easy. PM: Swim 15-20m. Carb load & prep 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-19@sharonsantos.me
+DTSTART;VALUE=DATE:20260919
+SUMMARY:🏃 Sharon Santos — Shakeout
+DESCRIPTION:15m easy shakeout jog + 4 strides. Early sleep 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:workout-2026-09-20@sharonsantos.me
+DTSTART;VALUE=DATE:20260920
+SUMMARY:🏃 Sharon Santos — RACE DAY
+DESCRIPTION:🏁 2:15 HALF MARATHON (13.1 mi) Target 10:18/mi 
+
+Sharon Santos Fitness Control Center: https://sharonsantos.me/fit
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

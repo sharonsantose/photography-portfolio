@@ -833,9 +833,12 @@
                 </div>
 
                 <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <button onclick="exportAllToIcs()" class="unlock-btn" style="width:auto; padding:6px 12px; font-size:12px; background:#27272a; border-color:#4285f4;">
-                        📥 Export All (.ics)
-                    </button>
+                    <a href="sharonsantos_fit_schedule.ics" download="sharonsantos_fit_schedule.ics" class="unlock-btn" style="width:auto; padding:6px 12px; font-size:12px; background:#4285f4; border-color:#4285f4; color:#ffffff; text-decoration:none;">
+                        📅 Export All to Google Calendar (.ics)
+                    </a>
+                    <a href="https://calendar.google.com/calendar/r/settings/export" target="_blank" rel="noopener" class="unlock-btn" style="width:auto; padding:6px 12px; font-size:12px; background:#27272a; border-color:#4285f4; color:#ffffff; text-decoration:none;">
+                        ⚙️ Open Google Cal Settings
+                    </a>
                     <label class="unlock-btn" style="width:auto; padding:6px 12px; font-size:12px; background:#27272a; border-color:#4285f4; cursor:pointer;">
                         📤 Import Google Cal (.ics)
                         <input type="file" id="gcalFileInput" accept=".ics" style="display:none;" onchange="importIcsFile(event)">
