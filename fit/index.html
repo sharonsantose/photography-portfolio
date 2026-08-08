@@ -436,16 +436,22 @@
             margin-bottom: 4px;
         }
 
+        /* Distinct Color-Coded Tags for Workout Types */
+        .workout-tag-group {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
+        }
+
         .orca-badge {
             display: inline-block;
             font-size: 9px;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             padding: 3px 6px;
             border-radius: 3px;
-            margin-bottom: 6px;
-            background: #27272a;
             color: #ffffff;
             width: fit-content;
         }
@@ -454,7 +460,9 @@
         .orca-badge.badge-swim { background: #2679a8; color: #fff; }
         .orca-badge.badge-bike { background: #378553; color: #fff; }
         .orca-badge.badge-strength { background: #74569b; color: #fff; }
-        .orca-badge.badge-recovery { background: #bd8117; color: #fff; }
+        .orca-badge.badge-row { background: #0284c7; color: #fff; }
+        .orca-badge.badge-stair { background: #ca8a04; color: #fff; }
+        .orca-badge.badge-recovery { background: #047857; color: #fff; }
         .orca-badge.badge-race { background: #ef4444; color: #fff; }
         .orca-badge.badge-strava-done { background: #fc4c02; color: #fff; }
 
@@ -777,10 +785,6 @@
             <div class="section-header">
                 <h2 class="section-title">🏃 2:15 Half Marathon Training Schedule</h2>
                 <span class="section-subtitle sans">Aug 6 – Sep 20, 2026 · Auto-Verified via Strava</span>
-            </div>
-
-            <div style="font-size:14px; color:#a1a1aa; margin-bottom:20px; line-height:1.6;">
-                Official training schedule from <code>Half_Marathon_Training_Plan_Aug6-Sep20_2026.docx</code>. Workouts are <strong>automatically verified from live Strava activity telemetry</strong> as time passes.
             </div>
 
             <div class="orca-calendar-wrap">
@@ -1182,67 +1186,67 @@
         renderOrcaCalendar();
     }
 
-    // ── EXACT 2:15 HALF MARATHON WORKOUT PLAN (AUG 6 – SEP 20, 2026 FROM DOCX) ──
+    // ── EXACT 2:15 HALF MARATHON WORKOUT PLAN WITH MULTI-WORKOUT TAGS ──
     const ORCA_PLAN = [
         // Week 1 (Aug 6 - Aug 9)
-        { date: '2026-08-06', badge: 'Strength B', badgeClass: 'badge-strength', detail: 'AM: Session B + 15m StairMaster. PM: Outdoor Bike 60m' },
-        { date: '2026-08-07', badge: 'Easy Run', badgeClass: 'badge-run', detail: 'AM: Run 4 mi easy + 4 x 20s strides. PM: Swim 25m' },
-        { date: '2026-08-08', badge: 'Long Run', badgeClass: 'badge-run', detail: 'AM: Long run 8 mi (11:15-11:45/mi). PM: Session C' },
-        { date: '2026-08-09', badge: 'Bike / Swim', badgeClass: 'badge-bike', detail: 'AM: Outdoor Ride 90-105m. PM: Swim 20m recovery' },
+        { date: '2026-08-06', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'StairStepper', cls: 'badge-stair' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session B + 15m StairMaster. PM: Outdoor Bike 60m' },
+        { date: '2026-08-07', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy + 4 x 20s strides. PM: Swim 25m' },
+        { date: '2026-08-08', tags: [{ title: 'Run (8 mi)', cls: 'badge-run' }, { title: 'Strength C', cls: 'badge-strength' }], detail: 'AM: Long run 8 mi (11:15-11:45/mi). PM: Session C' },
+        { date: '2026-08-09', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Long run 6 mi / Outdoor Ride 90m. PM: Swim 20m recovery' },
 
         // Week 2 (Aug 10 - Aug 16)
-        { date: '2026-08-10', badge: 'Run / Swim', badgeClass: 'badge-run', detail: 'AM: Run 4 mi easy. PM: Swim 30m easy' },
-        { date: '2026-08-11', badge: 'Strength A', badgeClass: 'badge-strength', detail: 'AM: Session A + 10m row. PM: Outdoor Bike 60m' },
-        { date: '2026-08-12', badge: 'Intervals', badgeClass: 'badge-run', detail: 'AM: 1m warm, 4x800m @ 9:45-10:00/mi, 1m cool. PM: Swim 25m' },
-        { date: '2026-08-13', badge: 'Strength B', badgeClass: 'badge-strength', detail: 'AM: Session B + 15m StairMaster. PM: Outdoor Bike 60m' },
-        { date: '2026-08-14', badge: 'Easy Run', badgeClass: 'badge-run', detail: 'AM: Run 4 mi easy + 4 strides. PM: Swim 25m' },
-        { date: '2026-08-15', badge: 'Long Run', badgeClass: 'badge-run', detail: 'AM: Long run 8 mi (11:15-11:45/mi). PM: Session C' },
-        { date: '2026-08-16', badge: 'Bike / Swim', badgeClass: 'badge-bike', detail: 'AM: Outdoor Ride 90-105m. PM: Swim 20m recovery' },
+        { date: '2026-08-10', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy. PM: Swim 30m easy' },
+        { date: '2026-08-11', tags: [{ title: 'Strength A', cls: 'badge-strength' }, { title: 'Row', cls: 'badge-row' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session A + 10m row. PM: Outdoor Bike 60m' },
+        { date: '2026-08-12', tags: [{ title: 'Intervals', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: 1m warm, 4x800m @ 9:45-10:00/mi, 1m cool. PM: Swim 25m' },
+        { date: '2026-08-13', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'StairStepper', cls: 'badge-stair' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session B + 15m StairMaster. PM: Outdoor Bike 60m' },
+        { date: '2026-08-14', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy + 4 strides. PM: Swim 25m' },
+        { date: '2026-08-15', tags: [{ title: 'Run (8 mi)', cls: 'badge-run' }, { title: 'Strength C', cls: 'badge-strength' }], detail: 'AM: Long run 8 mi (11:15-11:45/mi). PM: Session C' },
+        { date: '2026-08-16', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Long run 6 mi / Ride 90m. PM: Swim 20m recovery' },
 
         // Week 3 (Aug 17 - Aug 23)
-        { date: '2026-08-17', badge: 'Run / Swim', badgeClass: 'badge-run', detail: 'AM: Run 4 mi easy. PM: Swim 30m easy' },
-        { date: '2026-08-18', badge: 'Strength A', badgeClass: 'badge-strength', detail: 'AM: Session A + 10m row. PM: Outdoor Bike 60m' },
-        { date: '2026-08-19', badge: 'Intervals', badgeClass: 'badge-run', detail: 'AM: 1m warm, 5x800m @ 9:45-10:00/mi, 1m cool. PM: Swim 25m' },
-        { date: '2026-08-20', badge: 'Strength B', badgeClass: 'badge-strength', detail: 'AM: Session B + 15m StairMaster. PM: Outdoor Bike 60m' },
-        { date: '2026-08-21', badge: 'Easy Run', badgeClass: 'badge-run', detail: 'AM: Run 4 mi easy + 4 strides. PM: Swim 25m' },
-        { date: '2026-08-22', badge: 'Long Run', badgeClass: 'badge-run', detail: 'AM: Long run 9 mi (7 mi easy, 2 mi @ 10:30/mi). PM: Session C' },
-        { date: '2026-08-23', badge: 'Bike / Swim', badgeClass: 'badge-bike', detail: 'AM: Outdoor Ride 2 hr. PM: Swim 20m recovery' },
+        { date: '2026-08-17', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy. PM: Swim 30m easy' },
+        { date: '2026-08-18', tags: [{ title: 'Strength A', cls: 'badge-strength' }, { title: 'Row', cls: 'badge-row' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session A + 10m row. PM: Outdoor Bike 60m' },
+        { date: '2026-08-19', tags: [{ title: 'Intervals', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: 1m warm, 5x800m @ 9:45-10:00/mi, 1m cool. PM: Swim 25m' },
+        { date: '2026-08-20', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'StairStepper', cls: 'badge-stair' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session B + 15m StairMaster. PM: Outdoor Bike 60m' },
+        { date: '2026-08-21', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy + 4 strides. PM: Swim 25m' },
+        { date: '2026-08-22', tags: [{ title: 'Run (9 mi)', cls: 'badge-run' }, { title: 'Strength C', cls: 'badge-strength' }], detail: 'AM: Long run 9 mi (7 mi easy, 2 mi @ 10:30/mi). PM: Session C' },
+        { date: '2026-08-23', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Long run 6 mi / Ride 2hr. PM: Swim 20m recovery' },
 
         // Week 4 (Aug 24 - Aug 30)
-        { date: '2026-08-24', badge: 'Run / Swim', badgeClass: 'badge-run', detail: 'AM: Run 4 mi easy. PM: Swim 30m easy' },
-        { date: '2026-08-25', badge: 'Strength A', badgeClass: 'badge-strength', detail: 'AM: Session A + 10m row. PM: Outdoor Bike 60m' },
-        { date: '2026-08-26', badge: 'Tempo', badgeClass: 'badge-run', detail: 'AM: 1m warm, 3 mi @ 10:15-10:25/mi, 1m cool. PM: Swim 25m' },
-        { date: '2026-08-27', badge: 'Strength B', badgeClass: 'badge-strength', detail: 'AM: Session B + 10-15m StairMaster. PM: Outdoor Bike 45-60m' },
-        { date: '2026-08-28', badge: 'Easy Run', badgeClass: 'badge-run', detail: 'AM: Run 3 mi easy + 4 strides. PM: Swim 25m' },
-        { date: '2026-08-29', badge: 'Long Run', badgeClass: 'badge-run', detail: 'AM: Long run 10-11 mi easy (11:15-11:45/mi). PM: Reduced Session C' },
-        { date: '2026-08-30', badge: 'Bike / Swim', badgeClass: 'badge-bike', detail: 'AM: Outdoor Ride 90m easy. PM: Swim 20m recovery' },
+        { date: '2026-08-24', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy. PM: Swim 30m easy' },
+        { date: '2026-08-25', tags: [{ title: 'Strength A', cls: 'badge-strength' }, { title: 'Row', cls: 'badge-row' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session A + 10m row. PM: Outdoor Bike 60m' },
+        { date: '2026-08-26', tags: [{ title: 'Tempo', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: 1m warm, 3 mi @ 10:15-10:25/mi, 1m cool. PM: Swim 25m' },
+        { date: '2026-08-27', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'StairStepper', cls: 'badge-stair' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session B + 10-15m StairMaster. PM: Outdoor Bike 45-60m' },
+        { date: '2026-08-28', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 3 mi easy + 4 strides. PM: Swim 25m' },
+        { date: '2026-08-29', tags: [{ title: 'Run (10 mi)', cls: 'badge-run' }, { title: 'Strength C', cls: 'badge-strength' }], detail: 'AM: Long run 10-11 mi easy (11:15-11:45/mi). PM: Reduced Session C' },
+        { date: '2026-08-30', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Long run 6 mi / Ride 90m. PM: Swim 20m recovery' },
 
         // Week 5 (Aug 31 - Sep 6)
-        { date: '2026-08-31', badge: 'Run / Swim', badgeClass: 'badge-run', detail: 'AM: Run 3-4 mi easy. PM: Swim 30m easy' },
-        { date: '2026-09-01', badge: 'Strength A', badgeClass: 'badge-strength', detail: 'AM: Reduced Session A. PM: Outdoor Bike 45m' },
-        { date: '2026-09-02', badge: 'Pickups', badgeClass: 'badge-run', detail: 'AM: Run 4 mi with 6x30s goal-pace pickups. PM: Swim 25m' },
-        { date: '2026-09-03', badge: 'Strength B', badgeClass: 'badge-strength', detail: 'AM: Reduced Session B. PM: Outdoor Bike 40m easy' },
-        { date: '2026-09-04', badge: 'Shakeout', badgeClass: 'badge-run', detail: 'AM: Run 2 mi shakeout. PM: Swim 20m easy' },
-        { date: '2026-09-05', badge: '13.1 Mi Test', badgeClass: 'badge-run', detail: '13.1-mi confidence run @ 12:00-12:30/mi (with planned walk breaks)' },
-        { date: '2026-09-06', badge: 'Restorative', badgeClass: 'badge-recovery', detail: 'PM: Swim 20m restorative easy. No long ride' },
+        { date: '2026-08-31', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 3-4 mi easy. PM: Swim 30m easy' },
+        { date: '2026-09-01', tags: [{ title: 'Strength A', cls: 'badge-strength' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Reduced Session A. PM: Outdoor Bike 45m' },
+        { date: '2026-09-02', tags: [{ title: 'Pickups', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi with 6x30s goal-pace pickups. PM: Swim 25m' },
+        { date: '2026-09-03', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Reduced Session B. PM: Outdoor Bike 40m easy' },
+        { date: '2026-09-04', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 2 mi shakeout. PM: Swim 20m easy' },
+        { date: '2026-09-05', tags: [{ title: '13.1 Test', cls: 'badge-run' }], detail: '13.1-mi confidence run @ 12:00-12:30/mi (strictly easy)' },
+        { date: '2026-09-06', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Long run 6 mi recovery option. PM: Swim 20m restorative' },
 
         // Week 6 (Sep 7 - Sep 13)
-        { date: '2026-09-07', badge: 'Swim Recovery', badgeClass: 'badge-swim', detail: 'Swim 30m easy (omit run recovering from 13.1 mi)' },
-        { date: '2026-09-08', badge: 'Strength A', badgeClass: 'badge-strength', detail: 'AM: Reduced Session A. PM: Outdoor Bike 45m' },
-        { date: '2026-09-09', badge: 'Rehearsal', badgeClass: 'badge-run', detail: 'AM: 1m warm, 3 mi @ 10:15-10:20/mi, 1m cool. PM: Swim 25m' },
-        { date: '2026-09-10', badge: 'Strength B', badgeClass: 'badge-strength', detail: 'AM: Reduced Session B. PM: Outdoor Bike 45m' },
-        { date: '2026-09-11', badge: 'Easy Run', badgeClass: 'badge-run', detail: 'AM: Run 3 mi easy + 4 strides. PM: Swim 25m' },
-        { date: '2026-09-12', badge: 'Long Run', badgeClass: 'badge-run', detail: 'AM: Long run 7-8 mi easy (final long run). PM: Upper Session C' },
-        { date: '2026-09-13', badge: 'Bike / Swim', badgeClass: 'badge-bike', detail: 'AM: Outdoor Ride 60m easy. PM: Swim 20m recovery' },
+        { date: '2026-09-07', tags: [{ title: 'Swim', cls: 'badge-swim' }], detail: 'Swim 30m easy (omit run recovering from 13.1 mi)' },
+        { date: '2026-09-08', tags: [{ title: 'Strength A', cls: 'badge-strength' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Reduced Session A. PM: Outdoor Bike 45m' },
+        { date: '2026-09-09', tags: [{ title: 'Rehearsal', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: 1m warm, 3 mi @ 10:15-10:20/mi, 1m cool. PM: Swim 25m' },
+        { date: '2026-09-10', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Reduced Session B. PM: Outdoor Bike 45m' },
+        { date: '2026-09-11', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 3 mi easy + 4 strides. PM: Swim 25m' },
+        { date: '2026-09-12', tags: [{ title: 'Long Run', cls: 'badge-run' }, { title: 'Strength C', cls: 'badge-strength' }], detail: 'AM: Long run 7-8 mi easy (final long run). PM: Upper Session C' },
+        { date: '2026-09-13', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Long run 6 mi / Ride 60m. PM: Swim 20m recovery' },
 
         // Week 7 (Sep 14 - Sep 20 Race Week!)
-        { date: '2026-09-14', badge: 'Easy Run', badgeClass: 'badge-run', detail: 'AM: Run 3 mi easy + 4 strides. PM: Swim 20m easy' },
-        { date: '2026-09-15', badge: 'Activation A', badgeClass: 'badge-strength', detail: 'AM: Light Session A (20m). PM: Outdoor Bike 30-40m' },
-        { date: '2026-09-16', badge: 'Pace Check', badgeClass: 'badge-run', detail: 'AM: 1m warm, 2 mi @ 10:18/mi, 0.5m cool. PM: Swim 20m' },
-        { date: '2026-09-17', badge: 'Activation B', badgeClass: 'badge-strength', detail: 'AM: Light Session B (15m). No StairMaster / No Bike' },
-        { date: '2026-09-18', badge: 'Easy Run', badgeClass: 'badge-run', detail: 'AM: Run 2 mi very easy. PM: Swim 15-20m. Carb load & prep' },
-        { date: '2026-09-19', badge: 'Shakeout', badgeClass: 'badge-run', detail: '15m easy shakeout jog + 4 strides. Early sleep' },
-        { date: '2026-09-20', badge: 'RACE DAY', badgeClass: 'badge-race', detail: '🏁 2:15 HALF MARATHON (13.1 mi) Target 10:18/mi' }
+        { date: '2026-09-14', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 3 mi easy + 4 strides. PM: Swim 20m easy' },
+        { date: '2026-09-15', tags: [{ title: 'Activation A', cls: 'badge-strength' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Light Session A (20m). PM: Outdoor Bike 30-40m' },
+        { date: '2026-09-16', tags: [{ title: 'Pace Check', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: 1m warm, 2 mi @ 10:18/mi, 0.5m cool. PM: Swim 20m' },
+        { date: '2026-09-17', tags: [{ title: 'Activation B', cls: 'badge-strength' }], detail: 'AM: Light Session B (15m). No StairMaster / No Bike' },
+        { date: '2026-09-18', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 2 mi very easy. PM: Swim 15-20m. Carb load & prep' },
+        { date: '2026-09-19', tags: [{ title: 'Shakeout', cls: 'badge-run' }], detail: '15m easy shakeout jog + 4 strides. Early sleep' },
+        { date: '2026-09-20', tags: [{ title: 'RACE DAY', cls: 'badge-race' }], detail: '🏁 2:15 HALF MARATHON (13.1 mi) Target 10:18/mi' }
     ];
 
     function renderOrcaCalendar() {
@@ -1279,22 +1283,27 @@
             const hasStrava = (stravaActs.length > 0);
 
             let cellClass = 'orca-cell';
-            let badgeText = item.badge;
-            let badgeClass = item.badgeClass || '';
-
             if (hasStrava) {
                 cellClass += ' strava-completed';
-                badgeText = 'STRAVA COMPLETED';
-                badgeClass = 'badge-strava-done';
             } else if (isPast) {
                 cellClass += ' past-week-cell';
-                badgeText = 'REST / COMPLETED';
             }
 
             const cell = document.createElement('div');
             cell.className = cellClass;
             cell.dataset.date = item.date;
 
+            // Render Multi-Workout Tags
+            let tagsHTML = '';
+            if (hasStrava) {
+                tagsHTML = `<span class="orca-badge badge-strava-done">STRAVA COMPLETED</span>`;
+            } else if (item.tags && item.tags.length > 0) {
+                tagsHTML = item.tags.map(t => `<span class="orca-badge ${t.cls}">${t.title}</span>`).join('');
+            } else {
+                tagsHTML = `<span class="orca-badge badge-recovery">REST / RECOVERY</span>`;
+            }
+
+            // Render Strava Actual Workouts Directly inside Grid Cell
             let stravaHTML = '';
             if (hasStrava) {
                 stravaHTML = stravaActs.map(a => {
@@ -1316,7 +1325,7 @@
             cell.innerHTML = `
                 <div>
                     <div class="orca-date">${monthDay}</div>
-                    <span class="orca-badge ${badgeClass}">${badgeText}</span>
+                    <div class="workout-tag-group">${tagsHTML}</div>
                     <div class="orca-detail">${item.detail}</div>
                     ${stravaHTML}
                 </div>
