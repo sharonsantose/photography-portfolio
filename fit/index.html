@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharon Santos — All Fitness & Garmin Control Center</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Google Fonts: EB Garamond & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            background: #080808 !important;
+            background-color: #080808 !important;
+            color: #f5f5f5 !important;
+            font-family: 'EB Garamond', Georgia, serif;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 16px;
+            background: #080808 !important;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sans {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .title {
+            font-size: clamp(34px, 5vw, 48px);
+            font-weight: 400;
+            margin-bottom: 6px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-style: italic;
+            color: #a3a3a3;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        /* Password Auth Screen */
+        .auth-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+        }
+
+        .auth-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            max-width: 340px;
+            padding: 32px 24px;
+            background: #121215;
+            border: 1px solid #27272a;
+            border-radius: 8px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 12px 18px;
+            background: #1a1a1e;
+            border: 1px solid #3f3f46;
+            border-radius: 4px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            text-align: center;
+            letter-spacing: 4px;
+            outline: none;
+        }
+
+        .password-input:focus {
+            border-color: #ffffff;
+        }
+
+        .unlock-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .unlock-btn:hover {
+            opacity: 0.9;
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 13px;
+            display: none;
+        }
+
+        /* Main Fitness App Content */
+        .fitness-content {
+            display: none;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #27272a;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header-title-box h1 {
+            font-size: 32px;
+            font-weight: 400;
+            color: #ffffff;
+        }
+
+        .header-title-box p {
+            font-size: 14px;
+            color: #a1a1aa;
+            font-style: italic;
+        }
+
+        .lock-btn {
+            padding: 8px 16px;
+            background: #18181b;
+            color: #f4f4f5;
+            border: 1px solid #27272a;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .lock-btn:hover {
+            background: #27272a;
+        }
+
+        /* Section Cards */
+        .card-box {
+            background: #121215;
+            border: 1px solid #27272a;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 36px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #27272a;
+            padding-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 400;
+            color: #ffffff;
+        }
+
+        .section-subtitle {
+            font-size: 12px;
+            color: #a1a1aa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Garmin Health Telemetry Banner */
+        .garmin-banner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .garmin-card {
+            background: #121215;
+            border: 1px solid #27272a;
+            border-radius: 8px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .garmin-card-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a1a1aa;
+            margin-bottom: 8px;
+        }
+
+        .garmin-card-val {
+            font-size: 28px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .garmin-card-unit {
+            font-size: 14px;
+            color: #a1a1aa;
+            font-weight: 400;
+        }
+
+        .garmin-card-sub {
+            font-size: 12px;
+            color: #71717a;
+            margin-top: 6px;
+        }
+
+        /* 30-Day Graphs Styles */
+        .steps-chart-container {
+            background: #121215;
+            border: 1px solid #27272a;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 36px;
+        }
+
+        .steps-chart-meta {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #27272a;
+            padding-bottom: 16px;
+        }
+
+        .steps-meta-val {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            display: block;
+        }
+
+        .steps-meta-label {
+            font-size: 11px;
+            color: #a1a1aa;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .steps-bar-wrapper {
+            position: relative;
+            height: 180px;
+            padding-top: 25px;
+        }
+
+        .steps-goal-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 45px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.3);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .steps-goal-label {
+            position: absolute;
+            right: 0;
+            top: -16px;
+            font-size: 10px;
+            color: #a1a1aa;
+            font-weight: 600;
+        }
+
+        .steps-bars-flex {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 100%;
+            gap: 4px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .step-bar-fill {
+            width: 100%;
+            max-width: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px 3px 0 0;
+            transition: height 0.4s ease, background 0.2s;
+            min-height: 3px;
+        }
+
+        .step-bar-col:hover .step-bar-fill {
+            background: #ffffff !important;
+        }
+
+        .step-bar-col.hit-goal .step-bar-fill {
+            background: #ffffff;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .step-bar-date {
+            font-size: 9px;
+            color: #71717a;
+            margin-top: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .step-bar-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #18181b;
+            border: 1px solid #3f3f46;
+            color: #ffffff;
+            font-size: 11px;
+            padding: 5px 9px;
+            border-radius: 4px;
+            white-space: nowrap;
+            display: none;
+            z-index: 10;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .step-bar-col:hover .step-bar-tooltip {
+            display: block;
+        }
+
+        /* 8-Week Orca Training Schedule Table */
+        .orca-calendar-wrap {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        .orca-grid {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(130px, 1fr));
+            gap: 12px;
+            min-width: 900px;
+        }
+
+        .orca-day-header {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a1a1aa;
+            text-align: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #27272a;
+        }
+
+        .orca-cell {
+            background: #141417;
+            border: 1px solid #27272a;
+            border-radius: 6px;
+            padding: 12px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .orca-cell.completed-workout {
+            border-color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        .orca-cell.strava-actual-cell {
+            border-color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        .orca-date {
+            font-size: 11px;
+            font-weight: 600;
+            color: #71717a;
+            margin-bottom: 4px;
+        }
+
+        .orca-badge {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 6px;
+            border-radius: 3px;
+            margin-bottom: 6px;
+            background: #27272a;
+            color: #ffffff;
+            width: fit-content;
+        }
+
+        .orca-detail {
+            font-size: 12px;
+            color: #f4f4f5;
+            line-height: 1.4;
+        }
+
+        .orca-check-wrap {
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: #a1a1aa;
+            cursor: pointer;
+        }
+
+        .orca-check-wrap input {
+            cursor: pointer;
+            accent-color: #ffffff;
+        }
+
+        /* Strava Overlay Badge inside Calendar */
+        .strava-overlay {
+            margin-top: 6px;
+            padding: 6px;
+            background: #18181b;
+            border: 1px solid #3f3f46;
+            border-radius: 4px;
+        }
+
+        .strava-overlay-tag {
+            font-size: 9px;
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .strava-overlay-tag a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .strava-overlay-detail {
+            font-size: 10.5px;
+            color: #d4d4d8;
+        }
+
+        /* Split Calculator & Gym Routines */
+        .flex-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .calc-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .calc-input-group label {
+            font-size: 12px;
+            color: #a1a1aa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .calc-input-group input {
+            padding: 10px 14px;
+            background: #18181b;
+            border: 1px solid #3f3f46;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+        }
+
+        .calc-input-group input:focus {
+            border-color: #ffffff;
+        }
+
+        .split-result-box {
+            padding: 16px;
+            background: #18181b;
+            border: 1px solid #3f3f46;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: #f4f4f5;
+            line-height: 1.6;
+        }
+
+        /* Tabs for Gym Switcher */
+        .gym-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #27272a;
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .gym-tab-btn {
+            padding: 6px 14px;
+            background: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 4px;
+            color: #a1a1aa;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .gym-tab-btn.active {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+            font-weight: 600;
+        }
+
+        .gym-routine-content {
+            font-size: 13px;
+            color: #e4e4e7;
+            line-height: 1.6;
+        }
+
+        .gym-routine-content ul {
+            padding-left: 20px;
+        }
+
+        .gym-routine-content li {
+            margin-bottom: 6px;
+        }
+
+        /* Navigation Bar */
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .nav-pill {
+            font-family: 'EB Garamond', Georgia, serif;
+            font-size: 15px;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 6px 16px;
+            border: 1px solid #3f3f46;
+            background: #141417;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-pill.active, .nav-pill:hover {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Auth Screen -->
+    <div class="auth-screen" id="authScreen">
+        <h1 class="title">Sharon Santos — Fitness Control Center</h1>
+        <p class="subtitle">Enter passcode to unlock Garmin telemetry & Orca Half Marathon plan</p>
+        
+        <form class="auth-box" id="authForm">
+            <input type="password" class="password-input" id="passwordInput" placeholder="••••" maxlength="8" autocomplete="off" autofocus>
+            <button type="submit" class="unlock-btn">Unlock All Fitness</button>
+            <div class="error-msg" id="errorMsg">Incorrect passcode. Try again.</div>
+        </form>
+
+        <div style="margin-top:28px;">
+            <div class="nav-links">
+                <a href="../index.html" class="nav-pill">Index</a>
+                <a href="../index.html#photography" class="nav-pill">Photography</a>
+                <a href="../index.html#writing" class="nav-pill">Writing</a>
+                <a href="../index.html#cinema" class="nav-pill">Cinema</a>
+                <a href="../index.html#strava" class="nav-pill">Strava</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main Fitness App Content -->
+    <div class="fitness-content" id="fitnessContent">
+
+        <div class="header-bar">
+            <div class="header-title-box">
+                <h1>⚡ All Fitness & Garmin Mainframe</h1>
+                <p>Live Garmin Telemetry · 8-Week Orca Half Marathon Plan · 30-Day Health Graphs</p>
+            </div>
+            <button class="lock-btn sans" id="lockBtn">🔒 Lock Screen</button>
+        </div>
+
+        <!-- Garmin Health Telemetry Banner -->
+        <div class="garmin-banner-grid sans">
+            <div class="garmin-card">
+                <div class="garmin-card-label">👟 Daily Steps</div>
+                <div class="garmin-card-val" id="garminSteps">12,985 <span class="garmin-card-unit">/ 15k</span></div>
+                <div class="garmin-card-sub">Auto-synced from Garmin Connect</div>
+            </div>
+
+            <div class="garmin-card">
+                <div class="garmin-card-label">😴 Sleep & Rest</div>
+                <div class="garmin-card-val" id="garminSleep">7.5 <span class="garmin-card-unit">hrs</span></div>
+                <div class="garmin-card-sub" id="garminSleepScore">Sleep Score: 85 / 100</div>
+            </div>
+
+            <div class="garmin-card">
+                <div class="garmin-card-label">❤️ Resting HR</div>
+                <div class="garmin-card-val" id="garminRhr">49 <span class="garmin-card-unit">bpm</span></div>
+                <div class="garmin-card-sub">Optimal Cardiovascular Baseline</div>
+            </div>
+
+            <div class="garmin-card">
+                <div class="garmin-card-label">⚡ Training Readiness</div>
+                <div class="garmin-card-val" id="garminReadiness">85 <span class="garmin-card-unit">%</span></div>
+                <div class="garmin-card-sub" id="garminReadinessSub" style="color:#ffffff;">Peak Recovery — Ready for Hard Work</div>
+            </div>
+        </div>
+
+        <!-- ALL 3 GARMIN 30-DAY HEALTH GRAPHS -->
+
+        <!-- 1. Monthly Daily Steps Graph -->
+        <div class="steps-chart-container">
+            <div class="section-header">
+                <h2 class="section-title">👟 Monthly Daily Steps Graph (Last 30 Days)</h2>
+                <span class="section-subtitle sans">Garmin 15k Daily Goal</span>
+            </div>
+
+            <div class="steps-chart-meta sans">
+                <div>
+                    <span class="steps-meta-val" id="stepsMonthTotal">345,120 steps</span>
+                    <span class="steps-meta-label">Total Steps (30 Days)</span>
+                </div>
+                <div>
+                    <span class="steps-meta-val" id="stepsMonthAvgVal">11,504 / day</span>
+                    <span class="steps-meta-label">Daily Avg</span>
+                </div>
+                <div>
+                    <span class="steps-meta-val" id="stepsGoalDays">24 / 30 days</span>
+                    <span class="steps-meta-label">Days Goal Hit</span>
+                </div>
+            </div>
+
+            <div class="steps-bar-wrapper">
+                <div class="steps-goal-line" id="stepsGoalLine">
+                    <span class="steps-goal-label sans">15k Goal</span>
+                </div>
+                <div class="steps-bars-flex" id="stepsBarsFlex"></div>
+            </div>
+        </div>
+
+        <!-- 2. Monthly Daily Sleep Score Graph -->
+        <div class="steps-chart-container">
+            <div class="section-header">
+                <h2 class="section-title">😴 Monthly Daily Sleep Score Graph (Last 30 Days)</h2>
+                <span class="section-subtitle sans">80 Goal (Optimal Rest)</span>
+            </div>
+
+            <div class="steps-chart-meta sans">
+                <div>
+                    <span class="steps-meta-val" id="sleepMonthAvgVal">81 / 100</span>
+                    <span class="steps-meta-label">30-Day Avg Score</span>
+                </div>
+                <div>
+                    <span class="steps-meta-val" id="sleepMonthBestVal">93 / 100</span>
+                    <span class="steps-meta-label">Best Sleep Score</span>
+                </div>
+                <div>
+                    <span class="steps-meta-val" id="sleepGoalDays">24 / 30 days</span>
+                    <span class="steps-meta-label">Optimal Rest Days (80+)</span>
+                </div>
+            </div>
+
+            <div class="steps-bar-wrapper">
+                <div class="steps-goal-line" id="sleepGoalLine" style="top:20%;">
+                    <span class="steps-goal-label sans">80 Goal</span>
+                </div>
+                <div class="steps-bars-flex" id="sleepBarsFlex"></div>
+            </div>
+        </div>
+
+        <!-- 3. Monthly Daily Active Calories Graph -->
+        <div class="steps-chart-container">
+            <div class="section-header">
+                <h2 class="section-title">🔥 Monthly Daily Active Calories Graph (Last 30 Days)</h2>
+                <span class="section-subtitle sans">500 kcal Active Burn Goal</span>
+            </div>
+
+            <div class="steps-chart-meta sans">
+                <div>
+                    <span class="steps-meta-val" id="calsMonthTotal">18,420 kcal</span>
+                    <span class="steps-meta-label">Total Active Burn (30 Days)</span>
+                </div>
+                <div>
+                    <span class="steps-meta-val" id="calsMonthAvgVal">614 kcal/day</span>
+                    <span class="steps-meta-label">Daily Avg Burn</span>
+                </div>
+                <div>
+                    <span class="steps-meta-val" id="calsGoalDays">22 / 30 days</span>
+                    <span class="steps-meta-label">Days Goal Met (500+ kcal)</span>
+                </div>
+            </div>
+
+            <div class="steps-bar-wrapper">
+                <div class="steps-goal-line" id="calsGoalLine">
+                    <span class="steps-goal-label sans">500 kcal Goal</span>
+                </div>
+                <div class="steps-bars-flex" id="calsBarsFlex"></div>
+            </div>
+        </div>
+
+
+        <!-- 8-WEEK ORCA HALF MARATHON TRAINING CALENDAR -->
+        <div class="card-box">
+            <div class="section-header">
+                <h2 class="section-title">🏃 8-Week Orca Half Marathon Training Plan</h2>
+                <span class="section-subtitle sans">Aug 10 – Oct 4, 2026 · Target 1:54:30 (8:44/mi)</span>
+            </div>
+
+            <div style="font-size:14px; color:#a1a1aa; margin-bottom:20px; line-height:1.6;">
+                Structured 8-week half-marathon progression building up to race day on <strong>Sunday, October 4, 2026</strong>. Auto-synced with live Strava activity polylines and Garmin heart rate telemetry.
+            </div>
+
+            <div class="orca-calendar-wrap">
+                <div class="orca-grid" id="orcaGrid">
+                    <div class="orca-day-header">Mon (Cross/Rest)</div>
+                    <div class="orca-day-header">Tue (Intervals/Tempo)</div>
+                    <div class="orca-day-header">Wed (Easy/Strength)</div>
+                    <div class="orca-day-header">Thu (Tempo/Speed)</div>
+                    <div class="orca-day-header">Fri (Rest/Mobility)</div>
+                    <div class="orca-day-header">Sat (Long Run)</div>
+                    <div class="orca-day-header">Sun (Recovery Hike)</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PACE CALCULATOR & GYM ROUTINES -->
+        <div class="flex-grid">
+
+            <!-- Split Calculator -->
+            <div class="card-box">
+                <div class="section-header">
+                    <h2 class="section-title">⏱️ Target Pace & Split Calculator</h2>
+                    <span class="section-subtitle sans">Half Marathon</span>
+                </div>
+
+                <div class="calc-input-group sans">
+                    <label>Target Finish Time (HH:MM:SS)</label>
+                    <input type="text" id="targetTimeInput" value="01:54:30">
+                </div>
+
+                <div class="split-result-box" id="splitResultBox">
+                    <strong>Target Pace:</strong> 8:44 / mi<br>
+                    <strong>5K Split:</strong> 27:08<br>
+                    <strong>10K Split:</strong> 54:16<br>
+                    <strong>15K Split:</strong> 1:21:24<br>
+                    <strong>20K Split:</strong> 1:48:32
+                </div>
+            </div>
+
+            <!-- Gym Routine Switcher -->
+            <div class="card-box">
+                <div class="section-header">
+                    <h2 class="section-title">🏋️ Strength & Gym Split Routines</h2>
+                    <span class="section-subtitle sans">Weekly Rotation</span>
+                </div>
+
+                <div class="gym-tabs sans">
+                    <button class="gym-tab-btn active" onclick="showGymTab('upper')">Upper Body</button>
+                    <button class="gym-tab-btn" onclick="showGymTab('lower')">Lower Body</button>
+                    <button class="gym-tab-btn" onclick="showGymTab('core')">Core Stability</button>
+                    <button class="gym-tab-btn" onclick="showGymTab('mobility')">Mobility</button>
+                </div>
+
+                <div class="gym-routine-content" id="gymRoutineContent">
+                    <strong>Upper Body Push / Pull Split:</strong>
+                    <ul style="margin-top:8px;">
+                        <li>Incline Dumbbell Bench Press — 4 × 10 reps</li>
+                        <li>Single-Arm Cable Rows — 4 × 12 reps</li>
+                        <li>Overhead Dumbbell Shoulder Press — 3 × 10 reps</li>
+                        <li>Lat Pulldowns — 3 × 12 reps</li>
+                        <li>Face Pulls & Rear Delt Flyes — 3 × 15 reps</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Footer Navigation Links -->
+        <div style="margin-top:60px; text-align:center; padding-top:20px; border-top:1px solid #27272a;">
+            <div class="nav-links">
+                <a href="../index.html" class="nav-pill">Index</a>
+                <a href="../index.html#photography" class="nav-pill">Photography</a>
+                <a href="../index.html#writing" class="nav-pill">Writing</a>
+                <a href="../index.html#cinema" class="nav-pill">Cinema</a>
+                <a href="../index.html#strava" class="nav-pill">Strava</a>
+                <a href="index.html" class="nav-pill active">Fit (All Fitness)</a>
+            </div>
+            <p style="margin-top:14px; font-size:13px; color:#71717a; font-style:italic;">
+                Sharon Santos · All Fitness Control Center · sharonsantos.me/fit
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    // ── PASSCODE & UNLOCK LOGIC ──────────────────────────────────────────
+    const PASS_HASH = "e4782cfc2b471cd4e24686f692188416d8a313cccb62679dc08c348447c2507b"; // 0427
+
+    async function sha256(str) {
+        const buf = new TextEncoder().encode(str);
+        const hash = await crypto.subtle.digest('SHA-256', buf);
+        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+
+    async function tryUnlock(e) {
+        if (e) e.preventDefault();
+        const inputEl = document.getElementById('passwordInput');
+        const errEl = document.getElementById('errorMsg');
+        const val = inputEl ? inputEl.value.trim() : '';
+        if (!val) return;
+        
+        const h = await sha256(val);
+        if (h === PASS_HASH || val === '0427') {
+            sessionStorage.setItem('sharon_fit_unlocked', 'true');
+            localStorage.setItem('sharon_fit_unlocked', 'true');
+            sessionStorage.setItem('todoUnlocked', 'true');
+            localStorage.setItem('todoUnlocked', 'true');
+            document.getElementById('authScreen').style.display = 'none';
+            document.getElementById('fitnessContent').style.display = 'block';
+            if (errEl) errEl.style.display = 'none';
+            initFitnessPage();
+        } else {
+            if (errEl) errEl.style.display = 'block';
+            if (inputEl) { inputEl.value = ''; inputEl.focus(); }
+        }
+    }
+
+    function lockPage() {
+        sessionStorage.removeItem('sharon_fit_unlocked');
+        localStorage.removeItem('sharon_fit_unlocked');
+        document.getElementById('fitnessContent').style.display = 'none';
+        document.getElementById('authScreen').style.display = 'flex';
+        const inputEl = document.getElementById('passwordInput');
+        if (inputEl) { inputEl.value = ''; inputEl.focus(); }
+    }
+
+    // ── GARMIN 30-DAY GRAPHS LOGIC ──────────────────────────────────────
+    function get30DayHistoryDates(historyObj) {
+        const allDates = Object.keys(historyObj || {}).sort();
+        if (allDates.length === 0) return [];
+        return allDates.slice(-30);
+    }
+
+    function renderMonthlyStepsChart(stepsHistory) {
+        if (!stepsHistory || typeof stepsHistory !== 'object') return;
+        const flexContainer = document.getElementById('stepsBarsFlex');
+        if (!flexContainer) return;
+        flexContainer.innerHTML = '';
+
+        const dates = get30DayHistoryDates(stepsHistory);
+        if (dates.length === 0) return;
+
+        let totalSteps = 0;
+        let goalDaysCount = 0;
+        let maxSteps = 20000;
+
+        dates.forEach(d => {
+            const item = stepsHistory[d];
+            const st = typeof item === 'object' ? (item.steps || 0) : item;
+            if (st > maxSteps) maxSteps = st;
+        });
+
+        dates.forEach(d => {
+            const item = stepsHistory[d];
+            const st = typeof item === 'object' ? (item.steps || 0) : item;
+            const goal = typeof item === 'object' ? (item.goal || 15000) : 15000;
+
+            totalSteps += st;
+            if (st >= goal) goalDaysCount++;
+
+            const pctHeight = Math.max(4, Math.min(100, Math.round((st / maxSteps) * 100)));
+            const dateParts = d.split('-');
+            const monthDayStr = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
+            const hitGoal = (st >= goal);
+
+            const col = document.createElement('div');
+            col.className = 'step-bar-col' + (hitGoal ? ' hit-goal' : '');
+
+            const tooltip = document.createElement('div');
+            tooltip.className = 'step-bar-tooltip sans';
+            tooltip.textContent = `${d}: ${st.toLocaleString()} steps ${hitGoal ? '🎉' : ''}`;
+
+            const fill = document.createElement('div');
+            fill.className = 'step-bar-fill';
+            fill.style.height = `${pctHeight}%`;
+
+            const dateLbl = document.createElement('div');
+            dateLbl.className = 'step-bar-date';
+            dateLbl.textContent = monthDayStr;
+
+            col.appendChild(tooltip);
+            col.appendChild(fill);
+            col.appendChild(dateLbl);
+            flexContainer.appendChild(col);
+        });
+
+        const totalEl = document.getElementById('stepsMonthTotal');
+        if (totalEl) totalEl.textContent = `${totalSteps.toLocaleString()} steps`;
+
+        const avgEl = document.getElementById('stepsMonthAvgVal');
+        if (avgEl) avgEl.textContent = `${Math.round(totalSteps / dates.length).toLocaleString()} / day`;
+
+        const goalDaysEl = document.getElementById('stepsGoalDays');
+        if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
+    }
+
+    function renderMonthlySleepChart(sleepHistory) {
+        if (!sleepHistory || typeof sleepHistory !== 'object') return;
+        const flexContainer = document.getElementById('sleepBarsFlex');
+        if (!flexContainer) return;
+        flexContainer.innerHTML = '';
+
+        const dates = get30DayHistoryDates(sleepHistory);
+        if (dates.length === 0) return;
+
+        let totalScore = 0;
+        let bestScore = 0;
+        let goalDaysCount = 0;
+
+        dates.forEach(d => {
+            const item = sleepHistory[d];
+            const sc = typeof item === 'object' ? (item.score || 80) : item;
+            const hrs = typeof item === 'object' ? (item.hours || 7.5) : 7.5;
+
+            totalScore += sc;
+            if (sc > bestScore) bestScore = sc;
+            if (sc >= 80) goalDaysCount++;
+
+            const pctHeight = Math.max(6, Math.min(100, sc));
+            const dateParts = d.split('-');
+            const monthDayStr = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
+            const hitGoal = (sc >= 80);
+
+            const col = document.createElement('div');
+            col.className = 'step-bar-col' + (hitGoal ? ' hit-goal' : '');
+
+            const tooltip = document.createElement('div');
+            tooltip.className = 'step-bar-tooltip sans';
+            tooltip.textContent = `${d}: Score ${sc}/100 (${hrs}h) ${hitGoal ? '😴' : ''}`;
+
+            const fill = document.createElement('div');
+            fill.className = 'step-bar-fill';
+            fill.style.height = `${pctHeight}%`;
+
+            const dateLbl = document.createElement('div');
+            dateLbl.className = 'step-bar-date';
+            dateLbl.textContent = monthDayStr;
+
+            col.appendChild(tooltip);
+            col.appendChild(fill);
+            col.appendChild(dateLbl);
+            flexContainer.appendChild(col);
+        });
+
+        const avgEl = document.getElementById('sleepMonthAvgVal');
+        if (avgEl) avgEl.textContent = `${Math.round(totalScore / dates.length)} / 100`;
+
+        const bestEl = document.getElementById('sleepMonthBestVal');
+        if (bestEl) bestEl.textContent = `${bestScore} / 100`;
+
+        const goalDaysEl = document.getElementById('sleepGoalDays');
+        if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
+    }
+
+    function renderMonthlyCaloriesChart(stepsHistory, activitiesByDate) {
+        const flexContainer = document.getElementById('calsBarsFlex');
+        if (!flexContainer || !stepsHistory) return;
+        flexContainer.innerHTML = '';
+
+        const dates = get30DayHistoryDates(stepsHistory);
+        if (dates.length === 0) return;
+
+        let totalCals = 0;
+        let goalDaysCount = 0;
+        let maxCals = 800;
+
+        const calsMap = {};
+        dates.forEach(d => {
+            const item = stepsHistory[d];
+            const st = typeof item === 'object' ? (item.steps || 0) : item;
+            let actCals = 0;
+            if (activitiesByDate && activitiesByDate[d]) {
+                activitiesByDate[d].forEach(act => { actCals += (act.calories || 0); });
+            }
+            const stepCals = Math.round(st * 0.045);
+            const val = Math.max(actCals, stepCals);
+            calsMap[d] = val;
+            if (val > maxCals) maxCals = val;
+        });
+
+        dates.forEach(d => {
+            const cals = calsMap[d] || 0;
+            totalCals += cals;
+            if (cals >= 500) goalDaysCount++;
+
+            const pctHeight = Math.max(4, Math.min(100, Math.round((cals / maxCals) * 100)));
+            const dateParts = d.split('-');
+            const monthDayStr = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
+            const hitGoal = (cals >= 500);
+
+            const col = document.createElement('div');
+            col.className = 'step-bar-col' + (hitGoal ? ' hit-goal' : '');
+
+            const tooltip = document.createElement('div');
+            tooltip.className = 'step-bar-tooltip sans';
+            tooltip.textContent = `${d}: ${cals.toLocaleString()} kcal ${hitGoal ? '🔥' : ''}`;
+
+            const fill = document.createElement('div');
+            fill.className = 'step-bar-fill';
+            fill.style.height = `${pctHeight}%`;
+
+            const dateLbl = document.createElement('div');
+            dateLbl.className = 'step-bar-date';
+            dateLbl.textContent = monthDayStr;
+
+            col.appendChild(tooltip);
+            col.appendChild(fill);
+            col.appendChild(dateLbl);
+            flexContainer.appendChild(col);
+        });
+
+        const totalEl = document.getElementById('calsMonthTotal');
+        if (totalEl) totalEl.textContent = `${totalCals.toLocaleString()} kcal`;
+
+        const avgEl = document.getElementById('calsMonthAvgVal');
+        if (avgEl) avgEl.textContent = `${Math.round(totalCals / dates.length).toLocaleString()} kcal/day`;
+
+        const goalDaysEl = document.getElementById('calsGoalDays');
+        if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
+    }
+
+    // ── FETCH GARMIN & STRAVA DATA ──────────────────────────────────────
+    async function loadGarminData() {
+        const candidatePaths = [
+            '../private/garmin_data.json',
+            '/private/garmin_data.json',
+            './private/garmin_data.json',
+            'private/garmin_data.json',
+            'https://sharonsantos.me/private/garmin_data.json'
+        ];
+
+        let data = null;
+        for (const path of candidatePaths) {
+            try {
+                const res = await fetch(path + '?t=' + Date.now());
+                if (res.ok) {
+                    data = await res.json();
+                    break;
+                }
+            } catch (e) {}
+        }
+
+        if (data) {
+            const stats = data.stats || {};
+            let stepsVal = stats.steps;
+            if (!stepsVal && data.steps_history) {
+                const dates = Object.keys(data.steps_history).sort();
+                if (dates.length > 0) {
+                    const lastItem = data.steps_history[dates[dates.length - 1]];
+                    stepsVal = typeof lastItem === 'object' ? lastItem.steps : lastItem;
+                }
+            }
+            if (stepsVal) {
+                document.getElementById('garminSteps').innerHTML = `${stepsVal.toLocaleString()} <span class="garmin-card-unit">/ 15k</span>`;
+            }
+
+            if (stats.sleep_hours || stats.sleep_score) {
+                const hrs = stats.sleep_hours || 7.5;
+                const sc = stats.sleep_score || 85;
+                document.getElementById('garminSleep').innerHTML = `${hrs} <span class="garmin-card-unit">hrs</span>`;
+                document.getElementById('garminSleepScore').textContent = `Sleep Score: ${sc} / 100`;
+            }
+
+            if (stats.resting_hr) {
+                document.getElementById('garminRhr').innerHTML = `${stats.resting_hr} <span class="garmin-card-unit">bpm</span>`;
+            }
+
+            if (data.steps_history) renderMonthlyStepsChart(data.steps_history);
+            if (data.sleep_history) renderMonthlySleepChart(data.sleep_history);
+            if (data.steps_history) renderMonthlyCaloriesChart(data.steps_history, data.activities_by_date);
+        }
+    }
+
+    // ── ORCA CALENDAR RENDER ────────────────────────────────────────────
+    const ORCA_PLAN = [
+        // Week 1
+        { date: '2026-08-10', badge: 'Cross', detail: '30m Mobility & Core' },
+        { date: '2026-08-11', badge: 'Speed', detail: '4 mi (8 × 400m @ 7:50/mi)' },
+        { date: '2026-08-12', badge: 'Easy', detail: '3.5 mi Zone 2 HR' },
+        { date: '2026-08-13', badge: 'Tempo', detail: '4 mi (2 mi @ 8:30/mi)' },
+        { date: '2026-08-14', badge: 'Rest', detail: 'Stretching & Hydration' },
+        { date: '2026-08-15', badge: 'Long Run', detail: '6 mi Steady Long Run' },
+        { date: '2026-08-16', badge: 'Recovery', detail: '45m Hike & Walk' },
+        // Week 2
+        { date: '2026-08-17', badge: 'Cross', detail: 'Upper Body Gym Split' },
+        { date: '2026-08-18', badge: 'Speed', detail: '4.5 mi (5 × 800m @ 8:00/mi)' },
+        { date: '2026-08-19', badge: 'Easy', detail: '4 mi Zone 2 HR' },
+        { date: '2026-08-20', badge: 'Tempo', detail: '4.5 mi (3 mi @ 8:30/mi)' },
+        { date: '2026-08-21', badge: 'Rest', detail: 'Mobility & Foam Roll' },
+        { date: '2026-08-22', badge: 'Long Run', detail: '7 mi Progression Run' },
+        { date: '2026-08-23', badge: 'Recovery', detail: '60m Active Walk' },
+        // Week 3
+        { date: '2026-08-24', badge: 'Cross', detail: 'Lower Body Gym Split' },
+        { date: '2026-08-25', badge: 'Speed', detail: '5 mi (6 × 800m @ 7:55/mi)' },
+        { date: '2026-08-26', badge: 'Easy', detail: '4 mi Zone 2 Recovery' },
+        { date: '2026-08-27', badge: 'Tempo', detail: '5 mi (3.5 mi @ 8:25/mi)' },
+        { date: '2026-08-28', badge: 'Rest', detail: 'Full Body Mobility' },
+        { date: '2026-08-29', badge: 'Long Run', detail: '8.5 mi Endurance Run' },
+        { date: '2026-08-30', badge: 'Recovery', detail: '60m Easy Walk' },
+        // Week 4
+        { date: '2026-08-31', badge: 'Cross', detail: 'Core & Upper Gym Split' },
+        { date: '2026-09-01', badge: 'Speed', detail: '5 mi (4 × 1000m @ 8:00/mi)' },
+        { date: '2026-09-02', badge: 'Easy', detail: '4.5 mi Zone 2 HR' },
+        { date: '2026-09-03', badge: 'Tempo', detail: '5.5 mi (4 mi @ 8:20/mi)' },
+        { date: '2026-09-04', badge: 'Rest', detail: 'Rest & Sauna' },
+        { date: '2026-09-05', badge: 'Long Run', detail: '10 mi Peak Long Run' },
+        { date: '2026-09-06', badge: 'Recovery', detail: '45m Hike' },
+        // Week 5
+        { date: '2026-09-07', badge: 'Cross', detail: 'Strength & Core' },
+        { date: '2026-09-08', badge: 'Speed', detail: '5 mi (6 × 800m @ 7:50/mi)' },
+        { date: '2026-09-09', badge: 'Easy', detail: '4 mi Zone 2 Run' },
+        { date: '2026-09-10', badge: 'Tempo', detail: '6 mi (4.5 mi @ 8:20/mi)' },
+        { date: '2026-09-11', badge: 'Rest', detail: 'Stretching & Hydration' },
+        { date: '2026-09-12', badge: 'Long Run', detail: '11 mi Key Race Simulation' },
+        { date: '2026-09-13', badge: 'Recovery', detail: '60m Walk' },
+        // Week 6
+        { date: '2026-09-14', badge: 'Cross', detail: 'Upper Body Gym' },
+        { date: '2026-09-15', badge: 'Speed', detail: '5.5 mi (5 × 1000m @ 7:55/mi)' },
+        { date: '2026-09-16', badge: 'Easy', detail: '4.5 mi Zone 2' },
+        { date: '2026-09-17', badge: 'Tempo', detail: '6 mi (5 mi @ 8:15/mi)' },
+        { date: '2026-09-18', badge: 'Rest', detail: 'Mobility & Recovery' },
+        { date: '2026-09-19', badge: 'Long Run', detail: '12 mi Max Long Run' },
+        { date: '2026-09-20', badge: 'Recovery', detail: '45m Light Walk' },
+        // Week 7 (Taper 1)
+        { date: '2026-09-21', badge: 'Cross', detail: 'Light Core Split' },
+        { date: '2026-09-22', badge: 'Speed', detail: '4.5 mi (4 × 800m @ 8:00/mi)' },
+        { date: '2026-09-23', badge: 'Easy', detail: '4 mi Zone 2' },
+        { date: '2026-09-24', badge: 'Tempo', detail: '4 mi (2.5 mi @ 8:25/mi)' },
+        { date: '2026-09-25', badge: 'Rest', detail: 'Hydration & Sleep' },
+        { date: '2026-09-26', badge: 'Long Run', detail: '8 mi Taper Run' },
+        { date: '2026-09-27', badge: 'Recovery', detail: '30m Walk' },
+        // Week 8 (Race Week!)
+        { date: '2026-09-28', badge: 'Cross', detail: 'Light Stretching' },
+        { date: '2026-09-29', badge: 'Easy', detail: '3 mi Shakeout + 4 Strides' },
+        { date: '2026-09-30', badge: 'Rest', detail: 'Carb Loading & Hydration' },
+        { date: '2026-10-01', badge: 'Shakeout', detail: '2 mi Easy Jog' },
+        { date: '2026-10-02', badge: 'Rest', detail: 'Gear Check & Sleep 9h' },
+        { date: '2026-10-03', badge: 'Rest', detail: 'Bib Pickup & Rest' },
+        { date: '2026-10-04', badge: 'RACE DAY', detail: '🏁 Orca Half Marathon (13.1 mi)' }
+    ];
+
+    function renderOrcaCalendar() {
+        const grid = document.getElementById('orcaGrid');
+        if (!grid) return;
+
+        const savedChecks = JSON.parse(localStorage.getItem('orca_checks') || '{}');
+
+        ORCA_PLAN.forEach(item => {
+            const dateParts = item.date.split('-');
+            const monthDay = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
+            const isChecked = !!savedChecks[item.date];
+
+            const cell = document.createElement('div');
+            cell.className = 'orca-cell' + (isChecked ? ' completed-workout' : '');
+            cell.dataset.date = item.date;
+
+            cell.innerHTML = `
+                <div>
+                    <div class="orca-date">${monthDay}</div>
+                    <span class="orca-badge">${item.badge}</span>
+                    <div class="orca-detail">${item.detail}</div>
+                </div>
+                <label class="orca-check-wrap sans">
+                    <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleOrcaCheck('${item.date}', this.checked)">
+                    <span>${isChecked ? 'Done ✓' : 'Mark Done'}</span>
+                </label>
+            `;
+
+            grid.appendChild(cell);
+        });
+    }
+
+    function toggleOrcaCheck(dateStr, isChecked) {
+        const savedChecks = JSON.parse(localStorage.getItem('orca_checks') || '{}');
+        savedChecks[dateStr] = isChecked;
+        localStorage.setItem('orca_checks', JSON.stringify(savedChecks));
+
+        const cell = document.querySelector(`.orca-cell[data-date="${dateStr}"]`);
+        if (cell) {
+            if (isChecked) cell.classList.add('completed-workout');
+            else cell.classList.remove('completed-workout');
+        }
+    }
+
+    // ── GYM ROUTINES TAB SWITCHER ──────────────────────────────────────
+    const GYM_ROUTINES = {
+        upper: `<strong>Upper Body Push / Pull Split:</strong><ul style="margin-top:8px;"><li>Incline Dumbbell Bench Press — 4 × 10 reps</li><li>Single-Arm Cable Rows — 4 × 12 reps</li><li>Overhead Dumbbell Shoulder Press — 3 × 10 reps</li><li>Lat Pulldowns — 3 × 12 reps</li><li>Face Pulls & Rear Delt Flyes — 3 × 15 reps</li></ul>`,
+        lower: `<strong>Lower Body Quad & Posterior Chain Split:</strong><ul style="margin-top:8px;"><li>Barbell Back Squats — 4 × 8 reps</li><li>Romanian Deadlifts (RDLs) — 4 × 10 reps</li><li>Walking Dumbbell Lunges — 3 × 12 reps/leg</li><li>Hamstring Curl Machine — 3 × 12 reps</li><li>Standing Calf Raises — 4 × 15 reps</li></ul>`,
+        core: `<strong>Core & Anti-Rotation Stability Routine:</strong><ul style="margin-top:8px;"><li>Weighted Pallof Press — 3 × 12 reps/side</li><li>Hanging Leg Raises — 3 × 12 reps</li><li>Ab Wheel Rollouts — 3 × 10 reps</li><li>Side Planks with Hip Dips — 3 × 45 sec/side</li><li>Farmers Carries — 4 × 50 yards</li></ul>`,
+        mobility: `<strong>Mobility & Joint Health Recovery:</strong><ul style="margin-top:8px;"><li>90/90 Hip Swivels — 3 × 10 reps</li><li>Thoracic Spine Foam Rolling & Extension — 5 mins</li><li>Ankle Mobility & Calf Wall Stretch — 3 × 45 sec</li><li>Hamstring PNF Stretching — 3 × 30 sec</li><li>Couch Stretch (Hip Flexors) — 3 × 60 sec/side</li></ul>`
+    };
+
+    function showGymTab(tabKey) {
+        document.querySelectorAll('.gym-tab-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        document.getElementById('gymRoutineContent').innerHTML = GYM_ROUTINES[tabKey] || GYM_ROUTINES['upper'];
+    }
+
+    // ── INITIALIZE PAGE ────────────────────────────────────────────────
+    function initFitnessPage() {
+        loadGarminData();
+        renderOrcaCalendar();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const unlockBtn = document.getElementById('authForm');
+        if (unlockBtn) unlockBtn.addEventListener('submit', tryUnlock);
+
+        const lockBtn = document.getElementById('lockBtn');
+        if (lockBtn) lockBtn.addEventListener('click', lockPage);
+
+        const passInput = document.getElementById('passwordInput');
+        if (passInput) passInput.focus();
+
+        const isUnlocked = sessionStorage.getItem('sharon_fit_unlocked') === 'true' ||
+                           localStorage.getItem('sharon_fit_unlocked') === 'true' ||
+                           sessionStorage.getItem('todoUnlocked') === 'true' ||
+                           localStorage.getItem('todoUnlocked') === 'true';
+
+        if (isUnlocked) {
+            document.getElementById('authScreen').style.display = 'none';
+            document.getElementById('fitnessContent').style.display = 'block';
+            initFitnessPage();
+        }
+    });
+</script>
+
+</body>
+</html>
