@@ -235,7 +235,8 @@
     },
     "2026-08-07": {
       "garmin_steps": false,
-      "garmin_calories": false
+      "garmin_calories": false,
+      "read": true
     }
   },
   "commute": {},
