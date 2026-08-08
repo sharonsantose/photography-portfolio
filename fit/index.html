@@ -818,6 +818,79 @@
         </div>
 
 
+        <!-- WEEKLY WORKOUT MATRIX TABLE -->
+        <div class="card-box">
+            <div class="section-header">
+                <h2 class="section-title">📅 Weekly Workout Routine Matrix</h2>
+                <span class="section-subtitle sans">Standard Weekly Training Pattern</span>
+            </div>
+
+            <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; text-align:left; font-family:'Inter', sans-serif; font-size:13px;" class="sans">
+                    <thead>
+                        <tr style="border-bottom:1px solid #27272a; color:#a1a1aa; text-transform:uppercase; font-size:11px; letter-spacing:1px;">
+                            <th style="padding:10px; width:12%;">Day</th>
+                            <th style="padding:10px; width:24%;">Primary AM Workout</th>
+                            <th style="padding:10px; width:22%;">Secondary PM Workout</th>
+                            <th style="padding:10px; width:24%;">Focus & Target Effort</th>
+                            <th style="padding:10px; width:18%;">Workout Tags</th>
+                        </tr>
+                    </thead>
+                    <tbody style="color:#f4f4f5; line-height:1.5;">
+                        <tr style="border-bottom:1px solid #1f1f23; background:#141417;">
+                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Monday</td>
+                            <td style="padding:12px 10px;">🏃 Run 3-4 mi Easy</td>
+                            <td style="padding:12px 10px;">🏊 Swim 30 min Easy</td>
+                            <td style="padding:12px 10px; color:#a1a1aa;">Aerobic recovery base</td>
+                            <td style="padding:12px 10px;"><span class="orca-badge badge-run">RUN</span> <span class="orca-badge badge-swim">SWIM</span></td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #1f1f23; background:#0f0f12;">
+                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Tuesday</td>
+                            <td style="padding:12px 10px;">🏋️ Strength Session A + Row 10m</td>
+                            <td style="padding:12px 10px;">🚴 Outdoor Bike 60 min Easy</td>
+                            <td style="padding:12px 10px; color:#a1a1aa;">Lower/Upper Strength (Smith Squats, RDLs)</td>
+                            <td style="padding:12px 10px;"><span class="orca-badge badge-strength">STRENGTH A</span> <span class="orca-badge badge-bike">BIKE</span></td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #1f1f23; background:#141417;">
+                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Wednesday</td>
+                            <td style="padding:12px 10px;">🏃 Intervals / Tempo Run (3-5 mi)</td>
+                            <td style="padding:12px 10px;">🏊 Swim 25 min Easy</td>
+                            <td style="padding:12px 10px; color:#a1a1aa;">Speed & Goal Pace Stamina (10:15-10:25/mi)</td>
+                            <td style="padding:12px 10px;"><span class="orca-badge badge-run">INTERVALS</span> <span class="orca-badge badge-swim">SWIM</span></td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #1f1f23; background:#0f0f12;">
+                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Thursday</td>
+                            <td style="padding:12px 10px;">🏋️ Strength Session B + StairMaster</td>
+                            <td style="padding:12px 10px;">🚴 Outdoor Bike 45-60 min Easy</td>
+                            <td style="padding:12px 10px; color:#a1a1aa;">Hip Thrusts, Lunges & Posterior Chain</td>
+                            <td style="padding:12px 10px;"><span class="orca-badge badge-strength">STRENGTH B</span> <span class="orca-badge badge-bike">BIKE</span></td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #1f1f23; background:#141417;">
+                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Friday</td>
+                            <td style="padding:12px 10px;">🏃 Run 3-4 mi Easy + 4 Strides</td>
+                            <td style="padding:12px 10px;">🏊 Swim 20-25 min Easy</td>
+                            <td style="padding:12px 10px; color:#a1a1aa;">Pre-long run leg prime & shakeout</td>
+                            <td style="padding:12px 10px;"><span class="orca-badge badge-run">RUN</span> <span class="orca-badge badge-swim">SWIM</span></td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #1f1f23; background:#0f0f12;">
+                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Saturday</td>
+                            <td style="padding:12px 10px;">🏃 Long Run (6-11 mi @ 11:15-11:45/mi)</td>
+                            <td style="padding:12px 10px;">🏋️ Strength Session C (Upper Body)</td>
+                            <td style="padding:12px 10px; color:#a1a1aa;">Key Endurance Run & Upper Body Lift</td>
+                            <td style="padding:12px 10px;"><span class="orca-badge badge-run">LONG RUN</span> <span class="orca-badge badge-strength">STRENGTH C</span></td>
+                        </tr>
+                        <tr style="background:#141417;">
+                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Sunday</td>
+                            <td style="padding:12px 10px;">🚴 Outdoor Ride 90-120 min Easy</td>
+                            <td style="padding:12px 10px;">🏊 Swim 20 min Restorative</td>
+                            <td style="padding:12px 10px; color:#a1a1aa;">Active recovery & low-impact aerobic flushing</td>
+                            <td style="padding:12px 10px;"><span class="orca-badge badge-bike">BIKE</span> <span class="orca-badge badge-swim">SWIM</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <!-- 7-WEEK HALF MARATHON TRAINING PLAN -->
         <div class="card-box">
             <div class="section-header">
@@ -1438,14 +1511,10 @@
             let stravaHTML = '';
             if (hasStrava) {
                 stravaHTML = stravaActs.map(a => {
-                    const link = a.strava_id
-                        ? `<a href="https://www.strava.com/activities/${a.strava_id}" target="_blank" rel="noopener">↗ Strava</a>`
-                        : '';
                     return `
                         <div class="strava-cell-block">
                             <div class="strava-cell-title">
                                 <span>${a.emoji || '⚡'} ${a.sport ? a.sport.toUpperCase() : 'WORKOUT'}</span>
-                                ${link}
                             </div>
                             <div class="strava-cell-detail">${a.name || ''} ${a.detail ? '— ' + a.detail : ''}</div>
                         </div>
