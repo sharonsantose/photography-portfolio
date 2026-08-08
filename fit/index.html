@@ -40,7 +40,7 @@
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1240px;
             margin: 0 auto;
         }
 
@@ -59,7 +59,7 @@
         .subtitle {
             font-size: 18px;
             font-style: italic;
-            color: #a3a3a3;
+            color: #a1a1aa;
             margin-bottom: 28px;
             text-align: center;
         }
@@ -90,7 +90,7 @@
         .password-input {
             width: 100%;
             padding: 12px 18px;
-            background: #1a1a1e;
+            background: #18181b;
             border: 1px solid #3f3f46;
             border-radius: 4px;
             color: #ffffff;
@@ -291,7 +291,7 @@
             left: 0;
             right: 0;
             top: 45px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.3);
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
             z-index: 1;
             pointer-events: none;
         }
@@ -340,8 +340,8 @@
         }
 
         .step-bar-col.hit-goal .step-bar-fill {
-            background: #ffffff;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+            background: #10b981;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
         }
 
         .step-bar-date {
@@ -373,7 +373,7 @@
             display: block;
         }
 
-        /* 8-Week Orca Training Schedule Table */
+        /* 10-Week Seamless Orca Training Schedule Table (Includes Past 2 Weeks) */
         .orca-calendar-wrap {
             overflow-x: auto;
             margin-top: 20px;
@@ -381,9 +381,9 @@
 
         .orca-grid {
             display: grid;
-            grid-template-columns: repeat(7, minmax(130px, 1fr));
-            gap: 12px;
-            min-width: 900px;
+            grid-template-columns: repeat(7, minmax(135px, 1fr));
+            gap: 10px;
+            min-width: 960px;
         }
 
         .orca-day-header {
@@ -402,21 +402,23 @@
             border: 1px solid #27272a;
             border-radius: 6px;
             padding: 12px;
-            min-height: 120px;
+            min-height: 125px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .orca-cell.past-week-cell {
+            opacity: 0.85;
+            background: #0d0d0f;
+            border-color: #1f1f23;
         }
 
         .orca-cell.completed-workout {
-            border-color: #ffffff !important;
-            background: rgba(255, 255, 255, 0.05) !important;
-        }
-
-        .orca-cell.strava-actual-cell {
-            border-color: #ffffff !important;
-            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: #10b981 !important;
+            background: rgba(16, 185, 129, 0.08) !important;
         }
 
         .orca-date {
@@ -440,25 +442,43 @@
             width: fit-content;
         }
 
+        .orca-badge.badge-run { background: #d9583f; color: #fff; }
+        .orca-badge.badge-swim { background: #2679a8; color: #fff; }
+        .orca-badge.badge-strength { background: #74569b; color: #fff; }
+        .orca-badge.badge-recovery { background: #047857; color: #fff; }
+        .orca-badge.badge-race { background: #dc2626; color: #fff; }
+
         .orca-detail {
             font-size: 12px;
             color: #f4f4f5;
             line-height: 1.4;
         }
 
+        /* Seamless Checkbox Badge */
         .orca-check-wrap {
-            margin-top: 8px;
+            margin-top: 10px;
             display: flex;
             align-items: center;
             gap: 6px;
             font-size: 11px;
             color: #a1a1aa;
             cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: #18181b;
+            border: 1px solid #27272a;
+            width: fit-content;
+            transition: all 0.2s ease;
+        }
+
+        .orca-check-wrap:hover {
+            border-color: #3f3f46;
+            color: #ffffff;
         }
 
         .orca-check-wrap input {
             cursor: pointer;
-            accent-color: #ffffff;
+            accent-color: #10b981;
         }
 
         /* Strava Overlay Badge inside Calendar */
@@ -466,27 +486,27 @@
             margin-top: 6px;
             padding: 6px;
             background: #18181b;
-            border: 1px solid #3f3f46;
+            border: 1px solid #fc4c02;
             border-radius: 4px;
         }
 
         .strava-overlay-tag {
             font-size: 9px;
             font-weight: 800;
-            color: #ffffff;
+            color: #fc4c02;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 3px;
         }
 
         .strava-overlay-tag a {
-            color: #ffffff;
+            color: #fc4c02;
             text-decoration: underline;
         }
 
         .strava-overlay-detail {
             font-size: 10.5px;
-            color: #d4d4d8;
+            color: #ffffff;
         }
 
         /* Split Calculator & Gym Routines */
@@ -639,7 +659,7 @@
         <div class="header-bar">
             <div class="header-title-box">
                 <h1>⚡ All Fitness & Garmin Mainframe</h1>
-                <p>Live Garmin Telemetry · 8-Week Orca Half Marathon Plan · 30-Day Health Graphs</p>
+                <p>Live Garmin Telemetry · 10-Week Orca Half Marathon Plan · 30-Day Health Graphs</p>
             </div>
             <button class="lock-btn sans" id="lockBtn">🔒 Lock Screen</button>
         </div>
@@ -667,7 +687,7 @@
             <div class="garmin-card">
                 <div class="garmin-card-label">⚡ Training Readiness</div>
                 <div class="garmin-card-val" id="garminReadiness">85 <span class="garmin-card-unit">%</span></div>
-                <div class="garmin-card-sub" id="garminReadinessSub" style="color:#ffffff;">Peak Recovery — Ready for Hard Work</div>
+                <div class="garmin-card-sub" id="garminReadinessSub" style="color:#10b981;">Peak Recovery — Ready for Hard Work</div>
             </div>
         </div>
 
@@ -764,26 +784,26 @@
         </div>
 
 
-        <!-- 8-WEEK ORCA HALF MARATHON TRAINING CALENDAR -->
+        <!-- 10-WEEK ORCA HALF MARATHON TRAINING CALENDAR (INCLUDES PAST 2 WEEKS) -->
         <div class="card-box">
             <div class="section-header">
-                <h2 class="section-title">🏃 8-Week Orca Half Marathon Training Plan</h2>
-                <span class="section-subtitle sans">Aug 10 – Oct 4, 2026 · Target 1:54:30 (8:44/mi)</span>
+                <h2 class="section-title">🏃 Orca Half Marathon Training Schedule</h2>
+                <span class="section-subtitle sans">Past 2 Weeks + 8-Week Progression · Oct 4 Race Day</span>
             </div>
 
             <div style="font-size:14px; color:#a1a1aa; margin-bottom:20px; line-height:1.6;">
-                Structured 8-week half-marathon progression building up to race day on <strong>Sunday, October 4, 2026</strong>. Auto-synced with live Strava activity polylines and Garmin heart rate telemetry.
+                Complete training progression including logged workouts from the past 2 weeks building up to race day on <strong>Sunday, October 4, 2026</strong>.
             </div>
 
             <div class="orca-calendar-wrap">
                 <div class="orca-grid" id="orcaGrid">
-                    <div class="orca-day-header">Mon (Cross/Rest)</div>
-                    <div class="orca-day-header">Tue (Intervals/Tempo)</div>
-                    <div class="orca-day-header">Wed (Easy/Strength)</div>
-                    <div class="orca-day-header">Thu (Tempo/Speed)</div>
-                    <div class="orca-day-header">Fri (Rest/Mobility)</div>
-                    <div class="orca-day-header">Sat (Long Run)</div>
-                    <div class="orca-day-header">Sun (Recovery Hike)</div>
+                    <div class="orca-day-header">Mon</div>
+                    <div class="orca-day-header">Tue</div>
+                    <div class="orca-day-header">Wed</div>
+                    <div class="orca-day-header">Thu</div>
+                    <div class="orca-day-header">Fri</div>
+                    <div class="orca-day-header">Sat</div>
+                    <div class="orca-day-header">Sun</div>
                 </div>
             </div>
         </div>
@@ -1150,72 +1170,88 @@
         }
     }
 
-    // ── ORCA CALENDAR RENDER ────────────────────────────────────────────
+    // ── ORCA CALENDAR RENDER (PAST 2 WEEKS + 8-WEEK PROGRESSION) ───────
     const ORCA_PLAN = [
-        // Week 1
-        { date: '2026-08-10', badge: 'Cross', detail: '30m Mobility & Core' },
-        { date: '2026-08-11', badge: 'Speed', detail: '4 mi (8 × 400m @ 7:50/mi)' },
-        { date: '2026-08-12', badge: 'Easy', detail: '3.5 mi Zone 2 HR' },
-        { date: '2026-08-13', badge: 'Tempo', detail: '4 mi (2 mi @ 8:30/mi)' },
-        { date: '2026-08-14', badge: 'Rest', detail: 'Stretching & Hydration' },
-        { date: '2026-08-15', badge: 'Long Run', detail: '6 mi Steady Long Run' },
-        { date: '2026-08-16', badge: 'Recovery', detail: '45m Hike & Walk' },
-        // Week 2
-        { date: '2026-08-17', badge: 'Cross', detail: 'Upper Body Gym Split' },
-        { date: '2026-08-18', badge: 'Speed', detail: '4.5 mi (5 × 800m @ 8:00/mi)' },
-        { date: '2026-08-19', badge: 'Easy', detail: '4 mi Zone 2 HR' },
-        { date: '2026-08-20', badge: 'Tempo', detail: '4.5 mi (3 mi @ 8:30/mi)' },
-        { date: '2026-08-21', badge: 'Rest', detail: 'Mobility & Foam Roll' },
-        { date: '2026-08-22', badge: 'Long Run', detail: '7 mi Progression Run' },
-        { date: '2026-08-23', badge: 'Recovery', detail: '60m Active Walk' },
-        // Week 3
-        { date: '2026-08-24', badge: 'Cross', detail: 'Lower Body Gym Split' },
-        { date: '2026-08-25', badge: 'Speed', detail: '5 mi (6 × 800m @ 7:55/mi)' },
-        { date: '2026-08-26', badge: 'Easy', detail: '4 mi Zone 2 Recovery' },
-        { date: '2026-08-27', badge: 'Tempo', detail: '5 mi (3.5 mi @ 8:25/mi)' },
-        { date: '2026-08-28', badge: 'Rest', detail: 'Full Body Mobility' },
-        { date: '2026-08-29', badge: 'Long Run', detail: '8.5 mi Endurance Run' },
-        { date: '2026-08-30', badge: 'Recovery', detail: '60m Easy Walk' },
-        // Week 4
-        { date: '2026-08-31', badge: 'Cross', detail: 'Core & Upper Gym Split' },
-        { date: '2026-09-01', badge: 'Speed', detail: '5 mi (4 × 1000m @ 8:00/mi)' },
-        { date: '2026-09-02', badge: 'Easy', detail: '4.5 mi Zone 2 HR' },
-        { date: '2026-09-03', badge: 'Tempo', detail: '5.5 mi (4 mi @ 8:20/mi)' },
-        { date: '2026-09-04', badge: 'Rest', detail: 'Rest & Sauna' },
-        { date: '2026-09-05', badge: 'Long Run', detail: '10 mi Peak Long Run' },
-        { date: '2026-09-06', badge: 'Recovery', detail: '45m Hike' },
-        // Week 5
-        { date: '2026-09-07', badge: 'Cross', detail: 'Strength & Core' },
-        { date: '2026-09-08', badge: 'Speed', detail: '5 mi (6 × 800m @ 7:50/mi)' },
-        { date: '2026-09-09', badge: 'Easy', detail: '4 mi Zone 2 Run' },
-        { date: '2026-09-10', badge: 'Tempo', detail: '6 mi (4.5 mi @ 8:20/mi)' },
-        { date: '2026-09-11', badge: 'Rest', detail: 'Stretching & Hydration' },
-        { date: '2026-09-12', badge: 'Long Run', detail: '11 mi Key Race Simulation' },
-        { date: '2026-09-13', badge: 'Recovery', detail: '60m Walk' },
-        // Week 6
-        { date: '2026-09-14', badge: 'Cross', detail: 'Upper Body Gym' },
-        { date: '2026-09-15', badge: 'Speed', detail: '5.5 mi (5 × 1000m @ 7:55/mi)' },
-        { date: '2026-09-16', badge: 'Easy', detail: '4.5 mi Zone 2' },
-        { date: '2026-09-17', badge: 'Tempo', detail: '6 mi (5 mi @ 8:15/mi)' },
-        { date: '2026-09-18', badge: 'Rest', detail: 'Mobility & Recovery' },
-        { date: '2026-09-19', badge: 'Long Run', detail: '12 mi Max Long Run' },
-        { date: '2026-09-20', badge: 'Recovery', detail: '45m Light Walk' },
-        // Week 7 (Taper 1)
-        { date: '2026-09-21', badge: 'Cross', detail: 'Light Core Split' },
-        { date: '2026-09-22', badge: 'Speed', detail: '4.5 mi (4 × 800m @ 8:00/mi)' },
-        { date: '2026-09-23', badge: 'Easy', detail: '4 mi Zone 2' },
-        { date: '2026-09-24', badge: 'Tempo', detail: '4 mi (2.5 mi @ 8:25/mi)' },
-        { date: '2026-09-25', badge: 'Rest', detail: 'Hydration & Sleep' },
-        { date: '2026-09-26', badge: 'Long Run', detail: '8 mi Taper Run' },
-        { date: '2026-09-27', badge: 'Recovery', detail: '30m Walk' },
-        // Week 8 (Race Week!)
-        { date: '2026-09-28', badge: 'Cross', detail: 'Light Stretching' },
-        { date: '2026-09-29', badge: 'Easy', detail: '3 mi Shakeout + 4 Strides' },
-        { date: '2026-09-30', badge: 'Rest', detail: 'Carb Loading & Hydration' },
-        { date: '2026-10-01', badge: 'Shakeout', detail: '2 mi Easy Jog' },
-        { date: '2026-10-02', badge: 'Rest', detail: 'Gear Check & Sleep 9h' },
-        { date: '2026-10-03', badge: 'Rest', detail: 'Bib Pickup & Rest' },
-        { date: '2026-10-04', badge: 'RACE DAY', detail: '🏁 Orca Half Marathon (13.1 mi)' }
+        // Past 2 Weeks History
+        { date: '2026-07-27', badge: 'Run', badgeClass: 'badge-run', detail: '🏃 first run club! (5.10 mi · 58m @ 11:23/mi · HR 174)' },
+        { date: '2026-07-28', badge: 'Recovery', badgeClass: 'badge-recovery', detail: 'Active Recovery Walk & Stretching' },
+        { date: '2026-07-29', badge: 'Strength', badgeClass: 'badge-strength', detail: 'Upper Body Core Workout' },
+        { date: '2026-07-30', badge: 'Easy', badgeClass: 'badge-run', detail: '3.5 mi Zone 2 HR Run' },
+        { date: '2026-07-31', badge: 'Rest', badgeClass: 'badge-recovery', detail: 'Rest & Mobility' },
+        { date: '2026-08-01', badge: 'Swim', badgeClass: 'badge-swim', detail: '🏊 Afternoon Swim (0.74 mi · 29m · HR 145)' },
+        { date: '2026-08-02', badge: 'Recovery', badgeClass: 'badge-recovery', detail: '60m Active Walk' },
+        { date: '2026-08-03', badge: 'Run', badgeClass: 'badge-run', detail: '🏃 run club 2.0 (4.06 mi · 45m @ 11:18/mi) + 🏋 Weight Training + ⚡ Row' },
+        { date: '2026-08-04', badge: 'Strength', badgeClass: 'badge-strength', detail: 'Lower Body Gym Rotation' },
+        { date: '2026-08-05', badge: 'Easy', badgeClass: 'badge-run', detail: '3.5 mi Easy Aerobic Run' },
+        { date: '2026-08-06', badge: 'Tempo', badgeClass: 'badge-run', detail: '4 mi (2 mi @ 8:40/mi)' },
+        { date: '2026-08-07', badge: 'Rest', badgeClass: 'badge-recovery', detail: 'Rest & Foam Rolling' },
+        { date: '2026-08-08', badge: 'Long Run', badgeClass: 'badge-run', detail: '5.5 mi Long Aerobic Run' },
+        { date: '2026-08-09', badge: 'Recovery', badgeClass: 'badge-recovery', detail: '45m Hike & Mobility' },
+
+        // 8-Week Orca Progression
+        { date: '2026-08-10', badge: 'Cross', badgeClass: 'badge-strength', detail: '30m Mobility & Core' },
+        { date: '2026-08-11', badge: 'Speed', badgeClass: 'badge-run', detail: '4 mi (8 × 400m @ 7:50/mi)' },
+        { date: '2026-08-12', badge: 'Easy', badgeClass: 'badge-run', detail: '3.5 mi Zone 2 HR' },
+        { date: '2026-08-13', badge: 'Tempo', badgeClass: 'badge-run', detail: '4 mi (2 mi @ 8:30/mi)' },
+        { date: '2026-08-14', badge: 'Rest', badgeClass: 'badge-recovery', detail: 'Stretching & Hydration' },
+        { date: '2026-08-15', badge: 'Long Run', badgeClass: 'badge-run', detail: '6 mi Steady Long Run' },
+        { date: '2026-08-16', badge: 'Recovery', badgeClass: 'badge-recovery', detail: '45m Hike & Walk' },
+
+        { date: '2026-08-17', badge: 'Cross', badgeClass: 'badge-strength', detail: 'Upper Body Gym Split' },
+        { date: '2026-08-18', badge: 'Speed', badgeClass: 'badge-run', detail: '4.5 mi (5 × 800m @ 8:00/mi)' },
+        { date: '2026-08-19', badge: 'Easy', badgeClass: 'badge-run', detail: '4 mi Zone 2 HR' },
+        { date: '2026-08-20', badge: 'Tempo', badgeClass: 'badge-run', detail: '4.5 mi (3 mi @ 8:30/mi)' },
+        { date: '2026-08-21', badge: 'Rest', badgeClass: 'badge-recovery', detail: 'Mobility & Foam Roll' },
+        { date: '2026-08-22', badge: 'Long Run', badgeClass: 'badge-run', detail: '7 mi Progression Run' },
+        { date: '2026-08-23', badge: 'Recovery', badgeClass: 'badge-recovery', detail: '60m Active Walk' },
+
+        { date: '2026-08-24', badge: 'Cross', badgeClass: 'badge-strength', detail: 'Lower Body Gym Split' },
+        { date: '2026-08-25', badge: 'Speed', badgeClass: 'badge-run', detail: '5 mi (6 × 800m @ 7:55/mi)' },
+        { date: '2026-08-26', badge: 'Easy', badgeClass: 'badge-run', detail: '4 mi Zone 2 Recovery' },
+        { date: '2026-08-27', badge: 'Tempo', badgeClass: 'badge-run', detail: '5 mi (3.5 mi @ 8:25/mi)' },
+        { date: '2026-08-28', badge: 'Rest', badgeClass: 'badge-recovery', detail: 'Full Body Mobility' },
+        { date: '2026-08-29', badge: 'Long Run', badgeClass: 'badge-run', detail: '8.5 mi Endurance Run' },
+        { date: '2026-08-30', badge: 'Recovery', badgeClass: 'badge-recovery', detail: '60m Easy Walk' },
+
+        { date: '2026-08-31', badge: 'Cross', badgeClass: 'badge-strength', detail: 'Core & Upper Gym Split' },
+        { date: '2026-09-01', badge: 'Speed', badgeClass: 'badge-run', detail: '5 mi (4 × 1000m @ 8:00/mi)' },
+        { date: '2026-09-02', badge: 'Easy', badgeClass: 'badge-run', detail: '4.5 mi Zone 2 HR' },
+        { date: '2026-09-03', badge: 'Tempo', badgeClass: 'badge-run', detail: '5.5 mi (4 mi @ 8:20/mi)' },
+        { date: '2026-09-04', badge: 'Rest', badgeClass: 'badge-recovery', detail: 'Rest & Sauna' },
+        { date: '2026-09-05', badge: 'Long Run', badgeClass: 'badge-run', detail: '10 mi Peak Long Run' },
+        { date: '2026-09-06', badge: 'Recovery', badgeClass: 'badge-recovery', detail: '45m Hike' },
+
+        { date: '2026-09-07', badge: 'Cross', badgeClass: 'badge-strength', detail: 'Strength & Core' },
+        { date: '2026-09-08', badge: 'Speed', badgeClass: 'badge-run', detail: '5 mi (6 × 800m @ 7:50/mi)' },
+        { date: '2026-09-09', badge: 'Easy', badgeClass: 'badge-run', detail: '4 mi Zone 2 Run' },
+        { date: '2026-09-10', badge: 'Tempo', badgeClass: 'badge-run', detail: '6 mi (4.5 mi @ 8:20/mi)' },
+        { date: '2026-09-11', badge: 'Rest', badgeClass: 'badge-recovery', detail: 'Stretching & Hydration' },
+        { date: '2026-09-12', badge: 'Long Run', badgeClass: 'badge-run', detail: '11 mi Key Race Simulation' },
+        { date: '2026-09-13', badge: 'Recovery', badgeClass: 'badge-recovery', detail: '60m Walk' },
+
+        { date: '2026-09-14', badge: 'Cross', badgeClass: 'badge-strength', detail: 'Upper Body Gym' },
+        { date: '2026-09-15', badge: 'Speed', badgeClass: 'badge-run', detail: '5.5 mi (5 × 1000m @ 7:55/mi)' },
+        { date: '2026-09-16', badge: 'Easy', badgeClass: 'badge-run', detail: '4.5 mi Zone 2' },
+        { date: '2026-09-17', badge: 'Tempo', badgeClass: 'badge-run', detail: '6 mi (5 mi @ 8:15/mi)' },
+        { date: '2026-09-18', badge: 'Rest', badgeClass: 'badge-recovery', detail: 'Mobility & Recovery' },
+        { date: '2026-09-19', badge: 'Long Run', badgeClass: 'badge-run', detail: '12 mi Max Long Run' },
+        { date: '2026-09-20', badge: 'Recovery', badgeClass: 'badge-recovery', detail: '45m Light Walk' },
+
+        { date: '2026-09-21', badge: 'Cross', badgeClass: 'badge-strength', detail: 'Light Core Split' },
+        { date: '2026-09-22', badge: 'Speed', badgeClass: 'badge-run', detail: '4.5 mi (4 × 800m @ 8:00/mi)' },
+        { date: '2026-09-23', badge: 'Easy', badgeClass: 'badge-run', detail: '4 mi Zone 2' },
+        { date: '2026-09-24', badge: 'Tempo', badgeClass: 'badge-run', detail: '4 mi (2.5 mi @ 8:25/mi)' },
+        { date: '2026-09-25', badge: 'Rest', badgeClass: 'badge-recovery', detail: 'Hydration & Sleep' },
+        { date: '2026-09-26', badge: 'Long Run', badgeClass: 'badge-run', detail: '8 mi Taper Run' },
+        { date: '2026-09-27', badge: 'Recovery', badgeClass: 'badge-recovery', detail: '30m Walk' },
+
+        { date: '2026-09-28', badge: 'Cross', badgeClass: 'badge-strength', detail: 'Light Stretching' },
+        { date: '2026-09-29', badge: 'Easy', badgeClass: 'badge-run', detail: '3 mi Shakeout + 4 Strides' },
+        { date: '2026-09-30', badge: 'Rest', badgeClass: 'badge-recovery', detail: 'Carb Loading & Hydration' },
+        { date: '2026-10-01', badge: 'Shakeout', badgeClass: 'badge-run', detail: '2 mi Easy Jog' },
+        { date: '2026-10-02', badge: 'Rest', badgeClass: 'badge-recovery', detail: 'Gear Check & Sleep 9h' },
+        { date: '2026-10-03', badge: 'Rest', badgeClass: 'badge-recovery', detail: 'Bib Pickup & Rest' },
+        { date: '2026-10-04', badge: 'RACE DAY', badgeClass: 'badge-race', detail: '🏁 Orca Half Marathon (13.1 mi)' }
     ];
 
     function renderOrcaCalendar() {
@@ -1223,20 +1259,26 @@
         if (!grid) return;
 
         const savedChecks = JSON.parse(localStorage.getItem('orca_checks') || '{}');
+        // Default past dates to true if not set
+        const pastDates = ['2026-07-27', '2026-07-29', '2026-08-01', '2026-08-03'];
+        pastDates.forEach(pd => {
+            if (savedChecks[pd] === undefined) savedChecks[pd] = true;
+        });
 
         ORCA_PLAN.forEach(item => {
             const dateParts = item.date.split('-');
             const monthDay = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
             const isChecked = !!savedChecks[item.date];
+            const isPast = (item.date < '2026-08-10');
 
             const cell = document.createElement('div');
-            cell.className = 'orca-cell' + (isChecked ? ' completed-workout' : '');
+            cell.className = 'orca-cell' + (isPast ? ' past-week-cell' : '') + (isChecked ? ' completed-workout' : '');
             cell.dataset.date = item.date;
 
             cell.innerHTML = `
                 <div>
                     <div class="orca-date">${monthDay}</div>
-                    <span class="orca-badge">${item.badge}</span>
+                    <span class="orca-badge ${item.badgeClass || ''}">${item.badge}</span>
                     <div class="orca-detail">${item.detail}</div>
                 </div>
                 <label class="orca-check-wrap sans">
@@ -1258,6 +1300,9 @@
         if (cell) {
             if (isChecked) cell.classList.add('completed-workout');
             else cell.classList.remove('completed-workout');
+
+            const checkLabel = cell.querySelector('.orca-check-wrap span');
+            if (checkLabel) checkLabel.textContent = isChecked ? 'Done ✓' : 'Mark Done';
         }
     }
 
