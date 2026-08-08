@@ -220,10 +220,22 @@
       "strava": true
     },
     "2026-08-05": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": false,
+      "garmin_calories": false
     },
     "2026-08-06": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-08-04": {
+      "garmin_steps": false,
+      "garmin_calories": false
+    },
+    "2026-08-07": {
+      "garmin_steps": false,
+      "garmin_calories": false
     }
   },
   "commute": {},
