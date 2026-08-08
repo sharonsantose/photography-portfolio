@@ -226,3 +226,12 @@ if __name__ == "__main__":
         acts = by_date[d]
         for a in acts:
             print(f"  {d}: {a['emoji']} {a['sport']} — {a['detail']}")
+
+    # Also sync Google Calendar events in cloud workflow
+    try:
+        import subprocess
+        gcal_script = os.path.join(os.path.dirname(__file__), "fetch_gcal.py")
+        if os.path.exists(gcal_script):
+            subprocess.run([sys.executable, gcal_script], check=False)
+    except Exception as e:
+        print(f"Notice running fetch_gcal.py: {e}")

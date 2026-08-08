@@ -223,6 +223,15 @@ def main():
         except Exception as e:
             print(f"Warning updating todo_data.json: {e}")
 
+    # Also sync Google Calendar events in cloud workflow
+    try:
+        import subprocess
+        gcal_script = os.path.join(os.path.dirname(__file__), "fetch_gcal.py")
+        if os.path.exists(gcal_script):
+            subprocess.run([sys.executable, gcal_script], check=False)
+    except Exception as e:
+        print(f"Notice running fetch_gcal.py: {e}")
+
 
 if __name__ == "__main__":
     main()
