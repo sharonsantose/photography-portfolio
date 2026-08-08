@@ -1522,13 +1522,12 @@
                 }).join('');
             }
 
-            // Render Imported Google Calendar Events
+            // Render Imported Google Calendar Events (Title only)
             let gcalHTML = '';
             if (hasGcal) {
                 gcalHTML = gcalActs.map(g => `
                     <div class="gcal-cell-block">
                         <div class="gcal-cell-title">📅 ${g.title || 'Google Cal Event'}</div>
-                        <div class="strava-cell-detail">${g.detail || ''}</div>
                     </div>
                 `).join('');
             }
