@@ -424,9 +424,9 @@
             background: rgba(252, 76, 2, 0.08) !important;
         }
 
-        .orca-cell.garmin-completed {
-            border-color: #10b981 !important;
-            background: rgba(16, 185, 129, 0.08) !important;
+        .orca-cell.gcal-imported {
+            border-color: #4285f4 !important;
+            background: rgba(66, 133, 244, 0.08) !important;
         }
 
         .orca-date {
@@ -465,6 +465,7 @@
         .orca-badge.badge-recovery { background: #047857; color: #fff; }
         .orca-badge.badge-race { background: #ef4444; color: #fff; }
         .orca-badge.badge-strava-done { background: #fc4c02; color: #fff; }
+        .orca-badge.badge-gcal { background: #4285f4; color: #fff; }
 
         .orca-detail {
             font-size: 12px;
@@ -472,12 +473,20 @@
             line-height: 1.45;
         }
 
-        /* Strava Workout Card inside Cell */
+        /* Strava & Google Cal Workout Cards */
         .strava-cell-block {
             margin-top: 6px;
             padding: 6px 8px;
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid #fc4c02;
+            border-radius: 4px;
+        }
+
+        .gcal-cell-block {
+            margin-top: 6px;
+            padding: 6px 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #4285f4;
             border-radius: 4px;
         }
 
@@ -493,6 +502,15 @@
             align-items: center;
         }
 
+        .gcal-cell-title {
+            font-size: 9.5px;
+            font-weight: 800;
+            color: #4285f4;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
         .strava-cell-title a {
             color: #fc4c02;
             text-decoration: underline;
@@ -502,6 +520,26 @@
             font-size: 10.5px;
             color: #ffffff;
             line-height: 1.35;
+        }
+
+        .gcal-btn {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 10px;
+            color: #4285f4;
+            text-decoration: none;
+            background: #18181b;
+            border: 1px solid #4285f4;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .gcal-btn:hover {
+            background: #4285f4;
+            color: #ffffff;
         }
 
         /* Split Calculator & Gym Routines */
@@ -655,7 +693,7 @@
         <div class="header-bar">
             <div class="header-title-box">
                 <h1>⚡ All Fitness & Garmin Mainframe</h1>
-                <p>Live Garmin Telemetry · Automatic Strava Workout Verification · 2:15 Half Marathon Plan</p>
+                <p>Live Garmin Telemetry · Google Calendar Integration · Auto Strava Verification</p>
             </div>
             <button class="lock-btn sans" id="lockBtn">🔒 Lock Screen</button>
         </div>
@@ -780,11 +818,29 @@
         </div>
 
 
-        <!-- 7-WEEK HALF MARATHON TRAINING PLAN (AUTOMATIC STRAVA VERIFICATION) -->
+        <!-- 7-WEEK HALF MARATHON TRAINING PLAN (GOOGLE CALENDAR INTEGRATION) -->
         <div class="card-box">
             <div class="section-header">
                 <h2 class="section-title">🏃 2:15 Half Marathon Training Schedule</h2>
-                <span class="section-subtitle sans">Aug 6 – Sep 20, 2026 · Auto-Verified via Strava</span>
+                <span class="section-subtitle sans">Aug 3 – Sep 20, 2026</span>
+            </div>
+
+            <!-- GOOGLE CALENDAR IMPORT / EXPORT TOOLBAR -->
+            <div style="margin-bottom:20px; padding:14px; background:#18181b; border:1px solid #3f3f46; border-radius:6px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;" class="sans">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:13px; font-weight:700; color:#4285f4;">📅 Google Calendar Sync</span>
+                    <span style="font-size:11px; color:#a1a1aa;">Import personal events or export workouts to Google Calendar</span>
+                </div>
+
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <button onclick="exportAllToIcs()" class="unlock-btn" style="width:auto; padding:6px 12px; font-size:12px; background:#27272a; border-color:#4285f4;">
+                        📥 Export All (.ics)
+                    </button>
+                    <label class="unlock-btn" style="width:auto; padding:6px 12px; font-size:12px; background:#27272a; border-color:#4285f4; cursor:pointer;">
+                        📤 Import Google Cal (.ics)
+                        <input type="file" id="gcalFileInput" accept=".ics" style="display:none;" onchange="importIcsFile(event)">
+                    </label>
+                </div>
             </div>
 
             <div class="orca-calendar-wrap">
@@ -1113,6 +1169,7 @@
 
     // ── FETCH GARMIN & STRAVA DATA ──────────────────────────────────────
     let cachedStravaData = null;
+    let importedGcalEvents = {};
 
     async function loadGarminData() {
         const candidatePaths = [
@@ -1186,12 +1243,15 @@
         renderOrcaCalendar();
     }
 
-    // ── EXACT 2:15 HALF MARATHON WORKOUT PLAN WITH MULTI-WORKOUT TAGS ──
+    // ── COMPLETE THIS WEEK & 2:15 HALF MARATHON WORKOUT PLAN ──
     const ORCA_PLAN = [
-        // Week 1 (Aug 6 - Aug 9)
-        { date: '2026-08-06', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'StairStepper', cls: 'badge-stair' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session B + 15m StairMaster. PM: Outdoor Bike 60m' },
-        { date: '2026-08-07', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy + 4 x 20s strides. PM: Swim 25m' },
-        { date: '2026-08-08', tags: [{ title: 'Run (8 mi)', cls: 'badge-run' }, { title: 'Strength C', cls: 'badge-strength' }], detail: 'AM: Long run 8 mi (11:15-11:45/mi). PM: Session C' },
+        // Entirety of THIS WEEK (Mon Aug 3 – Sun Aug 9, 2026)
+        { date: '2026-08-03', tags: [{ title: 'Run (4.06 mi)', cls: 'badge-run' }, { title: 'Strength', cls: 'badge-strength' }, { title: 'Row', cls: 'badge-row' }], detail: 'Run Club 2.0 (4.06 mi · 45m @ 11:18/mi) + Weight Training (19m) + Evening Row (9m)' },
+        { date: '2026-08-04', tags: [{ title: 'Strength A', cls: 'badge-strength' }, { title: 'Row', cls: 'badge-row' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session A (Smith Squat, RDL, Bench, Row, Triceps, Farmer Carry + 10m row). PM: Outdoor Bike 60m' },
+        { date: '2026-08-05', tags: [{ title: 'Row', cls: 'badge-row' }, { title: 'StairStepper', cls: 'badge-stair' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'Evening Row (25m) + Stair-Stepper (11m) + Swim 25m easy' },
+        { date: '2026-08-06', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'StairStepper', cls: 'badge-stair' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session B (Smith Hip Thrust, Lunges, Shoulder Press, Lat Pulldown, 1-Arm Row, Triceps, Pallof Press) + 15m StairMaster. PM: Outdoor Bike 60m' },
+        { date: '2026-08-07', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy + 4 x 20s strides. PM: Swim 25m easy' },
+        { date: '2026-08-08', tags: [{ title: 'Run (8 mi)', cls: 'badge-run' }, { title: 'Strength C', cls: 'badge-strength' }], detail: 'AM: Long run 8 mi (11:15-11:45/mi). PM: Session C (Smith Bench, Row, Lat Pulldown, Shoulder Press, Triceps, Biceps, Light Hip Thrust, Pallof Press)' },
         { date: '2026-08-09', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Long run 6 mi / Outdoor Ride 90m. PM: Swim 20m recovery' },
 
         // Week 2 (Aug 10 - Aug 16)
@@ -1249,6 +1309,89 @@
         { date: '2026-09-20', tags: [{ title: 'RACE DAY', cls: 'badge-race' }], detail: '🏁 2:15 HALF MARATHON (13.1 mi) Target 10:18/mi' }
     ];
 
+    function makeGoogleCalUrl(title, dateStr, detail) {
+        const cleanDate = dateStr.replace(/-/g, '');
+        const startIso = cleanDate + 'T090000Z';
+        const endIso = cleanDate + 'T100000Z';
+        const text = encodeURIComponent('🏃 ' + title);
+        const details = encodeURIComponent(detail + '\n\nSharon Santos Fitness Control Center: https://sharonsantos.me/fit');
+        return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${startIso}/${endIso}&details=${details}&sprop=website:sharonsantos.me`;
+    }
+
+    function exportAllToIcs() {
+        let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Sharon Santos Fitness Control Center//EN\n";
+        ORCA_PLAN.forEach(item => {
+            const cleanDate = item.date.replace(/-/g, '');
+            const title = (item.tags && item.tags.length > 0) ? item.tags[0].title : 'Workout';
+            icsContent += "BEGIN:VEVENT\n";
+            icsContent += `UID:workout-${item.date}@sharonsantos.me\n`;
+            icsContent += `DTSTART;VALUE=DATE:${cleanDate}\n`;
+            icsContent += `SUMMARY:🏃 Sharon Santos — ${title}\n`;
+            icsContent += `DESCRIPTION:${item.detail.replace(/\n/g, ' ')}\n`;
+            icsContent += "END:VEVENT\n";
+        });
+        icsContent += "END:VCALENDAR\n";
+
+        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.setAttribute('download', 'Sharon_Santos_215_Half_Marathon_Plan.ics');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function importIcsFile(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const text = e.target.result;
+            const events = parseIcsText(text);
+            if (events && events.length > 0) {
+                events.forEach(ev => {
+                    if (ev.date) {
+                        if (!importedGcalEvents[ev.date]) importedGcalEvents[ev.date] = [];
+                        importedGcalEvents[ev.date].push(ev);
+                    }
+                });
+                alert(`Successfully imported ${events.length} Google Calendar event(s) to the website!`);
+                renderOrcaCalendar();
+            }
+        };
+        reader.readAsText(file);
+    }
+
+    function parseIcsText(text) {
+        const results = [];
+        const lines = text.split(/\r\n|\n|\r/);
+        let cur = null;
+
+        lines.forEach(line => {
+            if (line.startsWith('BEGIN:VEVENT')) {
+                cur = {};
+            } else if (line.startsWith('END:VEVENT')) {
+                if (cur && cur.title) results.push(cur);
+                cur = null;
+            } else if (cur) {
+                if (line.startsWith('SUMMARY:')) {
+                    cur.title = line.substring(8).trim();
+                } else if (line.startsWith('DTSTART')) {
+                    const val = line.split(':')[1] || '';
+                    if (val.length >= 8) {
+                        const yr = val.substring(0, 4);
+                        const mo = val.substring(4, 6);
+                        const dy = val.substring(6, 8);
+                        cur.date = `${yr}-${mo}-${dy}`;
+                    }
+                } else if (line.startsWith('DESCRIPTION:')) {
+                    cur.detail = line.substring(12).trim();
+                }
+            }
+        });
+        return results;
+    }
+
     function renderOrcaCalendar() {
         const grid = document.getElementById('orcaGrid');
         if (!grid) return;
@@ -1265,26 +1408,21 @@
         const stravaMap = (cachedStravaData && cachedStravaData.activities_by_date) ? cachedStravaData.activities_by_date : {};
         const todayStr = '2026-08-07';
 
-        // Add blank padding cell for Thursday start (Aug 6 is Thursday)
-        for (let p = 0; p < 3; p++) {
-            const padCell = document.createElement('div');
-            padCell.className = 'orca-cell past-week-cell';
-            padCell.style.opacity = '0.3';
-            padCell.innerHTML = `<div class="orca-date">—</div><div class="orca-detail" style="font-style:italic;">Pre-plan</div>`;
-            grid.appendChild(padCell);
-        }
-
         ORCA_PLAN.forEach(item => {
             const dateParts = item.date.split('-');
             const monthDay = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
             const stravaActs = stravaMap[item.date] || [];
+            const gcalActs = importedGcalEvents[item.date] || [];
 
             const isPast = (item.date < todayStr);
             const hasStrava = (stravaActs.length > 0);
+            const hasGcal = (gcalActs.length > 0);
 
             let cellClass = 'orca-cell';
             if (hasStrava) {
                 cellClass += ' strava-completed';
+            } else if (hasGcal) {
+                cellClass += ' gcal-imported';
             } else if (isPast) {
                 cellClass += ' past-week-cell';
             }
@@ -1322,12 +1460,31 @@
                 }).join('');
             }
 
+            // Render Imported Google Calendar Events
+            let gcalHTML = '';
+            if (hasGcal) {
+                gcalHTML = gcalActs.map(g => `
+                    <div class="gcal-cell-block">
+                        <div class="gcal-cell-title">📅 ${g.title || 'Google Cal Event'}</div>
+                        <div class="strava-cell-detail">${g.detail || ''}</div>
+                    </div>
+                `).join('');
+            }
+
+            // Export to Google Calendar Link
+            const primaryTitle = (item.tags && item.tags.length > 0) ? item.tags[0].title : 'Workout';
+            const gcalExportUrl = makeGoogleCalUrl(primaryTitle, item.date, item.detail);
+
             cell.innerHTML = `
                 <div>
                     <div class="orca-date">${monthDay}</div>
                     <div class="workout-tag-group">${tagsHTML}</div>
                     <div class="orca-detail">${item.detail}</div>
                     ${stravaHTML}
+                    ${gcalHTML}
+                </div>
+                <div>
+                    <a href="${gcalExportUrl}" target="_blank" rel="noopener" class="gcal-btn">📅 + Google Cal</a>
                 </div>
             `;
 
