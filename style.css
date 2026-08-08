@@ -1,15 +1,30 @@
 /* ==========================================================================
-   SHARON SANTOS — ULTRA-MINIMAL GARAMOND SPECIFICATION
+   SHARON SANTOS — WARM NEUTRAL TONES SPECIFICATION
+   Colors:
+   - Azure Mist:    #ecf8f8 (Gentle, airy pale tone)
+   - Alabaster Grey:#eee4e1 (Pale misty grey)
+   - Almond Cream:  #e7d8c9 (Soft, velvety warmth)
+   - Almond Silk:   #e6beae (Gentle beige-pink)
+   - Camel:         #b2967d (Soft golden tan)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-    --bg-color: #FFFFFF;
-    --fg-color: #111111;
-    --muted-color: #71717A;
-    --border-color: #E4E4E7;
-    --accent-color: #000000;
+    --color-azure-mist: #ecf8f8;
+    --color-alabaster: #eee4e1;
+    --color-almond-cream: #e7d8c9;
+    --color-almond-silk: #e6beae;
+    --color-camel: #b2967d;
+    --color-espresso: #2a221d;
+    
+    --bg-color: #eee4e1;        /* Alabaster Grey */
+    --surface-color: #e7d8c9;   /* Almond Cream */
+    --fg-color: #2a221d;        /* Deep Espresso */
+    --muted-color: #8c735d;     /* Deep Camel Muted */
+    --border-color: #d8c3b2;    /* Soft Almond Border */
+    --accent-color: #b2967d;    /* Camel */
+    --highlight-color: #ecf8f8; /* Azure Mist */
     
     --font-serif: 'EB Garamond', Garamond, Georgia, serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -27,7 +42,7 @@ html {
     font-family: var(--font-serif);
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 body {
@@ -74,7 +89,7 @@ body {
 /* Minimal Navigation Links */
 .nav-links {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
@@ -83,38 +98,41 @@ body {
 .nav-pill {
     font-family: var(--font-serif);
     font-size: 15px;
-    color: var(--muted-color);
+    color: var(--fg-color);
     text-decoration: none;
-    padding: 6px 16px;
+    padding: 8px 18px;
     border: 1px solid var(--border-color);
-    background: transparent;
-    transition: all 0.2s ease;
+    background: var(--color-almond-cream);
+    transition: all 0.25s ease;
     cursor: pointer;
 }
 
 .nav-pill.active {
-    background: var(--fg-color);
-    color: var(--bg-color);
-    border-color: var(--fg-color);
+    background: var(--color-camel);
+    color: #FFFFFF;
+    border-color: var(--color-camel);
+    font-weight: 600;
 }
 
 .nav-pill:hover:not(.active) {
-    color: var(--fg-color);
-    border-color: var(--fg-color);
+    background: var(--color-almond-silk);
+    border-color: var(--color-camel);
 }
 
-/* Statement Box */
+/* Statement Box (Azure Mist & Camel Accent) */
 .statement-box {
     font-family: var(--font-serif);
     font-size: clamp(20px, 3.5vw, 24px);
     font-style: italic;
-    line-height: 1.5;
+    line-height: 1.55;
     color: var(--fg-color);
     text-align: center;
-    padding: 24px 28px;
-    border-left: 2px solid var(--fg-color);
-    background: #FAF9F6;
-    margin: 32px 0 44px 0;
+    padding: 28px 32px;
+    border-left: 3px solid var(--color-camel);
+    background: var(--color-azure-mist);
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(178, 150, 125, 0.12);
+    margin: 36px 0 48px 0;
 }
 
 /* Section Headings */
@@ -140,19 +158,21 @@ body {
     height: auto;
     display: block;
     border: 1px solid var(--border-color);
-    transition: opacity 0.2s ease;
+    border-radius: 4px;
+    transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 .featured-photo:hover, img.film-poster:hover, .photo-wrapper img:hover {
-    opacity: 0.92;
+    border-color: var(--color-camel);
+    transform: translateY(-2px);
 }
 
 .photo-caption {
     font-family: var(--font-serif);
-    font-size: 13px;
+    font-size: 14px;
     font-style: italic;
     color: var(--muted-color);
-    margin-top: 8px;
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
 }
@@ -165,14 +185,17 @@ body {
 }
 
 .writing-card {
-    padding: 24px;
+    padding: 24px 28px;
     border: 1px solid var(--border-color);
-    background: #FFFFFF;
-    transition: border-color 0.2s ease;
+    background: var(--color-almond-cream);
+    border-radius: 4px;
+    transition: all 0.25s ease;
 }
 
 .writing-card:hover {
-    border-color: var(--fg-color);
+    border-color: var(--color-camel);
+    background: #f0e4d7;
+    transform: translateY(-2px);
 }
 
 .writing-title {
@@ -208,7 +231,7 @@ body {
 }
 
 .blog-read-link:hover {
-    color: var(--muted-color);
+    color: var(--color-camel);
 }
 
 /* Letterboxd Grid */
@@ -220,14 +243,17 @@ body {
 
 .film-card {
     border: 1px solid var(--border-color);
+    background: var(--color-almond-cream);
     padding: 12px;
     text-decoration: none;
     color: inherit;
-    transition: border-color 0.2s ease;
+    border-radius: 4px;
+    transition: all 0.25s ease;
 }
 
 .film-card:hover {
-    border-color: var(--fg-color);
+    border-color: var(--color-camel);
+    transform: translateY(-2px);
 }
 
 .film-info {
@@ -245,7 +271,7 @@ body {
 }
 
 .film-rating {
-    color: var(--fg-color);
+    color: var(--color-camel);
     font-size: 13px;
 }
 
@@ -273,30 +299,33 @@ body {
     text-decoration: none;
     font-family: var(--font-serif);
     font-size: 14px;
-    transition: opacity 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
-    opacity: 0.6;
+    color: var(--color-camel);
 }
 
 /* Buttons */
 .btn, .btn-primary, .unlock-btn {
     font-family: var(--font-serif);
     font-size: 14px;
-    padding: 10px 20px;
-    background: var(--fg-color);
-    color: var(--bg-color);
-    border: 1px solid var(--fg-color);
+    padding: 10px 22px;
+    background: var(--color-camel);
+    color: #FFFFFF;
+    border: 1px solid var(--color-camel);
+    border-radius: 4px;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    transition: all 0.2s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
 }
 
 .btn:hover, .btn-primary:hover, .unlock-btn:hover {
-    opacity: 0.85;
+    background: var(--color-almond-silk);
+    color: var(--fg-color);
+    border-color: var(--color-camel);
 }
 
 .btn-secondary {
@@ -306,5 +335,6 @@ body {
 }
 
 .btn-secondary:hover {
-    border-color: var(--fg-color);
+    border-color: var(--color-camel);
+    background: var(--color-almond-cream);
 }
