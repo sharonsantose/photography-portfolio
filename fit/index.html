@@ -1010,6 +1010,8 @@
             localStorage.setItem('sharon_fit_unlocked', 'true');
             sessionStorage.setItem('todoUnlocked', 'true');
             localStorage.setItem('todoUnlocked', 'true');
+            sessionStorage.setItem('sharon_private_unlocked', 'true');
+            localStorage.setItem('sharon_private_unlocked', 'true');
             document.getElementById('authScreen').style.display = 'none';
             document.getElementById('fitnessContent').style.display = 'block';
             if (errEl) errEl.style.display = 'none';
@@ -1023,6 +1025,10 @@
     function lockPage() {
         sessionStorage.removeItem('sharon_fit_unlocked');
         localStorage.removeItem('sharon_fit_unlocked');
+        sessionStorage.removeItem('todoUnlocked');
+        localStorage.removeItem('todoUnlocked');
+        sessionStorage.removeItem('sharon_private_unlocked');
+        localStorage.removeItem('sharon_private_unlocked');
         document.getElementById('fitnessContent').style.display = 'none';
         document.getElementById('authScreen').style.display = 'flex';
         const inputEl = document.getElementById('passwordInput');

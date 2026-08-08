@@ -1682,6 +1682,8 @@
         if (h === PASS_HASH || val === '0427') {
             sessionStorage.setItem('todoUnlocked', 'true');
             localStorage.setItem('todoUnlocked', 'true');
+            sessionStorage.setItem('sharon_fit_unlocked', 'true');
+            localStorage.setItem('sharon_fit_unlocked', 'true');
             sessionStorage.setItem('sharon_private_unlocked', 'true');
             localStorage.setItem('sharon_private_unlocked', 'true');
             document.getElementById('authScreen').style.display = 'none';
@@ -1699,6 +1701,11 @@
 
     function lockApp() {
         sessionStorage.removeItem('todoUnlocked');
+        localStorage.removeItem('todoUnlocked');
+        sessionStorage.removeItem('sharon_fit_unlocked');
+        localStorage.removeItem('sharon_fit_unlocked');
+        sessionStorage.removeItem('sharon_private_unlocked');
+        localStorage.removeItem('sharon_private_unlocked');
         document.getElementById('app').style.display = 'none';
         document.getElementById('loadingScreen').style.display = 'none';
         document.getElementById('authScreen').style.display = 'flex';
@@ -1722,6 +1729,8 @@
 
         const isUnlocked = sessionStorage.getItem('todoUnlocked') === 'true' ||
                            localStorage.getItem('todoUnlocked') === 'true' ||
+                           sessionStorage.getItem('sharon_fit_unlocked') === 'true' ||
+                           localStorage.getItem('sharon_fit_unlocked') === 'true' ||
                            sessionStorage.getItem('sharon_private_unlocked') === 'true' ||
                            localStorage.getItem('sharon_private_unlocked') === 'true';
         if (isUnlocked) {
