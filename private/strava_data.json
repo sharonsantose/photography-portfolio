@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-05T17:24:48Z",
+  "fetched_at": "2026-08-08T00:20:04Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -304,6 +304,66 @@
         "elev_ft": 36,
         "strava_id": 19591327233,
         "map_polyline": "smraHvpuiV@GEYm@gAU[g@e@M_@g@m@k@}@m@g@Qg@YUKAQMg@?SPQDa@@OFi@DUF_ANIE_@Be@LIACEIi@EGE?OIIAK@q@\\CAIBGAo@Lo@A]HWAu@NUJSAWEWLYDi@Gc@BC@m@Ea@DADIBm@BaALMA]K]UUIEDSDIHWJsA`@_@Cq@OGEESOK_@AW@[C]BUC]@c@IMQQFaAJcARC@CFKF[DS?UGSKi@Uy@?[Mu@Ag@B_@HA@@@GHI@QAQMKOMg@KMSGQB[AWG{BmDLDf@D|A@RJZ\\`@ZBLLvBK`AIV_@h@KDi@LQJSXMXKJOHOZEFGBOAQDS@YGO@iAl@a@^[LiBrAMDWN_@Ho@?_@HUJCCc@AUIa@?MCuADMDQ?_AGqADa@E_@DoAAICYSaCi@YQc@IECo@O}CQ[DUAc@@s@De@A]@UAA@UB{@CIDU@_@Gk@@MAi@D_@Cc@JYBYFM@k@TKBa@NWDA@k@PgAj@k@Re@\\e@NGHk@^i@`@UFIFk@VQLa@R[V_@L_@Tg@NMJq@Ps@f@SHUPKDMJIBULQRi@P]R]\\m@`@i@j@WNONYNUVUTa@PADe@b@i@x@ITSp@Uj@Mj@KZCCP{@h@sAlAoBRQ^UtAmAh@_@rAqAjBeAt@[pAy@hAo@d@OvA{@l@Wb@[d@UL?HEVUf@]NMTOLCj@]z@[d@W\\CjBy@|@YXGT?f@Kl@CL@b@AHBn@G`@@~@IrF?NARKVAh@N^Fj@BTDl@VHATDr@VvAXVTn@Hj@ApADlAEl@Dx@GP?ZF|@Ej@JVAb@I`AEXKREp@[n@m@tAw@z@q@RI^SD@HNr@Mt@g@Xo@^c@PIj@OFGNYH_@@}@AWMW_@_@GKMaAMUQEm@CM@a@CW@YC"
+      }
+    ],
+    "2026-08-05": [
+      {
+        "emoji": "\u26a1",
+        "sport": "Rowing",
+        "name": "Evening Row",
+        "detail": "25m \u00b7 \u2764\ufe0f 102 bpm",
+        "dist_mi": 0,
+        "duration_sec": 1506,
+        "pace": null,
+        "hr_avg": 102,
+        "hr_max": 125,
+        "elev_ft": 0,
+        "strava_id": 19621360598,
+        "map_polyline": ""
+      },
+      {
+        "emoji": "\ud83e\uddd7",
+        "sport": "StairStepper",
+        "name": "Evening Stair-Stepper",
+        "detail": "11m \u00b7 \u2764\ufe0f 139 bpm",
+        "dist_mi": 0,
+        "duration_sec": 692,
+        "pace": null,
+        "hr_avg": 139,
+        "hr_max": 157,
+        "elev_ft": 0,
+        "strava_id": 19621425060,
+        "map_polyline": ""
+      }
+    ],
+    "2026-08-06": [
+      {
+        "emoji": "\ud83c\udfcb",
+        "sport": "WeightTraining",
+        "name": "full body rotation",
+        "detail": "16m",
+        "dist_mi": 0,
+        "duration_sec": 1019,
+        "pace": null,
+        "hr_avg": null,
+        "hr_max": null,
+        "elev_ft": 0,
+        "strava_id": 19635244882,
+        "map_polyline": ""
+      },
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Evening Run",
+        "detail": "2.50 mi \u00b7 29m \u00b7 @ 11:59/mi \u00b7 \u2764\ufe0f 163 bpm \u00b7 cadence 168 spm",
+        "dist_mi": 2.5,
+        "duration_sec": 1799,
+        "pace": "11:59/mi",
+        "hr_avg": 163,
+        "hr_max": 180,
+        "elev_ft": 0,
+        "strava_id": 19635421961,
+        "map_polyline": ""
       }
     ]
   }
