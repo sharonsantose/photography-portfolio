@@ -440,9 +440,9 @@ function generateSvgMapHtml(polylineStr, width = 340, height = 180, padding = 22
 
     return `
         <svg viewBox="0 0 ${width} ${height}" class="route-svg">
-            <polyline points="${points.join(' ')}" fill="none" stroke="#33ff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="${startPt[0]}" cy="${startPt[1]}" r="3.5" fill="#33ff00" />
-            <circle cx="${endPt[0]}" cy="${endPt[1]}" r="3.5" fill="#0a0a0a" stroke="#33ff00" stroke-width="1.8"/>
+            <polyline points="${points.join(' ')}" fill="none" stroke="#b2967d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="${startPt[0]}" cy="${startPt[1]}" r="3.5" fill="#b2967d" />
+            <circle cx="${endPt[0]}" cy="${endPt[1]}" r="3.5" fill="#e7d8c9" stroke="#b2967d" stroke-width="1.8"/>
         </svg>
     `;
 }
