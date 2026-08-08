@@ -1,15 +1,15 @@
 /* ==========================================================================
-   SHARON SANTOS — MONOCHROMATIC BLACK & WHITE DESIGN SYSTEM
+   SHARON SANTOS — PURE DARK GRAPHITE DESIGN SYSTEM (ZERO WHITE BLOCKS)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-    --bg-color: #FFFFFF;
-    --fg-color: #000000;
-    --muted-color: #52525B;
-    --border-color: #000000;
-    --card-bg: #FFFFFF;
+    --bg-color: #080808;
+    --fg-color: #f5f5f5;
+    --muted-color: #a1a1aa;
+    --border-color: #27272a;
+    --card-bg: #121215;
     
     --font-serif: 'EB Garamond', Garamond, Georgia, serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -21,9 +21,10 @@
     padding: 0;
 }
 
-html {
-    background-color: var(--bg-color);
-    color: var(--fg-color);
+html, body {
+    background-color: #080808 !important;
+    background: #080808 !important;
+    color: #f5f5f5 !important;
     font-family: var(--font-serif);
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
@@ -32,8 +33,9 @@ html {
 
 body {
     min-height: 100vh;
-    background-color: var(--bg-color);
-    color: var(--fg-color);
+    background-color: #080808 !important;
+    background: #080808 !important;
+    color: #f5f5f5 !important;
     margin: 0;
     padding: 0;
 }
@@ -42,7 +44,7 @@ body {
     width: 100%;
     max-width: 860px;
     margin: 0 auto;
-    background: var(--bg-color);
+    background: #080808 !important;
     padding: 60px 24px 100px 24px;
 }
 
@@ -51,7 +53,7 @@ body {
     text-align: center;
     margin-bottom: 48px;
     padding-bottom: 32px;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .site-title {
@@ -59,7 +61,7 @@ body {
     font-size: clamp(38px, 7vw, 62px);
     font-weight: 400;
     letter-spacing: -0.01em;
-    color: var(--fg-color);
+    color: #ffffff;
     margin-bottom: 8px;
 }
 
@@ -83,25 +85,20 @@ body {
 .nav-pill {
     font-family: var(--font-serif);
     font-size: 15px;
-    color: var(--fg-color);
+    color: #ffffff;
     text-decoration: none;
     padding: 8px 18px;
     border: 1px solid var(--border-color);
-    background: #FFFFFF;
+    background: #121215;
+    border-radius: 4px;
     transition: all 0.2s ease;
     cursor: pointer;
 }
 
-.nav-pill.active {
-    background: #000000;
-    color: #FFFFFF;
-    border-color: #000000;
-    font-weight: 600;
-}
-
-.nav-pill:hover:not(.active) {
-    background: #000000;
-    color: #FFFFFF;
+.nav-pill.active, .nav-pill:hover {
+    background: #27272a;
+    color: #10b981;
+    border-color: #10b981;
 }
 
 /* Statement Box */
@@ -110,11 +107,12 @@ body {
     font-size: clamp(20px, 3.5vw, 24px);
     font-style: italic;
     line-height: 1.55;
-    color: var(--fg-color);
+    color: #ffffff;
     text-align: center;
     padding: 28px 32px;
-    border: 2px solid var(--border-color);
-    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    background: #121215;
+    border-radius: 8px;
     margin: 36px 0 48px 0;
 }
 
@@ -128,7 +126,7 @@ body {
     color: var(--muted-color);
     margin-bottom: 20px;
     padding-bottom: 8px;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 /* Photography Grid */
@@ -140,7 +138,9 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    border: 2px solid var(--border-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: #121215;
     transition: opacity 0.2s ease;
 }
 
@@ -167,21 +167,15 @@ body {
 
 .writing-card {
     padding: 24px 28px;
-    border: 2px solid var(--border-color);
-    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    background: #121215;
+    border-radius: 8px;
     transition: all 0.2s ease;
 }
 
 .writing-card:hover {
-    background: #000000;
-    color: #FFFFFF;
-}
-
-.writing-card:hover .writing-title,
-.writing-card:hover .writing-desc,
-.writing-card:hover .script-date,
-.writing-card:hover .blog-read-link {
-    color: #FFFFFF;
+    border-color: #3f3f46;
+    background: #18181b;
 }
 
 .writing-title {
@@ -189,7 +183,7 @@ body {
     font-size: 24px;
     font-weight: 400;
     margin: 6px 0;
-    color: var(--fg-color);
+    color: #ffffff;
 }
 
 .writing-desc {
@@ -211,7 +205,7 @@ body {
     font-family: var(--font-serif);
     font-size: 14px;
     font-style: italic;
-    color: var(--fg-color);
+    color: #10b981;
     text-decoration: underline;
     text-underline-offset: 3px;
 }
@@ -224,8 +218,9 @@ body {
 }
 
 .film-card {
-    border: 2px solid var(--border-color);
-    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    background: #121215;
+    border-radius: 8px;
     padding: 12px;
     text-decoration: none;
     color: inherit;
@@ -233,12 +228,8 @@ body {
 }
 
 .film-card:hover {
-    background: #000000;
-    color: #FFFFFF;
-}
-
-.film-card:hover .film-rating {
-    color: #FFFFFF;
+    border-color: #3f3f46;
+    background: #18181b;
 }
 
 .film-info {
@@ -253,14 +244,15 @@ body {
 .film-name {
     font-family: var(--font-serif);
     font-size: 16px;
+    color: #ffffff;
 }
 
 .film-rating {
-    color: var(--fg-color);
+    color: #10b981;
     font-size: 13px;
 }
 
-/* Strava 4:3 Monochromatic Cards */
+/* Strava 4:3 Monochromatic Dark Cards */
 .strava-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -275,24 +267,19 @@ body {
     aspect-ratio: 4 / 3;
     width: 100%;
     padding: 16px;
-    background: #FFFFFF;
-    border: 2px solid var(--border-color);
+    background: #121215;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     text-decoration: none;
-    color: var(--fg-color);
+    color: #ffffff;
     position: relative;
     overflow: hidden;
     transition: all 0.2s ease;
 }
 
 .strava-card:hover {
-    background: #000000;
-    color: #FFFFFF;
-}
-
-.strava-card:hover .strava-title,
-.strava-card:hover .strava-location,
-.strava-card:hover .strava-metrics {
-    color: #FFFFFF;
+    border-color: #3f3f46;
+    background: #18181b;
 }
 
 .strava-header {
@@ -306,7 +293,7 @@ body {
     font-family: var(--font-serif);
     font-size: 17px;
     font-weight: 600;
-    color: var(--fg-color);
+    color: #ffffff;
     line-height: 1.25;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -324,7 +311,7 @@ body {
     font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 600;
-    color: var(--fg-color);
+    color: #10b981;
     letter-spacing: 0.5px;
     margin-top: 2px;
 }
@@ -334,8 +321,9 @@ body {
     height: 85px;
     margin-top: auto;
     overflow: hidden;
-    background: #FFFFFF;
+    background: #0d0d0f;
     border: 1px solid var(--border-color);
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -350,7 +338,7 @@ body {
 .footer, footer {
     margin-top: 60px;
     padding-top: 24px;
-    border-top: 2px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
     text-align: center;
     font-family: var(--font-serif);
     font-size: 14px;
@@ -366,7 +354,7 @@ body {
 }
 
 .footer-links a {
-    color: var(--fg-color);
+    color: #ffffff;
     text-decoration: none;
     font-family: var(--font-serif);
     font-size: 14px;
@@ -374,7 +362,7 @@ body {
 }
 
 .footer-links a:hover {
-    opacity: 0.5;
+    color: #10b981;
 }
 
 /* Buttons */
@@ -382,9 +370,10 @@ body {
     font-family: var(--font-serif);
     font-size: 14px;
     padding: 10px 22px;
-    background: #000000;
-    color: #FFFFFF;
-    border: 2px solid #000000;
+    background: #18181b;
+    color: #ffffff;
+    border: 1px solid #3f3f46;
+    border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
     display: inline-flex;
@@ -393,17 +382,7 @@ body {
 }
 
 .btn:hover, .btn-primary:hover, .unlock-btn:hover {
-    background: #FFFFFF;
-    color: #000000;
-}
-
-.btn-secondary {
-    background: #FFFFFF;
-    color: #000000;
-    border: 2px solid #000000;
-}
-
-.btn-secondary:hover {
-    background: #000000;
-    color: #FFFFFF;
+    background: #27272a;
+    border-color: #10b981;
+    color: #10b981;
 }

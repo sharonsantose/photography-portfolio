@@ -384,9 +384,9 @@
 
         .orca-grid {
             display: grid;
-            grid-template-columns: repeat(7, minmax(140px, 1fr));
+            grid-template-columns: repeat(7, minmax(145px, 1fr));
             gap: 10px;
-            min-width: 980px;
+            min-width: 1000px;
         }
 
         .orca-day-header {
@@ -405,7 +405,7 @@
             border: 1px solid #27272a;
             border-radius: 6px;
             padding: 12px;
-            min-height: 135px;
+            min-height: 140px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -419,7 +419,12 @@
             border-color: #1f1f23;
         }
 
-        .orca-cell.completed-workout {
+        .orca-cell.strava-completed {
+            border-color: #fc4c02 !important;
+            background: rgba(252, 76, 2, 0.08) !important;
+        }
+
+        .orca-cell.garmin-completed {
             border-color: #10b981 !important;
             background: rgba(16, 185, 129, 0.08) !important;
         }
@@ -451,6 +456,7 @@
         .orca-badge.badge-strength { background: #74569b; color: #fff; }
         .orca-badge.badge-recovery { background: #bd8117; color: #fff; }
         .orca-badge.badge-race { background: #ef4444; color: #fff; }
+        .orca-badge.badge-strava-done { background: #fc4c02; color: #fff; }
 
         .orca-detail {
             font-size: 12px;
@@ -458,59 +464,36 @@
             line-height: 1.45;
         }
 
-        /* Seamless Dark Checkbox Badge */
-        .orca-check-wrap {
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            color: #a1a1aa;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 4px;
-            background: #18181b;
-            border: 1px solid #27272a;
-            width: fit-content;
-            transition: all 0.2s ease;
-        }
-
-        .orca-check-wrap:hover {
-            border-color: #10b981;
-            color: #ffffff;
-        }
-
-        .orca-check-wrap input {
-            cursor: pointer;
-            accent-color: #10b981;
-        }
-
-        /* Strava Overlay Badge inside Calendar */
-        .strava-overlay {
+        /* Strava Workout Card inside Cell */
+        .strava-cell-block {
             margin-top: 6px;
-            padding: 6px;
-            background: #18181b;
+            padding: 6px 8px;
+            background: rgba(0, 0, 0, 0.5);
             border: 1px solid #fc4c02;
             border-radius: 4px;
         }
 
-        .strava-overlay-tag {
-            font-size: 9px;
+        .strava-cell-title {
+            font-size: 9.5px;
             font-weight: 800;
             color: #fc4c02;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .strava-overlay-tag a {
+        .strava-cell-title a {
             color: #fc4c02;
             text-decoration: underline;
         }
 
-        .strava-overlay-detail {
+        .strava-cell-detail {
             font-size: 10.5px;
             color: #ffffff;
+            line-height: 1.35;
         }
 
         /* Split Calculator & Gym Routines */
@@ -664,7 +647,7 @@
         <div class="header-bar">
             <div class="header-title-box">
                 <h1>⚡ All Fitness & Garmin Mainframe</h1>
-                <p>Live Garmin Telemetry · 2:15 Half Marathon Training Plan (Aug 6 – Sep 20, 2026)</p>
+                <p>Live Garmin Telemetry · Automatic Strava Workout Verification · 2:15 Half Marathon Plan</p>
             </div>
             <button class="lock-btn sans" id="lockBtn">🔒 Lock Screen</button>
         </div>
@@ -789,15 +772,15 @@
         </div>
 
 
-        <!-- 7-WEEK HALF MARATHON TRAINING PLAN (AUG 6 – SEP 20, 2026) -->
+        <!-- 7-WEEK HALF MARATHON TRAINING PLAN (AUTOMATIC STRAVA VERIFICATION) -->
         <div class="card-box">
             <div class="section-header">
                 <h2 class="section-title">🏃 2:15 Half Marathon Training Schedule</h2>
-                <span class="section-subtitle sans">Aug 6 – Sep 20, 2026 · Target Pace 10:18/mi</span>
+                <span class="section-subtitle sans">Aug 6 – Sep 20, 2026 · Auto-Verified via Strava</span>
             </div>
 
             <div style="font-size:14px; color:#a1a1aa; margin-bottom:20px; line-height:1.6;">
-                Official training schedule from <code>Half_Marathon_Training_Plan_Aug6-Sep20_2026.docx</code> targeting <strong>2:15:00 finish time on Sunday, September 20, 2026</strong>.
+                Official training schedule from <code>Half_Marathon_Training_Plan_Aug6-Sep20_2026.docx</code>. Workouts are <strong>automatically verified from live Strava activity telemetry</strong> as time passes.
             </div>
 
             <div class="orca-calendar-wrap">
@@ -1124,7 +1107,9 @@
         if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
     }
 
-    // ── FETCH GARMIN DATA ──────────────────────────────────────────────
+    // ── FETCH GARMIN & STRAVA DATA ──────────────────────────────────────
+    let cachedStravaData = null;
+
     async function loadGarminData() {
         const candidatePaths = [
             '../private/garmin_data.json',
@@ -1174,6 +1159,27 @@
             if (data.sleep_history) renderMonthlySleepChart(data.sleep_history);
             if (data.steps_history) renderMonthlyCaloriesChart(data.steps_history, data.activities_by_date);
         }
+    }
+
+    async function loadStravaDataForCalendar() {
+        const candidatePaths = [
+            '../private/strava_data.json',
+            '/private/strava_data.json',
+            './private/strava_data.json',
+            'private/strava_data.json',
+            'https://sharonsantos.me/private/strava_data.json'
+        ];
+
+        for (const path of candidatePaths) {
+            try {
+                const res = await fetch(path + '?t=' + Date.now());
+                if (res.ok) {
+                    cachedStravaData = await res.json();
+                    break;
+                }
+            } catch (e) {}
+        }
+        renderOrcaCalendar();
     }
 
     // ── EXACT 2:15 HALF MARATHON WORKOUT PLAN (AUG 6 – SEP 20, 2026 FROM DOCX) ──
@@ -1242,13 +1248,18 @@
     function renderOrcaCalendar() {
         const grid = document.getElementById('orcaGrid');
         if (!grid) return;
+        grid.innerHTML = `
+            <div class="orca-day-header">Mon</div>
+            <div class="orca-day-header">Tue</div>
+            <div class="orca-day-header">Wed</div>
+            <div class="orca-day-header">Thu</div>
+            <div class="orca-day-header">Fri</div>
+            <div class="orca-day-header">Sat</div>
+            <div class="orca-day-header">Sun</div>
+        `;
 
-        const savedChecks = JSON.parse(localStorage.getItem('orca_checks') || '{}');
-        // Default past dates to true if not set
-        const pastDates = ['2026-08-06', '2026-08-07'];
-        pastDates.forEach(pd => {
-            if (savedChecks[pd] === undefined) savedChecks[pd] = true;
-        });
+        const stravaMap = (cachedStravaData && cachedStravaData.activities_by_date) ? cachedStravaData.activities_by_date : {};
+        const todayStr = '2026-08-07';
 
         // Add blank padding cell for Thursday start (Aug 6 is Thursday)
         for (let p = 0; p < 3; p++) {
@@ -1262,41 +1273,57 @@
         ORCA_PLAN.forEach(item => {
             const dateParts = item.date.split('-');
             const monthDay = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
-            const isChecked = !!savedChecks[item.date];
+            const stravaActs = stravaMap[item.date] || [];
+
+            const isPast = (item.date < todayStr);
+            const hasStrava = (stravaActs.length > 0);
+
+            let cellClass = 'orca-cell';
+            let badgeText = item.badge;
+            let badgeClass = item.badgeClass || '';
+
+            if (hasStrava) {
+                cellClass += ' strava-completed';
+                badgeText = 'STRAVA COMPLETED';
+                badgeClass = 'badge-strava-done';
+            } else if (isPast) {
+                cellClass += ' past-week-cell';
+                badgeText = 'REST / COMPLETED';
+            }
 
             const cell = document.createElement('div');
-            cell.className = 'orca-cell' + (isChecked ? ' completed-workout' : '');
+            cell.className = cellClass;
             cell.dataset.date = item.date;
+
+            let stravaHTML = '';
+            if (hasStrava) {
+                stravaHTML = stravaActs.map(a => {
+                    const link = a.strava_id
+                        ? `<a href="https://www.strava.com/activities/${a.strava_id}" target="_blank" rel="noopener">↗ Strava</a>`
+                        : '';
+                    return `
+                        <div class="strava-cell-block">
+                            <div class="strava-cell-title">
+                                <span>${a.emoji || '⚡'} ${a.sport ? a.sport.toUpperCase() : 'WORKOUT'}</span>
+                                ${link}
+                            </div>
+                            <div class="strava-cell-detail">${a.name || ''} ${a.detail ? '— ' + a.detail : ''}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
 
             cell.innerHTML = `
                 <div>
                     <div class="orca-date">${monthDay}</div>
-                    <span class="orca-badge ${item.badgeClass || ''}">${item.badge}</span>
+                    <span class="orca-badge ${badgeClass}">${badgeText}</span>
                     <div class="orca-detail">${item.detail}</div>
+                    ${stravaHTML}
                 </div>
-                <label class="orca-check-wrap sans">
-                    <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleOrcaCheck('${item.date}', this.checked)">
-                    <span>${isChecked ? 'Done ✓' : 'Mark Done'}</span>
-                </label>
             `;
 
             grid.appendChild(cell);
         });
-    }
-
-    function toggleOrcaCheck(dateStr, isChecked) {
-        const savedChecks = JSON.parse(localStorage.getItem('orca_checks') || '{}');
-        savedChecks[dateStr] = isChecked;
-        localStorage.setItem('orca_checks', JSON.stringify(savedChecks));
-
-        const cell = document.querySelector(`.orca-cell[data-date="${dateStr}"]`);
-        if (cell) {
-            if (isChecked) cell.classList.add('completed-workout');
-            else cell.classList.remove('completed-workout');
-
-            const checkLabel = cell.querySelector('.orca-check-wrap span');
-            if (checkLabel) checkLabel.textContent = isChecked ? 'Done ✓' : 'Mark Done';
-        }
     }
 
     // ── GYM ROUTINES TAB SWITCHER (DOCX SESSIONS A, B, C) ─────────────────
@@ -1315,7 +1342,7 @@
     // ── INITIALIZE PAGE ────────────────────────────────────────────────
     function initFitnessPage() {
         loadGarminData();
-        renderOrcaCalendar();
+        loadStravaDataForCalendar();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
