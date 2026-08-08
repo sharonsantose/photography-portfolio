@@ -1243,6 +1243,15 @@
                 }
             } catch (e) {}
         }
+
+        // Also fetch personal Google Calendar events
+        try {
+            const gres = await fetch('gcal_imported_events.json?t=' + Date.now());
+            if (gres.ok) {
+                importedGcalEvents = await gres.json();
+            }
+        } catch (e) {}
+
         renderOrcaCalendar();
     }
 
