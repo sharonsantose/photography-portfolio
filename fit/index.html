@@ -9,7 +9,11 @@
     <!-- Google Fonts: EB Garamond & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        if (window.location.pathname.endsWith('/fit/index.html') || window.location.pathname.endsWith('/fit/index')) {
+            window.history.replaceState(null, '', '/fit');
+        }
+    </script>
     <link rel="stylesheet" href="../style.css">
 
     <style>
@@ -976,7 +980,7 @@
                 <a href="../index.html#writing" class="nav-pill">Writing</a>
                 <a href="../index.html#cinema" class="nav-pill">Cinema</a>
                 <a href="../index.html#strava" class="nav-pill">Strava</a>
-                <a href="index.html" class="nav-pill active">Fit (All Fitness)</a>
+                <a href="/fit" class="nav-pill active">Fit (All Fitness)</a>
             </div>
             <p style="margin-top:14px; font-size:13px; color:#71717a; font-style:italic;">
                 Sharon Santos · All Fitness Control Center · sharonsantos.me/fit
