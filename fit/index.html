@@ -1309,6 +1309,13 @@
         renderOrcaCalendar();
     }
 
+    // Auto-refresh calendar data whenever page is focused, tab becomes visible, or every 60s
+    window.addEventListener('focus', loadStravaDataForCalendar);
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') loadStravaDataForCalendar();
+    });
+    setInterval(loadStravaDataForCalendar, 60000);
+
     // ── COMPLETE THIS WEEK & 2:15 HALF MARATHON WORKOUT PLAN ──
     const ORCA_PLAN = [
         // Entirety of THIS WEEK (Mon Aug 3 – Sun Aug 9, 2026)
