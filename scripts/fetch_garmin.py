@@ -197,15 +197,15 @@ def main():
 
             # Auto-fill Garmin Steps (15k goal)
             for d_str, item in merged_steps.items():
-                st = item.get("steps", 0) if isinstance(item, dict) else item
-                gl = item.get("goal", 15000) if isinstance(item, dict) else 15000
+                st = (item.get("steps", 0) if isinstance(item, dict) else item) or 0
+                gl = (item.get("goal", 15000) if isinstance(item, dict) else 15000) or 15000
                 if d_str not in habits:
                     habits[d_str] = {}
                 habits[d_str]["garmin_steps"] = (st >= gl)
 
             # Auto-fill Garmin Active Calories (500 kcal goal)
             for d_str, item in merged_steps.items():
-                st = item.get("steps", 0) if isinstance(item, dict) else item
+                st = (item.get("steps", 0) if isinstance(item, dict) else item) or 0
                 act_cals = 0
                 if d_str in merged_activities:
                     for act in merged_activities[d_str]:
