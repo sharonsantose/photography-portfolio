@@ -818,32 +818,13 @@
         </div>
 
 
-        <!-- 7-WEEK HALF MARATHON TRAINING PLAN (GOOGLE CALENDAR INTEGRATION) -->
+        <!-- 7-WEEK HALF MARATHON TRAINING PLAN -->
         <div class="card-box">
             <div class="section-header">
                 <h2 class="section-title">🏃 2:15 Half Marathon Training Schedule</h2>
-                <span class="section-subtitle sans">Aug 3 – Sep 20, 2026</span>
-            </div>
-
-            <!-- GOOGLE CALENDAR IMPORT / EXPORT TOOLBAR -->
-            <div style="margin-bottom:20px; padding:14px; background:#18181b; border:1px solid #3f3f46; border-radius:6px; display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;" class="sans">
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span style="font-size:13px; font-weight:700; color:#4285f4;">📅 Google Calendar Sync</span>
-                    <span style="font-size:11px; color:#a1a1aa;">Import personal events or export workouts to Google Calendar</span>
-                </div>
-
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <a href="sharonsantos_fit_schedule.ics" download="sharonsantos_fit_schedule.ics" class="unlock-btn" style="width:auto; padding:6px 12px; font-size:12px; background:#4285f4; border-color:#4285f4; color:#ffffff; text-decoration:none;">
-                        📅 Export All to Google Calendar (.ics)
-                    </a>
-                    <a href="https://calendar.google.com/calendar/r/settings/export" target="_blank" rel="noopener" class="unlock-btn" style="width:auto; padding:6px 12px; font-size:12px; background:#27272a; border-color:#4285f4; color:#ffffff; text-decoration:none;">
-                        ⚙️ Open Google Cal Settings
-                    </a>
-                    <label class="unlock-btn" style="width:auto; padding:6px 12px; font-size:12px; background:#27272a; border-color:#4285f4; cursor:pointer;">
-                        📤 Import Google Cal (.ics)
-                        <input type="file" id="gcalFileInput" accept=".ics" style="display:none;" onchange="importIcsFile(event)">
-                    </label>
-                </div>
+                <a href="https://calendar.google.com" target="_blank" rel="noopener" class="section-subtitle sans" style="color:#4285f4; text-decoration:none; padding:6px 12px; background:#18181b; border:1px solid #4285f4; border-radius:4px; font-weight:600; font-size:12px;">
+                    📅 Open Google Calendar ↗
+                </a>
             </div>
 
             <div class="orca-calendar-wrap">
@@ -1494,9 +1475,6 @@
                     <div class="orca-detail">${item.detail}</div>
                     ${stravaHTML}
                     ${gcalHTML}
-                </div>
-                <div>
-                    <a href="${gcalExportUrl}" target="_blank" rel="noopener" class="gcal-btn">📅 + Google Cal</a>
                 </div>
             `;
 
