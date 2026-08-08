@@ -2033,7 +2033,7 @@
         if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
     }
 
-    // ── Render Monthly Daily Sleep Score Graph ────────────────────────
+    // ── Render Monthly Daily Sleep Score Graph (Last 30 Days) ─────────
     function renderMonthlySleepChart(sleepHistory) {
         if (!sleepHistory || typeof sleepHistory !== 'object') return;
 
@@ -2041,7 +2041,7 @@
         if (!flexContainer) return;
         flexContainer.innerHTML = '';
 
-        const dates = getMonthFilteredDates(sleepHistory);
+        const dates = get30DayHistoryDates(sleepHistory);
         if (dates.length === 0) return;
 
         let totalScore = 0;
@@ -2065,7 +2065,8 @@
             if (sc >= 80) goalDaysCount++;
 
             const pctHeight = Math.max(5, Math.min(100, sc));
-            const dayNum = parseInt(d.split('-')[2], 10);
+            const dateParts = d.split('-');
+            const monthDayStr = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
             const isToday = (d === todayStr);
             const hitGoal = (sc >= 80);
 
@@ -2088,11 +2089,13 @@
                 fill.style.boxShadow = '0 0 6px rgba(16, 185, 129, 0.5)';
             } else if (sc >= 70) {
                 fill.style.background = '#f59e0b';
+            } else {
+                fill.style.background = '#ef4444';
             }
 
             const dateLbl = document.createElement('div');
             dateLbl.className = 'step-bar-date';
-            dateLbl.textContent = dayNum;
+            dateLbl.textContent = monthDayStr;
 
             col.appendChild(tooltip);
             col.appendChild(fill);
@@ -2101,18 +2104,23 @@
         });
 
         // Render meta summary
-        document.getElementById('sleepMonthAvgVal').textContent = `${Math.round(totalScore / dates.length)} / 100`;
-        document.getElementById('sleepMonthBestVal').textContent = `${bestScore} / 100`;
-        document.getElementById('sleepGoalDays').textContent = `${goalDaysCount} / ${dates.length}`;
+        const avgEl = document.getElementById('sleepMonthAvgVal');
+        if (avgEl) avgEl.textContent = `${Math.round(totalScore / dates.length)} / 100`;
+
+        const bestEl = document.getElementById('sleepMonthBestVal');
+        if (bestEl) bestEl.textContent = `${bestScore} / 100`;
+
+        const goalDaysEl = document.getElementById('sleepGoalDays');
+        if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
     }
 
-    // ── Render Monthly Daily Active Calories Graph ───────────────────
+    // ── Render Monthly Daily Active Calories Graph (Last 30 Days) ────
     function renderMonthlyCaloriesChart(stepsHistory, activitiesByDate) {
         const flexContainer = document.getElementById('calsBarsFlex');
         if (!flexContainer || !stepsHistory) return;
         flexContainer.innerHTML = '';
 
-        const dates = getMonthFilteredDates(stepsHistory);
+        const dates = get30DayHistoryDates(stepsHistory);
         if (dates.length === 0) return;
 
         let totalCals = 0;
@@ -2150,7 +2158,8 @@
             if (cals >= 500) goalDaysCount++;
 
             const pctHeight = Math.max(4, Math.min(100, Math.round((cals / maxCals) * 100)));
-            const dayNum = parseInt(d.split('-')[2], 10);
+            const dateParts = d.split('-');
+            const monthDayStr = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
             const isToday = (d === todayStr);
             const hitGoal = (cals >= 500);
 
@@ -2163,19 +2172,22 @@
 
             const tooltip = document.createElement('div');
             tooltip.className = 'step-bar-tooltip sans';
-            tooltip.textContent = `${d}: ${cals.toLocaleString()} active kcal ${hitGoal ? '🔥' : ''}`;
+            tooltip.textContent = `${d}: ${cals.toLocaleString()} kcal ${hitGoal ? '🔥' : ''}`;
 
             const fill = document.createElement('div');
             fill.className = 'step-bar-fill';
             fill.style.height = `${pctHeight}%`;
-            fill.style.background = hitGoal ? 'linear-gradient(to top, #f59e0b, #ef4444)' : 'rgba(245, 158, 11, 0.4)';
-            if (hitGoal) {
-                fill.style.boxShadow = '0 0 8px rgba(245, 158, 11, 0.5)';
+            if (cals >= 500) {
+                fill.style.background = '#f97316';
+                fill.style.boxShadow = '0 0 6px rgba(249, 115, 22, 0.5)';
+            } else {
+                fill.style.background = '#ea580c';
+                fill.style.opacity = '0.7';
             }
 
             const dateLbl = document.createElement('div');
             dateLbl.className = 'step-bar-date';
-            dateLbl.textContent = dayNum;
+            dateLbl.textContent = monthDayStr;
 
             col.appendChild(tooltip);
             col.appendChild(fill);
@@ -2185,11 +2197,13 @@
 
         // Render meta summary
         const totalEl = document.getElementById('calsMonthTotal');
-        const avgEl = document.getElementById('calsMonthAvgVal');
-        const goalEl = document.getElementById('calsGoalDays');
         if (totalEl) totalEl.textContent = `${totalCals.toLocaleString()} kcal`;
-        if (avgEl) avgEl.textContent = `${Math.round(totalCals / dates.length).toLocaleString()} kcal`;
-        if (goalEl) goalEl.textContent = `${goalDaysCount} / ${dates.length}`;
+
+        const avgEl = document.getElementById('calsMonthAvgVal');
+        if (avgEl) avgEl.textContent = `${Math.round(totalCals / dates.length).toLocaleString()} kcal/day`;
+
+        const goalDaysEl = document.getElementById('calsGoalDays');
+        if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
     }
 
     // ── Fetch Garmin Health Data (Steps, Sleep, Resting HR) ───────────
