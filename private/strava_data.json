@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-08T00:20:04Z",
+  "fetched_at": "2026-08-09T05:15:36Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -364,6 +364,22 @@
         "elev_ft": 0,
         "strava_id": 19635421961,
         "map_polyline": ""
+      }
+    ],
+    "2026-08-08": [
+      {
+        "emoji": "\ud83c\udf32",
+        "sport": "Hike",
+        "name": "Lunch Hike",
+        "detail": "9.27 mi \u00b7 3h 29m \u00b7 @ 22:37/mi \u00b7 \u2764\ufe0f 136 bpm \u00b7 \u2191 780ft",
+        "dist_mi": 9.27,
+        "duration_sec": 12582,
+        "pace": "22:37/mi",
+        "hr_avg": 136,
+        "hr_max": 174,
+        "elev_ft": 2559,
+        "strava_id": 19660677925,
+        "map_polyline": "sx}`HledhVpA}ApBmAFg@XHMi@[`@[Gn@iAk@c@Fy@b@a@_A]y@^c@]x@qAzG`@x@~AvBjAg@kAKeBjAv@`@c@`Ap@~AEHgBjA{BIyAb@uCdBoH|@kA`@He@a@yDOOnDuAr@?yA_AoBa@cE`Ac@|@qBdAZhADNn@f@L^g@t@?AXc@_@eAt@_@w@eAISc@gAJWsCuB\\YsAs@U_@s@f@qDfCwB_CYj@_ByCiELoB^{B|BkFXcCQ]oANWw@j@u@z@aEhAaBTiCy@m@_AP{CzDmAx@Cb@}@GJs@i@Vg@xAe@JCiAtB}D`@I`@yBqAp@h@qBq@t@u@Ie@`A{@Ff@gALoBlA{@oAi@q@|@SfAo@Ph@wCx@mAoAf@y@vAyAu@I_@d@iAhCSh@_Bh@c@xF}@vAsCXmASqBwDoCAyBhDiAnChAtAY|@`@`@ITs@TTZk@z@IlArAsAoAq@H_@n@U]Mv@]PcAe@_BZaCmA{DbArA_GpAU\\q@NZP_@JcCMy@Ru@`@NB}@V[MKA{Ar@s@\\wDyD_B[J?m@c@i@HiB{AEYmAg@OeCoE^y@fCmBTu@AyBxB}CfAqOe@_AGuAt@}C~@q@TuCx@o@y@v@M`Ba@D\\FA`@y@h@y@bDDtAd@jAe@~Ja@nCc@f@MjAeAd@@rBUz@gD~CDb@~B`DuAbEpAnDA`@_AtA{A?_DhAbADd@l@jAdGlBtCAhD|@vEBrAxCbBd@bALbBsBbFoGhAiA~B_BGk@\\]|@~AfAbAwApAi@gBlED\\h@QHeAt@y@vAh@kA`AUx@Fh@k@lAfA[Tu@|@Dj@o@e@zBpAy@]zBa@N{B|D@z@^?tAqBIt@`AABe@~EmFdAU~@d@YjC{ArCi@~Ci@r@Pf@lAKZh@YlB_@lAyAzCu@hG`BzAt@xA?d@m@|@xB`@_CrBe@tDL^dA^Bp@Z^rBUTfCm@lBq@HSn@TlCpAxCKrAvAw@JgDhC\\f@Sj@`@g@Ps@hAg@rD}@tB[tCDnAeAxBQfBsADkAk@c@ZkAi@n@`DoB{@aAeBaHa@i@`APVdAWbAXo@xAp@r@o@`Ap@[Nr@WGOh@gBdAiAzA"
       }
     ]
   }

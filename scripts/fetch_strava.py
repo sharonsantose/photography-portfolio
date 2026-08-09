@@ -21,6 +21,24 @@ CLIENT_ID     = os.environ.get("STRAVA_CLIENT_ID")
 CLIENT_SECRET = os.environ.get("STRAVA_CLIENT_SECRET")
 REFRESH_TOKEN = os.environ.get("STRAVA_REFRESH_TOKEN")
 
+# Fallback to local strava_integration if env vars are missing
+if not (CLIENT_ID and CLIENT_SECRET and REFRESH_TOKEN):
+    strava_dir = os.path.expanduser("~/strava_integration")
+    cfg_file = os.path.join(strava_dir, "strava_config.json")
+    tok_file = os.path.join(strava_dir, "strava_tokens.json")
+
+    if os.path.exists(cfg_file) and os.path.exists(tok_file):
+        try:
+            with open(cfg_file, "r") as f:
+                cdata = json.load(f)
+                CLIENT_ID = str(cdata.get("client_id", ""))
+                CLIENT_SECRET = str(cdata.get("client_secret", ""))
+            with open(tok_file, "r") as f:
+                tdata = json.load(f)
+                REFRESH_TOKEN = str(tdata.get("refresh_token", ""))
+        except Exception as e:
+            print(f"Warning loading local Strava config: {e}")
+
 TRAINING_START_TS = int(datetime(2026, 7, 1, 0, 0, 0, tzinfo=timezone.utc).timestamp())
 
 OUT_FILE = os.path.join(os.path.dirname(__file__), "..", "private", "strava_data.json")
