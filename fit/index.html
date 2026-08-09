@@ -297,10 +297,12 @@
             position: absolute;
             left: 0;
             right: 0;
-            top: 45px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+            bottom: 75%;
+            top: auto;
+            border-top: 1px dashed rgba(255, 255, 255, 0.3);
             z-index: 1;
             pointer-events: none;
+            transition: bottom 0.3s ease;
         }
 
         .steps-goal-label {
@@ -661,6 +663,62 @@
             background: #27272a;
             color: #10b981;
             border-color: #10b981;
+        }
+
+        /* ── Mobile Responsive Optimizations ──────────────────────────── */
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px 10px;
+            }
+            .header-title {
+                font-size: 24px;
+            }
+            .header-subtitle {
+                font-size: 13px;
+            }
+            .auth-box {
+                width: 92%;
+                max-width: 320px;
+                padding: 24px 16px;
+            }
+            .password-input {
+                font-size: 16px;
+                padding: 12px;
+            }
+            .unlock-btn {
+                padding: 12px;
+                font-size: 14px;
+                min-height: 48px;
+            }
+            .orca-calendar-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin: 0 -10px;
+                padding: 0 10px;
+            }
+            .orca-calendar-grid {
+                min-width: 760px;
+            }
+            .matrix-table-wrap {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin: 0 -10px;
+                padding: 0 10px;
+            }
+            .steps-chart-container {
+                padding: 14px 10px;
+                margin-bottom: 24px;
+            }
+            .steps-bar-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin: 0 -6px;
+                padding-left: 6px;
+                padding-right: 6px;
+            }
+            .steps-bars-flex {
+                min-width: 580px;
+            }
         }
     </style>
 </head>
@@ -1107,6 +1165,14 @@
 
         const goalDaysEl = document.getElementById('stepsGoalDays');
         if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
+
+        // Position 15,000 Step Goal line 100% proportionally relative to maxSteps height
+        const goalLineEl = document.getElementById('stepsGoalLine');
+        if (goalLineEl) {
+            const pctFromBottom = Math.min(95, Math.max(5, Math.round((15000 / maxSteps) * 100)));
+            goalLineEl.style.bottom = `${pctFromBottom}%`;
+            goalLineEl.style.top = 'auto';
+        }
     }
 
     function renderMonthlySleepChart(sleepHistory) {
@@ -1165,6 +1231,12 @@
 
         const goalDaysEl = document.getElementById('sleepGoalDays');
         if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
+
+        const goalLineEl = document.getElementById('sleepGoalLine');
+        if (goalLineEl) {
+            goalLineEl.style.bottom = '80%';
+            goalLineEl.style.top = 'auto';
+        }
     }
 
     function renderMonthlyCaloriesChart(stepsHistory, activitiesByDate) {
@@ -1232,6 +1304,13 @@
 
         const goalDaysEl = document.getElementById('calsGoalDays');
         if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
+
+        const goalLineEl = document.getElementById('calsGoalLine');
+        if (goalLineEl) {
+            const pctFromBottom = Math.min(95, Math.max(5, Math.round((500 / maxCals) * 100)));
+            goalLineEl.style.bottom = `${pctFromBottom}%`;
+            goalLineEl.style.top = 'auto';
+        }
     }
 
     // ── FETCH GARMIN & STRAVA DATA ──────────────────────────────────────
