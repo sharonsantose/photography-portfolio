@@ -1717,6 +1717,14 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+        // Clear any stored unlock flags on fresh page load/refresh
+        sessionStorage.removeItem('todoUnlocked');
+        localStorage.removeItem('todoUnlocked');
+        sessionStorage.removeItem('sharon_fit_unlocked');
+        localStorage.removeItem('sharon_fit_unlocked');
+        sessionStorage.removeItem('sharon_private_unlocked');
+        localStorage.removeItem('sharon_private_unlocked');
+
         const unlockBtn = document.getElementById('unlockBtn');
         const passInput = document.getElementById('passcodeInput');
         const lockBtn = document.getElementById('lockAppBtn');
@@ -1727,21 +1735,12 @@
         });
         if (lockBtn) lockBtn.addEventListener('click', lockApp);
 
-        const isUnlocked = sessionStorage.getItem('todoUnlocked') === 'true' ||
-                           localStorage.getItem('todoUnlocked') === 'true' ||
-                           sessionStorage.getItem('sharon_fit_unlocked') === 'true' ||
-                           localStorage.getItem('sharon_fit_unlocked') === 'true' ||
-                           sessionStorage.getItem('sharon_private_unlocked') === 'true' ||
-                           localStorage.getItem('sharon_private_unlocked') === 'true';
-        if (isUnlocked) {
-            document.getElementById('authScreen').style.display = 'none';
-            document.getElementById('loadingScreen').style.display = 'flex';
-            initApp();
-        } else {
-            document.getElementById('authScreen').style.display = 'flex';
-            document.getElementById('loadingScreen').style.display = 'none';
-            document.getElementById('app').style.display = 'none';
-        }
+        // Always show password prompt screen on page load or refresh
+        document.getElementById('authScreen').style.display = 'flex';
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('app').style.display = 'none';
+
+        if (passInput) passInput.focus();
     });
 
     // ── Proxy API ────────────────────────────────────────────────────

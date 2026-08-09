@@ -1587,6 +1587,14 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+        // Clear any stored unlock flags on fresh page load/refresh
+        sessionStorage.removeItem('sharon_fit_unlocked');
+        localStorage.removeItem('sharon_fit_unlocked');
+        sessionStorage.removeItem('todoUnlocked');
+        localStorage.removeItem('todoUnlocked');
+        sessionStorage.removeItem('sharon_private_unlocked');
+        localStorage.removeItem('sharon_private_unlocked');
+
         const unlockBtn = document.getElementById('authForm');
         if (unlockBtn) unlockBtn.addEventListener('submit', tryUnlock);
 
@@ -1596,16 +1604,9 @@
         const passInput = document.getElementById('passwordInput');
         if (passInput) passInput.focus();
 
-        const isUnlocked = sessionStorage.getItem('sharon_fit_unlocked') === 'true' ||
-                           localStorage.getItem('sharon_fit_unlocked') === 'true' ||
-                           sessionStorage.getItem('todoUnlocked') === 'true' ||
-                           localStorage.getItem('todoUnlocked') === 'true';
-
-        if (isUnlocked) {
-            document.getElementById('authScreen').style.display = 'none';
-            document.getElementById('fitnessContent').style.display = 'block';
-            initFitnessPage();
-        }
+        // Always show password prompt screen on page load or refresh
+        document.getElementById('authScreen').style.display = 'flex';
+        document.getElementById('fitnessContent').style.display = 'none';
     });
 </script>
 
