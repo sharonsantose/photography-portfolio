@@ -239,9 +239,10 @@
       "read": false
     },
     "2026-08-08": {
-      "garmin_steps": false,
-      "garmin_calories": false,
-      "creatine": true
+      "garmin_steps": true,
+      "garmin_calories": true,
+      "creatine": true,
+      "strava": true
     }
   },
   "commute": {},

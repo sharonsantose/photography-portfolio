@@ -1,11 +1,11 @@
 {
-  "fetched_at": "2026-08-08T16:42:47Z",
-  "today": "2026-08-08",
+  "fetched_at": "2026-08-09T04:19:24Z",
+  "today": "2026-08-09",
   "stats": {
-    "steps": 60,
-    "step_goal": 15000,
+    "steps": null,
+    "step_goal": null,
     "resting_hr": null,
-    "active_calories": 0.0,
+    "active_calories": null,
     "sleep_hours": 7.5,
     "sleep_score": 85
   },
@@ -175,17 +175,17 @@
       "goal": 15000
     },
     "2026-08-08": {
-      "steps": 60,
+      "steps": 26818,
       "goal": 15000
     }
   },
   "sleep_history": {
     "2026-07-29": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-07-28": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-07-27": {
@@ -193,7 +193,7 @@
       "hours": 8.5
     },
     "2026-07-26": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-07-25": {
@@ -225,7 +225,7 @@
       "hours": 4.0
     },
     "2026-07-18": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-07-17": {
@@ -233,7 +233,7 @@
       "hours": 8.9
     },
     "2026-07-16": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-07-15": {
@@ -241,7 +241,7 @@
       "hours": 8.4
     },
     "2026-07-14": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-07-13": {
@@ -253,7 +253,7 @@
       "hours": 6.0
     },
     "2026-07-11": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-07-10": {
@@ -317,23 +317,23 @@
       "hours": 9.6
     },
     "2026-08-02": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-08-03": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-08-04": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-08-05": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-08-06": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-08-07": {
@@ -341,6 +341,10 @@
       "hours": 7.3
     },
     "2026-08-08": {
+      "score": 81,
+      "hours": 7.5
+    },
+    "2026-08-09": {
       "score": 80,
       "hours": 7.5
     }
@@ -622,6 +626,15 @@
         "distance_mi": 2.5,
         "duration_min": 30.0,
         "calories": 327.0
+      }
+    ],
+    "2026-08-08": [
+      {
+        "name": "King County Hiking",
+        "type": "hiking",
+        "distance_mi": 9.27,
+        "duration_min": 209.5,
+        "calories": 1326.0
       }
     ]
   }
