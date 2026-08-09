@@ -240,7 +240,8 @@
     },
     "2026-08-08": {
       "garmin_steps": false,
-      "garmin_calories": false
+      "garmin_calories": false,
+      "creatine": true
     }
   },
   "commute": {},
