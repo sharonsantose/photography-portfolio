@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-11T17:04:54Z",
-  "today": "2026-08-11",
+  "fetched_at": "2026-08-12T04:48:26Z",
+  "today": "2026-08-12",
   "stats": {
-    "steps": 24,
-    "step_goal": 15000,
-    "resting_hr": 46,
-    "active_calories": 0.0,
-    "sleep_hours": 8.8,
-    "sleep_score": 93
+    "steps": null,
+    "step_goal": null,
+    "resting_hr": null,
+    "active_calories": null,
+    "sleep_hours": 7.5,
+    "sleep_score": 85
   },
   "steps_history": {
     "2026-06-28": {
@@ -187,17 +187,17 @@
       "goal": 15000
     },
     "2026-08-11": {
-      "steps": 24,
+      "steps": 5000,
       "goal": 15000
     }
   },
   "sleep_history": {
     "2026-07-29": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-07-28": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-07-27": {
@@ -205,7 +205,7 @@
       "hours": 8.5
     },
     "2026-07-26": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-07-25": {
@@ -237,7 +237,7 @@
       "hours": 4.0
     },
     "2026-07-18": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-07-17": {
@@ -245,7 +245,7 @@
       "hours": 8.9
     },
     "2026-07-16": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-07-15": {
@@ -253,7 +253,7 @@
       "hours": 8.4
     },
     "2026-07-14": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-07-13": {
@@ -329,23 +329,23 @@
       "hours": 9.6
     },
     "2026-08-02": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-08-03": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-08-04": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-08-05": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-08-06": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-08-07": {
@@ -353,7 +353,7 @@
       "hours": 7.3
     },
     "2026-08-08": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-08-09": {
@@ -367,6 +367,10 @@
     "2026-08-11": {
       "score": 93,
       "hours": 8.8
+    },
+    "2026-08-12": {
+      "score": 80,
+      "hours": 7.5
     }
   },
   "activities_by_date": {
