@@ -21,8 +21,8 @@ except ImportError:
     sys.exit(0)
 
 
-EMAIL = os.environ.get("GARMIN_EMAIL") or "sharon5234@outlook.com"
-PASSWORD = os.environ.get("GARMIN_PASSWORD") or "Sharysantos10!"
+EMAIL = os.environ.get("GARMIN_EMAIL")
+PASSWORD = os.environ.get("GARMIN_PASSWORD")
 TOKENS_B64 = os.environ.get("GARMIN_TOKENS")
 
 OUT_FILE = os.path.join(os.path.dirname(__file__), "../private/garmin_data.json")

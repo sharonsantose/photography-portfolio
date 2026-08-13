@@ -3,184 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sharon Santos</title>
+    <meta name="description" content="The personal home of filmmaker, photographer, and writer Sharon Santos.">
+    <meta name="theme-color" content="#0b0b0a">
+    <title>Sharon Santos — Filmmaker</title>
     <link rel="icon" type="image/png" href="favicon-32.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260807_garamond">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260811_cinema">
 </head>
 <body>
+    <header class="site-header">
+        <button class="wordmark" type="button" data-tab="main" onclick="switchTab('main')">
+            Sharon Santos
+        </button>
+        <nav class="nav-links" aria-label="Primary navigation">
+            <button class="nav-link active" type="button" data-tab="main" onclick="switchTab('main')">Index</button>
+            <button class="nav-link" type="button" data-tab="photography" onclick="switchTab('photography')">Photography</button>
+            <button class="nav-link" type="button" data-tab="writing" onclick="switchTab('writing')">Writing</button>
+            <button class="nav-link" type="button" data-tab="letterboxd" onclick="switchTab('letterboxd')">Cinema</button>
+            <button class="nav-link" type="button" data-tab="strava" onclick="switchTab('strava')">Strava</button>
+            <a class="nav-link" href="fit/">Fit</a>
+        </nav>
+    </header>
 
-    <main class="container">
-
-        <!-- Minimal Header -->
-        <header class="minimal-header">
-            <h1 class="site-title">Sharon Santos</h1>
-            <p class="site-subtitle">Filmmaker · Photographer · Writer</p>
-            
-            <!-- Navigation Links -->
-            <nav class="nav-links">
-                <button class="nav-pill active" data-tab="main" onclick="switchTab('main')">Index</button>
-                <button class="nav-pill" data-tab="photography" onclick="switchTab('photography')">Photography</button>
-                <button class="nav-pill" data-tab="writing" onclick="switchTab('writing')">Writing</button>
-                <button class="nav-pill" data-tab="letterboxd" onclick="switchTab('letterboxd')">Cinema</button>
-                <button class="nav-pill" data-tab="strava" onclick="switchTab('strava')">Strava</button>
-            </nav>
-        </header>
-
-        <!-- TAB 1: MAIN / INDEX -->
+    <main>
         <div id="tab-main" class="tab-pane">
-            
-            <!-- User Requested Statement -->
-            <div class="statement-box">
-                An aspiring filmmaker, photographer, and writer. Welcome to my world.
-            </div>
+            <section class="hero" aria-labelledby="hero-title">
+                <img
+                    class="hero-image"
+                    src="images/000097240016_web.jpg"
+                    alt="A New York street washed in red and pale green light leaks"
+                    width="2048"
+                    height="1358"
+                    fetchpriority="high"
+                >
+                <div class="hero-shade" aria-hidden="true"></div>
+                <div class="hero-copy">
+                    <p class="eyebrow hero-eyebrow">Filmmaker · Photographer · Writer</p>
+                    <h1 id="hero-title">Sharon<br>Santos</h1>
+                    <p class="hero-intro">Stories about memory, movement, and the quiet lives unfolding between frames.</p>
+                </div>
+                <div class="hero-foot">
+                    <span>Personal index · 2026</span>
+                    <a href="#featured-film" class="text-link" onclick="event.preventDefault(); document.getElementById('featured-film').scrollIntoView({ behavior: 'smooth' });">Enter the work <span aria-hidden="true">↓</span></a>
+                </div>
+            </section>
 
-            <!-- Featured Film / Video Section -->
-            <div class="scene-heading">Featured Video</div>
-            <div style="margin-bottom: 40px;">
-                <video controls playsinline preload="auto" style="width: 100%; height: auto; display: block; border: 1px solid var(--border-color); background: #000;">
-                    <source src="grieving_love_hd720.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="photo-caption">
-                    <span>“Grieving Love” — Short Film Work</span>
-                    <span>Dir. Sharon Santos</span>
-                </div>
-            </div>
-        </div>
+            <section class="intro-band reveal">
+                <p class="eyebrow">A personal index</p>
+                <p class="intro-statement">I make films and photographs, write through what I cannot yet explain, and keep a record of the art and motion that shape my days.</p>
+            </section>
 
-        <!-- TAB 2: PHOTOGRAPHY -->
-        <div id="tab-photography" class="tab-pane" style="display:none;">
-            <div class="scene-heading">Photography</div>
-            <section class="content-section">
-                <div class="photo-wrapper">
-                    <img src="images/DSCF5062_web.jpg" alt="Featured Photography — Cabo Fuji Series (DSCF5062)" class="featured-photo" loading="eager" onerror="this.onerror=null;this.src='DSCF5062_web.jpg';">
-                    <div class="photo-caption">
-                        <span>Cabo • Fuji Series (DSCF5062)</span>
-                        <span>01</span>
+            <section class="feature-section" id="featured-film">
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="eyebrow">Featured film · 01</p>
+                        <h2><em>Grieving Love</em></h2>
                     </div>
+                    <p class="section-note">A short film<br>Directed by Sharon Santos</p>
                 </div>
-                <div class="photo-wrapper">
-                    <img src="images/DSCF2190_web.jpg" alt="Featured Photography — Fuji 35mm Series (DSCF2190)" class="featured-photo" loading="lazy" onerror="this.onerror=null;this.src='DSCF2190_web.jpg';">
-                    <div class="photo-caption">
-                        <span>Fuji 35mm Series (DSCF2190)</span>
-                        <span>02</span>
-                    </div>
+                <div class="film-frame reveal">
+                    <video controls playsinline preload="metadata">
+                        <source src="grieving_love_hd720.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
-                <div class="photo-wrapper">
-                    <img src="images/000097240012_web.jpg" alt="Featured Photography — 35mm Film Series (Frame 12)" class="featured-photo" loading="lazy" onerror="this.onerror=null;this.src='000097240012_web.jpg';">
-                    <div class="photo-caption">
-                        <span>35mm Film Scan • Frame 12</span>
-                        <span>03</span>
+            </section>
+
+            <section class="selected-work">
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="eyebrow">Selected photographs · 02</p>
+                        <h2>Places that stayed.</h2>
                     </div>
+                    <button class="text-link" type="button" onclick="switchTab('photography')">View the series <span aria-hidden="true">↗</span></button>
                 </div>
-                <div class="photo-wrapper">
-                    <img src="images/000097240016_web.jpg" alt="Featured Photography — 35mm Film Series (Frame 16)" class="featured-photo" loading="lazy" onerror="this.onerror=null;this.src='000097240016_web.jpg';">
-                    <div class="photo-caption">
-                        <span>35mm Film Scan • Frame 16</span>
-                        <span>04</span>
-                    </div>
+                <div class="photo-triptych">
+                    <figure class="selected-photo selected-photo-wide reveal">
+                        <img src="images/DSCF2190_web.jpg" alt="Green hills beneath a bright blue sky" loading="lazy" width="2048" height="1365">
+                        <figcaption><span>Untitled landscape</span><span>Digital · 2025</span></figcaption>
+                    </figure>
+                    <figure class="selected-photo reveal">
+                        <img src="images/000097240012_web.jpg" alt="Columbia University campus on 35mm film" loading="lazy" width="2048" height="1358">
+                        <figcaption><span>New York</span><span>35mm · 2026</span></figcaption>
+                    </figure>
+                    <figure class="selected-photo reveal">
+                        <img src="images/DSCF5062_web.jpg" alt="A wide beach and hillside in Cabo" loading="lazy" width="2000" height="1333">
+                        <figcaption><span>Cabo</span><span>Fujifilm · 2026</span></figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section class="writing-feature reveal">
+                <div>
+                    <p class="eyebrow">From the notebook · 03</p>
+                    <h2>Notes on Light<br>and Motion</h2>
+                </div>
+                <div class="writing-feature-copy">
+                    <p>There is a quiet geometry to how natural light cuts across urban architecture in the late afternoon.</p>
+                    <a href="blog/notes-on-light-and-motion.html" class="text-link">Read the essay <span aria-hidden="true">↗</span></a>
                 </div>
             </section>
         </div>
 
-        <!-- TAB 3: WRITING -->
-        <div id="tab-writing" class="tab-pane" style="display:none;">
-            <div class="scene-heading">Writing &amp; Screenplay Treatments</div>
-            <section class="content-section">
-                <div class="writing-list">
-                    <article class="writing-card">
-                        <div class="script-date">July 28, 2026 · Essay</div>
-                        <h3 class="writing-title">Notes on Light and Motion</h3>
-                        <p class="writing-desc">Observations on street photography composition, analog color science, and cinematic storytelling.</p>
-                        <a href="blog/notes-on-light-and-motion.html" class="blog-read-link">Read Essay →</a>
-                    </article>
-                    <article class="writing-card">
-                        <div class="script-date">July 15, 2026 · Screenplay</div>
-                        <h3 class="writing-title">The Quiet Frame</h3>
-                        <p class="writing-desc">A feature screenplay exploration of memory, light, and urban solitude.</p>
-                        <a href="blog/notes-on-light-and-motion.html" class="blog-read-link">Read Script Notes →</a>
-                    </article>
-                    <article class="writing-card">
-                        <div class="script-date">June 30, 2026 · Scenes</div>
-                        <h3 class="writing-title">Character Monologues &amp; Short Scenes</h3>
-                        <p class="writing-desc">Experimental character studies, dialogue pacing exercises, and short narrative scripts.</p>
-                        <a href="blog/notes-on-light-and-motion.html" class="blog-read-link">Read Scene Work →</a>
-                    </article>
-                </div>
+        <div id="tab-photography" class="tab-pane inner-page" hidden>
+            <header class="page-intro reveal">
+                <p class="eyebrow">Photography · Archive 01—04</p>
+                <h1>Collected light.</h1>
+                <p>Digital and 35mm photographs from places I wanted to remember.</p>
+            </header>
+            <section class="photo-archive">
+                <figure class="archive-photo reveal">
+                    <img src="images/DSCF5062_web.jpg" alt="A wide beach and hillside in Cabo" loading="eager" width="2000" height="1333">
+                    <figcaption><span>01 · Cabo</span><span>Fujifilm X-T5</span></figcaption>
+                </figure>
+                <figure class="archive-photo archive-photo-offset reveal">
+                    <img src="images/DSCF2190_web.jpg" alt="Green hills beneath a bright blue sky" loading="lazy" width="2048" height="1365">
+                    <figcaption><span>02 · Untitled landscape</span><span>Fujifilm X-T5</span></figcaption>
+                </figure>
+                <figure class="archive-photo reveal">
+                    <img src="images/000097240012_web.jpg" alt="Columbia University campus on 35mm film" loading="lazy" width="2048" height="1358">
+                    <figcaption><span>03 · New York</span><span>35mm film</span></figcaption>
+                </figure>
+                <figure class="archive-photo archive-photo-offset reveal">
+                    <img src="images/000097240016_web.jpg" alt="A New York street washed in red and pale green light leaks" loading="lazy" width="2048" height="1358">
+                    <figcaption><span>04 · Light leak</span><span>35mm film</span></figcaption>
+                </figure>
             </section>
         </div>
 
-        <!-- TAB 4: LETTERBOXD STATS -->
-        <div id="tab-letterboxd" class="tab-pane" style="display:none;">
-            <div class="scene-heading">Cinema Archive</div>
-            <section class="content-section">
-                <div style="font-family:var(--font-serif); font-size:16px; font-style:italic; margin-bottom:16px;">Favorites</div>
-                <div class="film-grid" style="margin-bottom: 36px;">
-                    <a href="https://letterboxd.com/film/mulholland-drive/" target="_blank" rel="noopener" class="film-card">
-                        <img src="https://a.ltrbxd.com/resized/film-poster/1/3/4/3/6/3/134363-mulholland-dr--0-600-0-900-crop.jpg?v=52740ad276" alt="Mulholland Drive" class="film-poster" loading="lazy">
-                        <div class="film-info">
-                            <span class="film-name">Mulholland Drive (2001)</span>
-                            <span class="film-rating">★★★★★</span>
-                        </div>
+        <div id="tab-writing" class="tab-pane inner-page" hidden>
+            <header class="page-intro reveal">
+                <p class="eyebrow">Writing · Essays and scenes</p>
+                <h1>Words for the<br>space between.</h1>
+                <p>Essays, screenplay treatments, and experiments in character.</p>
+            </header>
+            <section class="writing-index">
+                <article class="writing-row reveal">
+                    <div class="writing-meta">01 · Essay<br>July 28, 2026</div>
+                    <div>
+                        <h2>Notes on Light and Motion</h2>
+                        <p>On street photography, analog color, and cinematic storytelling.</p>
+                    </div>
+                    <a href="blog/notes-on-light-and-motion.html" class="row-arrow" aria-label="Read Notes on Light and Motion">↗</a>
+                </article>
+                <article class="writing-row reveal">
+                    <div class="writing-meta">02 · Screenplay<br>July 15, 2026</div>
+                    <div>
+                        <h2>The Quiet Frame</h2>
+                        <p>A feature screenplay exploration of memory and urban solitude.</p>
+                    </div>
+                    <a href="blog/notes-on-light-and-motion.html" class="row-arrow" aria-label="Read The Quiet Frame">↗</a>
+                </article>
+                <article class="writing-row reveal">
+                    <div class="writing-meta">03 · Scenes<br>June 30, 2026</div>
+                    <div>
+                        <h2>Character Studies</h2>
+                        <p>Monologues, dialogue exercises, and short narrative scenes.</p>
+                    </div>
+                    <a href="blog/notes-on-light-and-motion.html" class="row-arrow" aria-label="Read Character Studies">↗</a>
+                </article>
+            </section>
+        </div>
+
+        <div id="tab-letterboxd" class="tab-pane inner-page" hidden>
+            <header class="page-intro reveal">
+                <p class="eyebrow">Cinema · A living archive</p>
+                <h1>Films I<br>return to.</h1>
+                <p>A record of what I am watching and the work that keeps shaping mine.</p>
+            </header>
+            <section class="cinema-section">
+                <div class="list-heading reveal"><span>Four favorites</span><span>Always in rotation</span></div>
+                <div class="film-grid favorites-grid">
+                    <a href="https://letterboxd.com/film/mulholland-drive/" target="_blank" rel="noopener" class="film-card reveal">
+                        <img src="https://a.ltrbxd.com/resized/film-poster/1/3/4/3/6/3/134363-mulholland-dr--0-600-0-900-crop.jpg?v=52740ad276" alt="Mulholland Drive poster" class="film-poster" loading="lazy">
+                        <div class="film-info"><span class="film-name">Mulholland Drive</span><span class="film-rating">2001 · ★★★★★</span></div>
                     </a>
-                    <a href="https://letterboxd.com/film/portrait-of-a-lady-on-fire/" target="_blank" rel="noopener" class="film-card">
-                        <img src="https://a.ltrbxd.com/resized/film-poster/4/6/0/8/3/0/460830-portrait-of-a-lady-on-fire-0-600-0-900-crop.jpg?v=79b0f67aa9" alt="Portrait of a Lady on Fire" class="film-poster" loading="lazy">
-                        <div class="film-info">
-                            <span class="film-name">Portrait of a Lady on Fire (2019)</span>
-                            <span class="film-rating">★★★★★</span>
-                        </div>
+                    <a href="https://letterboxd.com/film/portrait-of-a-lady-on-fire/" target="_blank" rel="noopener" class="film-card reveal">
+                        <img src="https://a.ltrbxd.com/resized/film-poster/4/6/0/8/3/0/460830-portrait-of-a-lady-on-fire-0-600-0-900-crop.jpg?v=79b0f67aa9" alt="Portrait of a Lady on Fire poster" class="film-poster" loading="lazy">
+                        <div class="film-info"><span class="film-name">Portrait of a Lady on Fire</span><span class="film-rating">2019 · ★★★★★</span></div>
                     </a>
-                    <a href="https://letterboxd.com/film/booksmart/" target="_blank" rel="noopener" class="film-card">
-                        <img src="https://a.ltrbxd.com/resized/film-poster/4/3/5/4/5/0/435450-booksmart-0-600-0-900-crop.jpg?v=5930d440be" alt="Booksmart" class="film-poster" loading="lazy">
-                        <div class="film-info">
-                            <span class="film-name">Booksmart (2019)</span>
-                            <span class="film-rating">★★★★★</span>
-                        </div>
+                    <a href="https://letterboxd.com/film/booksmart/" target="_blank" rel="noopener" class="film-card reveal">
+                        <img src="https://a.ltrbxd.com/resized/film-poster/4/3/5/4/5/0/435450-booksmart-0-600-0-900-crop.jpg?v=5930d440be" alt="Booksmart poster" class="film-poster" loading="lazy">
+                        <div class="film-info"><span class="film-name">Booksmart</span><span class="film-rating">2019 · ★★★★★</span></div>
                     </a>
-                    <a href="https://letterboxd.com/film/blind-chance/" target="_blank" rel="noopener" class="film-card">
-                        <img src="https://a.ltrbxd.com/resized/film-poster/5/1/9/2/3/51923-blind-chance-0-600-0-900-crop.jpg?v=fd92688f56" alt="Blind Chance" class="film-poster" loading="lazy">
-                        <div class="film-info">
-                            <span class="film-name">Blind Chance (1987)</span>
-                            <span class="film-rating">★★★★★</span>
-                        </div>
+                    <a href="https://letterboxd.com/film/blind-chance/" target="_blank" rel="noopener" class="film-card reveal">
+                        <img src="https://a.ltrbxd.com/resized/film-poster/5/1/9/2/3/51923-blind-chance-0-600-0-900-crop.jpg?v=fd92688f56" alt="Blind Chance poster" class="film-poster" loading="lazy">
+                        <div class="film-info"><span class="film-name">Blind Chance</span><span class="film-rating">1987 · ★★★★★</span></div>
                     </a>
                 </div>
-
-                <div style="font-family:var(--font-serif); font-size:16px; font-style:italic; margin-bottom:16px;">Recently Watched</div>
+            </section>
+            <section class="cinema-section">
+                <div class="list-heading reveal"><span>Recently watched</span><a href="https://letterboxd.com/sharon1/" target="_blank" rel="noopener">Letterboxd ↗</a></div>
                 <div class="film-grid" id="filmGrid">
-                    <p style="color:var(--muted-color); font-size:14px; grid-column:1/-1;">Loading live Letterboxd feed...</p>
+                    <p class="loading-copy">Loading the film diary...</p>
                 </div>
             </section>
         </div>
 
-        <!-- TAB 5: STRAVA STATS -->
-        <div id="tab-strava" class="tab-pane" style="display:none;">
-            <div class="scene-heading">Strava GPS Workouts</div>
-            <section class="content-section">
+        <div id="tab-strava" class="tab-pane inner-page" hidden>
+            <header class="page-intro reveal">
+                <p class="eyebrow">Strava · Recent movement</p>
+                <h1>Out in the world.</h1>
+                <p>Runs, rides, swims, and the routes that make up a life in motion.</p>
+            </header>
+            <section class="movement-section">
+                <div class="list-heading reveal"><span>Latest activities</span><a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener">Strava ↗</a></div>
                 <div class="strava-grid" id="stravaGrid">
-                    <p style="color:var(--muted-color); font-size:14px; grid-column:1/-1;">Loading live Strava feed...</p>
+                    <p class="loading-copy">Loading recent movement...</p>
                 </div>
             </section>
         </div>
-
-        <!-- Minimal Footer -->
-        <footer class="footer">
-            <div class="footer-links">
-                <a href="mailto:sharon5234@outlook.com">Email</a>
-                <a href="https://www.linkedin.com/in/sharonsantos1/" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="https://open.spotify.com/user/.sharon." target="_blank" rel="noopener">Spotify</a>
-                <a href="https://letterboxd.com/sharon1/" target="_blank" rel="noopener">Letterboxd</a>
-                <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener">Strava</a>
-            </div>
-            <p>© 2026 Sharon Santos</p>
-        </footer>
-
     </main>
 
-    <script src="app.js?v=20260807_garamond"></script>
+    <footer class="footer">
+        <p class="footer-mark">Sharon Santos</p>
+        <p>Making films, keeping notes,<br>always looking.</p>
+        <div class="footer-links">
+            <a href="mailto:sharon5234@outlook.com">Email</a>
+            <a href="https://www.linkedin.com/in/sharonsantos1/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://open.spotify.com/user/.sharon." target="_blank" rel="noopener">Spotify</a>
+            <a href="https://letterboxd.com/sharon1/" target="_blank" rel="noopener">Letterboxd</a>
+            <a href="https://www.strava.com/athletes/197020850" target="_blank" rel="noopener">Strava</a>
+            <a href="fit/">Fit</a>
+        </div>
+        <p class="copyright">© 2026 Sharon Santos</p>
+    </footer>
+
+    <script src="app.js?v=20260811_cinema"></script>
 </body>
 </html>

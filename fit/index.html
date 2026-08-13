@@ -3,1691 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sharon Santos — All Fitness & Garmin Control Center</title>
+    <meta name="theme-color" content="#0b0b0a">
     <meta name="robots" content="noindex, nofollow">
-    
-    <!-- Google Fonts: EB Garamond & Inter -->
+    <title>Fit — Sharon Santos</title>
+    <link rel="icon" type="image/png" href="../favicon-32.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script>
-        if (window.location.pathname.endsWith('/fit/index.html') || window.location.pathname.endsWith('/fit/index')) {
-            window.history.replaceState(null, '', '/fit');
-        }
-    </script>
-    <link rel="stylesheet" href="../style.css">
-
-    <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            background: #080808 !important;
-            background-color: #080808 !important;
-            color: #f5f5f5 !important;
-            font-family: 'EB Garamond', Georgia, serif;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-            line-height: 1.6;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 16px;
-            background: #080808 !important;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1240px;
-            margin: 0 auto;
-        }
-
-        .sans {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        .title {
-            font-size: clamp(34px, 5vw, 48px);
-            font-weight: 400;
-            margin-bottom: 6px;
-            color: #ffffff;
-            text-align: center;
-        }
-
-        .subtitle {
-            font-size: 18px;
-            font-style: italic;
-            color: #a1a1aa;
-            margin-bottom: 28px;
-            text-align: center;
-        }
-
-        /* Password Auth Screen */
-        .auth-screen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-            text-align: center;
-        }
-
-        .auth-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            width: 100%;
-            max-width: 340px;
-            padding: 32px 24px;
-            background: #121215;
-            border: 1px solid #27272a;
-            border-radius: 8px;
-        }
-
-        .password-input {
-            width: 100%;
-            padding: 12px 18px;
-            background: #18181b;
-            border: 1px solid #3f3f46;
-            border-radius: 4px;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            font-size: 18px;
-            text-align: center;
-            letter-spacing: 4px;
-            outline: none;
-        }
-
-        .password-input:focus {
-            border-color: #10b981;
-        }
-
-        .unlock-btn {
-            width: 100%;
-            padding: 12px 20px;
-            background: #18181b;
-            color: #ffffff;
-            border: 1px solid #3f3f46;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .unlock-btn:hover {
-            background: #27272a;
-            border-color: #10b981;
-            color: #10b981;
-        }
-
-        .error-msg {
-            color: #ef4444;
-            font-size: 13px;
-            display: none;
-        }
-
-        /* Main Fitness App Content */
-        .fitness-content {
-            display: none;
-        }
-
-        .header-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 32px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #27272a;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .header-title-box h1 {
-            font-size: 32px;
-            font-weight: 400;
-            color: #ffffff;
-        }
-
-        .header-title-box p {
-            font-size: 14px;
-            color: #a1a1aa;
-            font-style: italic;
-        }
-
-        .lock-btn {
-            padding: 8px 16px;
-            background: #18181b;
-            color: #f4f4f5;
-            border: 1px solid #27272a;
-            border-radius: 4px;
-            font-size: 13px;
-            cursor: pointer;
-        }
-
-        .lock-btn:hover {
-            background: #27272a;
-            border-color: #3f3f46;
-        }
-
-        /* Section Cards */
-        .card-box {
-            background: #121215;
-            border: 1px solid #27272a;
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 36px;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #27272a;
-            padding-bottom: 12px;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .section-title {
-            font-size: 22px;
-            font-weight: 400;
-            color: #ffffff;
-        }
-
-        .section-subtitle {
-            font-size: 12px;
-            color: #a1a1aa;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Garmin Health Telemetry Banner */
-        .garmin-banner-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 32px;
-        }
-
-        .garmin-card {
-            background: #121215;
-            border: 1px solid #27272a;
-            border-radius: 8px;
-            padding: 18px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .garmin-card-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #a1a1aa;
-            margin-bottom: 8px;
-        }
-
-        .garmin-card-val {
-            font-size: 28px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        .garmin-card-unit {
-            font-size: 14px;
-            color: #a1a1aa;
-            font-weight: 400;
-        }
-
-        .garmin-card-sub {
-            font-size: 12px;
-            color: #71717a;
-            margin-top: 6px;
-        }
-
-        /* 30-Day Graphs Styles */
-        .steps-chart-container {
-            background: #121215;
-            border: 1px solid #27272a;
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 36px;
-        }
-
-        .steps-chart-meta {
-            display: flex;
-            gap: 32px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-            border-bottom: 1px solid #27272a;
-            padding-bottom: 16px;
-        }
-
-        .steps-meta-val {
-            font-size: 24px;
-            font-weight: 600;
-            color: #ffffff;
-            display: block;
-        }
-
-        .steps-meta-label {
-            font-size: 11px;
-            color: #a1a1aa;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-        }
-
-        .steps-bar-wrapper {
-            position: relative;
-            height: 180px;
-            padding-top: 25px;
-        }
-
-        .steps-goal-line {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 75%;
-            top: auto;
-            border-top: 1px dashed rgba(255, 255, 255, 0.3);
-            z-index: 1;
-            pointer-events: none;
-            transition: bottom 0.3s ease;
-        }
-
-        .steps-goal-label {
-            position: absolute;
-            right: 0;
-            top: -16px;
-            font-size: 10px;
-            color: #a1a1aa;
-            font-weight: 600;
-        }
-
-        .steps-bars-flex {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            height: 100%;
-            gap: 4px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .step-bar-col {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-            justify-content: flex-end;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .step-bar-fill {
-            width: 100%;
-            max-width: 16px;
-            background: rgba(255, 255, 255, 0.18);
-            border-radius: 3px 3px 0 0;
-            transition: height 0.4s ease, background 0.2s;
-            min-height: 3px;
-        }
-
-        .step-bar-col:hover .step-bar-fill {
-            background: #10b981 !important;
-        }
-
-        .step-bar-col.hit-goal .step-bar-fill {
-            background: #10b981;
-            box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
-        }
-
-        .step-bar-date {
-            font-size: 9px;
-            color: #71717a;
-            margin-top: 6px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .step-bar-tooltip {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #18181b;
-            border: 1px solid #3f3f46;
-            color: #ffffff;
-            font-size: 11px;
-            padding: 5px 9px;
-            border-radius: 4px;
-            white-space: nowrap;
-            display: none;
-            z-index: 10;
-            pointer-events: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-        }
-
-        .step-bar-col:hover .step-bar-tooltip {
-            display: block;
-        }
-
-        /* Orca 7-Week Training Schedule Table (Aug 6 - Sep 20, 2026) */
-        .orca-calendar-wrap {
-            overflow-x: auto;
-            margin-top: 20px;
-        }
-
-        .orca-grid {
-            display: grid;
-            grid-template-columns: repeat(7, minmax(145px, 1fr));
-            gap: 10px;
-            min-width: 1000px;
-        }
-
-        .orca-day-header {
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #a1a1aa;
-            text-align: center;
-            padding: 8px 0;
-            border-bottom: 1px solid #27272a;
-        }
-
-        .orca-cell {
-            background: #141417;
-            border: 1px solid #27272a;
-            border-radius: 6px;
-            padding: 12px;
-            min-height: 140px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            transition: border-color 0.2s ease, background 0.2s ease;
-        }
-
-        .orca-cell.past-week-cell {
-            opacity: 0.85;
-            background: #0d0d0f;
-            border-color: #1f1f23;
-        }
-
-        .orca-cell.strava-completed {
-            border-color: #fc4c02 !important;
-            background: rgba(252, 76, 2, 0.08) !important;
-        }
-
-        .orca-cell.gcal-imported {
-            border-color: #4285f4 !important;
-            background: rgba(66, 133, 244, 0.08) !important;
-        }
-
-        .orca-date {
-            font-size: 11px;
-            font-weight: 600;
-            color: #71717a;
-            margin-bottom: 4px;
-        }
-
-        /* Distinct Color-Coded Tags for Workout Types */
-        .workout-tag-group {
-            display: flex;
-            gap: 4px;
-            flex-wrap: wrap;
-            margin-bottom: 6px;
-        }
-
-        .orca-badge {
-            display: inline-block;
-            font-size: 9px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 3px 6px;
-            border-radius: 3px;
-            color: #ffffff;
-            width: fit-content;
-        }
-
-        .orca-badge.badge-run { background: #d9583f; color: #fff; }
-        .orca-badge.badge-swim { background: #2679a8; color: #fff; }
-        .orca-badge.badge-bike { background: #378553; color: #fff; }
-        .orca-badge.badge-strength { background: #74569b; color: #fff; }
-        .orca-badge.badge-row { background: #0284c7; color: #fff; }
-        .orca-badge.badge-stair { background: #ca8a04; color: #fff; }
-        .orca-badge.badge-recovery { background: #047857; color: #fff; }
-        .orca-badge.badge-race { background: #ef4444; color: #fff; }
-        .orca-badge.badge-strava-done { background: #fc4c02; color: #fff; }
-        .orca-badge.badge-gcal { background: #4285f4; color: #fff; }
-
-        .orca-detail {
-            font-size: 12px;
-            color: #f4f4f5;
-            line-height: 1.45;
-        }
-
-        /* Strava & Google Cal Workout Cards */
-        .strava-cell-block {
-            margin-top: 6px;
-            padding: 6px 8px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid #fc4c02;
-            border-radius: 4px;
-        }
-
-        .gcal-cell-block {
-            margin-top: 6px;
-            padding: 6px 8px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid #4285f4;
-            border-radius: 4px;
-        }
-
-        .strava-cell-title {
-            font-size: 9.5px;
-            font-weight: 800;
-            color: #fc4c02;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .gcal-cell-title {
-            font-size: 9.5px;
-            font-weight: 800;
-            color: #4285f4;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
-        }
-
-        .strava-cell-title a {
-            color: #fc4c02;
-            text-decoration: underline;
-        }
-
-        .strava-cell-detail {
-            font-size: 10.5px;
-            color: #ffffff;
-            line-height: 1.35;
-        }
-
-        .gcal-btn {
-            display: inline-block;
-            margin-top: 6px;
-            font-size: 10px;
-            color: #4285f4;
-            text-decoration: none;
-            background: #18181b;
-            border: 1px solid #4285f4;
-            padding: 3px 6px;
-            border-radius: 3px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-
-        .gcal-btn:hover {
-            background: #4285f4;
-            color: #ffffff;
-        }
-
-        /* Split Calculator & Gym Routines */
-        .flex-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 24px;
-        }
-
-        .calc-input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 14px;
-        }
-
-        .calc-input-group label {
-            font-size: 12px;
-            color: #a1a1aa;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .calc-input-group input {
-            padding: 10px 14px;
-            background: #18181b;
-            border: 1px solid #3f3f46;
-            border-radius: 4px;
-            color: #ffffff;
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
-            outline: none;
-        }
-
-        .calc-input-group input:focus {
-            border-color: #10b981;
-        }
-
-        .split-result-box {
-            padding: 16px;
-            background: #18181b;
-            border: 1px solid #3f3f46;
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            color: #f4f4f5;
-            line-height: 1.6;
-        }
-
-        /* Tabs for Gym Switcher */
-        .gym-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            border-bottom: 1px solid #27272a;
-            padding-bottom: 10px;
-            flex-wrap: wrap;
-        }
-
-        .gym-tab-btn {
-            padding: 6px 14px;
-            background: #18181b;
-            border: 1px solid #27272a;
-            border-radius: 4px;
-            color: #a1a1aa;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .gym-tab-btn.active {
-            background: #27272a;
-            color: #10b981;
-            border-color: #10b981;
-            font-weight: 600;
-        }
-
-        .gym-routine-content {
-            font-size: 13px;
-            color: #e4e4e7;
-            line-height: 1.6;
-        }
-
-        .gym-routine-content ul {
-            padding-left: 20px;
-        }
-
-        .gym-routine-content li {
-            margin-bottom: 6px;
-        }
-
-        /* Navigation Bar */
-        .nav-links {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 16px;
-        }
-
-        .nav-pill {
-            font-family: 'EB Garamond', Georgia, serif;
-            font-size: 15px;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 6px 16px;
-            border: 1px solid #3f3f46;
-            background: #141417;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .nav-pill.active, .nav-pill:hover {
-            background: #27272a;
-            color: #10b981;
-            border-color: #10b981;
-        }
-
-        /* ── Mobile Responsive Optimizations ──────────────────────────── */
-        @media (max-width: 768px) {
-            .container {
-                padding: 16px 10px;
-            }
-            .header-title {
-                font-size: 24px;
-            }
-            .header-subtitle {
-                font-size: 13px;
-            }
-            .auth-box {
-                width: 92%;
-                max-width: 320px;
-                padding: 24px 16px;
-            }
-            .password-input {
-                font-size: 16px;
-                padding: 12px;
-            }
-            .unlock-btn {
-                padding: 12px;
-                font-size: 14px;
-                min-height: 48px;
-            }
-            .orca-calendar-wrapper {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                margin: 0 -10px;
-                padding: 0 10px;
-            }
-            .orca-calendar-grid {
-                min-width: 760px;
-            }
-            .matrix-table-wrap {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                margin: 0 -10px;
-                padding: 0 10px;
-            }
-            .steps-chart-container {
-                padding: 14px 10px;
-                margin-bottom: 24px;
-            }
-            .steps-bar-wrapper {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                margin: 0 -6px;
-                padding-left: 6px;
-                padding-right: 6px;
-            }
-            .steps-bars-flex {
-                min-width: 580px;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fit.css?v=20260811">
 </head>
 <body>
-
-<div class="container">
-
-    <!-- Auth Screen -->
-    <div class="auth-screen" id="authScreen">
-        <h1 class="title">Sharon Santos — Fitness Control Center</h1>
-        <p class="subtitle">Enter passcode to unlock Garmin telemetry & 2:15 Half Marathon plan</p>
-        
-        <form class="auth-box" id="authForm">
-            <input type="password" class="password-input" id="passwordInput" placeholder="••••" maxlength="8" autocomplete="off" autofocus>
-            <button type="submit" class="unlock-btn">Unlock All Fitness</button>
-            <div class="error-msg" id="errorMsg">Incorrect passcode. Try again.</div>
+    <section class="gate" id="authScreen">
+        <a class="gate-wordmark" href="../">Sharon Santos</a>
+        <form class="gate-form" id="authForm">
+            <p class="kicker">Private space · Fit</p>
+            <h1>Move with intention.</h1>
+            <p class="gate-copy">Training, recovery, and the road to 13.1.</p>
+            <label class="sr-only" for="passwordInput">Passcode</label>
+            <input id="passwordInput" type="password" inputmode="numeric" maxlength="8" autocomplete="current-password" placeholder="Passcode">
+            <button type="submit">Enter</button>
+            <p class="gate-error" id="authError" role="alert">That passcode did not match.</p>
         </form>
+        <nav class="gate-nav" aria-label="Private tools">
+            <a href="../">Home</a>
+            <a href="../todo/">Tasks</a>
+        </nav>
+    </section>
 
-        <div style="margin-top:28px;">
-            <div class="nav-links">
-                <a href="../index.html" class="nav-pill">Index</a>
-                <a href="../index.html#photography" class="nav-pill">Photography</a>
-                <a href="../index.html#writing" class="nav-pill">Writing</a>
-                <a href="../index.html#cinema" class="nav-pill">Cinema</a>
-                <a href="../index.html#strava" class="nav-pill">Strava</a>
-            </div>
-        </div>
-    </div>
+    <div class="app" id="app" hidden>
+        <header class="topbar">
+            <a class="wordmark" href="../">Sharon Santos</a>
+            <nav class="tool-nav" aria-label="Tool navigation">
+                <a href="../">Home</a>
+                <a href="../todo/">Tasks</a>
+                <button type="button" id="refreshBtn">Refresh</button>
+                <button type="button" id="lockBtn">Lock</button>
+            </nav>
+        </header>
 
-
-    <!-- Main Fitness App Content -->
-    <div class="fitness-content" id="fitnessContent">
-
-        <div class="header-bar">
-            <div class="header-title-box">
-                <h1>⚡ All Fitness & Garmin Mainframe</h1>
-                <p>Live Garmin Telemetry · Google Calendar Integration · Auto Strava Verification</p>
-            </div>
-            <button class="lock-btn sans" id="lockBtn">🔒 Lock Screen</button>
-        </div>
-
-        <!-- Garmin Health Telemetry Banner -->
-        <div class="garmin-banner-grid sans">
-            <div class="garmin-card">
-                <div class="garmin-card-label">👟 Daily Steps</div>
-                <div class="garmin-card-val" id="garminSteps">12,985 <span class="garmin-card-unit">/ 15k</span></div>
-                <div class="garmin-card-sub">Auto-synced from Garmin Connect</div>
-            </div>
-
-            <div class="garmin-card">
-                <div class="garmin-card-label">😴 Sleep & Rest</div>
-                <div class="garmin-card-val" id="garminSleep">7.5 <span class="garmin-card-unit">hrs</span></div>
-                <div class="garmin-card-sub" id="garminSleepScore">Sleep Score: 85 / 100</div>
-            </div>
-
-            <div class="garmin-card">
-                <div class="garmin-card-label">❤️ Resting HR</div>
-                <div class="garmin-card-val" id="garminRhr">49 <span class="garmin-card-unit">bpm</span></div>
-                <div class="garmin-card-sub">Optimal Cardiovascular Baseline</div>
-            </div>
-
-            <div class="garmin-card">
-                <div class="garmin-card-label">⚡ Training Readiness</div>
-                <div class="garmin-card-val" id="garminReadiness">85 <span class="garmin-card-unit">%</span></div>
-                <div class="garmin-card-sub" id="garminReadinessSub" style="color:#10b981;">Peak Recovery — Ready for Hard Work</div>
-            </div>
-        </div>
-
-        <!-- ALL 3 GARMIN 30-DAY HEALTH GRAPHS -->
-
-        <!-- 1. Monthly Daily Steps Graph -->
-        <div class="steps-chart-container">
-            <div class="section-header">
-                <h2 class="section-title">👟 Monthly Daily Steps Graph (Last 30 Days)</h2>
-                <span class="section-subtitle sans">Garmin 15k Daily Goal</span>
-            </div>
-
-            <div class="steps-chart-meta sans">
+        <main class="dashboard">
+            <header class="page-heading">
                 <div>
-                    <span class="steps-meta-val" id="stepsMonthTotal">345,120 steps</span>
-                    <span class="steps-meta-label">Total Steps (30 Days)</span>
+                    <p class="kicker">Fit · Training log</p>
+                    <h1>Today’s load.</h1>
                 </div>
-                <div>
-                    <span class="steps-meta-val" id="stepsMonthAvgVal">11,504 / day</span>
-                    <span class="steps-meta-label">Daily Avg</span>
+                <div class="heading-meta">
+                    <p id="currentDate">Tuesday, August 11</p>
+                    <p class="sync-line"><span class="sync-dot"></span><span id="syncStatus">Loading health data</span></p>
                 </div>
-                <div>
-                    <span class="steps-meta-val" id="stepsGoalDays">24 / 30 days</span>
-                    <span class="steps-meta-label">Days Goal Hit</span>
-                </div>
-            </div>
-
-            <div class="steps-bar-wrapper">
-                <div class="steps-goal-line" id="stepsGoalLine">
-                    <span class="steps-goal-label sans">15k Goal</span>
-                </div>
-                <div class="steps-bars-flex" id="stepsBarsFlex"></div>
-            </div>
-        </div>
-
-        <!-- 2. Monthly Daily Sleep Score Graph -->
-        <div class="steps-chart-container">
-            <div class="section-header">
-                <h2 class="section-title">😴 Monthly Daily Sleep Score Graph (Last 30 Days)</h2>
-                <span class="section-subtitle sans">80 Goal (Optimal Rest)</span>
-            </div>
-
-            <div class="steps-chart-meta sans">
-                <div>
-                    <span class="steps-meta-val" id="sleepMonthAvgVal">81 / 100</span>
-                    <span class="steps-meta-label">30-Day Avg Score</span>
-                </div>
-                <div>
-                    <span class="steps-meta-val" id="sleepMonthBestVal">93 / 100</span>
-                    <span class="steps-meta-label">Best Sleep Score</span>
-                </div>
-                <div>
-                    <span class="steps-meta-val" id="sleepGoalDays">24 / 30 days</span>
-                    <span class="steps-meta-label">Optimal Rest Days (80+)</span>
-                </div>
-            </div>
-
-            <div class="steps-bar-wrapper">
-                <div class="steps-goal-line" id="sleepGoalLine" style="top:20%;">
-                    <span class="steps-goal-label sans">80 Goal</span>
-                </div>
-                <div class="steps-bars-flex" id="sleepBarsFlex"></div>
-            </div>
-        </div>
-
-        <!-- 3. Monthly Daily Active Calories Graph -->
-        <div class="steps-chart-container">
-            <div class="section-header">
-                <h2 class="section-title">🔥 Monthly Daily Active Calories Graph (Last 30 Days)</h2>
-                <span class="section-subtitle sans">500 kcal Active Burn Goal</span>
-            </div>
-
-            <div class="steps-chart-meta sans">
-                <div>
-                    <span class="steps-meta-val" id="calsMonthTotal">18,420 kcal</span>
-                    <span class="steps-meta-label">Total Active Burn (30 Days)</span>
-                </div>
-                <div>
-                    <span class="steps-meta-val" id="calsMonthAvgVal">614 kcal/day</span>
-                    <span class="steps-meta-label">Daily Avg Burn</span>
-                </div>
-                <div>
-                    <span class="steps-meta-val" id="calsGoalDays">22 / 30 days</span>
-                    <span class="steps-meta-label">Days Goal Met (500+ kcal)</span>
-                </div>
-            </div>
-
-            <div class="steps-bar-wrapper">
-                <div class="steps-goal-line" id="calsGoalLine">
-                    <span class="steps-goal-label sans">500 kcal Goal</span>
-                </div>
-                <div class="steps-bars-flex" id="calsBarsFlex"></div>
-            </div>
-        </div>
-
-
-        <!-- WEEKLY WORKOUT MATRIX TABLE -->
-        <div class="card-box">
-            <div class="section-header">
-                <h2 class="section-title">📅 Weekly Workout Routine Matrix</h2>
-                <span class="section-subtitle sans">Standard Weekly Training Pattern</span>
-            </div>
-
-            <div style="overflow-x:auto;">
-                <table style="width:100%; border-collapse:collapse; text-align:left; font-family:'Inter', sans-serif; font-size:13px;" class="sans">
-                    <thead>
-                        <tr style="border-bottom:1px solid #27272a; color:#a1a1aa; text-transform:uppercase; font-size:11px; letter-spacing:1px;">
-                            <th style="padding:10px; width:12%;">Day</th>
-                            <th style="padding:10px; width:24%;">Primary AM Workout</th>
-                            <th style="padding:10px; width:22%;">Secondary PM Workout</th>
-                            <th style="padding:10px; width:24%;">Focus & Target Effort</th>
-                            <th style="padding:10px; width:18%;">Workout Tags</th>
-                        </tr>
-                    </thead>
-                    <tbody style="color:#f4f4f5; line-height:1.5;">
-                        <tr style="border-bottom:1px solid #1f1f23; background:#141417;">
-                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Monday</td>
-                            <td style="padding:12px 10px;">🏃 Run 3-4 mi Easy</td>
-                            <td style="padding:12px 10px;">🏊 Swim 30 min Easy</td>
-                            <td style="padding:12px 10px; color:#a1a1aa;">Aerobic recovery base</td>
-                            <td style="padding:12px 10px;"><span class="orca-badge badge-run">RUN</span> <span class="orca-badge badge-swim">SWIM</span></td>
-                        </tr>
-                        <tr style="border-bottom:1px solid #1f1f23; background:#0f0f12;">
-                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Tuesday</td>
-                            <td style="padding:12px 10px;">🏋️ Strength Session A + Row 10m</td>
-                            <td style="padding:12px 10px;">🚴 Outdoor Bike 60 min Easy</td>
-                            <td style="padding:12px 10px; color:#a1a1aa;">Lower/Upper Strength (Smith Squats, RDLs)</td>
-                            <td style="padding:12px 10px;"><span class="orca-badge badge-strength">STRENGTH A</span> <span class="orca-badge badge-bike">BIKE</span></td>
-                        </tr>
-                        <tr style="border-bottom:1px solid #1f1f23; background:#141417;">
-                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Wednesday</td>
-                            <td style="padding:12px 10px;">🏃 Intervals / Tempo Run (3-5 mi)</td>
-                            <td style="padding:12px 10px;">🏊 Swim 25 min Easy</td>
-                            <td style="padding:12px 10px; color:#a1a1aa;">Speed & Goal Pace Stamina (10:15-10:25/mi)</td>
-                            <td style="padding:12px 10px;"><span class="orca-badge badge-run">INTERVALS</span> <span class="orca-badge badge-swim">SWIM</span></td>
-                        </tr>
-                        <tr style="border-bottom:1px solid #1f1f23; background:#0f0f12;">
-                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Thursday</td>
-                            <td style="padding:12px 10px;">🏋️ Strength Session B + StairMaster</td>
-                            <td style="padding:12px 10px;">🚴 Outdoor Bike 45-60 min Easy</td>
-                            <td style="padding:12px 10px; color:#a1a1aa;">Hip Thrusts, Lunges & Posterior Chain</td>
-                            <td style="padding:12px 10px;"><span class="orca-badge badge-strength">STRENGTH B</span> <span class="orca-badge badge-bike">BIKE</span></td>
-                        </tr>
-                        <tr style="border-bottom:1px solid #1f1f23; background:#141417;">
-                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Friday</td>
-                            <td style="padding:12px 10px;">🏃 Run 3-4 mi Easy + 4 Strides</td>
-                            <td style="padding:12px 10px;">🏊 Swim 20-25 min Easy</td>
-                            <td style="padding:12px 10px; color:#a1a1aa;">Pre-long run leg prime & shakeout</td>
-                            <td style="padding:12px 10px;"><span class="orca-badge badge-run">RUN</span> <span class="orca-badge badge-swim">SWIM</span></td>
-                        </tr>
-                        <tr style="border-bottom:1px solid #1f1f23; background:#0f0f12;">
-                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Saturday</td>
-                            <td style="padding:12px 10px;">🏃 Long Run (6-11 mi @ 11:15-11:45/mi)</td>
-                            <td style="padding:12px 10px;">🏋️ Strength Session C (Upper Body)</td>
-                            <td style="padding:12px 10px; color:#a1a1aa;">Key Endurance Run & Upper Body Lift</td>
-                            <td style="padding:12px 10px;"><span class="orca-badge badge-run">LONG RUN</span> <span class="orca-badge badge-strength">STRENGTH C</span></td>
-                        </tr>
-                        <tr style="background:#141417;">
-                            <td style="padding:12px 10px; font-weight:700; color:#ffffff;">Sunday</td>
-                            <td style="padding:12px 10px;">🚴 Outdoor Ride 90-120 min Easy</td>
-                            <td style="padding:12px 10px;">🏊 Swim 20 min Restorative</td>
-                            <td style="padding:12px 10px; color:#a1a1aa;">Active recovery & low-impact aerobic flushing</td>
-                            <td style="padding:12px 10px;"><span class="orca-badge badge-bike">BIKE</span> <span class="orca-badge badge-swim">SWIM</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- 7-WEEK HALF MARATHON TRAINING PLAN -->
-        <div class="card-box">
-            <div class="section-header">
-                <h2 class="section-title">🏃 2:15 Half Marathon Training Schedule</h2>
-                <a href="https://calendar.google.com" target="_blank" rel="noopener" class="section-subtitle sans" style="color:#4285f4; text-decoration:none; padding:6px 12px; background:#18181b; border:1px solid #4285f4; border-radius:4px; font-weight:600; font-size:12px;">
-                    📅 Open Google Calendar ↗
-                </a>
-            </div>
-
-            <div class="orca-calendar-wrap">
-                <div class="orca-grid" id="orcaGrid">
-                    <div class="orca-day-header">Mon</div>
-                    <div class="orca-day-header">Tue</div>
-                    <div class="orca-day-header">Wed</div>
-                    <div class="orca-day-header">Thu</div>
-                    <div class="orca-day-header">Fri</div>
-                    <div class="orca-day-header">Sat</div>
-                    <div class="orca-day-header">Sun</div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- PACE CALCULATOR & GYM ROUTINES -->
-        <div class="flex-grid">
-
-            <!-- Split Calculator -->
-            <div class="card-box">
-                <div class="section-header">
-                    <h2 class="section-title">⏱️ Target Pace & Split Calculator</h2>
-                    <span class="section-subtitle sans">2:15 Half Marathon Goal</span>
-                </div>
-
-                <div class="calc-input-group sans">
-                    <label>Target Finish Time (HH:MM:SS)</label>
-                    <input type="text" id="targetTimeInput" value="02:15:00">
-                </div>
-
-                <div class="split-result-box" id="splitResultBox">
-                    <strong>Target Pace:</strong> 10:18 / mi<br>
-                    <strong>5K Split:</strong> 31:58<br>
-                    <strong>10K Split:</strong> 1:03:56<br>
-                    <strong>15K Split:</strong> 1:35:54<br>
-                    <strong>20K Split:</strong> 2:07:52
-                </div>
-            </div>
-
-            <!-- Gym Routine Switcher (Sessions A, B, C from Docx) -->
-            <div class="card-box">
-                <div class="section-header">
-                    <h2 class="section-title">🏋️ Strength Sessions (From Docx Plan)</h2>
-                    <span class="section-subtitle sans">Sessions A, B, C</span>
-                </div>
-
-                <div class="gym-tabs sans">
-                    <button class="gym-tab-btn active" onclick="showGymTab('sessionA')">Session A (Tue)</button>
-                    <button class="gym-tab-btn" onclick="showGymTab('sessionB')">Session B (Thu)</button>
-                    <button class="gym-tab-btn" onclick="showGymTab('sessionC')">Session C (Sat)</button>
-                </div>
-
-                <div class="gym-routine-content" id="gymRoutineContent">
-                    <strong>Session A (Tuesday Strength):</strong>
-                    <ul style="margin-top:8px;">
-                        <li>Indoor Row Warm-up — 8-10 min easy</li>
-                        <li>Smith Machine Squat — 3 × 6-8 reps</li>
-                        <li>Dumbbell Romanian Deadlift — 3 × 8-10 reps</li>
-                        <li>Smith Machine Bench Press — 3 × 8-10 reps</li>
-                        <li>Weighted Row Machine — 3 × 8-10 reps</li>
-                        <li>Cable Triceps Pushdown — 2 × 10-12 reps</li>
-                        <li>Kettlebell Farmer Carry — 3 × 30-40 sec</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- Footer Navigation Links -->
-        <div style="margin-top:60px; text-align:center; padding-top:20px; border-top:1px solid #27272a;">
-            <div class="nav-links">
-                <a href="../index.html" class="nav-pill">Index</a>
-                <a href="../index.html#photography" class="nav-pill">Photography</a>
-                <a href="../index.html#writing" class="nav-pill">Writing</a>
-                <a href="../index.html#cinema" class="nav-pill">Cinema</a>
-                <a href="../index.html#strava" class="nav-pill">Strava</a>
-                <a href="/fit" class="nav-pill active">Fit (All Fitness)</a>
-            </div>
-            <p style="margin-top:14px; font-size:13px; color:#71717a; font-style:italic;">
-                Sharon Santos · All Fitness Control Center · sharonsantos.me/fit
-            </p>
-        </div>
-
-    </div>
-
-</div>
-
-<script>
-    // ── PASSCODE & UNLOCK LOGIC ──────────────────────────────────────────
-    const PASS_HASH = "e4782cfc2b471cd4e24686f692188416d8a313cccb62679dc08c348447c2507b"; // 0427
-
-    async function sha256(str) {
-        const buf = new TextEncoder().encode(str);
-        const hash = await crypto.subtle.digest('SHA-256', buf);
-        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
-    }
-
-    async function tryUnlock(e) {
-        if (e) e.preventDefault();
-        const inputEl = document.getElementById('passwordInput');
-        const errEl = document.getElementById('errorMsg');
-        const val = inputEl ? inputEl.value.trim() : '';
-        if (!val) return;
-        
-        const h = await sha256(val);
-        if (h === PASS_HASH || val === '0427') {
-            sessionStorage.setItem('sharon_fit_unlocked', 'true');
-            localStorage.setItem('sharon_fit_unlocked', 'true');
-            sessionStorage.setItem('todoUnlocked', 'true');
-            localStorage.setItem('todoUnlocked', 'true');
-            sessionStorage.setItem('sharon_private_unlocked', 'true');
-            localStorage.setItem('sharon_private_unlocked', 'true');
-            document.getElementById('authScreen').style.display = 'none';
-            document.getElementById('fitnessContent').style.display = 'block';
-            if (errEl) errEl.style.display = 'none';
-            initFitnessPage();
-        } else {
-            if (errEl) errEl.style.display = 'block';
-            if (inputEl) { inputEl.value = ''; inputEl.focus(); }
-        }
-    }
-
-    function lockPage() {
-        sessionStorage.removeItem('sharon_fit_unlocked');
-        localStorage.removeItem('sharon_fit_unlocked');
-        sessionStorage.removeItem('todoUnlocked');
-        localStorage.removeItem('todoUnlocked');
-        sessionStorage.removeItem('sharon_private_unlocked');
-        localStorage.removeItem('sharon_private_unlocked');
-        document.getElementById('fitnessContent').style.display = 'none';
-        document.getElementById('authScreen').style.display = 'flex';
-        const inputEl = document.getElementById('passwordInput');
-        if (inputEl) { inputEl.value = ''; inputEl.focus(); }
-    }
-
-    // ── GARMIN 30-DAY GRAPHS LOGIC ──────────────────────────────────────
-    function get30DayHistoryDates(historyObj) {
-        const allDates = Object.keys(historyObj || {}).sort();
-        if (allDates.length === 0) return [];
-        return allDates.slice(-30);
-    }
-
-    function renderMonthlyStepsChart(stepsHistory) {
-        if (!stepsHistory || typeof stepsHistory !== 'object') return;
-        const flexContainer = document.getElementById('stepsBarsFlex');
-        if (!flexContainer) return;
-        flexContainer.innerHTML = '';
-
-        const dates = get30DayHistoryDates(stepsHistory);
-        if (dates.length === 0) return;
-
-        let totalSteps = 0;
-        let goalDaysCount = 0;
-        let maxSteps = 20000;
-
-        dates.forEach(d => {
-            const item = stepsHistory[d];
-            const st = typeof item === 'object' ? (item.steps || 0) : item;
-            if (st > maxSteps) maxSteps = st;
-        });
-
-        dates.forEach(d => {
-            const item = stepsHistory[d];
-            const st = typeof item === 'object' ? (item.steps || 0) : item;
-            const goal = typeof item === 'object' ? (item.goal || 15000) : 15000;
-
-            totalSteps += st;
-            if (st >= goal) goalDaysCount++;
-
-            const pctHeight = Math.max(4, Math.min(100, Math.round((st / maxSteps) * 100)));
-            const dateParts = d.split('-');
-            const monthDayStr = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
-            const hitGoal = (st >= goal);
-
-            const col = document.createElement('div');
-            col.className = 'step-bar-col' + (hitGoal ? ' hit-goal' : '');
-
-            const tooltip = document.createElement('div');
-            tooltip.className = 'step-bar-tooltip sans';
-            tooltip.textContent = `${d}: ${st.toLocaleString()} steps ${hitGoal ? '🎉' : ''}`;
-
-            const fill = document.createElement('div');
-            fill.className = 'step-bar-fill';
-            fill.style.height = `${pctHeight}%`;
-
-            const dateLbl = document.createElement('div');
-            dateLbl.className = 'step-bar-date';
-            dateLbl.textContent = monthDayStr;
-
-            col.appendChild(tooltip);
-            col.appendChild(fill);
-            col.appendChild(dateLbl);
-            flexContainer.appendChild(col);
-        });
-
-        const totalEl = document.getElementById('stepsMonthTotal');
-        if (totalEl) totalEl.textContent = `${totalSteps.toLocaleString()} steps`;
-
-        const avgEl = document.getElementById('stepsMonthAvgVal');
-        if (avgEl) avgEl.textContent = `${Math.round(totalSteps / dates.length).toLocaleString()} / day`;
-
-        const goalDaysEl = document.getElementById('stepsGoalDays');
-        if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
-
-        // Position 15,000 Step Goal line 100% proportionally relative to maxSteps height
-        const goalLineEl = document.getElementById('stepsGoalLine');
-        if (goalLineEl) {
-            const pctFromBottom = Math.min(95, Math.max(5, Math.round((15000 / maxSteps) * 100)));
-            goalLineEl.style.bottom = `${pctFromBottom}%`;
-            goalLineEl.style.top = 'auto';
-        }
-    }
-
-    function renderMonthlySleepChart(sleepHistory) {
-        if (!sleepHistory || typeof sleepHistory !== 'object') return;
-        const flexContainer = document.getElementById('sleepBarsFlex');
-        if (!flexContainer) return;
-        flexContainer.innerHTML = '';
-
-        const dates = get30DayHistoryDates(sleepHistory);
-        if (dates.length === 0) return;
-
-        let totalScore = 0;
-        let bestScore = 0;
-        let goalDaysCount = 0;
-
-        dates.forEach(d => {
-            const item = sleepHistory[d];
-            const sc = typeof item === 'object' ? (item.score || 80) : item;
-            const hrs = typeof item === 'object' ? (item.hours || 7.5) : 7.5;
-
-            totalScore += sc;
-            if (sc > bestScore) bestScore = sc;
-            if (sc >= 80) goalDaysCount++;
-
-            const pctHeight = Math.max(6, Math.min(100, sc));
-            const dateParts = d.split('-');
-            const monthDayStr = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
-            const hitGoal = (sc >= 80);
-
-            const col = document.createElement('div');
-            col.className = 'step-bar-col' + (hitGoal ? ' hit-goal' : '');
-
-            const tooltip = document.createElement('div');
-            tooltip.className = 'step-bar-tooltip sans';
-            tooltip.textContent = `${d}: Score ${sc}/100 (${hrs}h) ${hitGoal ? '😴' : ''}`;
-
-            const fill = document.createElement('div');
-            fill.className = 'step-bar-fill';
-            fill.style.height = `${pctHeight}%`;
-
-            const dateLbl = document.createElement('div');
-            dateLbl.className = 'step-bar-date';
-            dateLbl.textContent = monthDayStr;
-
-            col.appendChild(tooltip);
-            col.appendChild(fill);
-            col.appendChild(dateLbl);
-            flexContainer.appendChild(col);
-        });
-
-        const avgEl = document.getElementById('sleepMonthAvgVal');
-        if (avgEl) avgEl.textContent = `${Math.round(totalScore / dates.length)} / 100`;
-
-        const bestEl = document.getElementById('sleepMonthBestVal');
-        if (bestEl) bestEl.textContent = `${bestScore} / 100`;
-
-        const goalDaysEl = document.getElementById('sleepGoalDays');
-        if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
-
-        const goalLineEl = document.getElementById('sleepGoalLine');
-        if (goalLineEl) {
-            goalLineEl.style.bottom = '80%';
-            goalLineEl.style.top = 'auto';
-        }
-    }
-
-    function renderMonthlyCaloriesChart(stepsHistory, activitiesByDate) {
-        const flexContainer = document.getElementById('calsBarsFlex');
-        if (!flexContainer || !stepsHistory) return;
-        flexContainer.innerHTML = '';
-
-        const dates = get30DayHistoryDates(stepsHistory);
-        if (dates.length === 0) return;
-
-        let totalCals = 0;
-        let goalDaysCount = 0;
-        let maxCals = 800;
-
-        const calsMap = {};
-        dates.forEach(d => {
-            const item = stepsHistory[d];
-            const st = typeof item === 'object' ? (item.steps || 0) : item;
-            let actCals = 0;
-            if (activitiesByDate && activitiesByDate[d]) {
-                activitiesByDate[d].forEach(act => { actCals += (act.calories || 0); });
-            }
-            const stepCals = Math.round(st * 0.045);
-            const val = Math.max(actCals, stepCals);
-            calsMap[d] = val;
-            if (val > maxCals) maxCals = val;
-        });
-
-        dates.forEach(d => {
-            const cals = calsMap[d] || 0;
-            totalCals += cals;
-            if (cals >= 500) goalDaysCount++;
-
-            const pctHeight = Math.max(4, Math.min(100, Math.round((cals / maxCals) * 100)));
-            const dateParts = d.split('-');
-            const monthDayStr = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
-            const hitGoal = (cals >= 500);
-
-            const col = document.createElement('div');
-            col.className = 'step-bar-col' + (hitGoal ? ' hit-goal' : '');
-
-            const tooltip = document.createElement('div');
-            tooltip.className = 'step-bar-tooltip sans';
-            tooltip.textContent = `${d}: ${cals.toLocaleString()} kcal ${hitGoal ? '🔥' : ''}`;
-
-            const fill = document.createElement('div');
-            fill.className = 'step-bar-fill';
-            fill.style.height = `${pctHeight}%`;
-
-            const dateLbl = document.createElement('div');
-            dateLbl.className = 'step-bar-date';
-            dateLbl.textContent = monthDayStr;
-
-            col.appendChild(tooltip);
-            col.appendChild(fill);
-            col.appendChild(dateLbl);
-            flexContainer.appendChild(col);
-        });
-
-        const totalEl = document.getElementById('calsMonthTotal');
-        if (totalEl) totalEl.textContent = `${totalCals.toLocaleString()} kcal`;
-
-        const avgEl = document.getElementById('calsMonthAvgVal');
-        if (avgEl) avgEl.textContent = `${Math.round(totalCals / dates.length).toLocaleString()} kcal/day`;
-
-        const goalDaysEl = document.getElementById('calsGoalDays');
-        if (goalDaysEl) goalDaysEl.textContent = `${goalDaysCount} / ${dates.length} days`;
-
-        const goalLineEl = document.getElementById('calsGoalLine');
-        if (goalLineEl) {
-            const pctFromBottom = Math.min(95, Math.max(5, Math.round((500 / maxCals) * 100)));
-            goalLineEl.style.bottom = `${pctFromBottom}%`;
-            goalLineEl.style.top = 'auto';
-        }
-    }
-
-    // ── FETCH GARMIN & STRAVA DATA ──────────────────────────────────────
-    let cachedStravaData = null;
-    let importedGcalEvents = {};
-
-    async function loadGarminData() {
-        const candidatePaths = [
-            '../private/garmin_data.json',
-            '/private/garmin_data.json',
-            './private/garmin_data.json',
-            'private/garmin_data.json',
-            'https://sharonsantos.me/private/garmin_data.json'
-        ];
-
-        let data = null;
-        for (const path of candidatePaths) {
-            try {
-                const res = await fetch(path + '?t=' + Date.now());
-                if (res.ok) {
-                    data = await res.json();
-                    break;
-                }
-            } catch (e) {}
-        }
-
-        if (data) {
-            const stats = data.stats || {};
-            let stepsVal = stats.steps;
-            if (!stepsVal && data.steps_history) {
-                const dates = Object.keys(data.steps_history).sort();
-                if (dates.length > 0) {
-                    const lastItem = data.steps_history[dates[dates.length - 1]];
-                    stepsVal = typeof lastItem === 'object' ? lastItem.steps : lastItem;
-                }
-            }
-            if (stepsVal) {
-                document.getElementById('garminSteps').innerHTML = `${stepsVal.toLocaleString()} <span class="garmin-card-unit">/ 15k</span>`;
-            }
-
-            if (stats.sleep_hours || stats.sleep_score) {
-                const hrs = stats.sleep_hours || 7.5;
-                const sc = stats.sleep_score || 85;
-                document.getElementById('garminSleep').innerHTML = `${hrs} <span class="garmin-card-unit">hrs</span>`;
-                document.getElementById('garminSleepScore').textContent = `Sleep Score: ${sc} / 100`;
-            }
-
-            if (stats.resting_hr) {
-                document.getElementById('garminRhr').innerHTML = `${stats.resting_hr} <span class="garmin-card-unit">bpm</span>`;
-            }
-
-            if (data.steps_history) renderMonthlyStepsChart(data.steps_history);
-            if (data.sleep_history) renderMonthlySleepChart(data.sleep_history);
-            if (data.steps_history) renderMonthlyCaloriesChart(data.steps_history, data.activities_by_date);
-        }
-    }
-
-    async function loadStravaDataForCalendar() {
-        const candidatePaths = [
-            '../private/strava_data.json',
-            '/private/strava_data.json',
-            './private/strava_data.json',
-            'private/strava_data.json',
-            'https://sharonsantos.me/private/strava_data.json'
-        ];
-
-        for (const path of candidatePaths) {
-            try {
-                const res = await fetch(path + '?t=' + Date.now());
-                if (res.ok) {
-                    cachedStravaData = await res.json();
-                    break;
-                }
-            } catch (e) {}
-        }
-
-        // Also fetch personal Google Calendar events
-        try {
-            const gres = await fetch('gcal_imported_events.json?t=' + Date.now());
-            if (gres.ok) {
-                importedGcalEvents = await gres.json();
-            }
-        } catch (e) {}
-
-        renderOrcaCalendar();
-    }
-
-    // Auto-refresh calendar data whenever page is focused, tab becomes visible, or every 60s
-    window.addEventListener('focus', loadStravaDataForCalendar);
-    document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible') loadStravaDataForCalendar();
-    });
-    setInterval(loadStravaDataForCalendar, 60000);
-
-    // ── COMPLETE THIS WEEK & 2:15 HALF MARATHON WORKOUT PLAN ──
-    const ORCA_PLAN = [
-        // Entirety of THIS WEEK (Mon Aug 3 – Sun Aug 9, 2026)
-        { date: '2026-08-03', tags: [{ title: 'Run (4.06 mi)', cls: 'badge-run' }, { title: 'Strength', cls: 'badge-strength' }, { title: 'Row', cls: 'badge-row' }], detail: 'Run Club 2.0 (4.06 mi · 45m @ 11:18/mi) + Weight Training (19m) + Evening Row (9m)' },
-        { date: '2026-08-04', tags: [{ title: 'Strength A', cls: 'badge-strength' }, { title: 'Row', cls: 'badge-row' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session A (Smith Squat, RDL, Bench, Row, Triceps, Farmer Carry + 10m row). PM: Outdoor Bike 60m' },
-        { date: '2026-08-05', tags: [{ title: 'Row', cls: 'badge-row' }, { title: 'StairStepper', cls: 'badge-stair' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'Evening Row (25m) + Stair-Stepper (11m) + Swim 25m easy' },
-        { date: '2026-08-06', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'StairStepper', cls: 'badge-stair' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session B (Smith Hip Thrust, Lunges, Shoulder Press, Lat Pulldown, 1-Arm Row, Triceps, Pallof Press) + 15m StairMaster. PM: Outdoor Bike 60m' },
-        { date: '2026-08-07', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy + 4 x 20s strides. PM: Swim 25m easy' },
-        { date: '2026-08-08', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Strength C', cls: 'badge-strength' }], detail: 'AM: Long run 6 mi (11:15-11:45/mi). PM: Session C (Smith Bench, Row, Lat Pulldown, Shoulder Press, Triceps, Biceps, Light Hip Thrust, Pallof Press)' },
-        { date: '2026-08-09', tags: [{ title: 'Bike', cls: 'badge-bike' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Outdoor Ride 90-105m. PM: Swim 20m recovery' },
-
-        // Week 2 (Aug 10 - Aug 16)
-        { date: '2026-08-10', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy. PM: Swim 30m easy' },
-        { date: '2026-08-11', tags: [{ title: 'Strength A', cls: 'badge-strength' }, { title: 'Row', cls: 'badge-row' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session A + 10m row. PM: Outdoor Bike 60m' },
-        { date: '2026-08-12', tags: [{ title: 'Intervals', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: 1m warm, 4x800m @ 9:45-10:00/mi, 1m cool. PM: Swim 25m' },
-        { date: '2026-08-13', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'StairStepper', cls: 'badge-stair' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session B + 15m StairMaster. PM: Outdoor Bike 60m' },
-        { date: '2026-08-14', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy + 4 strides. PM: Swim 25m' },
-        { date: '2026-08-15', tags: [{ title: 'Run (8 mi)', cls: 'badge-run' }, { title: 'Strength C', cls: 'badge-strength' }], detail: 'AM: Long run 8 mi (11:15-11:45/mi). PM: Session C' },
-        { date: '2026-08-16', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Long run 6 mi / Ride 90m. PM: Swim 20m recovery' },
-
-        // Week 3 (Aug 17 - Aug 23)
-        { date: '2026-08-17', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy. PM: Swim 30m easy' },
-        { date: '2026-08-18', tags: [{ title: 'Strength A', cls: 'badge-strength' }, { title: 'Row', cls: 'badge-row' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session A + 10m row. PM: Outdoor Bike 60m' },
-        { date: '2026-08-19', tags: [{ title: 'Intervals', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: 1m warm, 5x800m @ 9:45-10:00/mi, 1m cool. PM: Swim 25m' },
-        { date: '2026-08-20', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'StairStepper', cls: 'badge-stair' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session B + 15m StairMaster. PM: Outdoor Bike 60m' },
-        { date: '2026-08-21', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy + 4 strides. PM: Swim 25m' },
-        { date: '2026-08-22', tags: [{ title: 'Run (9 mi)', cls: 'badge-run' }, { title: 'Strength C', cls: 'badge-strength' }], detail: 'AM: Long run 9 mi (7 mi easy, 2 mi @ 10:30/mi). PM: Session C' },
-        { date: '2026-08-23', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Long run 6 mi / Ride 2hr. PM: Swim 20m recovery' },
-
-        // Week 4 (Aug 24 - Aug 30)
-        { date: '2026-08-24', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi easy. PM: Swim 30m easy' },
-        { date: '2026-08-25', tags: [{ title: 'Strength A', cls: 'badge-strength' }, { title: 'Row', cls: 'badge-row' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session A + 10m row. PM: Outdoor Bike 60m' },
-        { date: '2026-08-26', tags: [{ title: 'Tempo', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: 1m warm, 3 mi @ 10:15-10:25/mi, 1m cool. PM: Swim 25m' },
-        { date: '2026-08-27', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'StairStepper', cls: 'badge-stair' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Session B + 10-15m StairMaster. PM: Outdoor Bike 45-60m' },
-        { date: '2026-08-28', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 3 mi easy + 4 strides. PM: Swim 25m' },
-        { date: '2026-08-29', tags: [{ title: 'Run (10 mi)', cls: 'badge-run' }, { title: 'Strength C', cls: 'badge-strength' }], detail: 'AM: Long run 10-11 mi easy (11:15-11:45/mi). PM: Reduced Session C' },
-        { date: '2026-08-30', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Long run 6 mi / Ride 90m. PM: Swim 20m recovery' },
-
-        // Week 5 (Aug 31 - Sep 6)
-        { date: '2026-08-31', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 3-4 mi easy. PM: Swim 30m easy' },
-        { date: '2026-09-01', tags: [{ title: 'Strength A', cls: 'badge-strength' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Reduced Session A. PM: Outdoor Bike 45m' },
-        { date: '2026-09-02', tags: [{ title: 'Pickups', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 4 mi with 6x30s goal-pace pickups. PM: Swim 25m' },
-        { date: '2026-09-03', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Reduced Session B. PM: Outdoor Bike 40m easy' },
-        { date: '2026-09-04', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 2 mi shakeout. PM: Swim 20m easy' },
-        { date: '2026-09-05', tags: [{ title: '13.1 Test', cls: 'badge-run' }], detail: '13.1-mi confidence run @ 12:00-12:30/mi (strictly easy)' },
-        { date: '2026-09-06', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Long run 6 mi recovery option. PM: Swim 20m restorative' },
-
-        // Week 6 (Sep 7 - Sep 13)
-        { date: '2026-09-07', tags: [{ title: 'Swim', cls: 'badge-swim' }], detail: 'Swim 30m easy (omit run recovering from 13.1 mi)' },
-        { date: '2026-09-08', tags: [{ title: 'Strength A', cls: 'badge-strength' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Reduced Session A. PM: Outdoor Bike 45m' },
-        { date: '2026-09-09', tags: [{ title: 'Rehearsal', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: 1m warm, 3 mi @ 10:15-10:20/mi, 1m cool. PM: Swim 25m' },
-        { date: '2026-09-10', tags: [{ title: 'Strength B', cls: 'badge-strength' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Reduced Session B. PM: Outdoor Bike 45m' },
-        { date: '2026-09-11', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 3 mi easy + 4 strides. PM: Swim 25m' },
-        { date: '2026-09-12', tags: [{ title: 'Long Run', cls: 'badge-run' }, { title: 'Strength C', cls: 'badge-strength' }], detail: 'AM: Long run 7-8 mi easy (final long run). PM: Upper Session C' },
-        { date: '2026-09-13', tags: [{ title: 'Run (6 mi)', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Long run 6 mi / Ride 60m. PM: Swim 20m recovery' },
-
-        // Week 7 (Sep 14 - Sep 20 Race Week!)
-        { date: '2026-09-14', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 3 mi easy + 4 strides. PM: Swim 20m easy' },
-        { date: '2026-09-15', tags: [{ title: 'Activation A', cls: 'badge-strength' }, { title: 'Bike', cls: 'badge-bike' }], detail: 'AM: Light Session A (20m). PM: Outdoor Bike 30-40m' },
-        { date: '2026-09-16', tags: [{ title: 'Pace Check', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: 1m warm, 2 mi @ 10:18/mi, 0.5m cool. PM: Swim 20m' },
-        { date: '2026-09-17', tags: [{ title: 'Activation B', cls: 'badge-strength' }], detail: 'AM: Light Session B (15m). No StairMaster / No Bike' },
-        { date: '2026-09-18', tags: [{ title: 'Run', cls: 'badge-run' }, { title: 'Swim', cls: 'badge-swim' }], detail: 'AM: Run 2 mi very easy. PM: Swim 15-20m. Carb load & prep' },
-        { date: '2026-09-19', tags: [{ title: 'Shakeout', cls: 'badge-run' }], detail: '15m easy shakeout jog + 4 strides. Early sleep' },
-        { date: '2026-09-20', tags: [{ title: 'RACE DAY', cls: 'badge-race' }], detail: '🏁 2:15 HALF MARATHON (13.1 mi) Target 10:18/mi' }
-    ];
-
-    function makeGoogleCalUrl(title, dateStr, detail) {
-        const cleanDate = dateStr.replace(/-/g, '');
-        const startIso = cleanDate + 'T090000Z';
-        const endIso = cleanDate + 'T100000Z';
-        const text = encodeURIComponent('🏃 ' + title);
-        const details = encodeURIComponent(detail + '\n\nSharon Santos Fitness Control Center: https://sharonsantos.me/fit');
-        return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${startIso}/${endIso}&details=${details}&sprop=website:sharonsantos.me`;
-    }
-
-    function exportAllToIcs() {
-        let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Sharon Santos Fitness Control Center//EN\n";
-        ORCA_PLAN.forEach(item => {
-            const cleanDate = item.date.replace(/-/g, '');
-            const title = (item.tags && item.tags.length > 0) ? item.tags[0].title : 'Workout';
-            icsContent += "BEGIN:VEVENT\n";
-            icsContent += `UID:workout-${item.date}@sharonsantos.me\n`;
-            icsContent += `DTSTART;VALUE=DATE:${cleanDate}\n`;
-            icsContent += `SUMMARY:🏃 Sharon Santos — ${title}\n`;
-            icsContent += `DESCRIPTION:${item.detail.replace(/\n/g, ' ')}\n`;
-            icsContent += "END:VEVENT\n";
-        });
-        icsContent += "END:VCALENDAR\n";
-
-        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.setAttribute('download', 'Sharon_Santos_215_Half_Marathon_Plan.ics');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-
-    function importIcsFile(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const text = e.target.result;
-            const events = parseIcsText(text);
-            if (events && events.length > 0) {
-                events.forEach(ev => {
-                    if (ev.date) {
-                        if (!importedGcalEvents[ev.date]) importedGcalEvents[ev.date] = [];
-                        importedGcalEvents[ev.date].push(ev);
-                    }
-                });
-                alert(`Successfully imported ${events.length} Google Calendar event(s) to the website!`);
-                renderOrcaCalendar();
-            }
-        };
-        reader.readAsText(file);
-    }
-
-    function parseIcsText(text) {
-        const results = [];
-        const lines = text.split(/\r\n|\n|\r/);
-        let cur = null;
-
-        lines.forEach(line => {
-            if (line.startsWith('BEGIN:VEVENT')) {
-                cur = {};
-            } else if (line.startsWith('END:VEVENT')) {
-                if (cur && cur.title) results.push(cur);
-                cur = null;
-            } else if (cur) {
-                if (line.startsWith('SUMMARY:')) {
-                    cur.title = line.substring(8).trim();
-                } else if (line.startsWith('DTSTART')) {
-                    const val = line.split(':')[1] || '';
-                    if (val.length >= 8) {
-                        const yr = val.substring(0, 4);
-                        const mo = val.substring(4, 6);
-                        const dy = val.substring(6, 8);
-                        cur.date = `${yr}-${mo}-${dy}`;
-                    }
-                } else if (line.startsWith('DESCRIPTION:')) {
-                    cur.detail = line.substring(12).trim();
-                }
-            }
-        });
-        return results;
-    }
-
-    function renderOrcaCalendar() {
-        const grid = document.getElementById('orcaGrid');
-        if (!grid) return;
-        grid.innerHTML = `
-            <div class="orca-day-header">Mon</div>
-            <div class="orca-day-header">Tue</div>
-            <div class="orca-day-header">Wed</div>
-            <div class="orca-day-header">Thu</div>
-            <div class="orca-day-header">Fri</div>
-            <div class="orca-day-header">Sat</div>
-            <div class="orca-day-header">Sun</div>
-        `;
-
-        const stravaMap = (cachedStravaData && cachedStravaData.activities_by_date) ? cachedStravaData.activities_by_date : {};
-        const todayStr = '2026-08-07';
-
-        ORCA_PLAN.forEach(item => {
-            const dateParts = item.date.split('-');
-            const monthDay = `${parseInt(dateParts[1], 10)}/${parseInt(dateParts[2], 10)}`;
-            const stravaActs = stravaMap[item.date] || [];
-            const gcalActs = importedGcalEvents[item.date] || [];
-
-            const isPast = (item.date < todayStr);
-            const hasStrava = (stravaActs.length > 0);
-            const hasGcal = (gcalActs.length > 0);
-
-            let cellClass = 'orca-cell';
-            if (hasStrava) {
-                cellClass += ' strava-completed';
-            } else if (hasGcal) {
-                cellClass += ' gcal-imported';
-            } else if (isPast) {
-                cellClass += ' past-week-cell';
-            }
-
-            const cell = document.createElement('div');
-            cell.className = cellClass;
-            cell.dataset.date = item.date;
-
-            // Render Multi-Workout Tags
-            let tagsHTML = '';
-            if (hasStrava) {
-                tagsHTML = `<span class="orca-badge badge-strava-done">STRAVA COMPLETED</span>`;
-            } else if (item.tags && item.tags.length > 0) {
-                tagsHTML = item.tags.map(t => `<span class="orca-badge ${t.cls}">${t.title}</span>`).join('');
-            } else {
-                tagsHTML = `<span class="orca-badge badge-recovery">REST / RECOVERY</span>`;
-            }
-
-            // Render Strava Actual Workouts Directly inside Grid Cell
-            let stravaHTML = '';
-            if (hasStrava) {
-                stravaHTML = stravaActs.map(a => {
-                    return `
-                        <div class="strava-cell-block">
-                            <div class="strava-cell-title">
-                                <span>${a.emoji || '⚡'} ${a.sport ? a.sport.toUpperCase() : 'WORKOUT'}</span>
-                            </div>
-                            <div class="strava-cell-detail">${a.name || ''} ${a.detail ? '— ' + a.detail : ''}</div>
-                        </div>
-                    `;
-                }).join('');
-            }
-
-            // Render Imported Google Calendar Events (Title only)
-            let gcalHTML = '';
-            if (hasGcal) {
-                gcalHTML = gcalActs.map(g => `
-                    <div class="gcal-cell-block">
-                        <div class="gcal-cell-title">📅 ${g.title || 'Google Cal Event'}</div>
+            </header>
+
+            <section class="today-grid" aria-labelledby="todayTitle">
+                <article class="today-session">
+                    <div class="session-topline">
+                        <p class="kicker">On the plan</p>
+                        <span id="todayPlanDate">Today</span>
                     </div>
-                `).join('');
-            }
+                    <h2 id="todayTitle">Loading today’s session…</h2>
+                    <p class="session-detail" id="todayPlanDetail">Checking the training block.</p>
+                    <div class="session-actual" id="todayActual">
+                        <span class="actual-label">Actual</span>
+                        <span>No activity logged yet</span>
+                    </div>
+                </article>
 
-            // Export to Google Calendar Link
-            const primaryTitle = (item.tags && item.tags.length > 0) ? item.tags[0].title : 'Workout';
-            const gcalExportUrl = makeGoogleCalUrl(primaryTitle, item.date, item.detail);
+                <aside class="readiness-panel">
+                    <div class="readiness-ring" id="readinessRing">
+                        <div>
+                            <strong id="readinessValue">—</strong>
+                            <span>ready</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="kicker">Recovery signal</p>
+                        <h2 id="readinessLabel">Reading your baseline</h2>
+                        <p id="readinessNote">Sleep and resting heart rate inform today’s recommendation.</p>
+                    </div>
+                </aside>
+            </section>
 
-            cell.innerHTML = `
-                <div>
-                    <div class="orca-date">${monthDay}</div>
-                    <div class="workout-tag-group">${tagsHTML}</div>
-                    <div class="orca-detail">${item.detail}</div>
-                    ${stravaHTML}
-                    ${gcalHTML}
+            <section class="metric-grid" aria-label="Today’s health metrics">
+                <article class="metric">
+                    <div class="metric-label"><span>Steps</span><span id="stepsGoal">Goal 15,000</span></div>
+                    <strong id="stepsValue">—</strong>
+                    <div class="progress"><span id="stepsProgress"></span></div>
+                </article>
+                <article class="metric">
+                    <div class="metric-label"><span>Sleep</span><span id="sleepScore">Score —</span></div>
+                    <strong id="sleepValue">—</strong>
+                    <p id="sleepNote">Last night</p>
+                </article>
+                <article class="metric">
+                    <div class="metric-label"><span>Resting HR</span><span>Baseline</span></div>
+                    <strong id="rhrValue">—</strong>
+                    <p id="rhrNote">Beats per minute</p>
+                </article>
+                <article class="metric">
+                    <div class="metric-label"><span>Active energy</span><span id="calorieGoal">Goal 500</span></div>
+                    <strong id="calorieValue">—</strong>
+                    <div class="progress progress-coral"><span id="calorieProgress"></span></div>
+                </article>
+            </section>
+
+            <section class="section-block" aria-labelledby="weekTitle">
+                <div class="section-heading">
+                    <div>
+                        <p class="kicker">This week</p>
+                        <h2 id="weekTitle">Rhythm over perfection.</h2>
+                    </div>
+                    <p id="weekSummary">Loading the week…</p>
                 </div>
-            `;
+                <div class="week-strip" id="weekStrip"></div>
+            </section>
 
-            grid.appendChild(cell);
-        });
-    }
+            <section class="section-block calendar-section" aria-labelledby="calendarTitle">
+                <div class="section-heading calendar-heading">
+                    <div>
+                        <p class="kicker">Complete training block</p>
+                        <h2 id="calendarTitle">Seven weeks to 13.1.</h2>
+                    </div>
+                    <p id="calendarSummary">Aug 3–Sep 20 · Strava + Google Calendar</p>
+                </div>
+                <div class="calendar-toolbar">
+                    <div class="calendar-legend" aria-label="Calendar legend">
+                        <span><i class="legend-dot planned"></i>Plan</span>
+                        <span><i class="legend-dot strava"></i>Strava actual</span>
+                        <span><i class="legend-dot gcal"></i>Google Calendar</span>
+                    </div>
+                    <div class="calendar-actions">
+                        <button type="button" id="exportPlanBtn">Download full plan .ics</button>
+                        <label for="importPlanInput">Import .ics</label>
+                        <input id="importPlanInput" type="file" accept=".ics,text/calendar" hidden>
+                    </div>
+                </div>
+                <div class="calendar-shell" tabindex="0" aria-label="Scrollable seven-week training calendar">
+                    <table class="training-calendar">
+                        <thead>
+                            <tr>
+                                <th scope="col">Monday</th>
+                                <th scope="col">Tuesday</th>
+                                <th scope="col">Wednesday</th>
+                                <th scope="col">Thursday</th>
+                                <th scope="col">Friday</th>
+                                <th scope="col">Saturday</th>
+                                <th scope="col">Sunday</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trainingCalendarBody"></tbody>
+                    </table>
+                </div>
+            </section>
 
-    // ── GYM ROUTINES TAB SWITCHER (DOCX SESSIONS A, B, C) ─────────────────
-    const GYM_ROUTINES = {
-        sessionA: `<strong>Session A (Tuesday Strength):</strong><ul style="margin-top:8px;"><li>Indoor Row Warm-up — 8-10 min easy</li><li>Smith Machine Squat — 3 × 6-8 reps</li><li>Dumbbell Romanian Deadlift — 3 × 8-10 reps</li><li>Smith Machine Bench Press — 3 × 8-10 reps</li><li>Weighted Row Machine — 3 × 8-10 reps</li><li>Cable Triceps Pushdown — 2 × 10-12 reps</li><li>Kettlebell Farmer Carry — 3 × 30-40 sec</li></ul>`,
-        sessionB: `<strong>Session B (Thursday Strength):</strong><ul style="margin-top:8px;"><li>Dynamic Warm-up — 5-7 min mobility & glute bridges</li><li>Smith Machine Hip Thrust — 3 × 8-10 reps</li><li>Dumbbell Reverse Lunge — 2 × 8 reps/side</li><li>Seated Dumbbell Shoulder Press — 3 × 8-10 reps</li><li>Lat Pulldown — 3 × 8-12 reps</li><li>One-Arm Dumbbell Row — 2 × 10 reps/side</li><li>Cable Triceps Pushdown — 2 × 12-15 reps</li><li>Cable Pallof Press — 2 × 10 reps/side</li><li>StairMaster — 10-15 min easy</li></ul>`,
-        sessionC: `<strong>Session C (Saturday Strength):</strong><ul style="margin-top:8px;"><li>Smith Machine Bench Press — 3 × 8-10 reps</li><li>Weighted Row Machine — 3 × 8-10 reps</li><li>Lat Pulldown — 2 × 10-12 reps</li><li>Seated Dumbbell Shoulder Press — 2 × 10 reps</li><li>Cable Triceps Pushdown — 2 × 12-15 reps</li><li>Dumbbell Biceps Curl — 2 × 10-12 reps</li><li>Smith Machine Hip Thrust — 1-2 × 10 (light)</li><li>Cable Pallof Press — 2 × 10 reps/side</li></ul>`
-    };
+            <section class="section-block trend-section" aria-labelledby="trendTitle">
+                <div class="section-heading">
+                    <div>
+                        <p class="kicker">Fourteen-day signal</p>
+                        <h2 id="trendTitle">Look for the pattern.</h2>
+                    </div>
+                    <p>Daily noise matters less than direction.</p>
+                </div>
+                <div class="trend-grid">
+                    <article class="trend-panel">
+                        <div class="trend-meta">
+                            <div><span>Steps</span><strong id="stepsAverage">—</strong></div>
+                            <span id="stepsGoalDays">— goal days</span>
+                        </div>
+                        <svg id="stepsChart" viewBox="0 0 640 190" role="img" aria-label="Fourteen-day steps trend"></svg>
+                    </article>
+                    <article class="trend-panel">
+                        <div class="trend-meta">
+                            <div><span>Sleep score</span><strong id="sleepAverage">—</strong></div>
+                            <span id="sleepBest">Best —</span>
+                        </div>
+                        <svg id="sleepChart" viewBox="0 0 640 190" role="img" aria-label="Fourteen-day sleep trend"></svg>
+                    </article>
+                </div>
+            </section>
 
-    function showGymTab(tabKey) {
-        document.querySelectorAll('.gym-tab-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-        document.getElementById('gymRoutineContent').innerHTML = GYM_ROUTINES[tabKey] || GYM_ROUTINES['sessionA'];
-    }
+            <section class="section-block plan-tools">
+                <div class="upcoming">
+                    <div class="section-heading compact-heading">
+                        <div>
+                            <p class="kicker">Next on the plan</p>
+                            <h2>Keep the horizon close.</h2>
+                        </div>
+                        <p id="raceCountdown">Race day · Sep 20</p>
+                    </div>
+                    <div class="upcoming-list" id="upcomingList"></div>
+                </div>
 
-    // ── INITIALIZE PAGE ────────────────────────────────────────────────
-    function initFitnessPage() {
-        loadGarminData();
-        loadStravaDataForCalendar();
-    }
+                <aside class="utility-column">
+                    <section class="utility-panel">
+                        <p class="kicker">Strength library</p>
+                        <div class="segmented" role="tablist" aria-label="Strength session">
+                            <button class="active" type="button" data-routine="a">A</button>
+                            <button type="button" data-routine="b">B</button>
+                            <button type="button" data-routine="c">C</button>
+                        </div>
+                        <h3 id="routineTitle">Session A · Tuesday</h3>
+                        <ol id="routineList"></ol>
+                    </section>
 
-    document.addEventListener('DOMContentLoaded', () => {
-        // Clear any stored unlock flags on fresh page load/refresh
-        sessionStorage.removeItem('sharon_fit_unlocked');
-        localStorage.removeItem('sharon_fit_unlocked');
-        sessionStorage.removeItem('todoUnlocked');
-        localStorage.removeItem('todoUnlocked');
-        sessionStorage.removeItem('sharon_private_unlocked');
-        localStorage.removeItem('sharon_private_unlocked');
+                    <section class="utility-panel">
+                        <p class="kicker">Pace desk</p>
+                        <label for="finishTime">Half-marathon goal</label>
+                        <div class="pace-input">
+                            <input id="finishTime" value="02:15:00" inputmode="numeric" aria-label="Target finish time">
+                            <button type="button" id="paceBtn">Calculate</button>
+                        </div>
+                        <dl class="pace-results">
+                            <div><dt>Pace</dt><dd id="paceResult">10:18 / mi</dd></div>
+                            <div><dt>5K</dt><dd id="fiveKResult">31:58</dd></div>
+                            <div><dt>10K</dt><dd id="tenKResult">1:03:56</dd></div>
+                        </dl>
+                    </section>
+                </aside>
+            </section>
+        </main>
 
-        const unlockBtn = document.getElementById('authForm');
-        if (unlockBtn) unlockBtn.addEventListener('submit', tryUnlock);
+        <footer class="footer">
+            <span>Fit · Sharon Santos</span>
+            <div><a href="../todo/">Open Tasks</a><a href="../">Return Home</a></div>
+        </footer>
+    </div>
 
-        const lockBtn = document.getElementById('lockBtn');
-        if (lockBtn) lockBtn.addEventListener('click', lockPage);
-
-        const passInput = document.getElementById('passwordInput');
-        if (passInput) passInput.focus();
-
-        // Always show password prompt screen on page load or refresh
-        document.getElementById('authScreen').style.display = 'flex';
-        document.getElementById('fitnessContent').style.display = 'none';
-    });
-</script>
-
+    <script src="fit.js?v=20260811"></script>
 </body>
 </html>

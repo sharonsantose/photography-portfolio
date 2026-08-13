@@ -1,38 +1,51 @@
-// ==========================================================================
-// SHARON SANTOS — TAB SWITCHING & ROUTING
-// ==========================================================================
-
-// Track whether tab data has been loaded
+// Navigation, lazy content, and restrained scroll motion.
 const tabLoaded = { letterboxd: false, strava: false };
+const validTabs = ['main', 'photography', 'writing', 'letterboxd', 'strava'];
+let revealObserver;
 
-function switchTab(tabId) {
-    const validTabs = ['main', 'photography', 'writing', 'letterboxd', 'strava'];
+function observeReveals(root = document) {
+    const elements = root.querySelectorAll('.reveal:not([data-reveal-ready])');
+    elements.forEach(element => {
+        element.dataset.revealReady = 'true';
+        if (revealObserver) revealObserver.observe(element);
+    });
+}
+
+function initRevealObserver() {
+    revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+        });
+    }, {
+        rootMargin: '0px 0px -7% 0px',
+        threshold: 0.08
+    });
+
+    observeReveals();
+}
+
+function switchTab(tabId, options = {}) {
     if (!validTabs.includes(tabId)) tabId = 'main';
 
-    // Hide all tab panes
-    const panes = document.querySelectorAll('.tab-pane');
-    panes.forEach(pane => pane.style.display = 'none');
+    document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.hidden = pane.id !== `tab-${tabId}`;
+    });
 
-    // Remove active state from tab buttons
-    const buttons = document.querySelectorAll('.nav-pill[data-tab]');
-    buttons.forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.nav-link[data-tab]').forEach(button => {
+        const isActive = button.dataset.tab === tabId;
+        button.classList.toggle('active', isActive);
+        if (isActive) {
+            button.setAttribute('aria-current', 'page');
+        } else {
+            button.removeAttribute('aria-current');
+        }
+    });
 
-    // Show target tab pane
     const targetPane = document.getElementById(`tab-${tabId}`);
-    if (targetPane) {
-        targetPane.style.display = 'block';
-        // Instantly reveal all typewriter-reveal elements inside newly shown pane
-        const reveals = targetPane.querySelectorAll('.typewriter-reveal');
-        reveals.forEach(el => el.classList.add('is-visible'));
-    }
+    if (targetPane) observeReveals(targetPane);
 
-    // Set active button
-    const activeBtn = document.querySelector(`.nav-pill[data-tab="${tabId}"]`);
-    if (activeBtn) {
-        activeBtn.classList.add('active');
-    }
-
-    // Lazy-load tab data on first visit
     if (tabId === 'letterboxd' && !tabLoaded.letterboxd) {
         tabLoaded.letterboxd = true;
         fetchRecentFilms();
@@ -42,91 +55,30 @@ function switchTab(tabId) {
         fetchSixStravaWorkouts();
     }
 
-    // Strip #main hash from URL bar
+    if (!options.preserveScroll) {
+        window.scrollTo({ top: 0, behavior: options.instant ? 'auto' : 'smooth' });
+    }
+
     try {
-        if (window.history.replaceState) {
-            if (tabId === 'main') {
-                const cleanUrl = window.location.protocol === 'file:' ? window.location.pathname : (window.location.origin + window.location.pathname);
-                window.history.replaceState(null, '', cleanUrl);
-            } else {
-                window.history.replaceState(null, '', `#${tabId}`);
-            }
-        }
-    } catch(e) {}
+        const nextUrl = tabId === 'main'
+            ? window.location.pathname + window.location.search
+            : `#${tabId}`;
+        window.history.replaceState(null, '', nextUrl);
+    } catch (error) {
+        // Local file previews may block history updates.
+    }
 }
 
 window.addEventListener('hashchange', () => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash) switchTab(hash);
+    switchTab(window.location.hash.slice(1) || 'main');
 });
 
-// ── In-Browser Live Screen Edit Mode ─────────────────────────────────
-let isEditMode = false;
-
-function toggleEditMode() {
-    isEditMode = !isEditMode;
-    const editableElements = document.querySelectorAll('.character-name, .dialogue-block, .action-block, .scene-heading, .scene-item-title, .writing-title, .writing-desc, .photo-caption');
-    const toggleBtn = document.getElementById('editModeToggleBtn');
-    const saveBtn = document.getElementById('saveEditsBtn');
-
-    editableElements.forEach(el => {
-        el.contentEditable = isEditMode ? 'true' : 'false';
-        if (isEditMode) {
-            el.classList.add('editable-active');
-        } else {
-            el.classList.remove('editable-active');
-        }
-    });
-
-    if (toggleBtn) {
-        toggleBtn.textContent = isEditMode ? '❌ Exit Edit Mode' : '✏️ Edit Mode';
-    }
-    if (saveBtn) {
-        saveBtn.style.display = isEditMode ? 'inline-block' : 'none';
-    }
-}
-
-function saveScreenEdits() {
-    const mainPage = document.querySelector('.script-page');
-    if (mainPage) {
-        localStorage.setItem('sharon_saved_script_html', mainPage.innerHTML);
-        alert('✨ Saved! Your edits have been saved to local browser storage.');
-        toggleEditMode();
-    }
-}
-
-// ── Typewriter Scroll Reveal Observer ─────────────────────────────────
-function initTypewriterScrollObserver() {
-    const revealElements = document.querySelectorAll('.typewriter-reveal');
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                // Stagger reveal slightly for screenplay effect
-                setTimeout(() => {
-                    entry.target.classList.add('is-visible');
-                }, index * 80);
-                obs.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    revealElements.forEach(el => observer.observe(el));
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-    try { localStorage.removeItem('sharon_saved_script_html'); } catch(e){}
-
-    initTypewriterScrollObserver();
-
-    // Route to initial tab — data loads lazily inside switchTab
-    const initialHash = window.location.hash.replace('#', '');
-    switchTab(initialHash || 'main');
+    initRevealObserver();
+    switchTab(window.location.hash.slice(1) || 'main', {
+        instant: true,
+        preserveScroll: window.location.hash === '#featured-film'
+    });
 });
 
 const fallbackRecentFilms = [
@@ -153,7 +105,7 @@ function renderFilmGrid(films) {
         card.href = film.link;
         card.target = '_blank';
         card.rel = 'noopener';
-        card.className = 'film-card';
+        card.className = 'film-card reveal';
 
         card.innerHTML = `
             ${film.img ? `<img src="${film.img}" alt="${film.titleAndYear}" class="film-poster" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/230x345/18181b/ffffff?text=${encodeURIComponent(film.titleAndYear)}';">` : ''}
@@ -164,6 +116,7 @@ function renderFilmGrid(films) {
         `;
 
         filmGrid.appendChild(card);
+        observeReveals(card.parentElement);
     });
 }
 
@@ -356,7 +309,7 @@ async function fetchSixStravaWorkouts() {
         card.href = act.strava_id ? `https://www.strava.com/activities/${act.strava_id}` : 'https://www.strava.com/athletes/197020850';
         card.target = '_blank';
         card.rel = 'noopener';
-        card.className = 'strava-card';
+        card.className = 'strava-card reveal';
 
         const svgMapHtml = act.map_polyline ? generateSvgMapHtml(act.map_polyline) : '';
 
@@ -370,6 +323,7 @@ async function fetchSixStravaWorkouts() {
         `;
 
         grid.appendChild(card);
+        observeReveals(card.parentElement);
     });
 }
 
@@ -440,19 +394,10 @@ function generateSvgMapHtml(polylineStr, width = 340, height = 180, padding = 22
 
     return `
         <svg viewBox="0 0 ${width} ${height}" class="route-svg">
-            <polyline points="${points.join(' ')}" fill="none" stroke="#b2967d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="${startPt[0]}" cy="${startPt[1]}" r="3.5" fill="#b2967d" />
-            <circle cx="${endPt[0]}" cy="${endPt[1]}" r="3.5" fill="#e7d8c9" stroke="#b2967d" stroke-width="1.8"/>
+            <polyline points="${points.join(' ')}" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="${startPt[0]}" cy="${startPt[1]}" r="3.5" fill="currentColor" />
+            <circle cx="${endPt[0]}" cy="${endPt[1]}" r="3.5" fill="#f2efe8" stroke="currentColor" stroke-width="1.8"/>
         </svg>
     `;
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    fetchSixStravaWorkouts();
-});
-
-window.addEventListener('load', () => {
-    fetchSixStravaWorkouts();
-});
-
 
