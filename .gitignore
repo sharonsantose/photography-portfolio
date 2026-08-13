@@ -2,3 +2,4 @@
 __pycache__/
 *.pyc
 new_refresh_token.txt
+.wrangler/
