@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-13T04:52:24Z",
+  "fetched_at": "2026-08-13T17:03:33Z",
   "today": "2026-08-13",
   "stats": {
-    "steps": null,
-    "step_goal": null,
-    "resting_hr": null,
-    "active_calories": null,
-    "sleep_hours": 7.5,
-    "sleep_score": 85
+    "steps": 49,
+    "step_goal": 15000,
+    "resting_hr": 46,
+    "active_calories": 0.0,
+    "sleep_hours": 7.8,
+    "sleep_score": 82
   },
   "steps_history": {
     "2026-06-28": {
@@ -191,7 +191,11 @@
       "goal": 15000
     },
     "2026-08-12": {
-      "steps": 7815,
+      "steps": 7912,
+      "goal": 15000
+    },
+    "2026-08-13": {
+      "steps": 49,
       "goal": 15000
     }
   },
@@ -377,8 +381,8 @@
       "hours": 8.0
     },
     "2026-08-13": {
-      "score": 80,
-      "hours": 7.5
+      "score": 82,
+      "hours": 7.8
     }
   },
   "activities_by_date": {
