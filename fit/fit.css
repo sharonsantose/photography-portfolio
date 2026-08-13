@@ -609,11 +609,14 @@ a {
 }
 
 .training-calendar th {
+    position: sticky;
+    top: 0;
+    z-index: 5;
     height: 44px;
     padding: 0 14px;
     border-right: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
-    background: var(--bg);
+    background: #131411;
     color: var(--muted);
     font-size: 9px;
     font-weight: 500;
@@ -629,7 +632,8 @@ a {
 
 .training-calendar td {
     position: relative;
-    height: 310px;
+    height: auto;
+    min-height: 240px;
     padding: 14px;
     vertical-align: top;
     border-right: 1px solid var(--line);
@@ -782,20 +786,7 @@ a {
     text-transform: uppercase;
 }
 
-.calendar-export-link {
-    position: absolute;
-    right: 12px;
-    bottom: 11px;
-    color: var(--muted);
-    font-size: 8px;
-    letter-spacing: 0.06em;
-    text-decoration: none;
-    text-transform: uppercase;
-}
 
-.calendar-export-link:hover {
-    color: var(--green);
-}
 
 .trend-grid {
     display: grid;

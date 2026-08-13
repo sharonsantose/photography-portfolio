@@ -364,15 +364,7 @@ function renderTrainingCalendar(todayKey) {
             activities.forEach(activity => integrations.appendChild(stravaIntegration(activity)));
             calendarEvents.forEach(event => integrations.appendChild(calendarIntegration(event)));
 
-            const exportLink = document.createElement('a');
-            exportLink.className = 'calendar-export-link';
-            exportLink.href = calendarUrl(plan);
-            exportLink.target = '_blank';
-            exportLink.rel = 'noopener';
-            exportLink.textContent = 'Add to GCal ↗';
-            exportLink.setAttribute('aria-label', `Add ${plan.title} on ${formatPlanDate(plan.date)} to Google Calendar`);
-
-            cell.append(dateLine, tags, title, detail, integrations, exportLink);
+            cell.append(dateLine, tags, title, detail, integrations);
             row.appendChild(cell);
         });
         body.appendChild(row);
@@ -385,15 +377,15 @@ function renderTrainingCalendar(todayKey) {
 function classifyWorkouts(plan) {
     const text = `${plan.title} ${plan.detail}`.toLowerCase();
     const definitions = [
-        { key: 'race', label: 'Race', terms: ['race day', '13.1'] },
-        { key: 'run', label: 'Run', terms: ['run', 'interval', 'tempo', 'stride', 'shakeout', 'rehearsal', 'pace check'] },
-        { key: 'strength', label: 'Strength', terms: ['strength', 'session a', 'session b', 'session c', 'activation'] },
-        { key: 'row', label: 'Row', terms: ['row'] },
-        { key: 'stairs', label: 'Stairs', terms: ['stair'] },
-        { key: 'bike', label: 'Bike', terms: ['bike', 'ride'] },
-        { key: 'swim', label: 'Swim', terms: ['swim'] }
+        { key: 'race', label: 'Race', regex: /\b(race|race day|13\.1)\b/i },
+        { key: 'run', label: 'Run', regex: /\b(run|runs|running|interval|intervals|tempo|stride|strides|shakeout|rehearsal|pace check)\b/i },
+        { key: 'strength', label: 'Strength', regex: /\b(strength|session a|session b|session c|activation)\b/i },
+        { key: 'row', label: 'Row', regex: /\b(row|rowing)\b/i },
+        { key: 'stairs', label: 'Stairs', regex: /\b(stair|stairs|stepper|stairstepper)\b/i },
+        { key: 'bike', label: 'Bike', regex: /\b(bike|biking|ride|rides|riding)\b/i },
+        { key: 'swim', label: 'Swim', regex: /\b(swim|swimming|swims)\b/i }
     ];
-    const matches = definitions.filter(type => type.terms.some(term => text.includes(term)));
+    const matches = definitions.filter(type => type.regex.test(text));
     return matches.length ? matches : [{ key: 'recovery', label: 'Recovery' }];
 }
 
@@ -419,6 +411,19 @@ function stravaIntegration(activity) {
     return block;
 }
 
+function cleanEventDetail(text) {
+    if (!text) return '';
+    let cleaned = String(text)
+        .replace(/\\([\\,;!*_-])/g, '$1')
+        .replace(/\\n/g, '\n')
+        .replace(/\*\*([^*]+)\*\*/g, '$1')
+        .trim();
+    if (cleaned.includes('To see detailed information for automatically created events') || cleaned.includes('This event was created from an email')) {
+        return '';
+    }
+    return cleaned;
+}
+
 function calendarIntegration(event) {
     const block = document.createElement('div');
     block.className = 'integration-block gcal';
@@ -428,12 +433,13 @@ function calendarIntegration(event) {
     const title = document.createElement('strong');
     title.textContent = event.title || 'Calendar event';
     block.append(source, title);
-    if (event.detail) {
+    const detailText = cleanEventDetail(event.detail);
+    if (detailText) {
         const details = document.createElement('details');
         const summary = document.createElement('summary');
         summary.textContent = 'Event details';
         const copy = document.createElement('p');
-        copy.textContent = event.detail;
+        copy.textContent = detailText;
         details.append(summary, copy);
         block.appendChild(details);
     }
@@ -526,27 +532,9 @@ function renderUpcoming(today) {
         const detail = document.createElement('p');
         detail.textContent = item.detail;
         copy.append(title, detail);
-        const link = document.createElement('a');
-        link.className = 'calendar-link';
-        link.href = calendarUrl(item);
-        link.target = '_blank';
-        link.rel = 'noopener';
-        link.textContent = '↗';
-        link.setAttribute('aria-label', `Add ${item.title} to Google Calendar`);
-        row.append(date, copy, link);
+        row.append(date, copy);
         list.appendChild(row);
     });
-}
-
-function calendarUrl(item) {
-    const date = item.date.replaceAll('-', '');
-    const params = new URLSearchParams({
-        action: 'TEMPLATE',
-        text: item.title,
-        dates: `${date}T090000/${date}T100000`,
-        details: item.detail
-    });
-    return `https://calendar.google.com/calendar/render?${params}`;
 }
 
 function exportFullPlan() {
