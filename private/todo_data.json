@@ -278,7 +278,13 @@
       "strava": true
     },
     "2026-08-17": {
-      "strava": true
+      "strava": true,
+      "garmin_steps": false,
+      "garmin_calories": true
+    },
+    "2026-08-18": {
+      "garmin_steps": false,
+      "garmin_calories": false
     }
   },
   "commute": {},
