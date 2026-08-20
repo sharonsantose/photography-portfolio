@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-19T16:24:57Z",
+  "fetched_at": "2026-08-20T16:27:31Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -412,6 +412,22 @@
         "elev_ft": 6,
         "strava_id": 19787929204,
         "map_polyline": "seuaH~}tiV^@BAXA`AF\\?XRl@l@DFBJLbBAj@Kr@MTY^s@LQJEFYl@]TQ\\w@La@GG@c@^WLQD_@Ze@Pa@Vs@j@k@\\[LmAHe@HS@e@Ge@@m@Go@HUAS@yAIi@Bm@Ce@Bc@@q@IUOi@M_@U[AWE}@]UC_@O[Cm@A{@GY?c@Di@Ay@FOCoA@a@CWDGAQB]Ck@Bc@Cs@@g@Bm@LO?{A^k@VSFSPAAMHYBWHkAl@a@Vo@Vk@`@OROJG@M?m@Xq@b@y@\\u@b@_@LMLUHWP[LIHWH{@h@aBv@YVMFsAlA]TkB~AYN[`@a@h@Sj@c@~@_@jAGH"
+      }
+    ],
+    "2026-08-19": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Evening Run",
+        "detail": "5.00 mi \u00b7 1h 04m \u00b7 @ 12:52/mi \u00b7 \u2764\ufe0f 160 bpm \u00b7 \u2191 63ft \u00b7 cadence 171 spm",
+        "dist_mi": 5.0,
+        "duration_sec": 3862,
+        "pace": "12:52/mi",
+        "hr_avg": 160,
+        "hr_max": 199,
+        "elev_ft": 206,
+        "strava_id": 19817876919,
+        "map_polyline": "oeraHbmwiV]~@u@rAe@rAg@fAa@dAWb@I\\[v@KTa@j@w@fB]`Ag@t@e@bAu@hA[v@]f@Sx@a@j@y@zAS`@KXS^c@t@WR[`@[TmAtAi@p@c@b@k@v@KHUf@Il@APHp@CZm@nAY~@UTUHw@Uc@BMDUXKPMn@a@xDQ`@c@n@_A`AQHUDg@Ck@JUR]h@]z@Gh@Kb@Id@ClAGZSv@Yn@SXOJa@b@m@tAWb@mAhBiA|Am@`Aw@x@o@rAON[`@m@p@i@v@g@d@iAhBWt@WzAMVk@|Ae@hAGhAm@rBQXw@VQVGPCTAr@Ff@@f@AT]rAALWp@QXM`@I`AGTEV?JH\\AVYjAAHF`@El@a@fB]tCIVOXWXcAf@KNe@X{A\\a@@cB?w@CiAB}DE{AD}@CcA@SDc@^YNy@I]Lc@\\MRw@t@KLY`ARo@Rc@fBeBZI\\Db@C~@k@NCzAB|@CpABvFEf@DpCArAYd@U\\[r@]XSXc@Ro@F}@XwBXcAAiATy@@YGcA@IL]@_@Fa@j@yAj@oBBe@Io@Am@Fu@HUDGNMd@INURs@\\u@LyArAiDXsA^mA~@gBvB_C`@o@n@}@P_@t@{@^o@PO^i@`BkC^c@^u@Zw@TWd@a@T]Xm@RaADg@?i@Ha@@]Jm@`@iAVa@LOZQZE`@Bh@MlAmAX_@JQTgABc@FYRmBHYPU\\Qf@AVHTLDANIPW\\w@H_@d@{@Da@E[Ac@BWLe@b@o@bAkAfCoCPMT_@NIr@mAP]BMXe@FUTe@h@}@Ti@HKb@iAf@w@Rc@x@sAn@qARo@HQLKf@cAH]T_@Le@PUJUJ[z@mBLc@^}@p@wAHWLOTe@FGRm@\\m@Zo@JOFCFWTm@`@k@BBa@t@?JEFIHELG@s@{@a@w@GYQQMY?IL[@M@FHCDINi@Hg@L[Aw@Ec@M_@Vk@@KDKJe@B_@J]Hg@@[Ee@Je@?i@DC?GJSE]@MBGOYEACFMCCIGq@GK[Ec@Fo@e@IMASUs@CQCY@[CGBKCS@EPQXo@r@kAJw@Ma@Y]IEGBg@c@SWQIMYMEEGCD"
       }
     ]
   }
