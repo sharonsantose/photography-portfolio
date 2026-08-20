@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-08-19T16:39:07Z",
-  "today": "2026-08-19",
+  "fetched_at": "2026-08-20T03:48:13Z",
+  "today": "2026-08-20",
   "stats": {
-    "steps": 24,
-    "step_goal": 15000,
-    "resting_hr": 45,
-    "active_calories": 0.0,
-    "sleep_hours": 4.9,
-    "sleep_score": 62
+    "steps": null,
+    "step_goal": null,
+    "resting_hr": null,
+    "active_calories": null,
+    "sleep_hours": 7.5,
+    "sleep_score": 85
   },
   "steps_history": {
     "2026-06-28": {
@@ -219,17 +219,17 @@
       "goal": 15000
     },
     "2026-08-19": {
-      "steps": 24,
+      "steps": 6146,
       "goal": 15000
     }
   },
   "sleep_history": {
     "2026-07-29": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-07-28": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-07-27": {
@@ -237,7 +237,7 @@
       "hours": 8.5
     },
     "2026-07-26": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-07-25": {
@@ -361,23 +361,23 @@
       "hours": 9.6
     },
     "2026-08-02": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-08-03": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-08-04": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-08-05": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-08-06": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-08-07": {
@@ -385,7 +385,7 @@
       "hours": 7.3
     },
     "2026-08-08": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-08-09": {
@@ -417,11 +417,11 @@
       "hours": 6.0
     },
     "2026-08-16": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-08-17": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-08-18": {
@@ -431,6 +431,10 @@
     "2026-08-19": {
       "score": 62,
       "hours": 4.9
+    },
+    "2026-08-20": {
+      "score": 80,
+      "hours": 7.5
     }
   },
   "activities_by_date": {
@@ -558,13 +562,6 @@
         "distance_mi": 0.51,
         "duration_min": 17.9,
         "calories": 59.0
-      },
-      {
-        "name": "Mohave County Walking",
-        "type": "walking",
-        "distance_mi": 0.53,
-        "duration_min": 21.5,
-        "calories": 58.0
       }
     ],
     "2026-06-21": [
@@ -737,6 +734,15 @@
         "distance_mi": 1.53,
         "duration_min": 16.8,
         "calories": 182.0
+      }
+    ],
+    "2026-08-19": [
+      {
+        "name": "Seattle Running",
+        "type": "running",
+        "distance_mi": 5.0,
+        "duration_min": 64.4,
+        "calories": 587.0
       }
     ]
   }
