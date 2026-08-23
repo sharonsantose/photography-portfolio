@@ -39,7 +39,7 @@ function switchTab(tabId) {
     }
     if (tabId === 'strava' && !tabLoaded.strava) {
         tabLoaded.strava = true;
-        fetchSixStravaWorkouts();
+        fetchStravaWorkouts();
     }
 
     // Strip #main hash from URL bar
@@ -305,7 +305,7 @@ const fallbackStravaActivities = [
     }
 ];
 
-async function fetchSixStravaWorkouts() {
+async function fetchStravaWorkouts() {
     const grid = document.getElementById('stravaGrid');
     if (!grid) return;
 
@@ -330,7 +330,7 @@ async function fetchSixStravaWorkouts() {
         } catch (err) {}
     }
 
-    let topSix = [];
+    let topActivities = [];
     if (data && data.activities_by_date) {
         const dates = Object.keys(data.activities_by_date).sort().reverse();
         const allActivities = [];
@@ -340,15 +340,15 @@ async function fetchSixStravaWorkouts() {
                 allActivities.push({ ...act, dateStr: dateStr });
             });
         });
-        topSix = allActivities.slice(0, 6);
+        topActivities = allActivities.slice(0, 21);
     }
 
-    if (topSix.length === 0) {
-        topSix = fallbackStravaActivities;
+    if (topActivities.length === 0) {
+        topActivities = fallbackStravaActivities;
     }
 
     grid.innerHTML = '';
-    topSix.forEach(act => {
+    topActivities.forEach(act => {
         const dateObj = new Date(act.dateStr + 'T00:00:00');
         const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
@@ -448,11 +448,11 @@ function generateSvgMapHtml(polylineStr, width = 340, height = 180, padding = 22
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetchSixStravaWorkouts();
+    fetchStravaWorkouts();
 });
 
 window.addEventListener('load', () => {
-    fetchSixStravaWorkouts();
+    fetchStravaWorkouts();
 });
 
 
