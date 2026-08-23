@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-09T05:15:36Z",
+  "fetched_at": "2026-08-22T16:16:34Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -380,6 +380,54 @@
         "elev_ft": 2559,
         "strava_id": 19660677925,
         "map_polyline": "sx}`HledhVpA}ApBmAFg@XHMi@[`@[Gn@iAk@c@Fy@b@a@_A]y@^c@]x@qAzG`@x@~AvBjAg@kAKeBjAv@`@c@`Ap@~AEHgBjA{BIyAb@uCdBoH|@kA`@He@a@yDOOnDuAr@?yA_AoBa@cE`Ac@|@qBdAZhADNn@f@L^g@t@?AXc@_@eAt@_@w@eAISc@gAJWsCuB\\YsAs@U_@s@f@qDfCwB_CYj@_ByCiELoB^{B|BkFXcCQ]oANWw@j@u@z@aEhAaBTiCy@m@_AP{CzDmAx@Cb@}@GJs@i@Vg@xAe@JCiAtB}D`@I`@yBqAp@h@qBq@t@u@Ie@`A{@Ff@gALoBlA{@oAi@q@|@SfAo@Ph@wCx@mAoAf@y@vAyAu@I_@d@iAhCSh@_Bh@c@xF}@vAsCXmASqBwDoCAyBhDiAnChAtAY|@`@`@ITs@TTZk@z@IlArAsAoAq@H_@n@U]Mv@]PcAe@_BZaCmA{DbArA_GpAU\\q@NZP_@JcCMy@Ru@`@NB}@V[MKA{Ar@s@\\wDyD_B[J?m@c@i@HiB{AEYmAg@OeCoE^y@fCmBTu@AyBxB}CfAqOe@_AGuAt@}C~@q@TuCx@o@y@v@M`Ba@D\\FA`@y@h@y@bDDtAd@jAe@~Ja@nCc@f@MjAeAd@@rBUz@gD~CDb@~B`DuAbEpAnDA`@_AtA{A?_DhAbADd@l@jAdGlBtCAhD|@vEBrAxCbBd@bALbBsBbFoGhAiA~B_BGk@\\]|@~AfAbAwApAi@gBlED\\h@QHeAt@y@vAh@kA`AUx@Fh@k@lAfA[Tu@|@Dj@o@e@zBpAy@]zBa@N{B|D@z@^?tAqBIt@`AABe@~EmFdAU~@d@YjC{ArCi@~Ci@r@Pf@lAKZh@YlB_@lAyAzCu@hG`BzAt@xA?d@m@|@xB`@_CrBe@tDL^dA^Bp@Z^rBUTfCm@lBq@HSn@TlCpAxCKrAvAw@JgDhC\\f@Sj@`@g@Ps@hAg@rD}@tB[tCDnAeAxBQfBsADkAk@c@ZkAi@n@`DoB{@aAeBaHa@i@`APVdAWbAXo@xAp@r@o@`Ap@[Nr@WGOh@gBdAiAzA"
+      }
+    ],
+    "2026-08-16": [
+      {
+        "emoji": "\u26a1",
+        "sport": "Rowing",
+        "name": "Evening Row",
+        "detail": "33m \u00b7 \u2764\ufe0f 99 bpm",
+        "dist_mi": 0,
+        "duration_sec": 2033,
+        "pace": null,
+        "hr_avg": 99,
+        "hr_max": 119,
+        "elev_ft": 0,
+        "strava_id": 19774224162,
+        "map_polyline": ""
+      }
+    ],
+    "2026-08-17": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Evening Run",
+        "detail": "1.53 mi \u00b7 16m \u00b7 @ 10:59/mi \u00b7 \u2764\ufe0f 169 bpm \u00b7 cadence 177 spm",
+        "dist_mi": 1.53,
+        "duration_sec": 1007,
+        "pace": "10:59/mi",
+        "hr_avg": 169,
+        "hr_max": 183,
+        "elev_ft": 6,
+        "strava_id": 19787929204,
+        "map_polyline": "seuaH~}tiV^@BAXA`AF\\?XRl@l@DFBJLbBAj@Kr@MTY^s@LQJEFYl@]TQ\\w@La@GG@c@^WLQD_@Ze@Pa@Vs@j@k@\\[LmAHe@HS@e@Ge@@m@Go@HUAS@yAIi@Bm@Ce@Bc@@q@IUOi@M_@U[AWE}@]UC_@O[Cm@A{@GY?c@Di@Ay@FOCoA@a@CWDGAQB]Ck@Bc@Cs@@g@Bm@LO?{A^k@VSFSPAAMHYBWHkAl@a@Vo@Vk@`@OROJG@M?m@Xq@b@y@\\u@b@_@LMLUHWP[LIHWH{@h@aBv@YVMFsAlA]TkB~AYN[`@a@h@Sj@c@~@_@jAGH"
+      }
+    ],
+    "2026-08-19": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Evening Run",
+        "detail": "5.00 mi \u00b7 1h 04m \u00b7 @ 12:52/mi \u00b7 \u2764\ufe0f 160 bpm \u00b7 \u2191 63ft \u00b7 cadence 171 spm",
+        "dist_mi": 5.0,
+        "duration_sec": 3862,
+        "pace": "12:52/mi",
+        "hr_avg": 160,
+        "hr_max": 199,
+        "elev_ft": 206,
+        "strava_id": 19817876919,
+        "map_polyline": "oeraHbmwiV]~@u@rAe@rAg@fAa@dAWb@I\\[v@KTa@j@w@fB]`Ag@t@e@bAu@hA[v@]f@Sx@a@j@y@zAS`@KXS^c@t@WR[`@[TmAtAi@p@c@b@k@v@KHUf@Il@APHp@CZm@nAY~@UTUHw@Uc@BMDUXKPMn@a@xDQ`@c@n@_A`AQHUDg@Ck@JUR]h@]z@Gh@Kb@Id@ClAGZSv@Yn@SXOJa@b@m@tAWb@mAhBiA|Am@`Aw@x@o@rAON[`@m@p@i@v@g@d@iAhBWt@WzAMVk@|Ae@hAGhAm@rBQXw@VQVGPCTAr@Ff@@f@AT]rAALWp@QXM`@I`AGTEV?JH\\AVYjAAHF`@El@a@fB]tCIVOXWXcAf@KNe@X{A\\a@@cB?w@CiAB}DE{AD}@CcA@SDc@^YNy@I]Lc@\\MRw@t@KLY`ARo@Rc@fBeBZI\\Db@C~@k@NCzAB|@CpABvFEf@DpCArAYd@U\\[r@]XSXc@Ro@F}@XwBXcAAiATy@@YGcA@IL]@_@Fa@j@yAj@oBBe@Io@Am@Fu@HUDGNMd@INURs@\\u@LyArAiDXsA^mA~@gBvB_C`@o@n@}@P_@t@{@^o@PO^i@`BkC^c@^u@Zw@TWd@a@T]Xm@RaADg@?i@Ha@@]Jm@`@iAVa@LOZQZE`@Bh@MlAmAX_@JQTgABc@FYRmBHYPU\\Qf@AVHTLDANIPW\\w@H_@d@{@Da@E[Ac@BWLe@b@o@bAkAfCoCPMT_@NIr@mAP]BMXe@FUTe@h@}@Ti@HKb@iAf@w@Rc@x@sAn@qARo@HQLKf@cAH]T_@Le@PUJUJ[z@mBLc@^}@p@wAHWLOTe@FGRm@\\m@Zo@JOFCFWTm@`@k@BBa@t@?JEFIHELG@s@{@a@w@GYQQMY?IL[@M@FHCDINi@Hg@L[Aw@Ec@M_@Vk@@KDKJe@B_@J]Hg@@[Ee@Je@?i@DC?GJSE]@MBGOYEACFMCCIGq@GK[Ec@Fo@e@IMASUs@CQCY@[CGBKCS@EPQXo@r@kAJw@Ma@Y]IEGBg@c@SWQIMYMEEGCD"
       }
     ]
   }

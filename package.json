@@ -1,0 +1,9 @@
+{
+  "name": "photography-portfolio",
+  "version": "1.0.0",
+  "description": "Sharon Santos personal website and portfolio",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "sync": "git pull --rebase origin main && git add . && git diff --cached --quiet || git commit -m 'update site' && git push origin main"
+  }
+}
