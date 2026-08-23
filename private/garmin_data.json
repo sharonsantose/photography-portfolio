@@ -1,11 +1,11 @@
 {
-  "fetched_at": "2026-08-23T03:52:06Z",
+  "fetched_at": "2026-08-23T16:34:17Z",
   "today": "2026-08-23",
   "stats": {
-    "steps": null,
-    "step_goal": null,
-    "resting_hr": null,
-    "active_calories": null,
+    "steps": 7,
+    "step_goal": 15000,
+    "resting_hr": 43,
+    "active_calories": 0.0,
     "sleep_hours": 7.5,
     "sleep_score": 85
   },
@@ -231,7 +231,11 @@
       "goal": 15000
     },
     "2026-08-22": {
-      "steps": 1356,
+      "steps": 1971,
+      "goal": 15000
+    },
+    "2026-08-23": {
+      "steps": 7,
       "goal": 15000
     }
   },
