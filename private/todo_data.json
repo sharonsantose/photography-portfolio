@@ -316,6 +316,10 @@
     "2026-08-25": {
       "garmin_steps": false,
       "garmin_calories": false
+    },
+    "2026-08-26": {
+      "garmin_steps": false,
+      "garmin_calories": false
     }
   },
   "commute": {},
