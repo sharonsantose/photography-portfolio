@@ -1,11 +1,11 @@
 {
-  "fetched_at": "2026-08-30T19:15:37Z",
-  "today": "2026-08-30",
+  "fetched_at": "2026-08-31T21:24:57Z",
+  "today": "2026-08-31",
   "stats": {
-    "steps": 2772,
+    "steps": 4774,
     "step_goal": 15000,
-    "resting_hr": 49,
-    "active_calories": 63.0,
+    "resting_hr": 50,
+    "active_calories": 91.0,
     "sleep_hours": 7.5,
     "sleep_score": 85
   },
@@ -263,7 +263,11 @@
       "goal": 15000
     },
     "2026-08-30": {
-      "steps": 2772,
+      "steps": 24454,
+      "goal": 15000
+    },
+    "2026-08-31": {
+      "steps": 4774,
       "goal": 15000
     }
   },
@@ -405,23 +409,23 @@
       "hours": 9.6
     },
     "2026-08-02": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-08-03": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-08-04": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-08-05": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-08-06": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-08-07": {
@@ -429,7 +433,7 @@
       "hours": 7.3
     },
     "2026-08-08": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-08-09": {
@@ -461,11 +465,11 @@
       "hours": 6.0
     },
     "2026-08-16": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-08-17": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-08-18": {
@@ -505,7 +509,7 @@
       "hours": 8.4
     },
     "2026-08-27": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-08-28": {
@@ -517,6 +521,10 @@
       "hours": 6.3
     },
     "2026-08-30": {
+      "score": 81,
+      "hours": 7.5
+    },
+    "2026-08-31": {
       "score": 80,
       "hours": 7.5
     }
@@ -845,6 +853,15 @@
         "distance_mi": 5.0,
         "duration_min": 61.4,
         "calories": 565.0
+      }
+    ],
+    "2026-08-30": [
+      {
+        "name": "King County Hiking",
+        "type": "hiking",
+        "distance_mi": 7.23,
+        "duration_min": 227.7,
+        "calories": 999.0
       }
     ]
   }
