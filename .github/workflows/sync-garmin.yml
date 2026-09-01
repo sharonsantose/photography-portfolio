@@ -35,6 +35,14 @@ jobs:
           GARMIN_TOKENS:   ${{ secrets.GARMIN_TOKENS }}
         run: python scripts/fetch_garmin.py
 
+      - name: Update GARMIN_TOKENS secret if rotated
+        if: ${{ hashFiles('new_garmin_tokens.txt') != '' }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh secret set GARMIN_TOKENS < new_garmin_tokens.txt --repo ${{ github.repository }}
+          echo "Garmin session tokens updated in GitHub Secrets."
+
       - name: Commit and push updated Garmin data
         run: |
           git config user.name "github-actions[bot]"

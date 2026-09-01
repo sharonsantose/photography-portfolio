@@ -8,6 +8,7 @@ import os
 import sys
 import json
 import base64
+import tempfile
 from datetime import datetime, date, timedelta
 
 try:
@@ -36,8 +37,17 @@ def init_garmin():
         try:
             token_json = base64.b64decode(TOKENS_B64.strip()).decode("utf-8")
             token_data = json.loads(token_json)
-            garmin = Garmin()
-            garmin.garth.load(token_data)
+            token_dir = tempfile.mkdtemp(prefix="garmin-tokenstore-")
+            token_path = os.path.join(token_dir, "garmin_tokens.json")
+            with open(token_path, "w", encoding="utf-8") as token_file:
+                json.dump(token_data, token_file)
+            garmin = Garmin(retry_attempts=2, retry_min_wait=2, retry_max_wait=15)
+            garmin.login(tokenstore=token_dir)
+            with open(token_path, "r", encoding="utf-8") as token_file:
+                refreshed = base64.b64encode(token_file.read().encode("utf-8")).decode("ascii")
+            if refreshed != TOKENS_B64.strip():
+                with open("new_garmin_tokens.txt", "w", encoding="utf-8") as output:
+                    output.write(refreshed)
             print("✅ Restored session from GARMIN_TOKENS secret.")
             return garmin
         except Exception as e:
@@ -45,8 +55,8 @@ def init_garmin():
 
     if EMAIL and PASSWORD:
         try:
-            garmin = Garmin(EMAIL, PASSWORD)
-            garmin.login()
+            garmin = Garmin(EMAIL, PASSWORD, retry_attempts=2, retry_min_wait=2, retry_max_wait=15)
+            garmin.login(tokenstore=tempfile.mkdtemp(prefix="garmin-tokenstore-"))
             print("✅ Logged into Garmin using EMAIL & PASSWORD.")
             return garmin
         except (GarminConnectAuthenticationError, GarminConnectTooManyRequestsError) as err:
