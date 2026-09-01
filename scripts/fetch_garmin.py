@@ -9,7 +9,7 @@ import sys
 import json
 import base64
 import tempfile
-from datetime import datetime, date, timedelta
+from datetime import datetime, date, timedelta, timezone
 
 try:
     from garminconnect import (
@@ -179,7 +179,7 @@ def main():
         merged_activities[d] = acts
 
     output_data = {
-        "fetched_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "fetched_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "today": today_str,
         "stats": stats,
         "steps_history": merged_steps,
@@ -232,16 +232,6 @@ def main():
             print(f"✅ Updated Garmin/Strava habit completion in {TODO_FILE}")
         except Exception as e:
             print(f"Warning updating todo_data.json: {e}")
-
-    # Also sync Google Calendar events in cloud workflow
-    try:
-        import subprocess
-        gcal_script = os.path.join(os.path.dirname(__file__), "fetch_gcal.py")
-        if os.path.exists(gcal_script):
-            subprocess.run([sys.executable, gcal_script], check=False)
-    except Exception as e:
-        print(f"Notice running fetch_gcal.py: {e}")
-
 
 if __name__ == "__main__":
     main()
