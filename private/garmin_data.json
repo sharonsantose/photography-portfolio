@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-09-01T19:20:14Z",
-  "today": "2026-09-01",
+  "fetched_at": "2026-09-02T07:42:43Z",
+  "today": "2026-09-02",
   "stats": {
-    "steps": 34,
-    "step_goal": 15000,
-    "resting_hr": 45,
-    "active_calories": 0.0,
-    "sleep_hours": 8.0,
-    "sleep_score": 100
+    "steps": null,
+    "step_goal": null,
+    "resting_hr": null,
+    "active_calories": null,
+    "sleep_hours": 7.5,
+    "sleep_score": 85
   },
   "steps_history": {
     "2026-06-28": {
@@ -271,7 +271,7 @@
       "goal": 15000
     },
     "2026-09-01": {
-      "steps": 34,
+      "steps": 17309,
       "goal": 15000
     }
   },
@@ -417,19 +417,19 @@
       "hours": 7.5
     },
     "2026-08-03": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-08-04": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-08-05": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-08-06": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-08-07": {
@@ -437,7 +437,7 @@
       "hours": 7.3
     },
     "2026-08-08": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-08-09": {
@@ -469,11 +469,11 @@
       "hours": 6.0
     },
     "2026-08-16": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-08-17": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-08-18": {
@@ -513,7 +513,7 @@
       "hours": 8.4
     },
     "2026-08-27": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-08-28": {
@@ -525,16 +525,20 @@
       "hours": 6.3
     },
     "2026-08-30": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-08-31": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-09-01": {
       "score": 100,
       "hours": 8.0
+    },
+    "2026-09-02": {
+      "score": 80,
+      "hours": 7.5
     }
   },
   "activities_by_date": {
@@ -870,6 +874,15 @@
         "distance_mi": 7.23,
         "duration_min": 227.7,
         "calories": 999.0
+      }
+    ],
+    "2026-09-01": [
+      {
+        "name": "Seattle Running",
+        "type": "running",
+        "distance_mi": 4.23,
+        "duration_min": 53.0,
+        "calories": 475.0
       }
     ]
   }
