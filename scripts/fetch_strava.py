@@ -146,6 +146,8 @@ def build_summary(act):
     dist_m  = act.get("distance", 0)
     move_s  = act.get("moving_time", 0)
     elev    = act.get("total_elevation_gain", 0)
+    # Strava reports total_elevation_gain in meters. The site displays feet.
+    elev_ft = int(round(elev * 3.28084)) if elev else 0
     hr_avg  = act.get("average_heartrate")
     hr_max  = act.get("max_heartrate")
     name    = act.get("name", "Workout")
@@ -167,8 +169,8 @@ def build_summary(act):
         parts.append(f"@ {speed_mph} mph")
     if hr_avg:
         parts.append(f"❤️ {int(hr_avg)} bpm")
-    if elev and elev > 5:
-        parts.append(f"↑ {int(elev)}ft")
+    if elev_ft > 5:
+        parts.append(f"↑ {elev_ft}ft")
     if cadence and sport == "Run":
         parts.append(f"cadence {int(cadence*2)} spm")
 
@@ -182,7 +184,7 @@ def build_summary(act):
         "pace":    pace,
         "hr_avg":  int(hr_avg) if hr_avg else None,
         "hr_max":  int(hr_max) if hr_max else None,
-        "elev_ft": int(elev * 3.28084) if elev else 0,
+        "elev_ft": elev_ft,
         "strava_id": act.get("id"),
         "map_polyline": act.get("map", {}).get("summary_polyline"),
     }

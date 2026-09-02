@@ -207,7 +207,7 @@ const fallbackStravaActivities = [
         sport: 'Run',
         name: 'first run club!',
         dateStr: '2026-07-27',
-        detail: '5.10 mi · 58m · @ 11:23/mi · ❤️ 174 bpm · ↑ 30ft · cadence 175 spm',
+        detail: '5.10 mi · 58m · @ 11:23/mi · ❤️ 174 bpm · ↑ 98ft · cadence 175 spm',
         strava_id: '19494164345',
         map_polyline: 'wduaH`~tiVbCBTP\\`@XTDRJhBCf@If@Q\\ORQJ[FQFWVWd@MH_@JSHOVQJI@SIM?cCvAQFq@n@[R]Pg@Ny@NoAD]@k@GgA@a@FoAAw@CM@s@AgA@YAW?SEKMIEkAWWKi@Kc@Oc@IWM]Ec@@YGsAAeCBm@DwAE{AFkBAa@B_ANQ@UFYNYHu@\\OBe@Vo@RcBx@g@PiAz@o@V]VcAd@_Al@c@RQDWLMDKFi@RuBrAw@`@y@l@m@j@{A~@ST_BnAm@n@MR}@nB[bA?TLTDRCZi@xAI^IL]lAMVS|@]x@m@lBm@nBq@dAm@v@m@VU?QCu@DUEOJ[Be@EkB?]Ce@?]EYB_ACi@BGAMQS}@CaAFm@Bk@LsABc@Hk@XcFHg@?[H[VcDNcAD{@X}C@SLo@JmAAGHSCDB?A@RwCBk@LsA@_@f@qDZoA^_AJc@Vm@fAgBd@k@JYD_@@YC_@A_BEaB?wAAKGCB@FMBV?jB@b@C`ABrBCl@KVMLu@hAw@~Ak@bB[jAYv@Ez@[`CA^UrBAl@@TAb@OTEVCn@GRGfAI`@Af@G`A[|CE|@[dDKdCCJA\\GVKhABRCBKp@GhAI^Bl@DPAl@FVHTRTBABBb@?f@DXE^Dt@ATD^Dn@CP?TF^A^@`@IfAAPA`@KZSXYn@}@j@qAXgAl@_BV_Ab@cB`@uAFUXq@Pm@@MCMQ_@?KDQl@yARq@f@}@p@m@`As@HANYfAw@LSNIr@o@LENMRI\\Yv@[n@a@|@c@b@MPQXQRIl@a@z@a@tAy@TGd@a@`Ac@hAs@jAg@b@GVOXIj@WXG\\O`@Mt@MDEl@CNCX@J@HAp@@XExAGh@Fp@GNBR@FABEN?|@DVG^Ax@Db@JhBVhAXr@Fn@VLBZVp@F`A?dAFREd@CVD`@@h@CRC|@A^DTHl@BZM`AEv@Q~@i@NQTMLM`@SXSL[VUXGPCb@UBBHLL@RYLGDGB{@E[?s@BsA?q@O}@Ua@KICM?g@'
     },
@@ -225,7 +225,7 @@ const fallbackStravaActivities = [
         sport: 'Run',
         name: 'Morning Run',
         dateStr: '2026-07-19',
-        detail: '3.13 mi · 33m · @ 10:39/mi · ❤️ 177 bpm · ↑ 42ft · cadence 174 spm',
+        detail: '3.13 mi · 33m · @ 10:39/mi · ❤️ 177 bpm · ↑ 138ft · cadence 174 spm',
         strava_id: '19379397959',
         map_polyline: 'qefaHfleiVG?SFYP]LSCGEKMYoAIKQGeAIUI]Uo@{@GMOg@Sg@Mo@]iAc@iAI[i@sAe@s@k@g@i@Sa@IUCO@k@N]PON]f@Yp@OHWDs@D{@@a@B]A_@?q@Ek@Ke@EYE_@Ce@DUDk@PO@i@JCBo@PWBGFSAYLe@Dw@Rm@DQHYBa@Jq@Hq@?y@GM?}ASUAe@Mc@Wa@u@Sq@S_BIcAC_AYmD[yAQoB@a@JiAPq@RYXYRK`@Ez@[^Wp@[n@k@VKXUXO`@W^a@b@o@^[t@i@f@YTQREHMh@YBI?EAAC@@BRC^M`@E\\Kd@Ej@An@HX?PDr@FjAENCb@EVK^_@R[PI`@a@PIvAGXIPIb@c@ZQRCV?XGVIXYTOPCLAb@PP?d@^PXH`@P`DDNFd@Dp@?VJt@@b@GdA@VOh@GpAHx@^nAVZ^Vb@LfATb@Lb@\\\\b@N`@Jb@Nz@@\\IhBOt@?LCNUh@[d@AFFBFG^w@DCAGHMLk@HcB?i@Co@K{@]_AgA}@g@SwA]g@]c@m@Ss@Ia@Aa@@[ZsADg@?WIy@E_AOeAEk@?e@UuBGYCs@FULGj@FbAZlAt@zB|BbDnDRPhBpBb@lAj@rAPt@^jCZvANpBHb@?TFn@A\\C`@Ml@Ct@@n@B`@DRLRBNCdAB|@AbA@hAAHCD'
     },
@@ -234,7 +234,7 @@ const fallbackStravaActivities = [
         sport: 'Ride',
         name: 'Morning Ride',
         dateStr: '2026-07-19',
-        detail: '12.18 mi · 51m · @ 14.2 mph · ❤️ 173 bpm · ↑ 93ft',
+        detail: '12.18 mi · 51m · @ 14.2 mph · ❤️ 173 bpm · ↑ 305ft',
         strava_id: '19379397974',
         map_polyline: 'adfaHnleiVZBHDDHAPyBdAa@d@MXI^[hDK^[f@a@ZuGnAgL|DmFlCkGlD{CzA_JpCuEtBYZKXG\\q@rJGZUt@MVY\\{@h@qHfEUHUCUM{BoB{@[c@IwAGqAZiAl@q@p@mEtFWt@C^@`@T~@D`@?hEG`@OZmFjGs@dAy@nAk@jA]lAYpBCrA@hRQ~@_@t@u@f@wBhA}@^eA\\oAToAHqC@yBb@aAZaAj@gEhDyBjAkDpAiCx@oAj@aFdAq@V{GdDeAv@iAjAs@bA{@bBeBxE{@rASLUDgFBgAIeCaAyAuAm@a@_Bi@mDwA{Fo@gDj@mA^sCjAwCfA[Dy@ZoAl@}@r@UFsC?c@Gy@BwJScAWo@WqHsBgFu@aEuCgIwBs@]iC}@}@i@}B{@q@g@kAiA{@a@kA_@kDXqACcDQaDAyASiGoAkGWc@Ig@WgB{AaBeB_Am@eAUsA@y@NwAb@mABq@MuC{@e@?u@Z_Ax@k@TiBAs@GaBe@m@Em@@}BZ[@}@_@WCY?q@Nq@GULa@`@w@`@[^}@jB_@jASR{@ZqB|@uDbCuAVuEKy@SwBaAKAGHBLTJXFtAn@l@PrCBbCIxAq@tBwAdEeBPYdAoCXc@vB}AfAEd@M^A|@^\\DhC]vADv@TbAN~BFh@MbA_A\\U`@In@DhBj@vAX|@ArAe@|@OtAEn@JfAl@`D~CxA~@NBjAPfB@vBLxDn@dCl@~L^`AChBObBl@l@b@|AzAx@^~D|AfCjAjHjB~@`@jClBxFx@bG`BnDpA|D@lJTbAKxA{@~EcB~GoCzA]jBUrALfCb@xAd@tAl@`Bb@pCtBx@b@v@Z~@NfGCh@[Z]f@y@^_A\\oAlAuClAwAfBaBjCuAx@g@`Ai@z@[dCm@zFkBpA]~EkBvAw@jA}@`CwBx@e@zCu@|EGbBUzCkAhAk@rA{@\\e@P_@L{@EsQHkCVaB^gAz@yAjAcBzDwEjA}AFg@DmA?}B[oBA_@Da@J[tCwDz@gAbA_AhAe@|@OhAAhAXlA|@xApAh@AdAe@lGmDj@c@d@q@Rm@RgAj@uIHc@N[TQdAm@pCkA`Cu@tDeAxP{IlAw@vNaFdF}@d@W^e@Na@He@TkCLc@P]VUpCwA'
     },
