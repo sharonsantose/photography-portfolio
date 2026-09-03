@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-02T19:09:33Z",
+  "fetched_at": "2026-09-03T19:01:50Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -492,6 +492,22 @@
         "elev_ft": 75,
         "strava_id": 19999263287,
         "map_polyline": "myqaHtxviV_@`AMREP_@j@_@r@GVOR[t@SXIT?JEHKHMPa@`ASTS\\Yv@w@nA]t@GFSd@K`@U`@Wn@c@lA}@pB[z@Wh@QRM^QZw@fBMTOHYh@K`@sAbCKZU`@O^ILUl@w@nAYl@s@nAGRWd@STYN_@j@i@h@o@x@]ZmArAc@p@M^G^?TF^?h@o@pAIZGNa@n@MFM?OKa@IWBWHMJMPOh@M|@GfAG^W`AM\\KF}@dAOJ]Ly@CWDQLURe@|@Up@Mt@KvBQ|@_@`Ae@j@c@^QZi@rAsAnBQ^y@fAq@`AQTSPY`@[l@s@fAg@b@U^aAbAOZONm@jAUt@[xA]bA]|@[p@GZAn@{@lCCBEAEBQBYNKNOb@En@Bn@D^?\\[tAWv@[n@Kb@Cn@Qv@?LDP@`@YlABdASx@Ml@_@bDSj@UZSNq@Xi@`@s@XYHYB}@DWCaA@i@Ac@@_AAi@BoAEIDy@Cm@BKB{@Eq@@MAS@WJYVOH_@Bg@CSFUNmApAc@x@M\\Ts@P]|AaBb@Ot@HPCn@c@ZOp@Bf@Cf@@TAl@@bAANB`@?v@ATBfAC\\Bh@Cf@BxAC\\CXIz@]j@a@bAi@RYN_@FYDo@Fe@ZgBR{@EoAXaA@YGk@?INi@Fw@zA{E?e@G_@Eo@Bc@Ne@PWLI^GHGZw@\\_ABW@y@r@yAl@cBTkA`@qATe@j@{@NMZe@VUt@aAVUp@cA^s@j@m@r@cAfAaB`@w@LIt@iATe@H[P]`A}@Zm@Pq@Fc@?ODYFaAL_AX_AZm@TYXSh@GZ@b@Ih@g@r@y@Te@Nk@Hm@@_@PyAF]JWZ[j@QF@j@ZFA\\S\\o@Z_APWJW@QIs@AS@IRs@r@aAbAmA\\YV]VUNUd@c@b@i@`BkDd@mAR]BIgEoK@GCQBWDSFO"
+      }
+    ],
+    "2026-09-02": [
+      {
+        "emoji": "\ud83e\uddd7",
+        "sport": "StairStepper",
+        "name": "Evening Stair-Stepper",
+        "detail": "1h 00m \u00b7 \u2764\ufe0f 144 bpm",
+        "dist_mi": 0,
+        "duration_sec": 3600,
+        "pace": null,
+        "hr_avg": 144,
+        "hr_max": 157,
+        "elev_ft": 0,
+        "strava_id": 20014367922,
+        "map_polyline": ""
       }
     ]
   }
