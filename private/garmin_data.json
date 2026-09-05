@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-09-04T18:56:30Z",
-  "today": "2026-09-04",
+  "fetched_at": "2026-09-05T07:29:40Z",
+  "today": "2026-09-05",
   "stats": {
-    "steps": 3164,
-    "step_goal": 15000,
-    "resting_hr": 50,
-    "active_calories": 40.0,
-    "sleep_hours": 9.2,
-    "sleep_score": 80
+    "steps": null,
+    "step_goal": null,
+    "resting_hr": null,
+    "active_calories": null,
+    "sleep_hours": 7.5,
+    "sleep_score": 85
   },
   "steps_history": {
     "2026-06-28": {
@@ -283,7 +283,7 @@
       "goal": 15000
     },
     "2026-09-04": {
-      "steps": 3164,
+      "steps": 7702,
       "goal": 15000
     }
   },
@@ -441,7 +441,7 @@
       "hours": 7.5
     },
     "2026-08-06": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-08-07": {
@@ -449,7 +449,7 @@
       "hours": 7.3
     },
     "2026-08-08": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-08-09": {
@@ -481,11 +481,11 @@
       "hours": 6.0
     },
     "2026-08-16": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-08-17": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-08-18": {
@@ -525,7 +525,7 @@
       "hours": 8.4
     },
     "2026-08-27": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-08-28": {
@@ -537,11 +537,11 @@
       "hours": 6.3
     },
     "2026-08-30": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-08-31": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-09-01": {
@@ -559,6 +559,10 @@
     "2026-09-04": {
       "score": 80,
       "hours": 9.2
+    },
+    "2026-09-05": {
+      "score": 80,
+      "hours": 7.5
     }
   },
   "activities_by_date": {
@@ -912,6 +916,15 @@
         "distance_mi": 0.0,
         "duration_min": 60.0,
         "calories": 466.0
+      }
+    ],
+    "2026-09-04": [
+      {
+        "name": "Seattle Cycling",
+        "type": "cycling",
+        "distance_mi": 8.38,
+        "duration_min": 56.9,
+        "calories": 318.0
       }
     ]
   }
