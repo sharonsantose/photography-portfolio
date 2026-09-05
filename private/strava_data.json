@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-04T18:45:26Z",
+  "fetched_at": "2026-09-05T17:51:45Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -507,6 +507,38 @@
         "hr_max": 157,
         "elev_ft": 0,
         "strava_id": 20014367922,
+        "map_polyline": ""
+      }
+    ],
+    "2026-09-04": [
+      {
+        "emoji": "\ud83d\udeb4",
+        "sport": "Ride",
+        "name": "Evening Ride",
+        "detail": "8.38 mi \u00b7 53m \u00b7 @ 9.4 mph \u00b7 \u2764\ufe0f 133 bpm \u00b7 \u2191 285ft",
+        "dist_mi": 8.38,
+        "duration_sec": 3214,
+        "pace": null,
+        "hr_avg": 133,
+        "hr_max": 173,
+        "elev_ft": 285,
+        "strava_id": 20040619934,
+        "map_polyline": "ajraH~twiVqBzEU\\y@fBeB~DaAtAq@dBc@n@QFIH]bAkA|BcAzBeBrBoCvCU`@aC`DaAzAiAxAuAtBu@bAq@t@wBxCaAjBi@xAMh@I`AMr@Iz@Sd@UZk@bAgAtAo@`AcAvBOLI?uE|GOZo@`@STm@pA_@l@WTk@^ORKh@@~@CXGR_@n@Ul@i@`Da@hA[b@g@b@QZM`@KbA@dBIv@Sl@c@r@KXShAGzAOdAEj@EbCMtAO|@e@pAS^]d@g@f@{@d@w@Tk@FkACgCOiAJoAG}AJyBEgAH[Ni@\\OFM@i@IOBWNcBdBOXUt@i@AQz@[v@OVm@PKFsAjBKHUFk@x@mAjAi@`@oAh@}@XcB\\aBAcAI}MFm@CoI?UJMTEBq@Dk@I}EF{ACuBDcC?}@CsBJuAMiHBu@EYIo@FmI@u@F]NuKvHoKbHi@b@y@|@aB`CMBEAEOGg@O{@Em@Au@J{@f@yB^oBp@yBx@{AlCiEj@s@f@kALq@Fm@?}BJsCA[W}AEsCCWGWMU_@a@yA}@?EHCDQFEAKcAo@KMUi@[WcAyB_@wAQ}@[wBEoAIi@ASBsBFw@PsARaAdAcD`BsD|@_Bh@wAvDuHl@_Bz@qCZuAf@cD|@gHbC}PRoBb@aBLu@^mA`DcJn@uBd@sA|@_C`@iAFYbAwCp@iBdAmDh@wANm@JSHGC?FG`AwCFIlAAXJLAVUBI@UCsBD{AA[zCEd@KY}A~@qAh@oAlCyIPw@r@qB?SMk@AIDQbAkCVe@d@k@rB_Bl@m@^ULO`BqAhB{@~@k@l@MjAk@VYt@g@zBmAn@SV]\\OXUvCwAf@IjB{@p@SdB]|B?dBGpCCfC@bAItAPlCr@tAVHBXZh@N`@ElFB~CCd@JZ?^Iz@Cb@Il@UbG_EFAXJfAMx@@RQf@YnBwATChDhE|BG^MZ@v@S`EDRKPS^DX@R\\PL`CLfB@RCt@]VEXB\\Lb@FdBLfA@~@EHB@JB?CCFZFCDFZDr@hAl@r@d@\\d@TFJR~@HNhAlB\\`@F?ABHP\\ZnBrCx@bAf@j@THJGT_@DOHMTu@^y@d@m@JU`@o@L[F?Xa@DCNo@PY?ONQHBDFH@b@i@t@gBXg@Vu@JGH?JJx@nAB?"
+      }
+    ],
+    "2026-09-05": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Morning Run",
+        "detail": "0.92 mi \u00b7 10m \u00b7 @ 11:53/mi \u00b7 \u2764\ufe0f 152 bpm \u00b7 cadence 169 spm",
+        "dist_mi": 0.92,
+        "duration_sec": 655,
+        "pace": "11:53/mi",
+        "hr_avg": 152,
+        "hr_max": 167,
+        "elev_ft": 0,
+        "strava_id": 20050710135,
         "map_polyline": ""
       }
     ]
