@@ -376,6 +376,11 @@
     },
     "2026-09-08": {
       "garmin_steps": false,
+      "garmin_calories": false,
+      "strava": true
+    },
+    "2026-09-09": {
+      "garmin_steps": false,
       "garmin_calories": false
     }
   },
