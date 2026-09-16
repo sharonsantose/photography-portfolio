@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-15T19:26:33Z",
+  "fetched_at": "2026-09-16T19:18:18Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -556,6 +556,22 @@
         "elev_ft": 0,
         "strava_id": 20095262820,
         "map_polyline": ""
+      }
+    ],
+    "2026-09-15": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Afternoon Run",
+        "detail": "6.65 mi \u00b7 1h 24m \u00b7 @ 12:42/mi \u00b7 \u2764\ufe0f 158 bpm \u00b7 \u2191 256ft \u00b7 cadence 176 spm",
+        "dist_mi": 6.65,
+        "duration_sec": 5070,
+        "pace": "12:42/mi",
+        "hr_avg": 158,
+        "hr_max": 185,
+        "elev_ft": 256,
+        "strava_id": 20194029360,
+        "map_polyline": "wkraHdpuiVU@MQCOCEABCGAKMe@C@i@g@_Ag@Qa@]QKUw@gA@OGMMAe@wAg@IO@SGWH?NGFDB?DEX]PoAGw@Mo@?e@TWTU?FBAAAHIHgAMk@Ny@EKB@DWCMIs@d@mATgECsAYkAMO?_@RY@KFMAUKMAEK]QkAQ_@FSVYBMHBQACIOOCqA@{ANg@EQBKGSLg@J]Ac@Jq@@y@Gk@SaAQcBAWNAB@DEG@@MFS@k@`@sAj@k@h@Yd@c@ROTs@V_@I_@JyAdAiAp@eAv@cAVw@By@Po@Q{DH}CGmBAcAe@m@Ge@KaA_@q@M_AGs@O{@Aa@FiACyAFSCu@BYAe@F}BCu@DaAVS@q@RwAj@SLw@No@Z]RMLSB_@RQPwC|AKNq@RcAr@eA\\k@`@qB`A}@n@_Ad@gCnBQTa@XcAv@g@j@g@z@_@nAi@nADPJPBXc@rAw@vCkAtDQ`@S~@a@z@K^wArBg@VoCLm@EiCDk@E]GoCDUGOk@C_@?mBf@cHV_B@_@NsA@k@f@cGFsA^aDDeADMHKBK@[GOU@_@K{@EYBc@CWHkAOsA@c@Ec@Bm@Eu@?cAIk@BmEGq@EIBuFMOByBQ_@Du@K@@_@DiCAoAGUBKGsAG_ADqEO}BB[GgBG{IM}@BqAi@gCwAiEqBi@c@oAa@o@]WUGFQKQa@KEmA@qCCMNMbACHKFwFDuAGw@Bo@CiADoAIi@`@]h@]nBGv@QdAKfA]fAGDa@Uy@Me@OSEWDGNIp@U`Ae@p@{BPoAd@mAj@uAdAaAjAe@`@{AjBsBvBqA`AWL[Dc@AwA]a@]{@a@e@YaAg@oAc@eCk@c@?mCW_@OsCu@{@i@i@o@_@o@]gAE{@He@To@B_@Ka@[{@E_@?i@HeA?c@u@cBaAcBIWc@c@i@Kg@Wg@K_AMgALWOk@}@c@c@q@]}@Oa@g@mA_AOUKu@A]DiCDa@ASvAuFl@w@b@W`@OZWtCmDj@e@l@]Xm@TgCb@kCRu@t@_CHa@?w@KgAM_@o@gAIe@HsABQt@kANMr@Kt@F~@TdANRHV?xG~ANp@@l@M|@A`B@AFJ@ANx@f@`AbArA`Ax@`A`@TPfCh@"
       }
     ]
   }
