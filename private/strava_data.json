@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-18T18:48:09Z",
+  "fetched_at": "2026-09-19T18:20:36Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -572,6 +572,22 @@
         "elev_ft": 256,
         "strava_id": 20194029360,
         "map_polyline": "wkraHdpuiVU@MQCOCEABCGAKMe@C@i@g@_Ag@Qa@]QKUw@gA@OGMMAe@wAg@IO@SGWH?NGFDB?DEX]PoAGw@Mo@?e@TWTU?FBAAAHIHgAMk@Ny@EKB@DWCMIs@d@mATgECsAYkAMO?_@RY@KFMAUKMAEK]QkAQ_@FSVYBMHBQACIOOCqA@{ANg@EQBKGSLg@J]Ac@Jq@@y@Gk@SaAQcBAWNAB@DEG@@MFS@k@`@sAj@k@h@Yd@c@ROTs@V_@I_@JyAdAiAp@eAv@cAVw@By@Po@Q{DH}CGmBAcAe@m@Ge@KaA_@q@M_AGs@O{@Aa@FiACyAFSCu@BYAe@F}BCu@DaAVS@q@RwAj@SLw@No@Z]RMLSB_@RQPwC|AKNq@RcAr@eA\\k@`@qB`A}@n@_Ad@gCnBQTa@XcAv@g@j@g@z@_@nAi@nADPJPBXc@rAw@vCkAtDQ`@S~@a@z@K^wArBg@VoCLm@EiCDk@E]GoCDUGOk@C_@?mBf@cHV_B@_@NsA@k@f@cGFsA^aDDeADMHKBK@[GOU@_@K{@EYBc@CWHkAOsA@c@Ec@Bm@Eu@?cAIk@BmEGq@EIBuFMOByBQ_@Du@K@@_@DiCAoAGUBKGsAG_ADqEO}BB[GgBG{IM}@BqAi@gCwAiEqBi@c@oAa@o@]WUGFQKQa@KEmA@qCCMNMbACHKFwFDuAGw@Bo@CiADoAIi@`@]h@]nBGv@QdAKfA]fAGDa@Uy@Me@OSEWDGNIp@U`Ae@p@{BPoAd@mAj@uAdAaAjAe@`@{AjBsBvBqA`AWL[Dc@AwA]a@]{@a@e@YaAg@oAc@eCk@c@?mCW_@OsCu@{@i@i@o@_@o@]gAE{@He@To@B_@Ka@[{@E_@?i@HeA?c@u@cBaAcBIWc@c@i@Kg@Wg@K_AMgALWOk@}@c@c@q@]}@Oa@g@mA_AOUKu@A]DiCDa@ASvAuFl@w@b@W`@OZWtCmDj@e@l@]Xm@TgCb@kCRu@t@_CHa@?w@KgAM_@o@gAIe@HsABQt@kANMr@Kt@F~@TdANRHV?xG~ANp@@l@M|@A`B@AFJ@ANx@f@`AbArA`Ax@`A`@TPfCh@"
+      }
+    ],
+    "2026-09-19": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "orca half!",
+        "detail": "13.19 mi \u00b7 2h 44m \u00b7 @ 12:30/mi \u00b7 \u2764\ufe0f 169 bpm \u00b7 \u2191 361ft \u00b7 cadence 172 spm",
+        "dist_mi": 13.19,
+        "duration_sec": 9899,
+        "pace": "12:30/mi",
+        "hr_avg": 169,
+        "hr_max": 200,
+        "elev_ft": 361,
+        "strava_id": 20244777612,
+        "map_polyline": "gebaHtjajV{@?aAOkA_AyBcA{@oAm@mAc@g@iAsByC{DsCsCoCkBs@a@kAUq@EeDd@y@BHH~Dw@`BDrAh@jBlAbDvC`CtCvElHbEtHTn@jA^b@Ar@[dAuAP{@bAeBbCkF`E{JfGiKh@kBNiACg@a@iBI?a@^WF{AOmARoAp@e@h@m@KcAo@oAKyBm@e@As@Ja@OoDDeCQy@Hc@TcAtAc@Xc@CoAW}@H_BG}@ZeBWeA@g@L@Tz@dA|@lCzB~AnEjFh@|@XVn@VjD`Ev@f@~@Vl@`@p@Vx@L|A?XOy@NsAAgA]o@c@eA[q@c@eBcBiA{AqAy@qAoBuDcEeBeA{@eCoAgBuFyAQU_@gAMMuCb@{B?{C~BWb@{ArFs@vAy@pAy@`Ak@`@oIKwCPo@f@{ChDaCnBQJkCZcB~@YFy@CyG{Cu@WsAMeG@i@JgAl@k@NmJIa@FeAz@mA~Bi@d@w@^e@HkET_@J{P~LeAj@aGdE{D`Di@l@wD~EOp@eC~CgD`Ae@f@{@Iw@t@WJm@Lg@AgDxD_BhCy@n@cCxAeA\\oC?UQg@{@WEq@FwEnDiCpAoA|AcFvK}@rAyDdOiH|Pg@l@uDHyBGWY_AsEa@mCOQY{AKcAUgAQc@[aBa@sCcFyWuAaHK]g@w@Oq@kHiT_@yAe@cAIc@oC_Is@uAKa@sDaFcGaH_BwB_TaW@G@D}BuCkFmGsPuMy@uAmF{Ma@gCCo@CiBBeAL{A`@iBDm@z@iBp@w@x@k@j@KdJeDnA[fCiAt@Sn@c@zDcBdC}CTy@|AaCZK~EcIxAwB~B}DjHkGx@i@~A}AfBmAfEmDpCcAdAk@jDu@n@CxCPxAOz@YnHoDdB[n@]|A@rEe@`CC`BQ~ACPDtAS`@DTKhAELGFOB}@AiHFsEEeCF_BEi@PcEO{EFmICUo@wAc@}AOmB?d@J|@d@jBl@jABV@dAIpBFbJ?`GElBBLIfG?jKEb@cDl@{@B_@GmCBoAJiBAiBJ_BZcAK_Af@s@FsA\\qCzAeEhBcAJsDS_AFcDz@{Ar@kAVk@Z}BpBm@\\_AbAaBdAqFdFkDnCsCvE_ChDCPeBbCc@t@IXm@`@s@dAe@t@Or@wAjBw@t@wE~BkEnBgElAwEhBSMQq@"
       }
     ]
   }
