@@ -1,11 +1,11 @@
 {
-  "fetched_at": "2026-09-19T07:52:28Z",
+  "fetched_at": "2026-09-19T18:32:52Z",
   "today": "2026-09-19",
   "stats": {
-    "steps": null,
-    "step_goal": null,
-    "resting_hr": null,
-    "active_calories": null,
+    "steps": 32410,
+    "step_goal": 15000,
+    "resting_hr": 53,
+    "active_calories": 1431.0,
     "sleep_hours": 7.5,
     "sleep_score": 85
   },
@@ -340,6 +340,10 @@
     },
     "2026-09-18": {
       "steps": 9755,
+      "goal": 15000
+    },
+    "2026-09-19": {
+      "steps": 32410,
       "goal": 15000
     }
   },
@@ -1064,6 +1068,15 @@
         "distance_mi": 6.65,
         "duration_min": 84.5,
         "calories": 783.0
+      }
+    ],
+    "2026-09-19": [
+      {
+        "name": "Seattle Running",
+        "type": "running",
+        "distance_mi": 13.19,
+        "duration_min": 167.4,
+        "calories": 1529.0
       }
     ]
   }
