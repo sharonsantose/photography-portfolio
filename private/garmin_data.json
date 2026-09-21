@@ -1,11 +1,11 @@
 {
-  "fetched_at": "2026-09-20T18:40:00Z",
-  "today": "2026-09-20",
+  "fetched_at": "2026-09-21T08:40:27Z",
+  "today": "2026-09-21",
   "stats": {
-    "steps": 1612,
-    "step_goal": 15000,
-    "resting_hr": 55,
-    "active_calories": 30.0,
+    "steps": null,
+    "step_goal": null,
+    "resting_hr": null,
+    "active_calories": null,
     "sleep_hours": 7.5,
     "sleep_score": 85
   },
@@ -589,7 +589,7 @@
       "hours": 8.4
     },
     "2026-08-27": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-08-28": {
@@ -601,11 +601,11 @@
       "hours": 6.3
     },
     "2026-08-30": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-08-31": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-09-01": {
@@ -681,10 +681,14 @@
       "hours": 7.2
     },
     "2026-09-19": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-09-20": {
+      "score": 81,
+      "hours": 7.5
+    },
+    "2026-09-21": {
       "score": 80,
       "hours": 7.5
     }
@@ -1085,6 +1089,15 @@
         "distance_mi": 13.19,
         "duration_min": 167.4,
         "calories": 1529.0
+      }
+    ],
+    "2026-09-20": [
+      {
+        "name": "Snohomish County Hiking",
+        "type": "hiking",
+        "distance_mi": 5.27,
+        "duration_min": 164.9,
+        "calories": 786.0
       }
     ]
   }
