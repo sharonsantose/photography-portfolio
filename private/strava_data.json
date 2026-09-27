@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-26T18:55:09Z",
+  "fetched_at": "2026-09-27T19:27:24Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -620,6 +620,22 @@
         "elev_ft": 66,
         "strava_id": 20290638861,
         "map_polyline": "evraHp_viVJFOb@uAxBMb@a@x@Op@Uj@qB~DY^KXaAfBKHBE@D?EEAW|@wArC{AhDs@^c@h@o@rA[TYHs@BgBCQFQCUn@Zp@z@`ABHDB~GvJp@f@z@fBRPDLdDvZqBxBe@t@c@\\oA`BoHrKyAdBwB|C}@~Ai@rAYfAAl@Qv@I|@Qf@s@lAkB`Cs@lAe@jAgAz@QTs@fBQRg@TQPc@fASTo@h@oAbCYXg@ZQTMj@?|@CZa@v@Wt@q@pDg@hA_AfAYv@In@@dBGr@Ux@i@bAM^Kv@MjBQrAEpCShBMn@Wr@o@jAe@j@w@h@k@Ty@N{A?wAM}@AgAJiAG}AJsBEgAH_@Nw@`@y@AYHgB~AQX[z@LGBQXm@dBeBZId@@ZC`@]j@Sx@KpBF`BM|AF~AKhDRp@An@Kt@]r@e@d@i@t@uA^uAToBHsCNqARsCJc@z@gBLm@@qCFq@\\y@h@g@Ze@Tg@Rq@ZmBR}@f@}@J[B[?aAH_@PWf@YVWhAaCdA}@^aALUf@SZYx@iBpAmAl@sAd@w@lBgCfAgB^yBHiANq@f@wAz@aBnB{C`AeA`LePd@[KEcBtBoAdBaCvDuBtC{@bA}BbDmA|Bi@~AGZCp@Oz@En@Qh@cAbBwAbBi@x@{@hBgA`AgA|BgAv@k@rA{@t@mAbCYXy@n@Ol@?nAKZU\\Yt@s@xDc@dA_AbAUf@I\\I`A@pBUfAo@jAS~@K|AUfBIxCYbCa@vAq@hA{@z@a@Vm@Tu@J}A?_CSaBLw@Gs@@}@JoBEeAJmAn@cA?YHkBfBYp@jBwB^YVE~@Al@i@l@Ql@CdBFfBMnAD`BI~DRt@E`Bi@p@g@r@{@d@aAb@cBPsBFgC^iELu@j@iAX{@FaA?wAH{@Tu@lA}A^{@j@gDTm@b@o@F_@?gANo@lAeAh@}@Zy@t@k@RUb@gANQv@g@~@uBxAqAf@oAh@}@fB{B`AcBNg@TyAF_AP{@d@sAlA{BvByCbAkAhBoCfB_C~A}BzAeCvEyEh@u@hC{FTu@l@k@PYv@oB~@wAjCoFrEsKt@}AJ_@nByD\\}@z@sAf@}@Z_A\\c@bBgDTi@WW"
+      }
+    ],
+    "2026-09-26": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Afternoon Run",
+        "detail": "1.93 mi \u00b7 24m \u00b7 @ 12:49/mi \u00b7 \u2764\ufe0f 146 bpm \u00b7 \u2191 39ft \u00b7 cadence 170 spm",
+        "dist_mi": 1.93,
+        "duration_sec": 1489,
+        "pace": "12:49/mi",
+        "hr_avg": 146,
+        "hr_max": 167,
+        "elev_ft": 39,
+        "strava_id": 20342950922,
+        "map_polyline": "siuaHpnuiV]Ve@Po@^UTIDUPq@^gANU?_@Jg@A[MWAg@B_@?]FKCe@?a@Ce@B[AMB{@Cg@B_@IM@UAIEMMOIcAO]O]E_@Oi@KIG}@K[?_@Es@CkAH_CCOBg@AMBm@BCCY?SBq@?O@]C}@B[HW@a@H_A`@UFSJe@LYLa@JYJsAr@o@VQPe@V]Vm@Vg@\\yAt@WTi@RIHe@No@`@k@Tu@f@uAt@[TOFc@ZQPUNOPs@h@w@r@SPc@V_@Ze@p@[r@I\\ORUr@GNCJBPLXBNCXg@tAqArEMVsApEYr@S`@gArAYN[HS@EBKAW@]CaAJmA@c@CQEW@SEa@@OCxAWHUJc@Na@b@cBJq@?o@AOmD_Ds@?k@CSOIKAIFu@ZkDDm@Fe@JeBD[T{CTcABe@J}@"
       }
     ]
   }
