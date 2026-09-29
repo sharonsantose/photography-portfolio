@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-28T21:31:04Z",
+  "fetched_at": "2026-09-29T20:23:43Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -636,6 +636,22 @@
         "elev_ft": 39,
         "strava_id": 20342950922,
         "map_polyline": "siuaHpnuiV]Ve@Po@^UTIDUPq@^gANU?_@Jg@A[MWAg@B_@?]FKCe@?a@Ce@B[AMB{@Cg@B_@IM@UAIEMMOIcAO]O]E_@Oi@KIG}@K[?_@Es@CkAH_CCOBg@AMBm@BCCY?SBq@?O@]C}@B[HW@a@H_A`@UFSJe@LYLa@JYJsAr@o@VQPe@V]Vm@Vg@\\yAt@WTi@RIHe@No@`@k@Tu@f@uAt@[TOFc@ZQPUNOPs@h@w@r@SPc@V_@Ze@p@[r@I\\ORUr@GNCJBPLXBNCXg@tAqArEMVsApEYr@S`@gArAYN[HS@EBKAW@]CaAJmA@c@CQEW@SEa@@OCxAWHUJc@Na@b@cBJq@?o@AOmD_Ds@?k@CSOIKAIFu@ZkDDm@Fe@JeBD[T{CTcABe@J}@"
+      }
+    ],
+    "2026-09-28": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Evening Run",
+        "detail": "1.86 mi \u00b7 23m \u00b7 @ 12:35/mi \u00b7 \u2764\ufe0f 156 bpm \u00b7 cadence 165 spm",
+        "dist_mi": 1.86,
+        "duration_sec": 1408,
+        "pace": "12:35/mi",
+        "hr_avg": 156,
+        "hr_max": 173,
+        "elev_ft": 0,
+        "strava_id": 20372559650,
+        "map_polyline": ""
       }
     ]
   }
