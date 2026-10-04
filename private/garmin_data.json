@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-10-03T19:09:12Z",
-  "today": "2026-10-03",
+  "fetched_at": "2026-10-04T09:26:43Z",
+  "today": "2026-10-04",
   "stats": {
-    "steps": 9,
+    "steps": null,
     "step_goal": 15000,
-    "resting_hr": 43,
+    "resting_hr": 48,
     "active_calories": 0.0,
-    "sleep_hours": 7.9,
-    "sleep_score": 87
+    "sleep_hours": 7.5,
+    "sleep_score": 85
   },
   "steps_history": {
     "2026-06-28": {
@@ -399,7 +399,11 @@
       "goal": 15000
     },
     "2026-10-03": {
-      "steps": 9,
+      "steps": 639,
+      "goal": 15000
+    },
+    "2026-10-04": {
+      "steps": null,
       "goal": 15000
     }
   },
@@ -733,11 +737,11 @@
       "hours": 7.2
     },
     "2026-09-19": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-09-20": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-09-21": {
@@ -785,12 +789,16 @@
       "hours": 6.8
     },
     "2026-10-02": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-10-03": {
       "score": 87,
       "hours": 7.9
+    },
+    "2026-10-04": {
+      "score": 80,
+      "hours": 7.5
     }
   },
   "activities_by_date": {
@@ -1031,13 +1039,6 @@
         "distance_mi": 0.0,
         "duration_min": 10.0,
         "calories": 53.0
-      },
-      {
-        "name": "Strength",
-        "type": "strength_training",
-        "distance_mi": 0.0,
-        "duration_min": 19.2,
-        "calories": 41.0
       }
     ],
     "2026-08-05": [
@@ -1225,6 +1226,22 @@
         "distance_mi": 1.86,
         "duration_min": 23.5,
         "calories": 232.0
+      }
+    ],
+    "2026-10-03": [
+      {
+        "name": "Seattle Road Cycling",
+        "type": "road_biking",
+        "distance_mi": 19.53,
+        "duration_min": 110.9,
+        "calories": 786.0
+      },
+      {
+        "name": "Seattle Road Cycling",
+        "type": "road_biking",
+        "distance_mi": 0.06,
+        "duration_min": 1.2,
+        "calories": 2.0
       }
     ]
   }
