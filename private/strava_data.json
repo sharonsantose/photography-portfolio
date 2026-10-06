@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-05T22:17:20Z",
+  "fetched_at": "2026-10-06T20:43:50Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -668,6 +668,36 @@
         "elev_ft": 449,
         "strava_id": 20440821885,
         "map_polyline": "qxraHx|uiVeWuL}C@{@]yOAoBB_ARkC?i@UiAW_JDg@Ce@YoAP_@GkFhD}@\\_Dd@e@OyAEgJNg@c@iA[yFgAmQLmCf@mHzC_BjAuEzBeBpAq@JiDjBsHdGu@bAqAxCCXPl@AVsE`Ou@bBmA~A_AXqCFmKKMi@?iBLgD`Fml@HAfBeGvBqDLe@EkG?oGLqBIu@FqCGu@_@_Ae@a@iQ_Ju@UcI}L{G}GaD_EqAiEgC{U_@{FNmEZwCpAuHj@kFh@_CVqC`@cBl@gBv@u@^aARsAd@sAVY|AmDlBuFhE{Jp@}Bb@yCJmCUeDe@oBg@cAuAkBaA_AcAe@_d@wIaFOwFTgG`AwHzByBT{AMq@ScAB_CmCwAuDIyADy@EgFHwAb@_D|AkEzDmFZw@dHgJtCsFtAiEbAsFLyDWcE[sAoAoCy@y@iBgAuC_AiNyAoBy@sBmBOs@u@qAi@uAc@_BY{BcCg_@AwCZwH?qBIoBi@cCq@eBmAwAuJ{G{CiCoBiCiGwJsAaBeA}@qCsA{VgGgF{@ma@bCaMfDaDzAv@c@`Bk@xK_Dxb@qC`Fr@pUzF~CpAxBdBfChDbHrKtChCnKpH|@bAh@xAf@lC^pE_@~FCpFhBvX~@|IdAvCx@tALv@`CtBhBp@tNdBxCbAdBlAfAvAh@nAf@zBRjEQpDw@lEaB~EmBtDaIjKY|@{CvDgAtBeAdDg@fEBrJPjA~@`C~BvCPF^KvB\\tDOdJaCtG{@zDK~GX~a@lIpBpA~AzBr@xAf@|BH`DMvBc@tCeA`DaIdSmBxDs@xCeAtA_A|Cm@|Es@vCq@lGwA|IMhD@vBN~BtCfWTvA|@bCtCvDpBfBtD~D~HxLxSfKV^VfAE|CLlBKx@BdPKf@yBtDaArCi@bCg@`GQrEa@|C}AnQHTd@TzC?dAd@J\\PlDkAlEi@l@]lByBrGqF`OQ~@S^O?@s@xBcQn@yHhGBpHz@COLE?Wd@MTFT_Bh@i@bAmB`FyO@]Oq@DYjAoCj@{@tHkGtDsB`@ClAm@bCeB|BeAlCeB`HiChB]dQMjHzAj@f@\\FnIIzCNlBSlAa@fGwDnCELFXv@jIB`CI`@OlCQxAZz@Ex@Yf@Dd@x@N_@bDRxC_@nATjFHh@^`A|AbBfBlBpCr@xA~A~B~CvDZFb@m@~@kCv@aAFc@`@Kf@c@d@cCp@iBhBaD"
+      }
+    ],
+    "2026-10-05": [
+      {
+        "emoji": "\u26a1",
+        "sport": "RockClimbing",
+        "name": "Evening Rock Climb",
+        "detail": "0m \u00b7 \u2764\ufe0f 77 bpm",
+        "dist_mi": 0,
+        "duration_sec": 21,
+        "pace": null,
+        "hr_avg": 77,
+        "hr_max": 81,
+        "elev_ft": 0,
+        "strava_id": 20468289346,
+        "map_polyline": ""
+      },
+      {
+        "emoji": "\ud83c\udfcb",
+        "sport": "WeightTraining",
+        "name": "first floor",
+        "detail": "12m",
+        "dist_mi": 0,
+        "duration_sec": 723,
+        "pace": null,
+        "hr_avg": null,
+        "hr_max": null,
+        "elev_ft": 0,
+        "strava_id": 20468550492,
+        "map_polyline": ""
       }
     ]
   }
