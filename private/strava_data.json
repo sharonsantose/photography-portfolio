@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-11T19:51:50Z",
+  "fetched_at": "2026-10-12T22:41:29Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -714,6 +714,22 @@
         "elev_ft": 10,
         "strava_id": 20496940234,
         "map_polyline": "}d_bHppviVBAR@j@JRHf@JdA\\f@`@v@`@\\Lr@d@`Ab@\\FPFh@B`@IdAu@z@w@v@{@POn@u@`@a@T[XWp@{@tAqAb@Y\\M`Ag@j@Kj@O^Cb@DNGd@k@Xs@DY?cB_@gBIkA@c@I[Gu@k@gEe@eC_@sAm@aBOWESKYy@}AYq@MSQa@QUOa@S]e@o@i@}@_A_Aa@i@[Yk@_@e@i@_AyAmAkCk@}@}@u@SUq@c@g@KYCMEs@MSKw@Qc@OkAs@y@{@GOUWc@y@U}@MgADeAHi@G_AI[O[Y[wA|_B~@RX@^HZAp@LlAJPDn@HTJb@Hf@\\XJj@^f@Tn@`@PDj@\\d@L`@@LB\\AZIJMb@[lAcALQZYJQROXc@JGRWJGPWZ[V_@TSf@k@dA{@v@e@p@YJA~@WJ?n@K`@BNEZWP]JWFk@B_AEk@Oq@QsAEsAEa@W{A]sC[yA?S"
+      }
+    ],
+    "2026-10-11": [
+      {
+        "emoji": "\ud83c\udf32",
+        "sport": "Hike",
+        "name": "Lunch Hike",
+        "detail": "5.91 mi \u00b7 3h 14m \u00b7 @ 32:54/mi \u00b7 \u2764\ufe0f 117 bpm \u00b7 \u2191 1808ft",
+        "dist_mi": 5.91,
+        "duration_sec": 11666,
+        "pace": "32:54/mi",
+        "hr_avg": 117,
+        "hr_max": 167,
+        "elev_ft": 1808,
+        "strava_id": 20548037526,
+        "map_polyline": "caq|Ghs_fVmG{@[^[bAo@dABFc@\\U|@u@l@o@GoAeAy@Va@f@_BfAmAPqAi@uBIq@u@cDgBaAqAsAs@C[PQKDwAa@{BkAo@Jq@x@q@OEWu@`@SC_@PiBQsAN_Ag@eA_A}@a@Oi@Pg@Gg@BDICc@e@Af@m@s@mCImAdBSOMe@]OMNaA@g@x@OH@IIHYMa@JSMCIA@?M[UwAq@g@C?GBBm@GSNCEENqAj@eAYi@c@i@{@Eq@GESN}@YqAuAe@KIMNKf@S^]b@?lBwAl@Kb@_@x@K`@e@Vk@Hk@ES?GTa@No@d@e@@u@L[VU^DLSEmB]V}@mAM}@FUPKs@hA[RUfAMLWOg@u@OCHxAi@}@y@SBEiBu@Wm@Ab@QNw@E]JQVQ@SQAEDCWa@_@sBDe@FCFLs@_FMOO}@_@}@SiAI{A_@qAJMXP_@w@Ee@Pq@@c@T_BBoClAv@h@nATPn@UFk@R\\l@KVWf@LPYTm@b@CNKCEHHx@eAb@[AyBPId@qA\\Y\\AHJLSn@Kd@c@R@HXL~CXPh@DdA[b@l@ATQJ?`@DLr@Zf@zBBf@LTN@LOHl@LBJg@b@@PLl@YHIB[NQDYjB_Ch@IPLt@Oj@Dn@_AVIbAgAJL`@I@m@Ti@NGDF\\_@d@OXy@AwAZ{@|@qAVk@p@o@L]LCGGbAVJY@J?GdA[f@kALc@CSFFRQPm@^k@Ni@ESwAy@[i@]UMF_@c@@AFHCERkCPQNw@NKf@LRIb@^`Bj@CGRBbAp@l@Id@x@TLCMB\\`@Zp@AjA\\l@BZ]d@A\\D`@Vv@EdC^v@^t@nAD`@AzAW|Am@`BEn@k@JERZZVhA?b@LVc@Ca@JAPTr@q@R@b@PPg@RMKu@PKKm@F]SYHa@[_@Ns@IKh@XdAEh@^bCO`AOb@Q?BRBCSXSnAY\\qBnAi@jBFlBIT?v@Wd@N`@Al@b@jBLfAxAzDJn@@lBK~@Jz@QhAHd@E?g@d@`AtBj@x@JpAd@xAj@n@z@Z`@f@r@ATy@MWJNQb@?Xz@h@`AQ|@B`BUfBk@rA?ZH\\ERVAjAN`@xBxBf@t@nAT"
       }
     ]
   }
