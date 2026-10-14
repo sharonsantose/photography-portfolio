@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-13T20:56:40Z",
+  "fetched_at": "2026-10-14T19:55:42Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -746,6 +746,22 @@
         "elev_ft": 30,
         "strava_id": 20562279264,
         "map_polyline": "ylraHpouiVKNE@?AAAKo@MWGIKE_@c@SISMIe@OSOIIUk@{@EGOGc@i@OOQIK?IEQ@c@KK\\SDCCG@KKSAKE[DKCS?a@RGACG_@Uk@?ACGCODu@Hs@POA{@JMCEDI@eA^OGA@u@?S@GDi@Ge@R[BWE[@[Gi@CMGOF{ATc@@UCg@YC@EEOBQCKFCHMFyARe@Aq@YEEME_ADo@Cm@De@Ag@OSCg@H{@BAHE@cADQASEISMC}BEa@BMAs@NA@@?[RC?KAMU_@eBk@o@IYIs@CK[A{@?SAQBUCJBT@l@CdA?JRv@t@DHJ~A?p@E`@EPS^QNSJ_@FYR]l@WRKVGDw@ROAKGIAGBe@ZSJu@d@SHeAx@s@b@cA\\UBeABc@DO?MGQA]Ba@CeBFYEiABoAGo@FWASCmAo@YGUIa@CQCSMKAMGcAW_@@g@Gy@AMBWBMCY@SAG@}@AWB]AYDs@CGBq@AK@{@Ce@B]?UBMAk@Lw@Ha@TMBSFUNm@RK@}@Vg@TQDGFu@VQLYXWLa@\\MDmBhA[NgAn@k@PKJQFOLkAj@yAbAYJ_Ap@OFq@l@C@KL{@h@_@^e@Zg@f@SFMLe@n@OZuAxDZmARc@\\{@h@cA`@a@jDoCr@u@XSh@WpA{@h@SpAw@vBcAdDoBx@[PS^SRSbAc@VOz@a@jA[HGlAk@`AS\\Cj@STAd@BJChB@ZEnA@\\EpC@RCVBFARIb@?t@H^JT?PD~Ad@`@DfAV\\J`@RXDX?RB^Ab@DbACJBTCv@B`AIT@LE^?P@b@RF?TAf@MTAn@M^CFCp@]TQLO`Ae@f@a@@@HCRQbAq@F?FRFBb@KTAJ[ZSZo@JMXUVMf@MHIRgABYOsAGgBCKc@E_BB[C]@GC"
+      }
+    ],
+    "2026-10-13": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Evening Run",
+        "detail": "2.49 mi \u00b7 31m \u00b7 @ 12:31/mi \u00b7 \u2764\ufe0f 158 bpm \u00b7 cadence 164 spm",
+        "dist_mi": 2.49,
+        "duration_sec": 1871,
+        "pace": "12:31/mi",
+        "hr_avg": 158,
+        "hr_max": 171,
+        "elev_ft": 0,
+        "strava_id": 20576484380,
+        "map_polyline": ""
       }
     ]
   }
