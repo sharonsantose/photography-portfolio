@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-10-16T19:29:56Z",
-  "today": "2026-10-16",
+  "fetched_at": "2026-10-17T07:35:17Z",
+  "today": "2026-10-17",
   "stats": {
-    "steps": 1554,
+    "steps": null,
     "step_goal": 15000,
-    "resting_hr": 46,
-    "active_calories": 31.0,
-    "sleep_hours": 8.6,
-    "sleep_score": 92
+    "resting_hr": 52,
+    "active_calories": 0.0,
+    "sleep_hours": 7.5,
+    "sleep_score": 85
   },
   "steps_history": {
     "2026-06-28": {
@@ -451,7 +451,11 @@
       "goal": 15000
     },
     "2026-10-16": {
-      "steps": 1554,
+      "steps": 15875,
+      "goal": 15000
+    },
+    "2026-10-17": {
+      "steps": null,
       "goal": 15000
     }
   },
@@ -785,11 +789,11 @@
       "hours": 7.2
     },
     "2026-09-19": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-09-20": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-09-21": {
@@ -837,7 +841,7 @@
       "hours": 6.8
     },
     "2026-10-02": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-10-03": {
@@ -849,11 +853,11 @@
       "hours": 6.6
     },
     "2026-10-05": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-10-06": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-10-07": {
@@ -873,7 +877,7 @@
       "hours": 9.4
     },
     "2026-10-11": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-10-12": {
@@ -895,6 +899,10 @@
     "2026-10-16": {
       "score": 92,
       "hours": 8.6
+    },
+    "2026-10-17": {
+      "score": 80,
+      "hours": 7.5
     }
   },
   "activities_by_date": {
@@ -1378,6 +1386,15 @@
         "distance_mi": 1.37,
         "duration_min": 15.8,
         "calories": 158.0
+      }
+    ],
+    "2026-10-16": [
+      {
+        "name": "Seattle Running",
+        "type": "running",
+        "distance_mi": 3.11,
+        "duration_min": 37.2,
+        "calories": 345.0
       }
     ]
   }
