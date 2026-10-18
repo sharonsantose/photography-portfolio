@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-17T18:05:55Z",
+  "fetched_at": "2026-10-18T18:24:49Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -794,6 +794,22 @@
         "elev_ft": 43,
         "strava_id": 20614445040,
         "map_polyline": "kiraHvwuiVGXGIGXQZGHQJ?HIJY|AFALJd@p@Xp@b@h@x@v@v@nAFRNLTZLXX\\n@vAX`@RRn@~@LFPL?LITdC`DAJ[|@gAjBK^m@dAOLMp@MXSVWj@e@j@MRW~@o@fAk@tAk@z@aAhCu@~Au@pBq@lAs@|AM^cAbBATS^UXe@v@_@|@o@fAUz@KLGT]b@q@tAIHa@z@Wb@UJQTo@p@{@bAaBhBs@~@Wr@CT@ZFb@Ej@EJKJKXq@zAQVMFMAIIYM_@?OBa@ZIRKd@YpCKh@Md@S^gAjAWR[Fi@EYB_@T]^Wf@YfAKl@OhCG^]jAa@^[Tc@r@Sh@[j@sChES^OJW`@IHc@d@c@v@u@hAu@v@q@|@KH_@b@s@nAQ`@Ux@Kl@]fApMqTp@aAz@{A|@kATc@To@T[n@k@^o@FSF_@HQDWFi@DaAL_ANo@`@{@`@i@NGd@IZB`@Gd@]x@}@Vc@R}@Jq@LeBHe@JWTYRKNEJA\\FVPL?LELOL]N[JMj@qAB[I}@D]Ng@`@q@ZWrAaBBAHJF?HIXa@DMj@u@dA}AHWPWb@_Ar@mAL[R[Lg@HId@cARYvAuCVa@xAgDz@_Bd@kAr@yARk@H]d@kAHK|@oB`@q@J[j@gA\\cAZc@n@gAf@_ARe@"
+      }
+    ],
+    "2026-10-17": [
+      {
+        "emoji": "\ud83c\udf32",
+        "sport": "Hike",
+        "name": "Morning Hike",
+        "detail": "9.76 mi \u00b7 4h 20m \u00b7 @ 26:39/mi \u00b7 \u2764\ufe0f 109 bpm \u00b7 \u2191 1631ft",
+        "dist_mi": 9.76,
+        "duration_sec": 15616,
+        "pace": "26:39/mi",
+        "hr_avg": 109,
+        "hr_max": 158,
+        "elev_ft": 1631,
+        "strava_id": 20627910139,
+        "map_polyline": "smhdHxj`dVHFYq@Lu@bEkEnAeEbCkBVJd@yBBu@x@kAxAf@p@r@tA]r@p@n@{@PBj@eC|@{AR{AjAuAKmEUOOq@Jy@`@eBnAkAbBmDbC{@hAaCjDeE`CLx@WRaAv@Un@Nx@s@jBc@~@d@fA}AlAm@|@mAj@@Lm@~@g@z@F\\a@K?R@KK@XRmBr@qANsAJNKGLaB~@iCe@s@nAYN[YmD\\uBpA{Bt@_D?y@Fo@pCwHMcDe@wC`@gBUuAIQ@uBRw@g@sB?yB[k@CiADkA^aAI{@VsAG{@|AkATsAIaAlAmDIwG[g@IyAZy@JuA`@m@~Ag@n@mBBuA`@e@FcBd@o@Ns@GwAL{Ax@aB`AuGrDmCxBcDz@FlBoApByCAcCVo@TuCb@eAzAeAPaBp@WpADh@j@~@u@nIqEh@y@rAi@b@i@FmBnB}GfBwAbA{BrAYx@s@rADXUZk@@eCLq@P[NFIOJFOGAIHRIC|@wAXoBpAs@j@yApB_BoEIeCu@|CqAjCkDVKz@b@TWK?G`@YIJq@c@y@LKe@JiAWEUNUrAUdBf@n@Mb@eA\\BU{@VgAAoBZkCZCCYC`@SH?qA^iAK?ZgCl@kA`AkDd@o@QJyAjFa@h@c@lBHn@w@lGBhCcAhDmA^gAo@cBR?XbBRd@hA?f@cAQcC`DiDnAAP~Bj@pEJiChCSt@eAx@]bB_@`Ae@\\_@lAJCBt@OtA}@`AkAAgAx@y@JeA`BKi@@`AoA`AaA|A_AtEGzA]|@qA^gCbCeA^mDlB_Ax@GMq@YyBFa@rBeAr@c@x@s@zFMjByCbEmAb@a@SaCfDuDrCo@|Eq@tB[ZJAKrDu@tBI~A_@`@BdAy@tBuAZY`@u@xCJxAXp@F`GgA|D@~@WdBuAdAKnBBpAc@x@BzCV\\@`Ch@bCWx@?fB`@tB]fC`@tBFbDkCxHIlBy@bDsA~BUfBXzCYl@aAP^|@eAfDKzB_A`B]rBc@Ra@MgAl@Kd@i@Cs@lAwAn@kAxAwA_@oCrAo@Q_@`@UEa@fAs@RyBSuDnE_AvBgCbAiBtDuA|A[rBb@zALrD}@jAqClIaA|@y@m@eARsAy@cAQ{@`Am@lDWE}B|AgAvD_AzAcC|BKv@b@zA"
       }
     ]
   }
