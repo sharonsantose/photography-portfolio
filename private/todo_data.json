@@ -562,6 +562,10 @@
     "2026-10-20": {
       "garmin_steps": true,
       "garmin_calories": true
+    },
+    "2026-10-21": {
+      "garmin_steps": false,
+      "garmin_calories": false
     }
   },
   "commute": {},
