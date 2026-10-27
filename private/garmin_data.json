@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-10-27T08:44:09Z",
+  "fetched_at": "2026-10-27T20:33:56Z",
   "today": "2026-10-27",
   "stats": {
-    "steps": null,
+    "steps": 2518,
     "step_goal": 15000,
-    "resting_hr": 49,
-    "active_calories": 0.0,
-    "sleep_hours": 7.5,
-    "sleep_score": 85
+    "resting_hr": 48,
+    "active_calories": 36.0,
+    "sleep_hours": 7.7,
+    "sleep_score": 83
   },
   "steps_history": {
     "2026-06-28": {
@@ -495,7 +495,7 @@
       "goal": 15000
     },
     "2026-10-27": {
-      "steps": null,
+      "steps": 2518,
       "goal": 15000
     }
   },
@@ -981,8 +981,8 @@
       "hours": 8.3
     },
     "2026-10-27": {
-      "score": 80,
-      "hours": 7.5
+      "score": 83,
+      "hours": 7.7
     }
   },
   "activities_by_date": {
@@ -1493,6 +1493,15 @@
         "distance_mi": 3.11,
         "duration_min": 40.1,
         "calories": 375.0
+      }
+    ],
+    "2026-10-27": [
+      {
+        "name": "Strength",
+        "type": "strength_training",
+        "distance_mi": 0.0,
+        "duration_min": 27.0,
+        "calories": 36.0
       }
     ]
   }
