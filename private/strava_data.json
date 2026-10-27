@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-26T20:50:22Z",
+  "fetched_at": "2026-10-27T20:22:00Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -841,6 +841,52 @@
         "hr_max": null,
         "elev_ft": 0,
         "strava_id": 20706673858,
+        "map_polyline": ""
+      }
+    ],
+    "2026-10-26": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Evening Run",
+        "detail": "3.11 mi \u00b7 40m \u00b7 @ 12:52/mi \u00b7 \u2764\ufe0f 153 bpm \u00b7 cadence 165 spm",
+        "dist_mi": 3.11,
+        "duration_sec": 2404,
+        "pace": "12:52/mi",
+        "hr_avg": 153,
+        "hr_max": 173,
+        "elev_ft": 0,
+        "strava_id": 20745722494,
+        "map_polyline": ""
+      }
+    ],
+    "2026-10-27": [
+      {
+        "emoji": "\ud83c\udfcb",
+        "sport": "WeightTraining",
+        "name": "upper b",
+        "detail": "27m",
+        "dist_mi": 0,
+        "duration_sec": 1660,
+        "pace": null,
+        "hr_avg": null,
+        "hr_max": null,
+        "elev_ft": 0,
+        "strava_id": 20751204216,
+        "map_polyline": ""
+      },
+      {
+        "emoji": "\ud83c\udfcb",
+        "sport": "WeightTraining",
+        "name": "Morning Weight Training",
+        "detail": "27m \u00b7 \u2764\ufe0f 70 bpm",
+        "dist_mi": 0,
+        "duration_sec": 1621,
+        "pace": null,
+        "hr_avg": 70,
+        "hr_max": 108,
+        "elev_ft": 0,
+        "strava_id": 20751209946,
         "map_polyline": ""
       }
     ]
