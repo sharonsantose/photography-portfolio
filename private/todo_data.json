@@ -591,8 +591,12 @@
     },
     "2026-10-27": {
       "garmin_steps": false,
-      "garmin_calories": false,
+      "garmin_calories": true,
       "strava": true
+    },
+    "2026-10-28": {
+      "garmin_steps": false,
+      "garmin_calories": false
     }
   },
   "commute": {},
