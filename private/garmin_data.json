@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-10-28T20:55:39Z",
-  "today": "2026-10-28",
+  "fetched_at": "2026-10-29T09:32:01Z",
+  "today": "2026-10-29",
   "stats": {
-    "steps": 1571,
+    "steps": 1776,
     "step_goal": 15000,
-    "resting_hr": 49,
-    "active_calories": 29.0,
-    "sleep_hours": 7.0,
-    "sleep_score": 57
+    "resting_hr": 50,
+    "active_calories": 28.0,
+    "sleep_hours": 7.5,
+    "sleep_score": 85
   },
   "steps_history": {
     "2026-06-28": {
@@ -499,7 +499,11 @@
       "goal": 15000
     },
     "2026-10-28": {
-      "steps": 1571,
+      "steps": 20334,
+      "goal": 15000
+    },
+    "2026-10-29": {
+      "steps": 1776,
       "goal": 15000
     }
   },
@@ -885,7 +889,7 @@
       "hours": 6.8
     },
     "2026-10-02": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-10-03": {
@@ -897,11 +901,11 @@
       "hours": 6.6
     },
     "2026-10-05": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-10-06": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-10-07": {
@@ -921,7 +925,7 @@
       "hours": 9.4
     },
     "2026-10-11": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-10-12": {
@@ -991,6 +995,10 @@
     "2026-10-28": {
       "score": 57,
       "hours": 7.0
+    },
+    "2026-10-29": {
+      "score": 80,
+      "hours": 7.5
     }
   },
   "activities_by_date": {
@@ -1510,6 +1518,15 @@
         "distance_mi": 0.0,
         "duration_min": 27.0,
         "calories": 36.0
+      }
+    ],
+    "2026-10-28": [
+      {
+        "name": "Treadmill Running",
+        "type": "treadmill_running",
+        "distance_mi": 4.35,
+        "duration_min": 55.9,
+        "calories": 540.0
       }
     ]
   }
