@@ -1,11 +1,11 @@
 {
-  "fetched_at": "2026-10-31T19:51:38Z",
-  "today": "2026-10-31",
+  "fetched_at": "2026-11-01T10:11:34Z",
+  "today": "2026-11-01",
   "stats": {
-    "steps": 5483,
-    "step_goal": 15000,
-    "resting_hr": 51,
-    "active_calories": 276.0,
+    "steps": null,
+    "step_goal": null,
+    "resting_hr": null,
+    "active_calories": null,
     "sleep_hours": 7.5,
     "sleep_score": 85
   },
@@ -897,7 +897,7 @@
       "hours": 6.8
     },
     "2026-10-02": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-10-03": {
@@ -909,11 +909,11 @@
       "hours": 6.6
     },
     "2026-10-05": {
-      "score": 85,
+      "score": 86,
       "hours": 7.5
     },
     "2026-10-06": {
-      "score": 84,
+      "score": 85,
       "hours": 7.5
     },
     "2026-10-07": {
@@ -933,7 +933,7 @@
       "hours": 9.4
     },
     "2026-10-11": {
-      "score": 86,
+      "score": 80,
       "hours": 7.5
     },
     "2026-10-12": {
@@ -1013,6 +1013,10 @@
       "hours": 7.9
     },
     "2026-10-31": {
+      "score": 81,
+      "hours": 7.5
+    },
+    "2026-11-01": {
       "score": 80,
       "hours": 7.5
     }
