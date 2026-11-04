@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-03T21:26:24Z",
+  "fetched_at": "2026-11-04T21:40:31Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -935,6 +935,22 @@
         "hr_max": 169,
         "elev_ft": 0,
         "strava_id": 20837387742,
+        "map_polyline": ""
+      }
+    ],
+    "2026-11-03": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Evening Run",
+        "detail": "1.86 mi \u00b7 23m \u00b7 @ 12:41/mi \u00b7 \u2764\ufe0f 141 bpm \u00b7 cadence 164 spm",
+        "dist_mi": 1.86,
+        "duration_sec": 1419,
+        "pace": "12:41/mi",
+        "hr_avg": 141,
+        "hr_max": 154,
+        "elev_ft": 0,
+        "strava_id": 20851669905,
         "map_polyline": ""
       }
     ]
