@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-07T19:47:53Z",
+  "fetched_at": "2026-11-08T20:05:10Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -968,6 +968,38 @@
         "elev_ft": 46,
         "strava_id": 20877120594,
         "map_polyline": "szqaH~bviVj@aAVs@^o@L[JIDMd@w@X{@rAeC^ExB|F\\tANHF?RGLMHOLMl@u@J[NStAwAJE`@a@TOdAiAPIlAgAv@w@PIl@i@f@e@NWFEJAPI|@eAj@_@FKj@c@NSLI`@c@PG\\g@VMX[NK~@{@p@g@j@o@TM`@a@POJEPQNENKPGLOb@QT@v@OJBb@?NKZBXAtB?r@EJCl@CdBH`@Ah@GX@[?q@JSCMB{@AuADGCS@WEsAFk@Aq@@MCW?q@NKA[Dc@Hw@b@WRYZSJ_@b@MHMJo@f@KLk@d@m@bA[PMNOBy@b@_@\\i@j@a@XWZk@b@o@n@SNSVSL_Az@e@^a@b@m@`@MNi@b@_@^UN[ZKFOPsAlAkAxAq@dAa@`AYb@m@nAORM\\IJIX[j@CJBj@GpBBn@@b@CRIDEGJm@@mACKS]EEGAGBS^k@pAa@t@u@bBSZWn@c@r@o@vAm@`ASf@IJ]v@IXWf@Uj@[b@?JDCTq@Zg@Xq@Pk@^m@hA_CPUXs@HKTi@l@kADQ`@m@Pe@Zi@^_ARUHWPWt@}ABK"
+      }
+    ],
+    "2026-11-07": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Lunch Run",
+        "detail": "4.75 mi \u00b7 53m \u00b7 @ 11:14/mi \u00b7 \u2764\ufe0f 157 bpm \u00b7 \u2191 89ft \u00b7 cadence 176 spm",
+        "dist_mi": 4.75,
+        "duration_sec": 3208,
+        "pace": "11:14/mi",
+        "hr_avg": 157,
+        "hr_max": 176,
+        "elev_ft": 89,
+        "strava_id": 20901722770,
+        "map_polyline": "{zqaHh{viVQd@QVWj@EPWb@_@|@Y`@GNeApBIR[f@IZo@bAYp@k@bAo@rAKROl@cA|BWv@e@|@Ob@]t@KLc@hAm@lAGR_AzAk@fAe@|@CPq@fAmBzD}@~A[R{@dA_A`AgBxBWRWd@Qf@AJ?ZFdACPOTa@bAS\\Qj@EDSDMA_@S[C]HUPSZKd@S`BEn@a@dBURY^y@p@]Je@GWB]Nc@f@[r@Sr@OfAIjBI`@a@hA_@f@q@n@[x@qAvB[`@cCnDe@f@gBpCQPeAtAs@l@Sf@]f@e@nAQ~@YfAe@hAa@t@CLGjAs@vBKN_@FUNMPIXGd@BbAHh@C\\i@nB_@x@M`@IdAK`@AJFj@Ab@Qb@E^BbA[lAGj@Kf@Q|AI^MVe@d@s@^c@\\SL]JuAXY?MCm@@yAGeBDo@Cy@B_AAg@@g@A{A@UAO@[Pe@^_@@]EUBQHaB~AQZSj@Xq@NYf@e@l@q@NMNEPCb@FPALENIJM`@StCDfAEt@@JAR@~ACj@B|C?\\@~@Eb@Ir@Yx@m@l@Y\\]HQJe@JeAN_Ad@}BCgAVgA?YE_@?QHUFW@c@Fc@f@gAd@_BF_@?e@G]A[@_ALc@LSPK`@GJKx@aCD_ABK`A_CRs@ZaB\\{@z@}Ap@s@bAsAROLQl@}@Zm@Za@^a@`@o@RSfC{DVg@FGn@qAv@w@T_@Rc@Nk@Fg@NgCd@aBb@s@TU`@Sh@@HCNBLE\\UZe@PI^g@Pg@Ja@XyCH_@HUTe@FGXGZ@L@VPNBNELMrA}CB_@Ik@?YDYL[\\i@\\c@p@_ABAFBFLF?DEpCwDd@u@nAmCNSn@sANe@V]f@eAT]jA}BFQ\\i@`@qAPQ^s@J]V]f@gAJ[Vg@FW\\q@l@gBNUNe@N]V]lAyCt@wARg@`A}AL[R]Pc@r@mApAkCH]HO"
+      }
+    ],
+    "2026-11-08": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Morning Run",
+        "detail": "2.49 mi \u00b7 31m \u00b7 @ 12:43/mi \u00b7 \u2764\ufe0f 135 bpm \u00b7 cadence 169 spm",
+        "dist_mi": 2.49,
+        "duration_sec": 1897,
+        "pace": "12:43/mi",
+        "hr_avg": 135,
+        "hr_max": 153,
+        "elev_ft": 0,
+        "strava_id": 20912259773,
+        "map_polyline": ""
       }
     ]
   }
