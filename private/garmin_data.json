@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-10T00:06:10Z",
+  "fetched_at": "2026-11-10T10:50:49Z",
   "today": "2026-11-10",
   "stats": {
     "steps": null,
@@ -547,7 +547,7 @@
       "goal": 15000
     },
     "2026-11-09": {
-      "steps": 3466,
+      "steps": 15582,
       "goal": 15000
     }
   },
@@ -1673,6 +1673,15 @@
         "distance_mi": 2.49,
         "duration_min": 31.6,
         "calories": 257.0
+      }
+    ],
+    "2026-11-09": [
+      {
+        "name": "Treadmill Running",
+        "type": "treadmill_running",
+        "distance_mi": 2.49,
+        "duration_min": 31.7,
+        "calories": 271.0
       }
     ]
   }
