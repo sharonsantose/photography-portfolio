@@ -658,6 +658,10 @@
       "strava": true,
       "garmin_steps": false,
       "garmin_calories": true
+    },
+    "2026-11-11": {
+      "garmin_steps": false,
+      "garmin_calories": false
     }
   },
   "commute": {},
