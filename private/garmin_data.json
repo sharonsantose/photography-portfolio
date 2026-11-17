@@ -1,11 +1,11 @@
 {
-  "fetched_at": "2026-11-17T00:08:11Z",
+  "fetched_at": "2026-11-17T11:33:14Z",
   "today": "2026-11-17",
   "stats": {
     "steps": null,
-    "step_goal": null,
-    "resting_hr": null,
-    "active_calories": null,
+    "step_goal": 15000,
+    "resting_hr": 45,
+    "active_calories": 0.0,
     "sleep_hours": 7.5,
     "sleep_score": 85
   },
@@ -575,7 +575,11 @@
       "goal": 15000
     },
     "2026-11-16": {
-      "steps": 3882,
+      "steps": 10951,
+      "goal": 15000
+    },
+    "2026-11-17": {
+      "steps": null,
       "goal": 15000
     }
   },
@@ -1756,6 +1760,15 @@
         "distance_mi": 29.65,
         "duration_min": 172.2,
         "calories": 1253.0
+      }
+    ],
+    "2026-11-16": [
+      {
+        "name": "Walking",
+        "type": "walking",
+        "distance_mi": 1.44,
+        "duration_min": 40.1,
+        "calories": 152.0
       }
     ]
   }
