@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-16T23:56:34Z",
+  "fetched_at": "2026-11-17T23:16:58Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -1048,6 +1048,22 @@
         "elev_ft": 525,
         "strava_id": 20990660597,
         "map_polyline": "_praHzuuiV{@nBaClC]bB{AzAW|A]d@cF}G}AsAkCyFwAgAuA_B_EGgAa@gAAuK?iK\\iBm@cIFyA]sBFqGzDaEr@yBSaJL_Ak@iEgA_CWqPLuFvAwEvBmKtGuElBkI|GuBlEJvAsFnQgBzBwB\\cNEQkCVcGlDia@`AqHv@{ChDgHFeSIyF[eAm@i@_SwJyHqL}G}G{C{DyAkEgDg\\T}H`Fm\\fAqDhAkBr@wCzCkGnI{Tp@yGc@iFk@mBoAmBgBaBqAk@sb@iImFOuFTeGbAyHvBuCVsDWaCeC{@oBc@oBIcJn@qFrCuGhDkFvHwJfDsHhAsDl@mFB}C[mD}A_EcC}B}DsA{NaB_Bs@oBeBsB}EaA}EcCk`@XoP]kDi@qByBwCgN{J_MuQcB_B{BkAaXwGyFw@u`@dCgPvEoLfJmGnKwAzDiBjJ}BnUsAdDsBrAiC?eC}A_AkBgDuMmCmEiDkBqDWua@lMsBRoGK_QjFcEp@qH`@}_@rJ}Bp@gAt@iE~FyC~AwI|@gN{C_DKaDt@aOnGcBDeFo@iBHiC|AgExG_BxA{GnBgJpFaCb@}AG}Ai@iIsF_Bm@cOYiS_CeZgM{BiBkCoEEaAu@oCyDeMc@y@pF|Ph@zCvCzE~BfB~XrLrR`CvPb@dBt@nIxFnD`@bCk@rI_FlGcBpBgBpDgGhAiAzAm@|AGzFh@jBIxNkG~Cs@fCHzMzCjBB|F{@dCeAvEqGtBmAjb@qK~LaAdSeGfJCzb@qMrDXxDhCfC|ExB`KbA|B~BjBnCHlBcAx@cAt@sBvB{TjBqJ|AwEnGqK`JkHpBeAhOcEv`@eCvFz@rWvGzEfD|LrQtNfKjBdCn@xB^hDc@`P`BzXlA~KxBxEP|@lBdBhBr@bNbBjDbAfBdAlAzArA~DX|CErDgBpJkDxHiHhJ_GdJyAvEk@hFB`IRvAv@pBfC~CnFb@bBQ`JgCpHcApGCpEZla@hIfAj@`CxCpAbDV`C?hC}@lG}B~FsBzDq@lCcEjJe@vBcA`BqArDeFt]SjGf@xG`CvSf@|Bl@tAtBrCnHrHnIbMxSlKr@|AA|DLz@MvADrPkCxEiAhDyArLHTe@HcD~`@W~G|ARnJDhCGp@UzAoBz@uB`E{ME}A~@gCx@oAxHqGxGwCbJ{FjCoAhHqBvPQfI~AbAl@vMBpDa@bHkElBCv@x@d@DbJ@hDMfAShB^rCa@bCp@`PKfAb@pDtE~BtEp@b@~@hBp@Z|B~Cr@aA~AcD"
+      }
+    ],
+    "2026-11-16": [
+      {
+        "emoji": "\ud83d\udeb6",
+        "sport": "Walk",
+        "name": "Evening Walk",
+        "detail": "1.44 mi \u00b7 40m \u00b7 @ 27:54/mi \u00b7 \u2764\ufe0f 91 bpm",
+        "dist_mi": 1.44,
+        "duration_sec": 2405,
+        "pace": "27:54/mi",
+        "hr_avg": 91,
+        "hr_max": 100,
+        "elev_ft": 0,
+        "strava_id": 21016892986,
+        "map_polyline": ""
       }
     ]
   }
