@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-11-17T23:26:33Z",
-  "today": "2026-11-17",
+  "fetched_at": "2026-11-18T11:15:37Z",
+  "today": "2026-11-18",
   "stats": {
-    "steps": 3677,
+    "steps": null,
     "step_goal": 15000,
-    "resting_hr": 44,
-    "active_calories": 46.0,
-    "sleep_hours": 7.3,
-    "sleep_score": 87
+    "resting_hr": 45,
+    "active_calories": 0.0,
+    "sleep_hours": 7.5,
+    "sleep_score": 85
   },
   "steps_history": {
     "2026-06-28": {
@@ -579,7 +579,11 @@
       "goal": 15000
     },
     "2026-11-17": {
-      "steps": 3677,
+      "steps": 11981,
+      "goal": 15000
+    },
+    "2026-11-18": {
+      "steps": null,
       "goal": 15000
     }
   },
@@ -1081,11 +1085,11 @@
       "hours": 7.9
     },
     "2026-10-31": {
-      "score": 83,
+      "score": 84,
       "hours": 7.5
     },
     "2026-11-01": {
-      "score": 82,
+      "score": 83,
       "hours": 7.5
     },
     "2026-11-02": {
@@ -1151,6 +1155,10 @@
     "2026-11-17": {
       "score": 87,
       "hours": 7.3
+    },
+    "2026-11-18": {
+      "score": 80,
+      "hours": 7.5
     }
   },
   "activities_by_date": {
@@ -1769,6 +1777,24 @@
         "distance_mi": 1.44,
         "duration_min": 40.1,
         "calories": 152.0
+      }
+    ],
+    "2026-11-17": [
+      {
+        "name": "Treadmill Running",
+        "type": "treadmill_running",
+        "distance_mi": 1.86,
+        "duration_min": 23.8,
+        "calories": 229.0
+      }
+    ],
+    "2026-11-12": [
+      {
+        "name": "Indoor Cycling",
+        "type": "indoor_cycling",
+        "distance_mi": 7.01,
+        "duration_min": 30.1,
+        "calories": 196.0
       }
     ]
   }
