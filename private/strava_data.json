@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-17T23:16:58Z",
+  "fetched_at": "2026-11-18T22:48:39Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -1034,6 +1034,22 @@
         "map_polyline": ""
       }
     ],
+    "2026-11-12": [
+      {
+        "emoji": "\ud83d\udeb4",
+        "sport": "Ride",
+        "name": "Evening Ride",
+        "detail": "7.01 mi \u00b7 30m \u00b7 @ 14.0 mph \u00b7 \u2764\ufe0f 103 bpm",
+        "dist_mi": 7.01,
+        "duration_sec": 1806,
+        "pace": null,
+        "hr_avg": 103,
+        "hr_max": 120,
+        "elev_ft": 0,
+        "strava_id": 21028928055,
+        "map_polyline": ""
+      }
+    ],
     "2026-11-14": [
       {
         "emoji": "\ud83d\udeb4",
@@ -1063,6 +1079,22 @@
         "hr_max": 100,
         "elev_ft": 0,
         "strava_id": 21016892986,
+        "map_polyline": ""
+      }
+    ],
+    "2026-11-17": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Afternoon Run",
+        "detail": "1.86 mi \u00b7 23m \u00b7 @ 12:44/mi \u00b7 \u2764\ufe0f 151 bpm \u00b7 cadence 163 spm",
+        "dist_mi": 1.86,
+        "duration_sec": 1426,
+        "pace": "12:44/mi",
+        "hr_avg": 151,
+        "hr_max": 166,
+        "elev_ft": 0,
+        "strava_id": 21029487783,
         "map_polyline": ""
       }
     ]
