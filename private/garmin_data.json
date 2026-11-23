@@ -1,13 +1,13 @@
 {
-  "fetched_at": "2026-11-22T21:39:29Z",
-  "today": "2026-11-22",
+  "fetched_at": "2026-11-23T11:56:28Z",
+  "today": "2026-11-23",
   "stats": {
-    "steps": 56,
+    "steps": null,
     "step_goal": 15000,
-    "resting_hr": 46,
+    "resting_hr": 48,
     "active_calories": 0.0,
-    "sleep_hours": 6.4,
-    "sleep_score": 74
+    "sleep_hours": 7.5,
+    "sleep_score": 85
   },
   "steps_history": {
     "2026-06-28": {
@@ -599,7 +599,11 @@
       "goal": 15000
     },
     "2026-11-22": {
-      "steps": 56,
+      "steps": 770,
+      "goal": 15000
+    },
+    "2026-11-23": {
+      "steps": null,
       "goal": 15000
     }
   },
@@ -1101,11 +1105,11 @@
       "hours": 7.9
     },
     "2026-10-31": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-11-01": {
-      "score": 80,
+      "score": 81,
       "hours": 7.5
     },
     "2026-11-02": {
@@ -1185,12 +1189,16 @@
       "hours": 9.6
     },
     "2026-11-21": {
-      "score": 81,
+      "score": 82,
       "hours": 7.5
     },
     "2026-11-22": {
       "score": 74,
       "hours": 6.4
+    },
+    "2026-11-23": {
+      "score": 80,
+      "hours": 7.5
     }
   },
   "activities_by_date": {
@@ -1613,13 +1621,6 @@
         "distance_mi": 19.53,
         "duration_min": 110.9,
         "calories": 786.0
-      },
-      {
-        "name": "Seattle Road Cycling",
-        "type": "road_biking",
-        "distance_mi": 0.06,
-        "duration_min": 1.2,
-        "calories": 2.0
       }
     ],
     "2026-10-05": [
@@ -1827,6 +1828,15 @@
         "distance_mi": 7.01,
         "duration_min": 30.1,
         "calories": 196.0
+      }
+    ],
+    "2026-11-22": [
+      {
+        "name": "Seattle Road Cycling",
+        "type": "road_biking",
+        "distance_mi": 13.41,
+        "duration_min": 85.2,
+        "calories": 643.0
       }
     ]
   }
