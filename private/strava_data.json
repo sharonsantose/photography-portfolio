@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-24T02:42:51Z",
+  "fetched_at": "2026-11-25T00:16:53Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -1112,6 +1112,22 @@
         "elev_ft": 325,
         "strava_id": 21089727965,
         "map_polyline": "anraHxpuiVHK_@vAiBrEeAdAU\\UhAo@vA{@d@KNw@zBAj@GH?c@_@_AcAgAGW]KaAgAU]Oc@kAkAm@oAm@u@c@iAo@y@i@Ys@_AEUBOMOcFCgA_@wFDaBGe@JWIeA?WHqCEm@PwAHi@Ko@Je@c@oAScCJ}EAOAYY{ARYMoGzDsDr@{@QeDDyEEs@Hu@e@cFoAsCYmCLyJDqAPaHfCkCvAY\\u@TeDfB]`@gAn@s@LwCzAkIzGm@t@sA|CEXNn@AZkFxP_@p@iAtAs@ViBD_L@a@GKQAYCqBDw@l@iIxC{\\r@{Gd@gBt@{Bx@cB~@yARs@AqPHa@@e@KgA?wADm@Cs@]iA][sPwIsAe@mIeM{H}HwBuCu@kB_@cBCy@sCeVQiD@{APuCp@_FL_@NmAd@yBZcEj@_CZiDvAoEl@q@^eAj@_CjBqD|AyDhAiDf@cAhCmGh@mB^oCNeCKcCUcBq@kBsAsBqAqAeAg@gKqBwOeDcGaAiFMsBF{BL_G`AcI|B{CPk@Cu@[w@F{@k@oAcBuAgDGa@?o@E^Fn@p@lBlArBbAjAVJv@CjBZpBE|@MvIaC|Cg@zCYfDEzELvBXxPdDVL`NnCpAx@pBbCd@dA`@tARpAHpDIjAm@|D{AbEyClGi@vB_CzFcKz^QrBc@zBy@~FMrBEbBHbCJlArBhQb@lEVpAx@zBzCzD`H~G|HvLzMtGrDpBd@l@T|@C|CJt@?t@Gr@ExHFjFQr@sBtD}ApE{@`JIfA?lAM|AUtAg@bFu@rJJZZNpAFlACbAb@`@fC@`AqAhEKRWL[pBy@xB{@tCgDpJa@p@Qz@]p@SbAQ\\IDEYPeBnBwN@{@RoBNgCFg@Tc@HEx@RpIHjDGl@U~AsB`@_AxEsOAYK_@Jk@z@}Br@gAdIwGfDgBZCtAm@f@i@dDkBb@MjBqAlCqA\\EnDsAx@In@YF\\JIbDQnFEnBBjBNzE|@bAl@nL?pANtAGhAYxGmEXHvAMj@v@r@JxC@nAGv@SHBDP\\BvD[xA?l@PpAE|@Y~@HZXfBAj@B`@L~@O|AEtBBjBN~@Dh@Qj@`@lAdBvA`Al@vAfBpBPp@d@|@`@vArCxCx@l@l@SNQd@{ATa@RiAz@kA\\Wt@Ib@UDa@Mu@BURe@R{@Ve@H_@\\SFg@TA"
+      }
+    ],
+    "2026-11-23": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "Afternoon Run",
+        "detail": "2.80 mi \u00b7 34m \u00b7 @ 12:24/mi \u00b7 \u2764\ufe0f 154 bpm \u00b7 cadence 167 spm",
+        "dist_mi": 2.8,
+        "duration_sec": 2081,
+        "pace": "12:24/mi",
+        "hr_avg": 154,
+        "hr_max": 182,
+        "elev_ft": 0,
+        "strava_id": 21102713296,
+        "map_polyline": ""
       }
     ]
   }
