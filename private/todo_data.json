@@ -720,6 +720,10 @@
     "2026-11-24": {
       "garmin_steps": false,
       "garmin_calories": false
+    },
+    "2026-11-25": {
+      "garmin_steps": false,
+      "garmin_calories": false
     }
   },
   "commute": {},
