@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-25T23:56:58Z",
+  "fetched_at": "2026-11-27T00:14:31Z",
   "athlete_id": 197020850,
   "activities_by_date": {
     "2026-07-04": [
@@ -1128,6 +1128,22 @@
         "elev_ft": 0,
         "strava_id": 21102713296,
         "map_polyline": ""
+      }
+    ],
+    "2026-11-26": [
+      {
+        "emoji": "\ud83c\udfc3",
+        "sport": "Run",
+        "name": "turkey trot!",
+        "detail": "3.11 mi \u00b7 30m \u00b7 @ 9:39/mi \u00b7 \u2764\ufe0f 177 bpm \u00b7 \u2191 112ft \u00b7 cadence 176 spm",
+        "dist_mi": 3.11,
+        "duration_sec": 1802,
+        "pace": "9:39/mi",
+        "hr_avg": 177,
+        "hr_max": 191,
+        "elev_ft": 112,
+        "strava_id": 21132383417,
+        "map_polyline": "srutD~s}dQ\\@HEBGCgB@cALuATaBL_@^aA`@eBFmACOCk@QcBIaABGNG\\Cj@BvCArAYjAe@|@Sj@GzDGp@?nBAN@pC?t@EHELQ@YGyA@wBG}H@wDAmCE}@@_AC{C@_AEw@?_ECgABgAEyAB}AC{@Ic@Q[_@g@]k@GSKk@EkA@}@E_EBw@Cq@AoB@i@@eCAk@CKEDAHDfB?rDFfGA`BDtBHh@JZb@n@PPNZNf@D`@BbGBl@?lFDdDAl@@xADv@Cf@D`DA^@\\?dGFlBET?l@Dp@Av@Bl@?bACHOL{ADW?a@Ec@Bk@CU?EBOCODg@Cs@@q@A{@Bk@CsAHUAQDuAn@iAZs@DgBCm@F[@SFIHANXbCHfAAx@K~@[dAMZCT]hAO~@It@GxA@p@Az@EVIDGCCQD{@"
       }
     ]
   }
